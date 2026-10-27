@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import "./experience.css";
 
 export const metadata: Metadata = {
-  title: "GroundTruth — Understand what your code actually does",
-  description: "Predict, run, inspect, and explain. A focused verification lab for understanding the behavior of AI-assisted code.",
+  title: "GroundTruth — JavaScript practice and live investigations",
+  description: "Build your understanding with short JavaScript missions, useful feedback, and a live playground for following real app evidence.",
   other: {
     "codex-preview": "development",
   },

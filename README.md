@@ -1,8 +1,17 @@
 # GroundTruth
 
-GroundTruth is an investigation workbench for learners working with AI-built web apps. In a synthetic campus signup, learners commit a prediction, send real HTTP requests, inspect persisted SQL rows, revise an explanation, verify an instructor-vetted repair, and complete an independent transfer task.
+GroundTruth helps learners read code, choose a useful concept, and test their understanding. Start with a short interactive challenge, practise through three concept missions, then investigate a real web app in the live playground.
 
-The initial investigation deliberately discards a successful response **after a real database commit**. This is a labeled injected fault. Evidence comes from requests, server receipts, and database rows. Meta can propose a bounded next experiment; the learner chooses whether to run it. Transfer, debrief, and transfer repair have no AI calls. Tutor evidence review is read-only; scoring is manual.
+## Learning path
+
+- **Home:** an unscored, playable warmup with a clear next action.
+- **Learn (`/learn`):** three original JavaScript missions covering loops and conditions, exact-key lookup, and sorted two-pointer reasoning. Each has three checkpoints, specific answer feedback, hints, and retries. The nine checkpoints award up to ninety local practice points, once per checkpoint; these are completion markers, not grades or certification.
+- **Live playground (`/workspace`):** one synthetic campus signup investigation. Commit a prediction, send real HTTP requests, inspect persisted SQL rows, explain the result, verify a reviewed repair, and complete an independent task. The guide shows the next control to use; independent phases have procedural help only.
+- **Continue practising:** ordinary outbound links to relevant official LeetCode, Codewars, and Exercism resources, with an optional HackerRank assessment destination. GroundTruth does not import platform results, issue their certifications, or claim affiliation.
+
+Concept practice needs no app-level enrollment. The current private hosted Site still requires its platform access/sign-in. Mini-mission progress is stored only in the current browser; use its reset control to clear it. It is separate from signed-in lab work and tutor evidence. It is not account-synced and is not proof of mastery.
+
+The live investigation deliberately discards a successful response **after a real database commit**. This is a labeled injected fault. Evidence comes from requests, server receipts, and database rows. Public practice examples are authored exercises, not live SQL evidence. Meta can propose a bounded next experiment in the live lab; the learner chooses whether to run it. Transfer, debrief, and transfer repair have no AI calls. Tutor evidence review is read-only; scoring is manual.
 
 A successful build does not establish live Meta access or pilot readiness. Owner configuration, a genuine live-provider check, hosted identity checks, and [operator release gates](docs/pilot/operator-checklist.md) are required before participant use. No participant results or learning-effectiveness claims are reported here.
 

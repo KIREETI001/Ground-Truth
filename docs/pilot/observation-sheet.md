@@ -13,6 +13,9 @@ Retention owner/contact: ____   Session created: ____
 App purge due: ____             Operational-event purge due: ____
 
 Stage                         Start/end   Done/skip/stop   Help H0–H3   Evidence IDs
+Home first meaningful action  ____        ____             ____        N/A
+Warmup / concept mission      ____        ____             ____        N/A
+Find live playground          ____        ____             ____        N/A
 Unaided baseline              ____        ____             ____        ____
 Prediction committed          ____        ____             ____        ____
 Request and labeled loss      ____        ____             ____        ____
@@ -27,6 +30,11 @@ Separate repair / debrief     ____        ____             ____        ____
 Export / reflection           ____        ____             ____        ____
 
 Help events (time, H level, neutral description): ____
+Entry route: Home / Learn / Live playground directly ____
+Concept mission IDs/checkpoints attempted before the lab: ____
+Navigation guide: opened / skipped / closed / replayed / not encountered ____
+Found next action unaided: yes / no / unclear ____
+Understood wrong-answer feedback and retry: yes / no / not encountered ____
 Accessibility help, separately: ____
 AI mode: live-meta / instructor-authored / unavailable / not encountered
 AI choice: accepted / changed / rejected / not encountered

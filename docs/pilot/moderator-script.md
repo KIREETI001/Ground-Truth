@@ -2,6 +2,12 @@
 
 Use [consent copy](recruitment-and-consent.md) first and a private [observation sheet](observation-sheet.md). Target 35–45 minutes; durations are planning aids. Record the actual build and timings. Do not disclose a technical answer or patch choice before commitment. Accessibility help is available and recorded separately from technical help.
 
+## Entry and navigation check
+
+For a usability session, begin at Home and ask the participant what they would click first. Let them try the unscored warmup or a concept mission. Observe whether they can find the choice, check the answer, understand feedback, retry, and continue. Concept missions concern general JavaScript reasoning and are separate from the signup investigation; record which missions they attempted before the lab. Their browser-local points are practice completion markers, not assessment results or learning gains. External practice links leave GroundTruth; opening one does not establish completion or certification.
+
+For an investigation-only session, go directly to the Live playground and keep the unaided baseline below before opening technical hints. Record which entry route was used. The floating guide and tutorial may explain controls; any conceptual assistance is logged separately. During independent phases use procedural guidance only. Do not guide the participant through an answer or prior explanation.
+
 ## Opening: about 7 minutes
 
 Say: “Please say what you are looking for or expecting when you can. If something is confusing, that is useful information about the product. There is no need to know the vocabulary.”
