@@ -1,0 +1,20 @@
+{
+  "version": "7",
+  "dialect": "sqlite",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1793087049556,
+      "tag": "0000_groundtruth",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1793088615634,
+      "tag": "0001_enrollment_throttle",
+      "breakpoints": true
+    }
+  ]
+}
