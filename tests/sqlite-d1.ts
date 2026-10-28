@@ -79,6 +79,14 @@ CREATE TABLE enrollment_attempts (
  user_id TEXT NOT NULL,pilot_id TEXT NOT NULL,window_started_at INTEGER NOT NULL,attempts INTEGER NOT NULL,
  PRIMARY KEY(user_id,pilot_id)
 );
+CREATE TABLE learner_records (
+ user_id TEXT PRIMARY KEY NOT NULL,state_json TEXT NOT NULL,revision TEXT NOT NULL,
+ notice_version TEXT NOT NULL,notice_acknowledged_at TEXT NOT NULL,updated_at TEXT NOT NULL,expires_at TEXT NOT NULL
+);
+CREATE TABLE pulse_votes (
+ user_id TEXT NOT NULL,poll_day TEXT NOT NULL,poll_id TEXT NOT NULL,choice_id TEXT NOT NULL,
+ created_at TEXT NOT NULL,updated_at TEXT NOT NULL,expires_at TEXT NOT NULL,PRIMARY KEY(user_id,poll_day)
+);
 CREATE TABLE sessions (
  id TEXT PRIMARY KEY,owner_id TEXT NOT NULL,status TEXT NOT NULL CHECK(status IN ('active','deleting')),
  phase TEXT NOT NULL,revision INTEGER NOT NULL,document_json TEXT NOT NULL,request_id TEXT NOT NULL,

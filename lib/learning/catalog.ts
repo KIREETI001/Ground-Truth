@@ -2,7 +2,7 @@ export type PracticeLink = { label: string; href: string; detail: string };
 export type LessonChoice = { id: string; label: string; correct?: boolean; feedback: string };
 export type Checkpoint = {
   id: string; label: string; title: string; prompt: string; code?: string;
-  visual: 'queue' | 'receipt' | 'marker-start' | 'marker-next' | 'marker-unsorted';
+  visual: 'queue' | 'receipt' | 'marker-start' | 'marker-next' | 'marker-unsorted' | 'code';
   choices: LessonChoice[]; hint: string; takeaway: string;
 };
 export type Mission = { id: string; number: string; title: string; topic: string; summary: string; color: string; checkpoints: Checkpoint[]; links: PracticeLink[] };
@@ -139,6 +139,138 @@ export const missions: Mission[] = [
       { label: 'Exercism · JavaScript arrays', href: 'https://exercism.org/tracks/javascript/concepts/arrays', detail: 'Build confidence reading positions and array values.' },
     ],
   },
+  {
+    id: 'async-in-order', number: '04', title: 'Async, in order', topic: 'Promises + await', color: 'violet',
+    summary: 'Trace an async save and make the interface wait for the right thing.',
+    checkpoints: [
+      {
+        id: 'async-choose', label: 'Choose the wait', title: 'Saved should mean saved.', visual: 'code',
+        prompt: 'saveDraft returns a promise that resolves after the server accepts the draft. Which change makes “Saved” appear after acceptance?',
+        code: 'async function onSave() {\n  saveDraft(draft);\n  setStatus("Saved");\n}',
+        choices: [
+          { id: 'await', label: 'Use await saveDraft(draft) before setStatus.', correct: true, feedback: 'Yes. Await pauses this async function until that promise settles. The success message follows a successful resolution.' },
+          { id: 'timer', label: 'Wait a fixed 100 milliseconds before showing “Saved”.', feedback: 'The server may take longer than that timer. Elapsed time does not establish that the draft was accepted.' },
+          { id: 'label', label: 'Rename saveDraft to savedDraft.', feedback: 'A name does not change execution order. The promise still needs to be awaited before reporting success.' },
+        ],
+        hint: 'Follow the value returned by saveDraft. Which option waits for that specific operation?',
+        takeaway: 'Await the operation whose result your next interface state depends on.',
+      },
+      {
+        id: 'async-trace', label: 'Trace the order', title: 'A pause has a boundary.', visual: 'code',
+        prompt: 'The promise is already resolved. What order is logged?',
+        code: 'async function load() {\n  console.log("start");\n  await Promise.resolve();\n  console.log("ready");\n}\nload();\nconsole.log("outside");',
+        choices: [
+          { id: 'straight', label: 'start → ready → outside', feedback: 'Even an already fulfilled promise resumes the code after await later, after the current synchronous work finishes.' },
+          { id: 'order', label: 'start → outside → ready', correct: true, feedback: 'Exactly. load starts immediately, pauses at await, and the caller logs outside. Then the awaited continuation logs ready.' },
+          { id: 'deferred', label: 'outside → start → ready', feedback: 'Calling an async function begins its body immediately. It runs synchronously until the first await.' },
+        ],
+        hint: 'Separate the function into code before await and its continuation after await.',
+        takeaway: 'Await pauses the current async function; it does not stop the caller’s synchronous work.',
+      },
+      {
+        id: 'async-boundary', label: 'Handle failure', title: 'Success is only one outcome.', visual: 'code',
+        prompt: 'saveDraft can reject when the connection fails. What does this code still need for useful feedback?',
+        code: 'async function onSave() {\n  setStatus("Saving…");\n  await saveDraft(draft);\n  setStatus("Saved");\n}',
+        choices: [
+          { id: 'catch', label: 'Catch a rejection and show a retryable error while keeping the draft.', correct: true, feedback: 'Right. On rejection the success line is skipped. Handle that outcome explicitly so the user can keep their work and retry.' },
+          { id: 'finally', label: 'Always set “Saved” in finally.', feedback: 'Finally also runs after a failure. Showing Saved there would report success without successful acceptance.' },
+          { id: 'remove', label: 'Remove await so failures cannot happen.', feedback: 'The network operation can still fail. Removing await only stops this function from waiting for its outcome.' },
+        ],
+        hint: 'A rejected awaited promise throws into the async function. Which path should the interface show then?',
+        takeaway: 'Pair a success path with an honest failure path; preserve user input for recovery.',
+      },
+    ],
+    links: [{ label: 'MDN · Using promises', href: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Using_promises', detail: 'Read more about promise chains and error handling.' }],
+  },
+  {
+    id: 'query-the-data', number: '05', title: 'Query the data', topic: 'SQL + filters', color: 'lime',
+    summary: 'Read a filter, count matching records, and notice what a query leaves out.',
+    checkpoints: [
+      {
+        id: 'sql-choose', label: 'Choose the filter', title: 'Ask for the rows you need.', visual: 'code',
+        prompt: 'A tasks table stores id, done, and owner_id. Which query returns only unfinished tasks?',
+        code: '-- tasks\n-- id | done | owner_id\n--  1 |    0 | ada\n--  2 |    1 | ben\n--  3 |    0 | ben',
+        choices: [
+          { id: 'where', label: 'SELECT * FROM tasks WHERE done = 0;', correct: true, feedback: 'Yes. WHERE tests each row. Rows 1 and 3 meet done = 0, so they are returned.' },
+          { id: 'order', label: 'SELECT * FROM tasks ORDER BY done;', feedback: 'ORDER BY changes the result order. It does not remove completed tasks from the result.' },
+          { id: 'all', label: 'SELECT * FROM tasks;', feedback: 'Without a filter, this query returns completed and unfinished tasks alike.' },
+        ],
+        hint: 'Which clause selects rows by a condition rather than changing their order?',
+        takeaway: 'WHERE filters rows. ORDER BY orders the rows that remain.',
+      },
+      {
+        id: 'sql-trace', label: 'Trace the result', title: 'Both conditions must hold.', visual: 'code',
+        prompt: 'Using the same three rows, what count does this query return?',
+        code: 'SELECT COUNT(*) AS total\nFROM tasks\nWHERE owner_id = \'ben\' AND done = 0;\n\n-- (1, 0, ada), (2, 1, ben), (3, 0, ben)',
+        choices: [
+          { id: 'one', label: '1', correct: true, feedback: 'Exactly. Only row 3 belongs to ben and is unfinished. Row 2 belongs to ben but fails done = 0.' },
+          { id: 'two', label: '2', feedback: 'There are two rows owned by ben, but the AND condition also requires done = 0. Completed row 2 is excluded.' },
+          { id: 'three', label: '3', feedback: 'COUNT counts the rows after the WHERE filter. It does not count every row in the original table here.' },
+        ],
+        hint: 'Check owner_id and done separately for each row. An AND needs both tests to pass.',
+        takeaway: 'Trace the filter first, then apply the aggregate to its matching rows.',
+      },
+      {
+        id: 'sql-boundary', label: 'Find the boundary', title: 'A filter is not permission.', visual: 'code',
+        prompt: 'The browser supplies ownerId to this server query. What must happen before treating the result as private to the signed-in user?',
+        code: 'const ownerId = request.body.ownerId;\n// query uses a bound parameter, not string concatenation\nSELECT * FROM tasks WHERE owner_id = ?;',
+        choices: [
+          { id: 'identity', label: 'Use the authenticated server identity to choose the owner, and check access.', correct: true, feedback: 'Right. A bound parameter helps separate values from SQL, but a caller can still supply another owner ID. Ownership must come from trusted authentication and authorization.' },
+          { id: 'parameter', label: 'Nothing: the bound parameter proves the caller owns that ID.', feedback: 'Binding a parameter does not establish identity or permission. It is a separate concern from deciding whose rows the caller may read.' },
+          { id: 'hidden', label: 'Hide the ownerId input in the browser.', feedback: 'A hidden field is still caller-controlled. The server must enforce who may read the requested rows.' },
+        ],
+        hint: 'A query can safely handle a value while still asking for data the caller does not own.',
+        takeaway: 'Query correctness, parameter binding, and authorization are separate checks.',
+      },
+    ],
+    links: [{ label: 'SQLite · SELECT', href: 'https://www.sqlite.org/lang_select.html', detail: 'Inspect the clauses used by a SELECT statement.' }],
+  },
+  {
+    id: 'check-the-owner', number: '06', title: 'Check the owner', topic: 'Server access + tests', color: 'peach',
+    summary: 'Follow a server-side ownership check and choose a test that challenges it.',
+    checkpoints: [
+      {
+        id: 'owner-choose', label: 'Choose the boundary', title: 'The server decides access.', visual: 'code',
+        prompt: 'A user can edit their own note. Which condition belongs on the server before this update?',
+        code: 'const note = await db.getNote(request.params.id);\nconst user = await authenticate(request);\n// decide access here\nawait db.updateNote(note.id, request.body.text);',
+        choices: [
+          { id: 'owner', label: 'Require a signed-in user and note.ownerId === user.id.', correct: true, feedback: 'Yes. Check authenticated identity against the stored owner before allowing the update, and handle missing users or notes before reading their fields.' },
+          { id: 'button', label: 'Allow it whenever the browser shows an Edit button.', feedback: 'The browser can be changed or bypassed. A displayed button does not establish server-side permission.' },
+          { id: 'body', label: 'Require request.body.ownerId to match note.ownerId.', feedback: 'The caller controls request.body. Matching a supplied ID does not establish that the signed-in caller owns the note.' },
+        ],
+        hint: 'Compare a trusted authenticated identity with the ownership recorded by the server.',
+        takeaway: 'Enforce access at the server boundary before reading or changing protected data.',
+      },
+      {
+        id: 'owner-trace', label: 'Trace the decision', title: 'Follow the rejecting path.', visual: 'code',
+        prompt: 'User ben requests a note owned by ada. Which line decides the outcome?',
+        code: 'const user = { id: "ben" };\nconst note = { ownerId: "ada", text: "draft" };\nif (note.ownerId !== user.id) {\n  return response(403);\n}\nawait update(note);\nreturn response(200);',
+        choices: [
+          { id: 'reject', label: 'The mismatch returns 403 before update runs.', correct: true, feedback: 'Exactly. ada differs from ben, so the condition is true. The return exits the handler before the update.' },
+          { id: 'update', label: 'update runs, then the handler returns 403.', feedback: 'The earlier return exits this handler. Execution does not continue to the update after that return.' },
+          { id: 'success', label: 'A signed-in user always reaches response(200).', feedback: 'Authentication identifies the user. This separate ownership condition can still reject an authenticated user.' },
+        ],
+        hint: 'Evaluate the string comparison, then follow return rather than skipping past it.',
+        takeaway: 'Authentication answers who the caller is; authorization decides what that caller may do.',
+      },
+      {
+        id: 'owner-boundary', label: 'Test the boundary', title: 'Challenge the allowed path.', visual: 'code',
+        prompt: 'The owner can update a note successfully. Which additional test most directly checks the ownership boundary?',
+        code: '// Existing check\n// Ada updates Ada’s note → 200, text changes.\n\n// Add one test that can disprove isolation.',
+        choices: [
+          { id: 'other', label: 'Ben tries to update Ada’s note; expect denial and unchanged stored text.', correct: true, feedback: 'Right. This exercises a different signed-in identity and checks both the response and the protected record. A denial alone would miss a write that happened first.' },
+          { id: 'repeat', label: 'Ada updates Ada’s note twice successfully.', feedback: 'That repeats the permitted path. It does not challenge whether a different user can change the note.' },
+          { id: 'color', label: 'Check that the Edit button has the correct color.', feedback: 'Appearance does not exercise the server boundary or verify that the stored note stayed unchanged.' },
+        ],
+        hint: 'Change the caller while keeping the target note fixed. Inspect the stored result as well as the response.',
+        takeaway: 'A useful denial test checks that an unauthorized request causes no protected write.',
+      },
+    ],
+    links: [{ label: 'OWASP · Authorization cheat sheet', href: 'https://cheatsheetseries.owasp.org/cheatsheets/Authorization_Cheat_Sheet.html', detail: 'Continue with authorization design and testing principles.' }],
+  },
 ];
 
 export const checkpointIds = new Set(missions.flatMap(mission => mission.checkpoints.map(checkpoint => checkpoint.id)));
+
+export const checkpointTotal = checkpointIds.size;
+export const practicePointMaximum = checkpointTotal * 10;

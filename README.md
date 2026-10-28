@@ -1,15 +1,21 @@
 # GroundTruth
 
-GroundTruth helps learners read code, choose a useful concept, and test their understanding. Start with a short interactive challenge, practise through three concept missions, then investigate a real web app in the live playground.
+GroundTruth helps students understand the web apps they build with AI. Choose a goal, try a short baseline, practise a recommended concept, and inspect the evidence behind your learning path. The live playground connects predictions to real HTTP requests and SQL records.
 
 ## Learning path
 
-- **Home:** an unscored, playable warmup with a clear next action.
-- **Learn (`/learn`):** three original JavaScript missions covering loops and conditions, exact-key lookup, and sorted two-pointer reasoning. Each has three checkpoints, specific answer feedback, hints, and retries. The nine checkpoints award up to ninety local practice points, once per checkpoint; these are completion markers, not grades or certification.
+- **Today (`/`):** goal-first onboarding for frontend, full-stack or backend web-app builders; a three-question starting baseline; an explained next mission; and an inspectable skill map. “Not sure” is a valid starting answer.
+- **Learn (`/learn`):** six original missions covering loops, lookup, sorted pointers, async ordering, SQL filtering and server-side ownership. Each has three checkpoints, specific answer feedback, hints and retries. The eighteen checkpoints award up to 180 practice points, once per checkpoint; these mark guided practice, not grades or mastery.
+- **Projects (`/projects`):** choose a public GitHub repository, inspect a pinned file listing, and explicitly select the source files to read. GroundTruth shows file-grounded technology signals and suggests a mission. It does not execute imported code, send source to AI, establish authorship, assess security or infer understanding from the existence of code. Private GitHub account linking is not configured.
+- **Radar (`/radar`):** refresh official GitHub, web.dev and TypeScript feeds, with publisher, date and original source. The learning angle is an application suggestion, not a hiring forecast. Daily optional polls report this self-selected community's opinions; individual answers are private, and option counts appear only after five responses.
+- **Your path (`/profile`):** edit goal, languages, interests and available time; explicitly save to an authenticated account; export or remove the path. Device practice and account work are separate, with explicit imports rather than silent merging.
+- **Reference shelf (`/learn/library`):** 100 supplied Markdown notes across JavaScript, TypeScript, SQL, Python, Java, C++ and C#, loaded one at a time. These are reference documents, not seven assessed curricula. Examples and version claims have not all been validated. Rendering treats raw HTML as text.
 - **Live playground (`/workspace`):** one synthetic campus signup investigation. Commit a prediction, send real HTTP requests, inspect persisted SQL rows, explain the result, verify a reviewed repair, and complete an independent task. The guide shows the next control to use; independent phases have procedural help only.
 - **Continue practising:** ordinary outbound links to relevant official LeetCode, Codewars, and Exercism resources, with an optional HackerRank assessment destination. GroundTruth does not import platform results, issue their certifications, or claim affiliation.
 
-Concept practice needs no app-level enrollment. The current private hosted Site still requires its platform access/sign-in. Mini-mission progress is stored only in the current browser; use its reset control to clear it. It is separate from signed-in lab work and tutor evidence. It is not account-synced and is not proof of mastery.
+Concept practice needs no app-level enrollment. The current owner-private hosted Site still requires platform access/sign-in. A guest can build a path on the device immediately. Account storage requires a native sign-in and an explicit save after the profile notice; an anonymous profile is never silently uploaded. Saved profiles, baseline choices, guided-completion markers and chosen public-source excerpts are available for 30 days after saving. Expiry prevents reads; physical cleanup is manual through the existing operator purge. Account state uses opaque revisions so stale tabs cannot silently overwrite a newer save. Account reads, saves, exports and deletion also bind an expected account header to the trusted native identity within the same request. These formative records are separate from tutor-reviewed live-lab evidence and are not proof of mastery.
+
+Radar fetches current feeds when opened/refreshed; no unattended news scheduler or personal notifications are configured. A failed source shows its own error rather than a fabricated update. A missing Meta key does not block deterministic recommendations, public-project inspection or guided practice.
 
 The live investigation deliberately discards a successful response **after a real database commit**. This is a labeled injected fault. Evidence comes from requests, server receipts, and database rows. Public practice examples are authored exercises, not live SQL evidence. Meta can propose a bounded next experiment in the live lab; the learner chooses whether to run it. Transfer, debrief, and transfer repair have no AI calls. Tutor evidence review is read-only; scoring is manual.
 
@@ -37,7 +43,7 @@ If Corepack is absent, follow its [official installation instructions](https://g
 
 In the ignored `.dev.vars`, leave `MODEL_CALLS_ENABLED="false"` for the first run. Set a local-only enrollment code and `PILOT_ENROLLMENT_ENABLED="true"`. For local tutor access, set `STAFF_USER_ROLES='{"local_seedy":"owner"}'`. Hosted identities and secrets are configured separately.
 
-Build to generate the Worker configuration, then apply both committed migrations, in order, to a **new** local database:
+Build to generate the Worker configuration, then apply the three committed migrations, in order, to a **new** local database:
 
 ```powershell
 corepack pnpm build
@@ -46,6 +52,8 @@ node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1
 if ($LASTEXITCODE -ne 0) { throw 'Initial migration failed' }
 node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_enrollment_throttle.sql
 if ($LASTEXITCODE -ne 0) { throw 'Enrollment throttle migration failed' }
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0002_learner_path_pulse.sql
+if ($LASTEXITCODE -ne 0) { throw 'Learner path and daily pulse migration failed' }
 corepack pnpm dev
 ```
 
@@ -62,17 +70,17 @@ git pull --ff-only origin codex/groundtruth-mvp
 corepack pnpm install --frozen-lockfile
 ```
 
-If this checkout's local database already has `0000_groundtruth.sql`, apply only the new enrollment-throttle migration once:
+For an existing database, apply only migrations it has not received. For example, a database with `0000_groundtruth.sql` and `0001_enrollment_throttle.sql` needs the new learner-path migration once:
 
 ```powershell
 corepack pnpm build
 if ($LASTEXITCODE -ne 0) { throw 'Build failed' }
-node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0001_enrollment_throttle.sql
-if ($LASTEXITCODE -ne 0) { throw 'Enrollment throttle migration failed' }
+node --import ./scripts/sites-env.mjs ./node_modules/wrangler/bin/wrangler.js d1 execute DB --local --config dist/server/wrangler.json --persist-to .wrangler/state --file drizzle/0002_learner_path_pulse.sql
+if ($LASTEXITCODE -ne 0) { throw 'Learner path and daily pulse migration failed' }
 corepack pnpm dev
 ```
 
-Rebuild after source or binding changes. Apply only unapplied migrations, in filename order; do not replay either migration against existing state. Local D1 state under `.wrangler/state` is separate from hosted D1. Use `.wrangler/state` without appending `/v3`.
+Rebuild after source or binding changes. Apply only unapplied migrations, in filename order; do not replay migrations against existing state. Local D1 state under `.wrangler/state` is separate from hosted D1. Use `.wrangler/state` without appending `/v3`.
 
 ## Commands and verification
 

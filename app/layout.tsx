@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./experience.css";
+import "./journey.css";
+import { LearnerProvider } from "./components/learner-context";
 
 export const metadata: Metadata = {
-  title: "GroundTruth — JavaScript practice and live investigations",
-  description: "Build your understanding with short JavaScript missions, useful feedback, and a live playground for following real app evidence.",
-  other: {
-    "codex-preview": "development",
-  },
+  title: "GroundTruth — Your next useful step",
+  description: "Understand the web apps you build with guided practice, an evidence-based learning path, and live investigations.",
 };
 
 export default function RootLayout({
@@ -17,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased">{children}</body>
+      <body className="antialiased"><LearnerProvider>{children}</LearnerProvider></body>
     </html>
   );
 }

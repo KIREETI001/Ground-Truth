@@ -1,6 +1,8 @@
 import type { FixtureId, Me, Outcome, Prediction, RunPlan, RuntimeConfig } from '../contracts.ts';
 import { createRun, executeStep, finalizeRun, getEvidence, getRunSource, getRunState, LabError, sourceFor } from '../lab/engine.ts';
 import { runCoaching } from './coaching.ts';
+import { handleLearnerRoutes, requireBoundAccount } from './learner.ts';
+import { handleDiscovery } from './discovery.ts';
 import { ENROLLMENT_WINDOW_MS, purgeExpired } from './retention.ts';
 import type { ApiOptions } from './coaching.ts';
 import { ApiError, fields, json, readMutation, requestId, string } from './http.ts';
@@ -40,6 +42,10 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
     const url = new URL(request.url);
     const path = url.pathname;
     if (path === '/api/me' && request.method === 'GET') return json(await me(request, config, userId));
+    const discovery = await handleDiscovery(request, body);
+    if (discovery) return discovery;
+    const learner = await handleLearnerRoutes(request, config, userId, body);
+    if (learner) return learner;
     if (!userId) throw new ApiError(401, 'AUTH_REQUIRED');
 
     if (path === '/api/notices/practice' && request.method === 'POST') {
@@ -90,6 +96,7 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
       return json(await me(request, config, userId), 201);
     }
     if (path === '/api/activity' && request.method === 'DELETE') {
+      requireBoundAccount(request, userId);
       const securityCutoff = Date.now() - ENROLLMENT_WINDOW_MS;
       const results = await config.DB.batch([
         config.DB.prepare("UPDATE sessions SET status='deleting' WHERE owner_id=?").bind(userId),
@@ -100,10 +107,13 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
         // Preserve an active cooldown so deletion cannot reset enrollment attempts.
         config.DB.prepare('DELETE FROM enrollment_attempts WHERE user_id=? AND window_started_at<=?').bind(userId, securityCutoff),
         config.DB.prepare('SELECT count(*) AS counters,max(window_started_at) AS latest_window_started_at FROM enrollment_attempts WHERE user_id=?').bind(userId),
+        config.DB.prepare('DELETE FROM learner_records WHERE user_id=?').bind(userId),
+        config.DB.prepare('DELETE FROM pulse_votes WHERE user_id=?').bind(userId),
       ]);
       const security = results[6].results[0] as { counters: number; latest_window_started_at: number | null };
       return json({ deleted: { sessions: results[1].meta.changes, coachLocks: results[2].meta.changes,
-        profiles: results[3].meta.changes, memberships: results[4].meta.changes, enrollmentAttempts: results[5].meta.changes },
+        profiles: results[3].meta.changes, memberships: results[4].meta.changes, enrollmentAttempts: results[5].meta.changes,
+        learnerRecords: results[7].meta.changes, pulseVotes: results[8].meta.changes },
         retained: { enrollmentSecurityCounters: security.counters,
           enrollmentSecurityWindowEndsAt: security.latest_window_started_at === null ? null : new Date(security.latest_window_started_at + ENROLLMENT_WINDOW_MS).toISOString(),
           enrollmentSecurityCleanup: 'Active enrollment security counters are retained for their ten-minute window. Expired counters are removed during moderator cleanup or a later deletion request; cleanup is not automatic.' } });

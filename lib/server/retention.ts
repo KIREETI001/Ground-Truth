@@ -17,6 +17,8 @@ export async function purgeExpired(config: RuntimeConfig): Promise<unknown> {
       (SELECT 1 FROM pilot_memberships WHERE pilot_memberships.user_id=practice_profiles.user_id AND expires_at>?)`).bind(profileCutoff, cutoff),
     config.DB.prepare('DELETE FROM coach_locks WHERE expires_at<=?').bind(cutoff),
     config.DB.prepare('DELETE FROM enrollment_attempts WHERE window_started_at<=?').bind(Date.now() - ENROLLMENT_WINDOW_MS),
+    config.DB.prepare('DELETE FROM learner_records WHERE expires_at<=?').bind(cutoff),
+    config.DB.prepare('DELETE FROM pulse_votes WHERE expires_at<=?').bind(cutoff),
   ]);
   let providerReceipts = 0;
   const rows = await config.DB.prepare("SELECT * FROM sessions WHERE status='active' AND expires_at>? AND document_json LIKE '%\"receipt\"%'")
@@ -37,5 +39,6 @@ export async function purgeExpired(config: RuntimeConfig): Promise<unknown> {
     if (!saved) throw new ApiError(409, 'RETENTION_STATE_CHANGED', 'An activity changed during cleanup; run cleanup again.');
   }
   return { deleted: { sessions: results[1].meta.changes, memberships: results[2].meta.changes,
-    profiles: results[3].meta.changes, coachLocks: results[4].meta.changes, enrollmentAttempts: results[5].meta.changes, providerReceipts } };
+    profiles: results[3].meta.changes, coachLocks: results[4].meta.changes, enrollmentAttempts: results[5].meta.changes,
+    learnerRecords: results[6].meta.changes, pulseVotes: results[7].meta.changes, providerReceipts } };
 }

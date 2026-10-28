@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { awardCheckpoint, loadProgress, missionStatus, parseProgress, persistProgress, resetProgress } from '../lib/learning/progress.ts';
 import { workspaceGuide, workspaceTour, type GuideState } from '../lib/learning/guide.ts';
+import { checkpointIds, missions } from '../lib/learning/catalog.ts';
 
 // These exercise the helpers consumed by the lesson and workspace UIs.
 test('a checkpoint awards ten local points once, including after reload', () => {
@@ -22,12 +23,33 @@ test('unknown checkpoint IDs cannot earn points', () => {
   assert.deepEqual(result.progress.completed, ['queue-choose']);
 });
 
-test('all nine checkpoints stop at ninety points even when replayed', () => {
+test('all eighteen checkpoints stop at one hundred eighty points even when replayed', () => {
   let progress = { completed: [] as string[] };
-  const ids = ['queue-choose', 'queue-trace', 'queue-boundary', 'receipt-choose', 'receipt-trace', 'receipt-boundary', 'marker-choose', 'marker-trace', 'marker-boundary'];
+  const ids = [...checkpointIds];
   for (const id of [...ids, ...ids]) progress = awardCheckpoint(progress, id).progress;
-  assert.equal(awardCheckpoint(progress, 'marker-boundary').points, 90);
-  assert.equal(progress.completed.length, 9);
+  assert.equal(awardCheckpoint(progress, 'marker-boundary').points, 180);
+  assert.equal(progress.completed.length, 18);
+});
+
+test('the web-app path preserves original missions and adds three code-based missions', () => {
+  assert.deepEqual(missions.map(item => item.id), ['scan-the-queue', 'find-the-receipt', 'move-the-marker', 'async-in-order', 'query-the-data', 'check-the-owner']);
+  assert.equal(checkpointIds.size, 18);
+  for (const mission of missions.slice(3)) {
+    assert.equal(mission.checkpoints.length, 3);
+    for (const checkpoint of mission.checkpoints) {
+      assert.equal(checkpoint.visual, 'code');
+      assert.ok(checkpoint.code);
+      assert.equal(checkpoint.choices.filter(choice => choice.correct).length, 1);
+      assert.ok(checkpoint.choices.every(choice => choice.feedback.length > 20));
+      assert.ok(checkpoint.hint && checkpoint.takeaway);
+    }
+  }
+});
+
+test('a new mission resumes its first unfinished checkpoint and preserves legacy stamps', () => {
+  const saved = parseProgress('{"version":1,"completed":["queue-choose","async-trace"]}');
+  assert.deepEqual(saved.completed, ['queue-choose', 'async-trace']);
+  assert.deepEqual(missionStatus(saved, 'async-in-order'), { count: 1, complete: false, nextIndex: 0 });
 });
 
 test('stored progress discards unknown, duplicated, and malformed IDs', () => {

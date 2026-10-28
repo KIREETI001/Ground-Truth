@@ -134,7 +134,7 @@ test('expired activity cannot be read or mutated', async (t) => {
 test('deleting own activity removes memberships and frozen state without touching another member', async (t) => {
   const fixture = createTestDb(); t.after(() => fixture.close()); const config = configFor(fixture); await enroll(config); await enroll(config, 'member-b');
   const own = await start(config); const other = await start(config, 'member-b');
-  const response = await handleApi(request('/activity', 'DELETE'), config, 'member-a');
+  const response = await handleApi(request('/activity', 'DELETE', undefined, { 'X-GroundTruth-Account': 'member-a' }), config, 'member-a');
   assert.equal(response.status, 200);
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM sessions WHERE owner_id=?').get('member-a')!.n, 0);
   assert.equal((await readJson<Me>(await handleApi(request('/me'), config, 'member-a'))).enrolled, false);
@@ -231,7 +231,7 @@ test('run execution, evidence, finalization and tutor exports enforce separate o
   assert.equal((await handleApi(request(`/admin/sessions/${session.id}/proof.json`), config, 'member-b')).status, 403);
   assert.equal((await handleApi(request(`/admin/sessions/${session.id}/proof.json`), config, 'tutor-a')).status, 200);
   assert.equal((await handleApi(request(`/sessions/${session.id}`), config, 'tutor-a')).status, 404);
-  await handleApi(request('/activity', 'DELETE'), config, 'member-a');
+  await handleApi(request('/activity', 'DELETE', undefined, { 'X-GroundTruth-Account': 'member-a' }), config, 'member-a');
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM lab_runs').get()!.n, 0);
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM lab_registrations').get()!.n, 0);
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM lab_receipts').get()!.n, 0);
@@ -303,7 +303,7 @@ test('one coach request per native user runs at a time and deletion prevents a l
   const first = handleApi(request('/coach', 'POST', { sessionId: session.id, caseId: session.cases[0].id }), config, 'member-a', { coach: adapter });
   await providerStarted;
   assert.equal((await handleApi(request('/coach', 'POST', { sessionId: session.id, caseId: session.cases[0].id }), config, 'member-a', { coach: adapter })).status, 429);
-  assert.equal((await handleApi(request('/activity', 'DELETE'), config, 'member-a')).status, 200);
+  assert.equal((await handleApi(request('/activity', 'DELETE', undefined, { 'X-GroundTruth-Account': 'member-a' }), config, 'member-a')).status, 200);
   release(); assert.equal((await first).status, 404);
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM sessions').get()!.n, 0);
   assert.equal(fixture.sqlite.prepare('SELECT count(*) AS n FROM coach_usage').get()!.n, 0);

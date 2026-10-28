@@ -14,6 +14,15 @@ export const enrollmentAttempts = sqliteTable('enrollment_attempts', {
   userId: text('user_id').notNull(), pilotId: text('pilot_id').notNull(),
   windowStartedAt: integer('window_started_at').notNull(), attempts: integer('attempts').notNull(),
 }, table => [primaryKey({ columns: [table.userId, table.pilotId] })]);
+export const learnerRecords = sqliteTable('learner_records', {
+  userId: text('user_id').primaryKey(), stateJson: text('state_json').notNull(), revision: text('revision').notNull(),
+  noticeVersion: text('notice_version').notNull(), noticeAcknowledgedAt: text('notice_acknowledged_at').notNull(),
+  updatedAt: text('updated_at').notNull(), expiresAt: text('expires_at').notNull(),
+});
+export const pulseVotes = sqliteTable('pulse_votes', {
+  userId: text('user_id').notNull(), pollDay: text('poll_day').notNull(), pollId: text('poll_id').notNull(),
+  choiceId: text('choice_id').notNull(), createdAt: text('created_at').notNull(), updatedAt: text('updated_at').notNull(), expiresAt: text('expires_at').notNull(),
+}, table => [primaryKey({ columns: [table.userId, table.pollDay] })]);
 export const sessions = sqliteTable('sessions', {
   id: text('id').primaryKey(), ownerId: text('owner_id').notNull(), status: text('status').notNull(),
   phase: text('phase').notNull(), revision: integer('revision').notNull(), documentJson: text('document_json').notNull(),

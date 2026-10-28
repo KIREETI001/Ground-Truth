@@ -11,7 +11,7 @@ function setup(t: test.TestContext) {
   const fixture = createTestDb(); t.after(() => fixture.close());
   const config: RuntimeConfig = { DB: fixture.db, PILOT_ID: 'boundary-pilot', PILOT_ENROLLMENT_ENABLED: 'true', PILOT_ENROLLMENT_CODE: 'pilot-code' };
   const send = (path: string, method = 'GET', body?: unknown, user = 'learner') => handleApi(new Request(origin + path, {
-    method, headers: { Origin: origin, 'Content-Type': 'application/json' }, ...(body ? { body: JSON.stringify(body) } : {}),
+    method, headers: { Origin: origin, 'Content-Type': 'application/json', ...(path === '/api/activity' ? { 'X-GroundTruth-Account': user } : {}) }, ...(body ? { body: JSON.stringify(body) } : {}),
   }), config, user);
   t.mock.method(globalThis, 'fetch', (path: string | URL | Request, init?: RequestInit) => send(String(path), init?.method, init?.body ? JSON.parse(String(init.body)) : undefined));
   const stored = new Map<string, string>();

@@ -5,10 +5,10 @@ import { ArrowRight, Compass, LocateFixed } from 'lucide-react';
 import { Modal } from './lab-ui';
 import type { GuideStep } from '@/lib/learning/guide';
 
-export function focusArea(targetId: string) {
+export function focusArea(targetId: string, behavior: ScrollBehavior = 'smooth') {
   const target = document.getElementById(targetId);
   if (!target) return;
-  target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+  target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : behavior, block: 'start' });
   target.focus({ preventScroll: true });
 }
 
