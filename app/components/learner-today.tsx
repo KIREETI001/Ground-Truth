@@ -1,0 +1,34 @@
+'use client';
+
+import Link from 'next/link';
+import { ArrowRight, ArrowUpRight, Braces, Check, ChevronRight, Clock3, Code2, FolderGit2, Lightbulb, Sparkles } from 'lucide-react';
+import { missions } from '@/lib/learning/catalog';
+import { missionStatus } from '@/lib/learning/progress';
+import { recommendMission } from '@/lib/learner/model';
+import { useLearner } from './learner-context';
+import { LearnerGate, LearnerStatus, StorageLabel } from './learner-shared';
+import { LearnerOnboarding, goalLabel } from './learner-onboarding';
+import { LearnerEvidence } from './learner-evidence';
+import { LearnerFieldBrief } from './learner-radar';
+import { SiteNav } from './site-nav';
+import { AreaTour } from './area-tour';
+
+const todayTour = [
+  { kind: 'procedural' as const, targetId: 'next-step', title: 'One useful next step.', detail: 'Your next mission follows your goal, starting answers and recorded practice. Open “Why this mission?” to inspect the reason, or choose any mission in Learn.' },
+  { kind: 'procedural' as const, targetId: 'skill-map', title: 'Inspect the evidence.', detail: 'Select a skill to see the starting answers, guided checkpoints or source signals behind it. No node certifies independent understanding.' },
+  { kind: 'procedural' as const, targetId: 'field-brief', title: 'Keep a little perspective.', detail: 'The field brief links to official developer sources. Radar shows publication dates, source status and an optional community question.' },
+];
+const setupTour = [
+  { kind: 'procedural' as const, targetId: 'build-path', title: 'Build a path that fits.', detail: 'Choose a goal, a toolkit and a little time. Then try three starting questions. “Not sure yet” is accepted and comes with a useful explanation.' },
+];
+
+export function LearnerToday() {
+  const { state, phase } = useLearner();
+  const configured = !!state.profile && state.baseline.length === 3;
+  const recommendation = recommendMission(state);
+  const mission = missions.find(item => item.id === recommendation.missionId) ?? missions[0];
+  const status = missionStatus(state, mission.id);
+  const completedMissions = missions.filter(item => missionStatus(state, item.id).complete).length;
+  const preview = mission.checkpoints.find(item => !!item.code)?.code ?? 'let open = 0;\nfor (const slot of slots) {\n  if (slot === "open") open += 1;\n}';
+  return <div className="journey-app"><a className="skip-link" href="#today-main">Skip to your next step</a><SiteNav current="home" /><main className="journey-shell" id="today-main"><LearnerGate><LearnerStatus /><div className="today-heading"><div><p className="section-kicker"><span className="tiny-spark"><Sparkles size={15} /></span>Your space to get clearer</p><h1>{configured ? <>A little practice.<br className="mobile-break" /> A clearer picture.</> : <>You built it.<br className="mobile-break" /> Now make it yours.</>}</h1><p>{configured ? 'Understand one more piece of the app you’re building.' : 'Turn an AI-assisted web app into something you understand.'}</p></div><div className="today-heading-meta">{state.profile && <Link href="/profile" className="goal-chip"><Braces size={15} />{goalLabel(state.profile.goal)}<ChevronRight size={15} /></Link>}<StorageLabel /></div></div><div className={`today-grid${configured ? '' : ' is-setup'}`}><div className="today-primary">{configured ? <><section className="next-mission" id="next-step" tabIndex={-1}><div className="next-mission-copy"><span className="next-kicker"><span className="status-dot" />{recommendation.review ? 'A good one to revisit' : status.count ? 'Pick up where you left off' : 'Your next small win'}</span><div className="next-mission-tags"><span><Clock3 size={14} />{Math.min(state.profile?.minutes ?? 10, 10)} min practice</span><span>{mission.checkpoints.length} checkpoints</span></div><h2>{mission.title}.</h2><p>{mission.summary}</p><Link className="button button-lime" href={`/learn#${mission.id}`}>{recommendation.review ? 'Review this mission' : status.count ? 'Continue mission' : 'Let’s try it'}<ArrowRight size={18} /></Link><details className="recommendation-reason"><summary><Lightbulb size={15} />Why this mission?</summary><p>{recommendation.reason}</p></details></div><div className="next-code-preview" aria-label="Preview of this mission’s supplied example"><div><span className="code-window-dots"><i /><i /><i /></span><span>{mission.topic}</span><Code2 size={15} /></div><pre><code>{preview}</code></pre><span className="preview-prompt"><Braces size={17} />What happens next?</span></div></section><div className="next-mission-under"><span><Check size={15} />Guided practice · your reasoning comes first</span><Link href="/learn">Choose another mission<ArrowRight size={15} /></Link></div><LearnerEvidence /><section className="live-bridge"><span className="live-bridge-icon"><Code2 size={22} /></span><div><h2>Ready to investigate a running app?</h2><p>Predict, run a supplied test, and follow real saved evidence.</p></div><Link className="text-link" href="/workspace">Live playground<ArrowUpRight size={17} /></Link></section></> : <LearnerOnboarding />}</div><aside className="today-rail">{configured ? <section className="path-summary"><span className="section-kicker">Your path, at your pace</span><div className="path-summary-number"><strong>{completedMissions}</strong><span>of {missions.length} missions practiced</span></div><div className="mini-mission-track" aria-label={`${completedMissions} of ${missions.length} missions practiced`}>{missions.map(item => <Link href={`/learn#${item.id}`} key={item.id} className={missionStatus(state, item.id).complete ? 'done' : ''} aria-label={`${item.title}${missionStatus(state, item.id).complete ? ', practiced' : ''}`}>{missionStatus(state, item.id).complete ? <Check size={15} /> : item.number}</Link>)}</div><p>Small steps count. Guided checkpoints are a practice record, not a grade.</p></section> : <section className="setup-rail-note"><span className="rail-icon"><Sparkles size={23} /></span><h2>A path with a reason.</h2><p>One useful task next. A little feedback along the way. Evidence you can inspect.</p><div><span><Check size={16} />A short starting check</span><span><Check size={16} />Six original missions</span><span><Check size={16} />Room to change your mind</span></div><p className="support-copy">{phase === 'account' ? 'Account changes stay in this tab until you explicitly save in Profile.' : 'Your path stays on this device. Account saving is optional.'}</p></section>}<LearnerFieldBrief />{configured && <Link href="/projects" className="project-nudge"><span><FolderGit2 size={21} /></span><div><strong>Bring a project into focus.</strong><p>Find ideas in selected public source files.</p></div><ArrowRight size={18} /></Link>}</aside></div><AreaTour floating steps={configured ? todayTour : setupTour} label="Your guide" /></LearnerGate></main></div>;
+}

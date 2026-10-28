@@ -1,0 +1,11 @@
+'use client';
+
+import { useState } from 'react';
+import { ArrowRight, Check, Code2, RotateCcw } from 'lucide-react';
+
+export function Warmup() {
+  const [choice, setChoice] = useState<number | null>(null);
+  const [checked, setChecked] = useState(false);
+  const correct = choice === 1;
+  return <section className="warmup-card" aria-labelledby="warmup-title"><div className="warmup-top"><span><Code2 size={17} /> Your first tiny challenge</span><span className="warmup-pill">Unscored warmup</span></div><div className="warmup-question"><h2 id="warmup-title">What will <code>count</code> be?</h2><p>Read the code. Make a call.</p></div><pre className="warmup-code"><code><span className="code-comment">{'// Count values greater than 2'}</span>{'\n'}<span className="syntax-keyword">let</span>{' count = 0;\n'}<span className="syntax-keyword">for</span>{' (const n of [2, 5, 1]) {\n  if (n > 2) count += 1;\n}'}</code></pre><div className="warmup-answer"><fieldset><legend>Your answer</legend><div className="warmup-options">{[0, 1, 3].map(value => <label className={choice === value ? 'selected' : ''} key={value}><input type="radio" name="warmup" value={value} checked={choice === value} disabled={checked} onChange={() => setChoice(value)} /><span>{value}</span>{choice === value && <Check size={16} />}</label>)}</div></fieldset>{checked ? <div className={`warmup-feedback ${correct ? 'is-correct' : 'is-retry'}`} role="status"><strong>{correct ? 'You got it. One match.' : 'Take another look.'}</strong><p>{correct ? 'Only 5 is greater than 2. The count moves 0 → 0 → 1 → 1.' : choice === 0 ? 'The value 5 passes the condition, so the count increases once.' : 'Three values are visited, but only 5 passes n > 2. A visit is not always an increase.'}</p>{correct ? <a className="button button-lime button-full" href="/learn">Try the first mission <ArrowRight size={17} /></a> : <button className="button button-outline button-full" onClick={() => { setChecked(false); setChoice(null); }}><RotateCcw size={16} />Try again</button>}</div> : <button className="button button-lime button-full" disabled={choice === null} onClick={() => setChecked(true)}>Check my answer <ArrowRight size={17} /></button>}</div><div className="warmup-foot"><span className="status-dot" />Browser example · no code is sent or executed</div></section>;
+}
