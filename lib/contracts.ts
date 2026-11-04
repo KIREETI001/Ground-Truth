@@ -74,6 +74,13 @@ export interface CoachResult {
 }
 export interface RuntimeConfig {
   CLOUD_ENABLED?: string;
+  DEMO_ENABLED?: string;
+  DEMO_SEED_PROJECT_ID?: string;
+  DEMO_IDENTITY_SECRET?: string;
+  DEMO_MAX_ACTIVE?: string;
+  DEMO_MAX_STARTS_PER_WINDOW?: string;
+  DEMO_TTL_SECONDS?: string;
+  TRUSTED_PROXY?: string;
   DEVELOPER_PASSWORD_HASH?: string;
   LOCAL_LLM_ENABLED?: string;
   LOCAL_LLM_TOKEN?: string;

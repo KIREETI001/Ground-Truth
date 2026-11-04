@@ -1,6 +1,7 @@
 'use client';
 import { useEffect,useRef,useState } from 'react';
-import { api,post } from '@/lib/client/api';
+import { useRouter } from 'next/navigation';
+import { api,post,formatDate } from '@/lib/client/api';
 import { RuntimeProfileProvider,type RuntimeProfile } from './runtime-profile';
 import { HintWindow } from './hint-window';
 import { RemovalDialog } from './removal-dialog';
@@ -19,6 +20,8 @@ type Step='map'|'concepts'|'practice'|'changes'|'progress';
 const fetchWorkspace=()=>Promise.allSettled([api<{projects:StudyProject[]}>('/api/study/projects'),api<{profile:{applicationStatus:string;displayName:string}|null;role:string}>('/api/account/profile'),api<{maps:RepositoryMap[]}>('/api/study/repository-maps'),api<RuntimeProfile>('/api/me')]);
 
 export function ProjectWorkbench({preview=false}:{preview?:boolean}){
+ const router=useRouter();
+ const [demoSession,setDemoSession]=useState<{demo:true;projectId:string;expiresAt:string}|null>(null);
  const [runtime,setRuntime]=useState<RuntimeProfile>({cloudDeployment:true,modelProvider:'meta'});
  const [step,setStep]=useState<Step>('map'),[conceptId,setConceptId]=useState('');
  const [maps,setMaps]=useState<RepositoryMap[]>([]),[importStart,setImportStart]=useState<{key:number;url:string;map?:RepositoryMap}>({key:0,url:''});
@@ -42,6 +45,7 @@ export function ProjectWorkbench({preview=false}:{preview?:boolean}){
  }
  async function load(){try{acceptWorkspace(await fetchWorkspace());}catch(e){setError(e instanceof Error?e.message:'Could not open your saved paths.');}finally{setLoading(false);}}
  useEffect(()=>{let active=true;void fetchWorkspace().then(result=>{if(active)acceptWorkspace(result);}).catch(e=>{if(active)setError(e instanceof Error?e.message:'Could not open your saved paths.');}).finally(()=>{if(active)setLoading(false);});return()=>{active=false;};},[]);
+ useEffect(()=>{let active=true;void api<{demo:true;projectId:string;expiresAt:string}>('/api/demo/session').then(result=>{if(active&&result.demo===true)setDemoSession(result);}).catch(()=>{});return()=>{active=false;};},[]);
  function navigate(next:Step){setStep(next);requestAnimationFrame(()=>{panel.current?.focus({preventScroll:true});panel.current?.previousElementSibling?.scrollIntoView({block:'start',behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth'});});}
  function update(data:StudyProject){setProject(current=>current?.id===data.id?data:current);setProjects(list=>list.map(p=>p.id===data.id?data:p));}
  async function run(label:string,work:()=>Promise<void>){if(lock.current)return;lock.current=true;setBusy(label);setError('');setNotice('');try{await work();}catch(e){setError(e instanceof Error?e.message:'The action failed. Your saved work is retained.');}finally{lock.current=false;setBusy('');}}
@@ -70,6 +74,7 @@ export function ProjectWorkbench({preview=false}:{preview?:boolean}){
  const importing=!loading&&(showImport||!project);
  return <RuntimeProfileProvider profile={runtime}><div className="platform-page workspace-page"><RemovalDialog open={!!removal} title={removal?.kind==='path'?'Remove learning path?':'Remove repository?'} description={removalDescription} busy={!!busy} error={error} onCancel={()=>{if(!busy)setRemoval(null);}} onConfirm={()=>void confirmRemoval()} restoreFocus={()=>requestAnimationFrame(()=>{if(removalTrigger.current?.isConnected)removalTrigger.current.focus();else document.querySelector<HTMLElement>('.library-new')?.focus();})}/><PlatformNav accountInSidebar current={preview?'Developer preview':'User'}>{stageNavigation}</PlatformNav><div className="workspace-layout"><LearningLibrary displayName={displayName} workspaceName={preview?'Developer preview':'User'} projects={projects} maps={maps} currentId={showImport?undefined:project?.id} disabled={!!busy} loading={loading} onChoose={choose} onExplore={newPath} onNew={()=>newPath()} onRemovePath={p=>void removePath(p)} onRemoveRepository={repo=>void removeRepository(repo)}/><main className="platform-main study-main calm-workspace">
   <header className="workspace-toolbar"><h1 className="sr-only">Your learning workspace</h1>{showImport&&project&&<button type="button" className="text-link" disabled={!!busy} onClick={()=>setShowImport(false)}>← Back to learning</button>}</header>
+  {demoSession&&<aside className="notice" aria-label="Temporary sample"><p><strong>Temporary sample</strong> · Your private practice copy. Available until {formatDate(demoSession.expiresAt)}.</p><div className="button-row"><a className="button button-outline" href="/demo/teacher">See the teacher perspective</a><button type="button" className="text-link" disabled={!!busy} onClick={()=>void run('Leaving the sample',async()=>{await post('/api/local-auth/logout',{});router.replace('/login');router.refresh();})}>Leave sample and sign in</button></div></aside>}
   {pending&&<p className="notice" role="status">Teacher approval pending. You can explore your own paths.</p>}
   {error&&<div className="notice" role="alert"><p>{error}</p><div className="button-row"><button className="text-link" onClick={()=>setError('')}>Dismiss</button>{!project&&<button className="button button-outline" onClick={()=>{setLoading(true);setError('');void load();}}>Retry opening saved paths</button>}</div></div>}
   {notice&&<p className="notice notice-success" role="status">{notice}</p>}
@@ -85,7 +90,7 @@ export function ProjectWorkbench({preview=false}:{preview?:boolean}){
     {step==='map'&&<SourcePanel project={project} busy={!!busy} independent={!!independent} onExplain={()=>void action('analyse')} onConcepts={concepts}/>}
     {step==='concepts'&&<ConceptTree project={project} selected={conceptId} onSelect={id=>{setConceptId(id);navigate('practice');}} onGenerate={()=>action('concepts')} busy={!!busy||!!independent}/>}
     {step==='practice'&&<PracticePanel key={project.id} project={project} introRead={!!introRead[project.id]} onIntroRead={()=>{setIntroRead(seen=>({...seen,[project.id]:true}));const next=pendingExercise.current;pendingExercise.current=null;if(next?.projectId===project.id)void action('exercise',next.body,true);}} conceptId={conceptId} busy={!!busy} answer={drafts[exercise?.id||'']||''} onAnswer={value=>setDrafts(d=>({...d,[exercise?.id||'']:value}))} action={action} onOpenHint={()=>setHintWindows(all=>({...all,[project.id]:true}))}/>}
-    <div hidden={step!=='changes'}>{(project.learningPath?.purpose==='transfer'?<ApplySkills project={project} busy={!!busy||!!independent} onGenerate={()=>action('exercise',{transferChallenge:true})} onEnd={()=>action('end-attempt',{exerciseId:project.exercises.find(e=>e.status==='guided'||e.status==='independent')?.id})} onContinue={()=>navigate('practice')}/>:<ControlledChanges key={project.id} project={project} independent={!!independent} externalBusy={!!busy} conceptId={conceptId} onUpdated={update} onEnd={()=>action('end-attempt',{exerciseId:project.exercises.find(e=>e.status==='guided'||e.status==='independent')?.id})} onContinue={()=>navigate('practice')} onCheck={path=>action('exercise',{workingPath:path})}/>)}</div>
+    <div hidden={step!=='changes'}>{(project.learningPath?.purpose==='transfer'?<ApplySkills project={project} busy={!!busy||!!independent} onGenerate={()=>action('exercise',{transferChallenge:true})} onEnd={()=>action('end-attempt',{exerciseId:project.exercises.find(e=>e.status==='guided'||e.status==='independent')?.id})} onContinue={()=>navigate('practice')}/>:<ControlledChanges key={project.id} project={project} independent={!!independent} externalBusy={!!busy} conceptId={conceptId} onUpdated={update} onEnd={()=>action('end-attempt',{exerciseId:project.exercises.find(e=>e.status==='guided'||e.status==='independent')?.id})} onContinue={()=>navigate('practice')} onCheck={input=>action('exercise',input)}/>)}</div>
     {step==='progress'&&<><ActivityPanel project={project}/><ConceptTree project={project} selected={conceptId} onSelect={id=>{setConceptId(id);navigate('practice');}} onGenerate={()=>action('concepts')} busy={!!busy||!!independent}/><ProgressPanel project={project} busy={!!busy} action={action} onDelete={()=>void removePath(project)}/></>}
    </div>
   </>}

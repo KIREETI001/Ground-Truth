@@ -1,0 +1,13 @@
+GroundTruth implementation
+Copyright (c) 2026 Kireeti Kumar. Licensed under the MIT License; see LICENSE.
+
+Earlier GroundTruth ideation is credited to Attili Kireeti, Delfine Yew,
+V Narthananilaa and Dr. Wesley Tan. This attribution is distinct from the
+participant-confirmed solo hackathon implementation roster. The participant
+confirmed the right to publish the submitted implementation under MIT.
+
+Third-party components retain their respective licenses and notices,
+including scripts/vite/sites-vite-plugin.LICENSE and
+vendor/shadcn-tailwind-4.13.0.LICENSE.md. The MIT grant does not replace or
+relicense third-party components. Dependency metadata and the lockfile
+identify additional upstream packages.

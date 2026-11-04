@@ -1,6 +1,7 @@
 import { platformRole, handleDeveloper, requireOperator } from './access.ts';
 import { handleStudy } from '../study/server.ts';
 import { handleLocalAuth } from './local-auth.ts';
+import { handleDemo } from './demo.ts';
 import type { FixtureId, Me, Outcome, Prediction, RunPlan, RuntimeConfig } from '../contracts.ts';
 import { createRun, executeStep, finalizeRun, getEvidence, getRunSource, getRunState, LabError, sourceFor } from '../lab/engine.ts';
 import { runCoaching } from './coaching.ts';
@@ -47,6 +48,8 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
     const path = url.pathname;
     const authentication = await handleLocalAuth(request, config, body);
     if (authentication) return authentication;
+    const demo = await handleDemo(request, config, body);
+    if (demo) return demo;
     if (path === '/api/me' && request.method === 'GET') return json(await me(request, config, userId));
     const study = await handleStudy(request, config, userId, body);
     if (study) return study;

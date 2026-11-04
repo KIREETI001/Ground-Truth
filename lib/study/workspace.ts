@@ -6,7 +6,7 @@ export function editableSource(value:unknown):string{
  if(typeof value!=='string'||value.length>12000||value.includes('\0'))throw new ApiError(400,'INVALID_EDIT_SOURCE','Use a source file of at most 12,000 characters without binary data.');
  return value;
 }
-export async function localWorkspace<T>(config:RuntimeConfig,action:'create'|'read'|'propose'|'apply'|'auth-bootstrap'|'auth-hash'|'auth-verify'|'repository-tree'|'repository-files',input:Record<string,unknown>):Promise<T>{
+export async function localWorkspace<T>(config:RuntimeConfig,action:'create'|'read'|'proposal'|'propose'|'apply'|'auth-bootstrap'|'auth-hash'|'auth-verify'|'repository-tree'|'repository-files',input:Record<string,unknown>):Promise<T>{
  if(config.CLOUD_ENABLED==='true'){
   if(action==='auth-hash'||action==='auth-verify'||action==='auth-bootstrap')return await (await import('../cloud/auth-crypto.ts')).cloudAuthCrypto(action,input) as T;
   if(action==='repository-files')return await (await import('../cloud/github-source.ts')).readCloudFiles(input as {url:string;commit:string;paths:string[]}) as T;

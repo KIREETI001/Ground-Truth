@@ -1,21 +1,31 @@
 # GroundTruth
 
+The submitted implementation is [MIT licensed](LICENSE). [NOTICE](NOTICE) preserves earlier ideation attribution and third-party notices.
+
 **Understand your code. Think in systems. Make the next change yourself.**
 
-GroundTruth turns a public GitHub project into a focused learning path: choose a feature, trace its architecture, learn the concepts, practise with an MCQ or a short coding task, and make a small change you understand. During an independent attempt, new in-app AI assistance pauses until you submit or end the attempt.
+GroundTruth connects selected public GitHub source to a workflow, concepts, focused practice and a small independent change. New in-app study assistance pauses during an independent attempt. The original response, source and relevant activity can support an explicitly authorized human review.
+
+The revised implementation is awaiting final release verification: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. The [release manifest](submission/release-manifest.json) is authoritative for final deployment/check/media evidence; historical checks do not certify later changes.
+
+## Judge entry and learning loop
+
+After deployment, open [the sign-in page](https://groundtruth-meta.vercel.app/login) and choose Try sample learning path. Each visitor receives an isolated two-hour synthetic learner session and private practice copy. The pinned overview/concepts were prepared with Meta; new questions still request live generation. No shared demo password is required.
+
+Study the code, submit an initial independent task, make a permitted private edit, review/apply its diff and request a task grounded in the owned applied change. A linked fresh variation preserves the earlier answer. The sample's `/demo/teacher` page shows only the current visitor's own record, read-only, without granting a Teacher role.
+
+Approved teachers receive explicitly shared paths with learner/class context, original committed answers, relevant source, a review queue and saved human notes. Enrollment alone does not share every project. Concept evidence uses observed/reviewed states; submitting an answer does not award a mastery percentage. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.
 
 ## Cloud architecture
 
-- **Meta Model API — Muse Spark 1.3:** source-grounded repository maps, beginner overviews, concept trees, hints, MCQs, short coding tasks, formative feedback and controlled edit proposals. Strict structured output and server validation keep the interface consistent. No silent model fallback.
-- **Next.js on Vercel:** shared username/password login, role-based student/teacher/developer workspaces, server authorization and API limits.
-- **Supabase PostgreSQL:** 32 normalized tables in a private schema, RLS, restricted backend role, pooled TLS connections, immutable original submissions, classes and explicit teacher sharing.
-- **Cloud drafts:** pinned original source, saved edits, reviewed diffs, hash/concurrency checks and backups. Download a changed file to apply it yourself. No code execution or automatic GitHub push.
-
-Students can register. Teacher registration requests approval. Developer registration is closed. Teachers see only explicitly shared learning paths; joining a class does not automatically share project records.
+- **Meta Model API — Muse Spark 1.3 Standard:** repository maps, overviews, concepts, MCQs, small coding tasks, source-grounded hints, formative follow-up and controlled edit proposals. Structured output/source validation controls shape and references, not semantic truth. No silent preset/local fallback.
+- **Next.js on Vercel:** opaque account sessions, isolated temporary demo sessions, role/owner authorization, independent-state enforcement and API budgets. Students can register, teacher signup requires approval and developer registration is closed.
+- **Supabase PostgreSQL:** private application schema, restricted backend connection, persistent attempts/shares/reviews and sanitized inference timing/status/usage receipts. End-user isolation depends on server authorization and owner predicates; RLS alone is not a per-user permission guarantee.
+- **Private drafts:** pinned original source, reviewed changes, reconstructed before/after diff and hash/concurrency checks. No arbitrary source/snippet execution or automatic GitHub push.
 
 ## Run and verify
 
-Use Node 24 and Corepack/pnpm. Install with `corepack pnpm install --frozen-lockfile`. Configure the server-only values from `.env.example` in ignored `.env.production.local`; never commit real credentials. Apply the Supabase migration to a new database, then provision the restricted runtime login and developer password hash. See [deployment instructions](docs/cloud-deployment.md).
+Use Node 24 and Corepack/pnpm. Install with `corepack pnpm install --frozen-lockfile`. Configure server-only values from `.env.example` in ignored `.env.production.local`; never commit real credentials. Apply the Supabase migrations and provision the restricted runtime login/developer hash. See [deployment instructions](docs/cloud-deployment.md).
 
 ```powershell
 corepack pnpm dev
@@ -26,18 +36,18 @@ corepack pnpm build
 corepack pnpm verify:release
 ```
 
-Local cloud rehearsal opens on http://localhost:5174. Production uses encrypted Vercel environment variables. The health endpoint reports database connectivity and configuration, not model answer quality.
+Local cloud rehearsal opens on http://localhost:5174. Production uses encrypted server environment variables. Health reports connectivity/configuration, not model answer quality. Anonymous demo provisioning requires its operator-approved seed, readiness event and verified ingress configuration; see `.env.example` and the release checklist.
 
-## Demo and submission
+## Demo, evaluation and submission
 
-Use https://github.com/KIREETI001/groundtruth-demo-study-tasks, a deliberately small study-task application. Follow request → validation → persistence, then independently change a small validation rule. The demo example is separate from this application.
+The [MIT-licensed public study-task sample](https://github.com/KIREETI001/groundtruth-demo-study-tasks) is a deliberately small application for request → validation → persistence and a small rule change. It is separate from GroundTruth. Any fixed trusted-fixture behavior check is operator engineering evidence, not a web feature that executes visitor code.
 
-The [submission packet](submission/README.md) contains the project narrative, three-minute script, judge guide, architecture, Meta model fit, attribution and release checklist. The manifest distinguishes verified release evidence from pending assets. The narrated demo and participant-confirmed solo details are prepared. Start with [REVIEW_FIRST.md](submission/REVIEW_FIRST.md); the participant must review everything before submission. Publishing consent remains unchecked.
+The [submission packet](submission/README.md) contains the judge guide, project story, local official-form copy, architecture, Meta fit and release checklist. Edited/prerecorded media and prepared model outputs are labelled; neither proves a fresh generation. The participant must review the final packet before submission. Publishing consent remains unchecked.
 
-## Boundaries
+No external user study or participant feedback has been collected (**not conducted, n = 0**). The [future protocol and blank response sheet](submission/evaluation/user-study-plan.md) are prepared. Automated tests, source review, operator demonstrations and TinyFish browser QA remain separate evidence. They do not establish learning gains, fairer grading, reduced marking time, token savings or model superiority.
 
-Only public repositories are supported. Imported code is never executed. Up to three selected ordinary source files (12 KiB each, 32 KiB combined) are viewed in full; inference context remains bounded. This is not a whole-repository security audit or standards certification. Selected source and prompts go to Meta, after consent. Generated content can be wrong. Saved learning records have a 30-day availability window; physical retention cleanup is an operator action.
+## Boundaries and attribution
 
-The concept index is provisional evidence for human review, not a validated mastery score or automatic grade. Activity does not detect external AI use, prove authorship or demonstrate learning gains. Reduced repeated repo analysis and token spending are design goals, not measured outcomes.
+Only public repositories and bounded selected source are supported. Selected code/context may be processed by Meta, after the applicable notice. Generated content and suggested keys can be wrong. Imported code and submitted snippets are not executed. Independent mode cannot detect outside AI, prove authorship or stop external tools. Availability expiry is not a blanket claim of scheduled physical deletion; temporary demo cleanup occurs opportunistically on subsequent starts.
 
-The earlier local prototype is documented in [historical notes](docs/local-prototype-history.md). Prior GroundTruth ideation is attributed to Attili Kireeti, Delfine Yew, V Narthananilaa and Dr. Wesley Tan; that list is not a claim about the hackathon team. See [attribution](submission/architecture-and-attribution.md).
+Earlier local work is documented in [historical notes](docs/local-prototype-history.md). Prior GroundTruth ideation is credited to Attili Kireeti, Delfine Yew, V Narthananilaa and Dr. Wesley Tan, separately from the participant-confirmed solo hackathon roster. Codex assisted implementation/debugging/tests/docs; earlier Qwen/llama.cpp work is not Meta usage. See [architecture and attribution](submission/architecture-and-attribution.md).

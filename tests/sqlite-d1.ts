@@ -20,6 +20,7 @@ export class SQLiteD1 {
     this.sqlite.exec(readFileSync(new URL('../drizzle/0009_repository_learning.sql', import.meta.url), 'utf8'));
     this.sqlite.exec(readFileSync(new URL('../drizzle/0010_end_attempts.sql', import.meta.url), 'utf8'));
     this.sqlite.exec(readFileSync(new URL('../drizzle/0011_classes.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0012_study_model_receipts.sql', import.meta.url), 'utf8'));
     this.db = this as unknown as D1Database;
   }
 

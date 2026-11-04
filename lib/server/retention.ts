@@ -2,10 +2,12 @@ import type { RuntimeConfig } from '../contracts.ts';
 import { ApiError } from './http.ts';
 import { loadSession, now, saveDocument } from './state.ts';
 import type { SessionRow } from './state.ts';
+import { purgeExpiredDemoAccounts } from '../demo/security.ts';
 
 export const ENROLLMENT_WINDOW_MS = 10 * 60 * 1_000;
 
 export async function purgeExpired(config: RuntimeConfig): Promise<unknown> {
+  await purgeExpiredDemoAccounts(config);
   const cutoff = now();
   const profileCutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1_000).toISOString();
   const telemetryCutoff = new Date(Date.now() - 7 * 24 * 60 * 60 * 1_000).toISOString();
@@ -23,6 +25,7 @@ export async function purgeExpired(config: RuntimeConfig): Promise<unknown> {
     config.DB.prepare('DELETE FROM study_repository_maps WHERE expires_at<=?').bind(cutoff),
     config.DB.prepare('DELETE FROM study_usage WHERE usage_day<?').bind(profileCutoff.slice(0,10)),
     config.DB.prepare('DELETE FROM class_join_attempts WHERE window_started_at<=?').bind(Date.now()-ENROLLMENT_WINDOW_MS),
+    config.DB.prepare('DELETE FROM study_model_receipts WHERE expires_at<=?').bind(cutoff),
   ]);
   let providerReceipts = 0;
   const rows = await config.DB.prepare("SELECT * FROM sessions WHERE status='active' AND expires_at>? AND document_json LIKE '%\"receipt\"%'")

@@ -1,4 +1,7 @@
 import { handleClasses } from './classes.ts';
+import { loadTeacherProjectEvidence } from './teacher-evidence.ts';
+import { recordedStudy } from './model-receipts.ts';
+import { resolveOwnedChangeContext, type AppliedChangeContext } from './change-context.ts';
 import { shuffleMCQ,suggestedMCQResult,type MCQExercise } from './mcq.ts';
 import { endAttempts } from './attempts.ts';
 import { readStudySource,readStudySources,contextFromFullSource } from './source.ts';
@@ -12,7 +15,7 @@ import type { ProjectSnapshot } from '../learner/types.ts';
 import { analyseProject } from '../discovery/github.ts';
 import { ApiError, fields, json, string } from '../server/http.ts';
 import { platformRole } from '../server/access.ts';
-import { generateStudy, validateGenerated, type StudyGenerator } from './model.ts';
+import { validateGenerated, type StudyGenerator } from './model.ts';
 import { references } from './types.ts';
 const REPORT_VERSION=4;
 const now=()=>new Date().toISOString();
@@ -23,16 +26,22 @@ async function event(c:RuntimeConfig,id:string,kind:string,detail:unknown,exerci
 async function own(c:RuntimeConfig,id:string,user:string){const row=await c.DB.prepare('SELECT * FROM study_projects WHERE id=? AND owner_id=? AND pilot_id=? AND expires_at>?').bind(id,user,pilot(c),now()).first<Row>();if(!row)throw new ApiError(404,'PROJECT_NOT_FOUND');return row;}
 async function independent(c:RuntimeConfig,user:string){return !!await c.DB.prepare("SELECT e.id FROM study_exercises e JOIN study_projects p ON p.id=e.project_id WHERE p.owner_id=? AND p.pilot_id=? AND e.status='independent' AND e.ended_at IS NULL AND p.expires_at>?").bind(user,pilot(c),now()).first();}
 function publicExercise(e:Ex){return {conceptId:e.concept_id||null,id:e.id,prompt:JSON.parse(e.prompt_json),status:e.ended_at?'ended':e.status,endedAt:e.ended_at||null,mcqResult:suggestedMCQResult(e.ended_at?'ended':e.status,e.answer,JSON.parse(e.rubric_json)),answer:e.answer,feedback:e.feedback_json&&JSON.parse(e.feedback_json).version===REPORT_VERSION?JSON.parse(e.feedback_json).report:null,startedAt:e.started_at,submittedAt:e.submitted_at};}
-async function view(c:RuntimeConfig,p:Row){
- const exercises=await c.DB.prepare('SELECT e.*,c.local_id AS concept_id FROM study_exercises e LEFT JOIN study_exercise_concepts l ON l.exercise_id=e.id LEFT JOIN study_concepts c ON c.id=l.concept_id WHERE e.project_id=? ORDER BY e.created_at DESC,e.rowid DESC LIMIT 20').bind(p.id).all<Ex>();
+async function view(c:RuntimeConfig,p:Row,receivingTeacher?:string){
+ const teacherProjection=receivingTeacher?await loadTeacherProjectEvidence(c,p.id,receivingTeacher):null;
+ const order=receivingTeacher?"CASE WHEN e.status='submitted' AND NOT EXISTS(SELECT 1 FROM study_reviews r WHERE r.exercise_id=e.id) THEN 0 ELSE 1 END,e.created_at DESC,e.rowid DESC":"e.created_at DESC,e.rowid DESC";
+ const exercises=await c.DB.prepare('SELECT e.*,c.local_id AS concept_id FROM study_exercises e LEFT JOIN study_exercise_concepts l ON l.exercise_id=e.id LEFT JOIN study_concepts c ON c.id=l.concept_id WHERE e.project_id=? ORDER BY '+order+' LIMIT '+(receivingTeacher?'100':'20')).bind(p.id).all<Ex>();
  const events=await c.DB.prepare('SELECT kind,detail_json,created_at FROM study_events WHERE project_id=? ORDER BY created_at DESC LIMIT 60').bind(p.id).all<{kind:string;detail_json:string;created_at:string}>();
- const reviews=await c.DB.prepare('SELECT r.exercise_id AS exerciseId,r.level,r.note,r.teacher_id AS teacherId,r.created_at AS createdAt FROM study_reviews r JOIN study_exercises e ON e.id=r.exercise_id WHERE e.project_id=? ORDER BY r.created_at DESC,r.rowid DESC LIMIT 100').bind(p.id).all<{exerciseId:string;level:string;note:string;teacherId:string;createdAt:string}>();
+ // Keep the latest review for every loaded answer even when another answer has
+ // a long history. Bound the history per answer instead of across the project.
+ const exerciseIds=[...new Set(exercises.results.map(exercise=>exercise.id))];
+ const reviews=exerciseIds.length?await c.DB.prepare('SELECT exercise_id AS exerciseId,level,note,teacher_id AS teacherId,created_at AS createdAt FROM (SELECT r.exercise_id,r.level,r.note,r.teacher_id,r.created_at,r.rowid AS review_order,ROW_NUMBER() OVER(PARTITION BY r.exercise_id ORDER BY r.created_at DESC,r.rowid DESC) AS review_rank FROM study_reviews r JOIN study_exercises e ON e.id=r.exercise_id JOIN study_projects p ON p.id=e.project_id WHERE e.project_id=? AND p.pilot_id=? AND p.expires_at>? AND e.id IN ('+exerciseIds.map(()=>'?').join(',')+')) recent_reviews WHERE review_rank<=5 ORDER BY created_at DESC,review_order DESC').bind(p.id,pilot(c),now(),...exerciseIds).all<{exerciseId:string;level:string;note:string;teacherId:string;createdAt:string}>():{results:[]};
  const stats=await c.DB.prepare("SELECT (SELECT count(*) FROM study_events WHERE project_id=? AND kind='assistance-requested') AS guidanceRequests,(SELECT count(*) FROM study_exercises WHERE project_id=? AND status='submitted') AS independentAttempts,(SELECT count(*) FROM study_events WHERE project_id=? AND kind='change-applied' AND json_extract(detail_json,'$.mode')='ai') AS aiChanges,(SELECT count(*) FROM study_events WHERE project_id=? AND kind='change-applied' AND json_extract(detail_json,'$.mode')='manual-declared') AS manualChanges").bind(p.id,p.id,p.id,p.id).first();
  const conceptRows=await c.DB.prepare("SELECT c.*, (SELECT count(*) FROM study_exercise_concepts l JOIN study_exercises e ON e.id=l.exercise_id WHERE l.concept_id=c.id AND e.status='submitted') AS attempts, (SELECT r.level FROM study_reviews r JOIN study_exercise_concepts l ON l.exercise_id=r.exercise_id WHERE l.concept_id=c.id ORDER BY r.created_at DESC,r.rowid DESC LIMIT 1) AS reviewed_level FROM study_concepts c WHERE c.project_id=? ORDER BY c.ordinal").bind(p.id).all<{local_id:string;title:string;description:string;category:string;file_paths_json:string;prerequisites_json:string;attempts:number;reviewed_level:string|null}>();
- const levels:Record<string,number>={insufficient:0,supported:40,explained:70,transferred:100};
- const concepts=conceptRows.results.map(n=>({id:n.local_id,title:n.title,description:n.description,category:n.category,filePaths:JSON.parse(n.file_paths_json),prerequisites:JSON.parse(n.prerequisites_json),attempts:n.attempts,score:n.reviewed_level?levels[n.reviewed_level]:n.attempts?25:0,state:n.reviewed_level?'Human review: '+n.reviewed_level:n.attempts?'Independent attempt · unreviewed':'Not attempted'}));
- const masteryIndex=concepts.length?Math.round(concepts.reduce((sum,n)=>sum+n.score,0)/concepts.length):0;
- return {learningPath:await loadLearningPath(c,p.id),concepts,masteryIndex,stats,id:p.id,goal:p.goal,snapshot:JSON.parse(p.snapshot_json),analysis:p.analysis_json&&JSON.parse(p.analysis_json).version===REPORT_VERSION?JSON.parse(p.analysis_json).report:null,teacherId:p.teacher_id,exercises:exercises.results.map(e=>({...publicExercise(e),reviews:reviews.results.filter(r=>r.exerciseId===e.id)})),events:events.results.map(e=>({kind:e.kind,detail:JSON.parse(e.detail_json),createdAt:e.created_at})),references};
+ // Legacy numeric fields stay neutral for older clients; evidence is described by observed states.
+ const concepts=conceptRows.results.map(n=>({id:n.local_id,title:n.title,description:n.description,category:n.category,filePaths:JSON.parse(n.file_paths_json),prerequisites:JSON.parse(n.prerequisites_json),attempts:n.attempts,score:0,state:n.reviewed_level?'Human review: '+n.reviewed_level:n.attempts?'Independent attempt · unreviewed':'Not attempted'}));
+ const summary=await c.DB.prepare("SELECT count(*) AS submitted,coalesce(sum(CASE WHEN EXISTS(SELECT 1 FROM study_reviews r WHERE r.exercise_id=e.id) THEN 1 ELSE 0 END),0) AS reviewed,max(e.submitted_at) AS lastSubmittedAt,(SELECT max(r.created_at) FROM study_reviews r JOIN study_exercises x ON x.id=r.exercise_id WHERE x.project_id=?) AS lastReviewedAt FROM study_exercises e WHERE e.project_id=? AND e.status='submitted'").bind(p.id,p.id).first<{submitted:number;reviewed:number;lastSubmittedAt:string|null;lastReviewedAt:string|null}>();
+ const reviewSummary={submitted:Number(summary?.submitted)||0,reviewed:Number(summary?.reviewed)||0,needsReview:(Number(summary?.submitted)||0)-(Number(summary?.reviewed)||0),lastSubmittedAt:summary?.lastSubmittedAt||null,lastReviewedAt:summary?.lastReviewedAt||null};
+ return {learningPath:await loadLearningPath(c,p.id),concepts,masteryIndex:0,reviewSummary,...(teacherProjection?{learner:teacherProjection.learner}:{}),stats,id:p.id,goal:p.goal,snapshot:JSON.parse(p.snapshot_json),analysis:p.analysis_json&&JSON.parse(p.analysis_json).version===REPORT_VERSION?JSON.parse(p.analysis_json).report:null,teacherId:p.teacher_id,exercises:exercises.results.map(e=>({...publicExercise(e),reviews:reviews.results.filter(r=>r.exerciseId===e.id),...(teacherProjection?{reviewEvidence:teacherProjection.reviewEvidenceByExercise[e.id]||null}:{})})),events:events.results.map(e=>({kind:e.kind,detail:JSON.parse(e.detail_json),createdAt:e.created_at})),references};
 }
 export async function handleStudy(request:Request,c:RuntimeConfig,user:string|null,body:Record<string,unknown>,generator?:StudyGenerator,discoveryFetcher?:DiscoveryFetcher):Promise<Response|null>{
  const path=new URL(request.url).pathname;
@@ -64,7 +73,7 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
   if(role!=='teacher'&&role!=='developer')throw new ApiError(403,'TEACHER_REQUIRED');
   if(request.method!=='GET')throw new ApiError(405,'METHOD_NOT_ALLOWED');
   const rows=await c.DB.prepare('SELECT * FROM study_projects WHERE teacher_id=? AND pilot_id=? AND expires_at>? ORDER BY created_at DESC LIMIT 50').bind(user,pilot(c),now()).all<Row>();
-  return json({teacherId:user,projects:await Promise.all(rows.results.map(p=>view(c,p)))});
+  return json({teacherId:user,projects:await Promise.all(rows.results.map(p=>view(c,p,role==='teacher'?user:undefined)))});
  }
  if(path==='/api/study/attempts/end'){
   if(request.method!=='POST')throw new ApiError(405,'METHOD_NOT_ALLOWED');
@@ -111,11 +120,15 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
  const [,id,action]=match,p=await own(c,id,user),snapshot=JSON.parse(p.snapshot_json) as ProjectSnapshot;
  const learningPath=await loadLearningPath(c,id);
  if(action==='source'&&request.method==='GET')return json(await readStudySource(c,snapshot,string(new URL(request.url).searchParams.get('path'),'path',1,250)));
+ if(action==='model-receipts'&&request.method==='GET'){
+  const receipts=await c.DB.prepare('SELECT task,provider,model,status,latency_ms AS latencyMs,input_tokens AS inputTokens,output_tokens AS outputTokens,cached_input_tokens AS cachedInputTokens,created_at AS createdAt FROM study_model_receipts WHERE project_id=? AND owner_id=? AND pilot_id=? AND expires_at>? ORDER BY created_at DESC LIMIT 100').bind(id,user,pilot(c),now()).all();
+  return json({receipts:receipts.results});
+ }
  const call=async(task:StudyTask,data:unknown,sources:ProjectSnapshot=snapshot)=>{
   if(await independent(c,user))throw new ApiError(403,'INDEPENDENT_MODE','AI assistance is disabled during your independent attempt.');
-  const context={...(data as Record<string,unknown>),learningPath};
-  if(sources===snapshot&&(c.CLOUD_ENABLED==='true'||c.LOCAL_WORKSPACE_TOKEN)&&!generator)sources=contextFromFullSource(snapshot,await readStudySources(c,snapshot));
-  const out=generator?validateGenerated(task,await generator(task,context,sources),sources):await generateStudy(c,user,task,context,sources);
+  const context:Record<string,unknown>={...(data as Record<string,unknown>),learningPath};
+  if(sources===snapshot&&(c.CLOUD_ENABLED==='true'||c.LOCAL_WORKSPACE_TOKEN)&&!generator)sources=contextFromFullSource(snapshot,await readStudySources(c,snapshot),10000,[p.goal,typeof context.concept==='object'&&context.concept?String((context.concept as {title?:string}).title||''):'',String((context as {question?:string}).question||'')]);
+  const out=generator?validateGenerated(task,await generator(task,context,sources),sources):await recordedStudy(c,user,task,context,sources,id);
   if(await independent(c,user))throw new ApiError(409,'EXERCISE_STATE_CHANGED','The activity became independent. The generated response was discarded.');
   return out;
  };
@@ -134,7 +147,7 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
   if(action==='apply-change'){
    fields(body,['proposalId','confirmed']);
    const proposal=await localWorkspace<ChangeProposal>(c,'apply',{...workspaceInput,proposalId:string(body.proposalId,'proposalId',1,100),confirmed:body.confirmed});
-   await c.DB.prepare('INSERT OR IGNORE INTO study_events(id,project_id,exercise_id,kind,detail_json,created_at) VALUES(?,?,NULL,?,?,?)').bind(proposal.id,id,'change-applied',JSON.stringify({path:proposal.path,mode:proposal.mode,summary:proposal.summary,baseHash:proposal.baseHash,resultHash:proposal.resultHash}),proposal.appliedAt||now()).run();
+   await c.DB.prepare('INSERT OR IGNORE INTO study_events(id,project_id,exercise_id,kind,detail_json,created_at) VALUES(?,?,NULL,?,?,?)').bind(proposal.id,id,'change-applied',JSON.stringify({proposalId:proposal.id,path:proposal.path,mode:proposal.mode,summary:proposal.summary,baseHash:proposal.baseHash,resultHash:proposal.resultHash}),proposal.appliedAt||now()).run();
    return json({proposal,workingCopy:await localWorkspace<WorkingCopy>(c,'read',workspaceInput),project:await view(c,p)});
   }
   fields(body,action==='propose-ai'?['path','baseHash','intent']:['path','baseHash','source']);
@@ -217,38 +230,51 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
   return json(await view(c,await own(c,id,user)));
  }
  if(action==='exercise'){
-  fields(body,['conceptId','workingPath','transferChallenge','questionFormat']);
+  fields(body,['conceptId','workingPath','changeProposalId','transferChallenge','questionFormat','phase','parentExerciseId']);
   if(body.transferChallenge!==undefined&&typeof body.transferChallenge!=='boolean')throw new ApiError(400,'TRANSFER_CHALLENGE_INVALID');
   if(body.transferChallenge===true&&learningPath?.purpose!=='transfer')throw new ApiError(400,'TRANSFER_PATH_REQUIRED');
   if(body.workingPath!==undefined&&learningPath?.purpose==='transfer')throw new ApiError(403,'REFERENCE_REPOSITORY_READ_ONLY');
   if(body.questionFormat!==undefined&&!['mcq','coding'].includes(String(body.questionFormat)))throw new ApiError(400,'QUESTION_FORMAT_INVALID');
   const questionFormat=body.questionFormat||'mcq';
+  if(body.phase!==undefined&&!['baseline','practice','transfer'].includes(String(body.phase)))throw new ApiError(400,'EXERCISE_PHASE_INVALID');
+  const earlier=await c.DB.prepare("SELECT id FROM study_exercises WHERE project_id=? AND status='submitted' LIMIT 1").bind(id).first();
+  const phase=body.phase===undefined?(earlier||body.workingPath?'practice':'baseline'):String(body.phase);
+  if((body.workingPath===undefined)!==(body.changeProposalId===undefined))throw new ApiError(400,'CHANGE_CONTEXT_REQUIRED','Select an applied change before checking its understanding.');
+  let parentExerciseId:string|undefined,parentPrompt:Record<string,unknown>|undefined;
+  if(phase==='transfer'){
+   parentExerciseId=string(body.parentExerciseId,'parentExerciseId',1,100);
+   const parent=await c.DB.prepare("SELECT prompt_json FROM study_exercises WHERE id=? AND project_id=? AND status='submitted' AND ended_at IS NULL").bind(parentExerciseId,id).first<{prompt_json:string}>();
+   if(!parent)throw new ApiError(409,'TRANSFER_PARENT_REQUIRED','Submit the earlier independent task before trying a fresh variation.');
+   const previousPrompt=JSON.parse(parent.prompt_json);
+   if((body.changeProposalId!==undefined||previousPrompt.sourceContext?.changeProposalId!==undefined)&&previousPrompt.sourceContext?.changeProposalId!==body.changeProposalId)throw new ApiError(409,'TRANSFER_CHANGE_MISMATCH','Use the same reviewed change as the earlier attempt.');
+   parentPrompt={title:previousPrompt.title,prompt:previousPrompt.prompt,format:previousPrompt.format,kind:previousPrompt.kind};
+  }else if(body.parentExerciseId!==undefined)throw new ApiError(400,'TRANSFER_PARENT_UNEXPECTED');
   const conceptId=body.conceptId===undefined?null:string(body.conceptId,'conceptId',1,32);
   const concept=conceptId?await c.DB.prepare('SELECT id,title,description FROM study_concepts WHERE project_id=? AND local_id=?').bind(id,conceptId).first<{id:string;title:string;description:string}>():null;
   if(conceptId&&!concept)throw new ApiError(400,'CONCEPT_NOT_IN_PROJECT');
   let exerciseSnapshot=snapshot;
-  let sourceContext: {path:string;source:string;hash:string;label:string}|undefined;
+  let sourceContext:AppliedChangeContext|undefined;
   if(body.workingPath!==undefined){
    const name=string(body.workingPath,'workingPath',1,250);
-   const copy=await localWorkspace<WorkingCopy>(c,'read',workspaceInput),file=copy.files.find(f=>f.path===name);
-   if(!file||file.source.length>6000)throw new ApiError(400,'WORKING_FILE_UNAVAILABLE');
-   sourceContext={path:file.path,source:file.source,hash:file.hash,label:c.CLOUD_ENABLED==='true'?'Cloud draft · not pushed to GitHub':'Local working copy · uncommitted'};
-   exerciseSnapshot={...snapshot,files:[{path:file.path,language:snapshot.files.find(f=>f.path===file.path)?.language||'source',excerpt:file.source}]};
+   sourceContext=await resolveOwnedChangeContext(c,{projectId:id,ownerId:user,workingPath:name,proposalId:string(body.changeProposalId,'changeProposalId',1,100)});
+   exerciseSnapshot={...snapshot,files:[{path:sourceContext.path,language:snapshot.files.find(f=>f.path===sourceContext!.path)?.language||'source',excerpt:sourceContext.source}]};
   }
 
   const active=await c.DB.prepare("SELECT id FROM study_exercises WHERE project_id=? AND status IN ('guided','independent') AND ended_at IS NULL").bind(id).first();if(active)throw new ApiError(409,'OPEN_EXERCISE','Finish or end the current exercise first.');
   const previous=await c.DB.prepare('SELECT prompt_json FROM study_exercises WHERE project_id=? ORDER BY created_at DESC LIMIT 3').bind(id).all();
-  let out=await call('exercise',{goal:p.goal,concept:concept?{title:concept.title,description:concept.description}:null,sourceLabel:sourceContext?.label,previous:previous.results,transferChallenge:body.transferChallenge===true,questionFormat},exerciseSnapshot) as {title:string;prompt:string;kind:string;filePaths:string[];reviewPoints:string[];format?:'mcq'|'coding';starterCode?:string;options?:{id:string;text:string}[];correctOption?:string;answerExplanation?:string};
+  let out=await call('exercise',{goal:p.goal,concept:concept?{title:concept.title,description:concept.description}:null,sourceLabel:sourceContext?.label,previous:previous.results,transferChallenge:body.transferChallenge===true||phase==='transfer',questionFormat,phase,parentExerciseId,parentPrompt,changeContext:sourceContext},exerciseSnapshot) as {title:string;prompt:string;kind:string;filePaths:string[];reviewPoints:string[];format?:'mcq'|'coding';starterCode?:string;options?:{id:string;text:string}[];correctOption?:string;answerExplanation?:string};
   if(questionFormat==='mcq'&&out.format!=='mcq')throw new ApiError(503,'MCQ_GENERATION_FAILED','The AI model did not return a multiple-choice question. Please retry.');
   if(questionFormat==='coding'&&out.format!=='coding')throw new ApiError(503,'CODING_GENERATION_FAILED','The AI model did not return a short coding task. Please retry.');
   if(out.format==='mcq')out=shuffleMCQ(out as typeof out & MCQExercise);
-  if(body.transferChallenge===true&&out.kind!=='change-plan')throw new ApiError(503,'TRANSFER_CHALLENGE_INVALID','The AI model did not return an adaptation exercise. Retry generation.');
+  if((body.transferChallenge===true||phase==='transfer')&&out.kind!=='change-plan')throw new ApiError(503,'TRANSFER_CHALLENGE_INVALID','The AI model did not return an adaptation exercise. Retry generation.');
+  const stem=(value:string)=>value.trim().replace(/\s+/g,' ').toLowerCase();
+  if(phase==='transfer'&&parentPrompt&&stem(out.prompt)===stem(String(parentPrompt.prompt||'')))throw new ApiError(503,'TRANSFER_CHALLENGE_NOT_FRESH','The AI repeated the earlier question. Generate another variation.');
   const {reviewPoints,correctOption,answerExplanation,...prompt}=out,exId=crypto.randomUUID();
-  const statements=[c.DB.prepare("INSERT OR IGNORE INTO study_exercises(id,project_id,prompt_json,rubric_json,status,created_at) VALUES(?,?,?,?,'guided',?)").bind(exId,id,JSON.stringify({...prompt,...(body.transferChallenge===true?{intent:'transfer'}:{}),...(sourceContext?{sourceContext}:{})}),JSON.stringify(out.format==='mcq'?{reviewPoints,mcq:{correctOption,answerExplanation}}:reviewPoints),now())];
+  const statements=[c.DB.prepare("INSERT OR IGNORE INTO study_exercises(id,project_id,prompt_json,rubric_json,status,created_at) VALUES(?,?,?,?,'guided',?)").bind(exId,id,JSON.stringify({...prompt,phase,...(parentExerciseId?{parentExerciseId}:{}),...(body.transferChallenge===true||phase==='transfer'?{intent:'transfer'}:{}),...(sourceContext?{sourceContext}:{})}),JSON.stringify(out.format==='mcq'?{reviewPoints,mcq:{correctOption,answerExplanation}}:reviewPoints),now())];
   if(concept)statements.push(c.DB.prepare('INSERT INTO study_exercise_concepts(exercise_id,concept_id) SELECT ?,? WHERE EXISTS(SELECT 1 FROM study_exercises WHERE id=? AND project_id=?)').bind(exId,concept.id,exId,id));
   const inserted=await c.DB.batch(statements);
   if(!inserted[0].meta.changes)throw new ApiError(409,'OPEN_EXERCISE','An exercise is already active. Reload the saved project.');
-  await event(c,id,'exercise-generated',{kind:out.kind},exId);return json(await view(c,p));
+  await event(c,id,'exercise-generated',{kind:out.kind,phase,...(parentExerciseId?{parentExerciseId}:{}),...(sourceContext?{changeProposalId:sourceContext.changeProposalId,sourceHash:sourceContext.hash}:{})},exId);return json(await view(c,p));
  }
  if(action==='hint'){
   fields(body,['question','sessionId']);const question=string(body.question,'question',3,1000);const sessionId=body.sessionId===undefined?null:string(body.sessionId,'sessionId',1,100);await event(c,id,'guidance-query',{question,sessionId});

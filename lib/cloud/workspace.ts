@@ -5,7 +5,7 @@ import { language, snapshotFromSources } from '../discovery/github.ts';
 import { ApiError } from '../server/http.ts';
 import { readCloudFiles } from './github-source.ts';
 
-type Action='create'|'read'|'propose'|'apply';
+type Action='create'|'read'|'proposal'|'propose'|'apply';
 type File={path:string;source:string;hash:string;original:string};
 type Proposal=ChangeProposal&{createdAt:string};
 type State={files:File[];proposals:Proposal[];backups:{proposalId:string;path:string;hash:string;source:string}[]};
@@ -39,7 +39,7 @@ export async function cloudWorkspace(config:RuntimeConfig,action:Action,input:Re
  const projectRow=await config.DB.prepare('SELECT p.snapshot_json,l.purpose FROM study_projects p LEFT JOIN study_learning_paths l ON l.project_id=p.id WHERE p.id=? AND p.owner_id=? AND p.pilot_id=? AND p.expires_at>?').bind(project,owner,pilot,new Date().toISOString()).first<{snapshot_json:string;purpose:string|null}>();
  if(!projectRow)throw fault('Learning path not found.',404);
  if(projectRow.purpose==='transfer')throw fault('Public reference paths are read-only.',403);
- if(action!=='read'){
+ if(action!=='read'&&action!=='proposal'){
   const independent=await config.DB.prepare("SELECT e.id FROM study_exercises e JOIN study_projects p ON p.id=e.project_id WHERE p.owner_id=? AND p.pilot_id=? AND e.status='independent' AND e.ended_at IS NULL AND p.expires_at>? LIMIT 1").bind(owner,pilot,new Date().toISOString()).first();
   if(independent)throw fault('End or submit your independent attempt before changing code.',403);
  }
@@ -62,6 +62,12 @@ export async function cloudWorkspace(config:RuntimeConfig,action:Action,input:Re
  if(row.commit_sha!==snapshot.commit)throw fault('The draft belongs to a different source revision.',409);
  const data=state(row);
  if(action==='read'||action==='create')return view(row,data);
+ if(action==='proposal'){
+  if(typeof input.proposalId!=='string'||!uuid.test(input.proposalId))throw fault('Choose a saved proposal.');
+  const proposal=data.proposals.find(proposal=>proposal.id===input.proposalId);
+  if(!proposal)throw fault('Proposal not found.',404);
+  return proposal;
+ }
  const save=async()=>{
   const serialized=JSON.stringify(data);if(new TextEncoder().encode(serialized).length>1024*1024)throw fault('This draft has reached its saved-history limit. Start a new learning path.',409);
   const update=await config.DB.prepare("UPDATE cloud_workspaces SET state_json=?,version=version+1,updated_at=? WHERE project_id=? AND owner_id=? AND pilot_id=? AND version=? AND EXISTS(SELECT 1 FROM study_projects p WHERE p.id=cloud_workspaces.project_id AND p.owner_id=? AND p.pilot_id=? AND p.expires_at>?) AND NOT EXISTS(SELECT 1 FROM study_exercises e JOIN study_projects p ON p.id=e.project_id WHERE p.owner_id=? AND p.pilot_id=? AND e.status='independent' AND e.ended_at IS NULL AND p.expires_at>?) RETURNING version").bind(serialized,new Date().toISOString(),project,owner,pilot,row!.version,owner,pilot,new Date().toISOString(),owner,pilot,new Date().toISOString()).first();

@@ -1,0 +1,14 @@
+.demo-entry{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:20px 32px;padding:24px 28px;margin:0 0 32px;border:1px solid #b8d4c6;border-radius:14px;background:#edf5f1;color:#173b35;min-width:0}
+.demo-eyebrow{display:flex;align-items:center;gap:8px;font-size:12px;font-weight:750;letter-spacing:.07em;color:#17695f}
+.platform-page .demo-entry h2{font-size:28px;line-height:1.25;margin:8px 0}
+.platform-page .demo-entry p{font-size:16px;line-height:1.6;margin:0;max-width:70ch}
+.platform-page .demo-entry .demo-entry-details{font-size:14px;margin-top:8px;color:#42645c}
+.demo-entry-action{display:grid;gap:10px;justify-items:center;min-width:250px}
+.demo-entry-action .button{gap:10px;justify-content:center;min-height:48px;white-space:normal;text-align:center}
+.platform-page .demo-entry-action p{font-size:13px;line-height:1.5;text-align:center;color:#42645c}
+.platform-page .demo-entry .demo-entry-error{grid-column:1/-1;color:#8e2525;background:#fff3f1;border:1px solid #e6c4c0;padding:12px;border-radius:6px}
+.demo-preview-banner{padding:18px 22px;background:#edf5f1;border:1px solid #b8d4c6;border-radius:10px;margin:0 0 28px}
+.demo-preview-banner p{margin:8px 0}.demo-preview-actions{display:flex;gap:16px;flex-wrap:wrap;align-items:center;margin-top:16px}
+.demo-preview-message{max-width:650px;padding-block:24px}.demo-preview-message p{margin:16px 0}
+@media(max-width:1000px){.landing-page .login-main>.auth-entry{order:-1}.demo-entry{padding:22px;gap:18px;margin-bottom:24px}.platform-page .demo-entry h2{font-size:25px}}
+@media(max-width:600px){.landing-page>.platform-main{padding-top:20px}.demo-entry{grid-template-columns:1fr;padding:20px;gap:16px}.demo-entry-action{width:100%;min-width:0;justify-items:stretch}.demo-entry-action .button{width:100%;font-size:16px}.platform-page .demo-entry-action p{font-size:13px;text-align:left}.platform-page .demo-entry-action p br{display:none}.platform-page .demo-entry .demo-entry-details{font-size:14px}.landing-page .auth-role-card{min-height:96px}.demo-preview-banner{padding:18px}.demo-preview-actions{align-items:stretch;flex-direction:column}}

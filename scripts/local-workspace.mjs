@@ -55,6 +55,12 @@ export async function workspaceAction(action,input){
   }
  }
  const ws=await registry(input);
+ if(action==='proposal'){
+  if(typeof input.proposalId!=='string'||!uuid.test(input.proposalId))throw fault('Choose a saved proposal');
+  let proposal;try{proposal=JSON.parse(await fs.readFile(path.join(folder,'proposals',input.proposalId+'.json'),'utf8'));}catch{throw fault('Proposal not found',404);}
+  if(proposal.id!==input.proposalId||!ws.data.paths.includes(proposal.path))throw fault('Proposal does not belong to this selected workflow',409);
+  return proposal;
+ }
  if(action==='read'||action==='create'){
   const files=await Promise.all(ws.data.paths.map(name=>selectedFile(ws,name)));
   return {folder:ws.repo,commit:ws.data.commit,files:files.map(({path,source,hash})=>({path,source,hash})),diff:await git(['diff','--no-ext-diff','--no-textconv','--',...ws.data.paths],ws.repo)};

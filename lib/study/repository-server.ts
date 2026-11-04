@@ -3,7 +3,8 @@ import type { DiscoveryFetcher } from '../discovery/types.ts';
 import { projectTree,analyseProject } from '../discovery/github.ts';
 import { cloudGitHubFetcher } from '../cloud/github-fetch.ts';
 import { ApiError,fields,string } from '../server/http.ts';
-import { generateStudy,type StudyGenerator } from './model.ts';
+import { type StudyGenerator } from './model.ts';
+import { recordedStudy } from './model-receipts.ts';
 import { localRepositoryTree,localRepositorySnapshot } from './local-repository.ts';
 import { repositoryCatalogue,representativePaths,mapSnapshot,validateRepositoryMap,type RepositoryMap,type LearningPath } from './repository.ts';
 
@@ -21,7 +22,7 @@ export async function createRepositoryMap(c:RuntimeConfig,user:string,body:Recor
  const snapshot=mapSnapshot(tree,sample,catalogue);
  const data={catalogue:catalogue.map(f=>({path:f.path,language:f.language})),sampledPaths:sample.files.map(f=>f.path),scope:'Partial file-structure catalogue plus representative source. Unseen workflows are suggestions, not verified functionality.'};
  if(await isIndependent())throw new ApiError(403,'INDEPENDENT_MODE');
- const output=generator?await generator('repository',data,snapshot):await generateStudy(c,user,'repository',data,snapshot);
+ const output=generator?await generator('repository',data,snapshot):await recordedStudy(c,user,'repository',data,snapshot);
  const generated=validateRepositoryMap(output,snapshot);
  if(await isIndependent())throw new ApiError(409,'EXERCISE_STATE_CHANGED','The activity became independent; the generated map was discarded.');
  // Keep each automatically chosen workflow inside the source importer budget.

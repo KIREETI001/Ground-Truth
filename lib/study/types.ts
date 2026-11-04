@@ -1,8 +1,24 @@
 import type { LearningPath } from './repository-types';
 export type TeacherReview={level:'insufficient'|'supported'|'explained'|'transferred';note:string;teacherId:string;createdAt:string};
-export type StudyExercise = {conceptId?:string|null;reviews:TeacherReview[];id:string; prompt:{format?:'mcq'|'coding';starterCode?:string;options?:{id:string;text:string}[];intent?:'transfer';title:string;prompt:string;kind:string;filePaths:string[];sourceContext?:{path:string;source:string;hash:string;label:string}};status:'guided'|'independent'|'submitted'|'ended';endedAt?:string|null;mcqResult?:{selectedOption:string;suggestedOption:string;matchesSuggestedAnswer:boolean;explanation:string}|null;answer:string|null;feedback:{feedback:string;nextStep:string;evidence?:{path:string;quote:string}[]}|null;startedAt:string|null;submittedAt:string|null};
-export type StudyConcept={id:string;title:string;description:string;category:'behavior'|'architecture'|'testing';filePaths:string[];prerequisites:string[];attempts:number;score:number;state:string};
-export type StudyProject = {learningPath?:LearningPath|null;concepts:StudyConcept[];masteryIndex:number;id:string;goal:string;stats:{guidanceRequests:number;independentAttempts:number;aiChanges:number;manualChanges:number};snapshot:import('../learner/types').ProjectSnapshot;analysis:StudyAnalysis|null;teacherId:string|null;exercises:StudyExercise[];events:{kind:string;detail:unknown;createdAt:string}[]};
+export type StudyReviewEvidence = {
+ reviewPoints:string[];
+ suggestedOption?:string;
+ suggestedRationale?:string;
+ guidanceRequests:number;
+};
+export type StudyExercise = {
+ conceptId?:string|null;reviews:TeacherReview[];id:string;
+ prompt:{format?:'mcq'|'coding';starterCode?:string;options?:{id:string;text:string}[];intent?:'transfer';phase?:'baseline'|'practice'|'transfer';parentExerciseId?:string;title:string;prompt:string;kind:string;filePaths:string[];sourceContext?:{path:string;source:string;hash:string;label:string;changeProposalId?:string;originalSource?:string;baseHash?:string;diff?:string;mode?:'ai'|'manual-declared';appliedAt?:string}};
+ status:'guided'|'independent'|'submitted'|'ended';endedAt?:string|null;
+ mcqResult?:{selectedOption:string;suggestedOption:string;matchesSuggestedAnswer:boolean;explanation:string}|null;
+ /** Only the currently authorized receiving teacher gets this projection, after commitment. */
+ reviewEvidence?:StudyReviewEvidence|null;
+ answer:string|null;feedback:{feedback:string;nextStep:string;evidence?:{path:string;quote:string}[]}|null;startedAt:string|null;submittedAt:string|null;
+};
+export type StudyConcept={id:string;title:string;description:string;category:'behavior'|'architecture'|'testing';filePaths:string[];prerequisites:string[];attempts:number;score?:number;state:string;lastSubmittedAt?:string|null;lastReviewedAt?:string|null};
+export type StudyReviewSummary={submitted:number;needsReview:number;reviewed:number;lastSubmittedAt:string|null;lastReviewedAt:string|null};
+export type SharedLearner={displayName:string;classNames:string[]};
+export type StudyProject = {learningPath?:LearningPath|null;concepts:StudyConcept[];masteryIndex?:number;learner?:SharedLearner;reviewSummary?:StudyReviewSummary;id:string;goal:string;stats:{guidanceRequests:number;independentAttempts:number;aiChanges:number;manualChanges:number};snapshot:import('../learner/types').ProjectSnapshot;analysis:StudyAnalysis|null;teacherId:string|null;exercises:StudyExercise[];events:{kind:string;detail:unknown;createdAt:string}[]};
 export type StudyAnalysis = {glossary?:{term:string;meaning:string}[];flow?:{title:string;description:string;filePaths:string[]}[];summary:string;filePaths:string[];checks:{referenceId:string;status:'review-needed'|'not-assessed';observation:string;filePaths:string[]}[]};
 export const references=[
 {id:'ecma-array',title:'ECMAScript Array.isArray specification',url:'https://tc39.es/ecma262/multipage/indexed-collections.html#sec-array.isarray',guidance:'For JavaScript array-identification code, compare intended semantics with the language specification. A toString-based fallback is not proof of complete specification conformance.'},
