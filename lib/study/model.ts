@@ -118,6 +118,11 @@ export async function generateStudy(config:RuntimeConfig,userId:string,task:keyo
  if(!lease) throw new ApiError(429,'MODEL_BUSY',provider.kind==='meta'?'Your previous AI request is still running. Try again shortly.':'The local model is serving another request.');
  if(provider.kind==='local')running=true;
  try{
+ // The caller's first check can race an independent-mode transition. Once
+ // this lease is held, the transition's guarded UPDATE refuses to start, so
+ // rereading here closes both orderings before quota or provider transmission.
+ const independent=await config.DB.prepare("SELECT e.id FROM study_exercises e JOIN study_projects p ON p.id=e.project_id WHERE p.owner_id=? AND p.pilot_id=? AND e.status='independent' AND e.ended_at IS NULL AND p.expires_at>?").bind(userId,config.PILOT_ID||'groundtruth-pilot.v1',new Date().toISOString()).first();
+ if(independent)throw new ApiError(403,'INDEPENDENT_MODE','AI assistance is disabled during your independent attempt. Submit your answer or end the attempt first.');
  const day=new Date().toISOString().slice(0,10);
  const usage=await config.DB.prepare('INSERT INTO study_usage(user_id,usage_day,attempts) VALUES(?,?,1) ON CONFLICT(user_id,usage_day) DO UPDATE SET attempts=attempts+1 WHERE attempts<60 RETURNING attempts').bind(userId,day).first();
  if(!usage) throw new ApiError(429,'DAILY_MODEL_LIMIT',provider.kind==='meta'?'Daily AI request limit reached.':'Daily local-model request limit reached.');

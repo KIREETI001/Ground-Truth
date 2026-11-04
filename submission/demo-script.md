@@ -1,47 +1,42 @@
-# Three-minute demo
+# GroundTruth — three-minute demo story
 
-**Recording asset still required.** This is a production plan, not a finished video. Verify the live form's duration and file/link requirements before recording. Target 2:50–3:00 without stretching the route into a tour of every screen.
+**Participant review hold: do not submit the official form or accept publishing consent.**
 
-## The promise
+The deliverable is a 175-second narrated walkthrough of actual hosted interface captures, openly labelled as edited stills using a synthetic demo account. The voice is generated offline. It does not pretend to be continuous live interaction or a real student outcome.
 
-“Your app works. Do you understand the system well enough to make the next change yourself?”
+The central story joins the learner and teacher problems: a builder needs a systems mental model; a teacher needs evidence of independent understanding beyond a polished AI-assisted take-home artifact. Support responsible AI learning and keep assessment judgement human.
 
-Use the same small example throughout: a student who used AI to build a study-task app and now wants to understand where title validation belongs in its architecture. The demo repository is [groundtruth-demo-study-tasks](https://github.com/KIREETI001/groundtruth-demo-study-tasks). It contains simple, inspectable source. There is no claim that the example app is a production service.
+## Screen and narration
 
-## Screen and voiceover
-
-| Time | Show | Say |
+| Time | Real captured screen / illustration | Narration |
 | --- | --- | --- |
-| 0:00–0:18 | Landing page, then a ready student workspace | “My AI-built app works. But even a one-line change can send me back to an assistant to reread the repository. GroundTruth helps me understand the code and architecture so I can start thinking like a builder.” |
-| 0:18–0:43 | Import this repository, then choose Backend and task submission | “I bring a GitHub repository and choose what I want to strengthen. I start with a feature, not a filename. The map is generated from selected source, and each path is tied to a pinned commit.” |
-| 0:43–1:08 | Beginner overview, visual flow, one source file | “Where does this request go? Which component validates it before persistence? The overview connects these responsibilities to selected source. I build a mental model one workflow at a time, rather than reading isolated lines.” |
-| 1:08–1:33 | Select input validation concept; show one generated MCQ | “Muse Spark generates a short question from this code and my goal. The interface stays consistent, but the content belongs to this project. A beginner can start with a multiple-choice question, then progress to a small coding task.” |
-| 1:33–2:03 | Start independent short coding attempt; show assistance paused; enter clearly labelled presenter snippet | “Now the assistant steps aside. GroundTruth pauses new study help during my independent attempt. My original submission is saved before feedback. If I need to stop, I can end the attempt without inventing a completed answer.” |
-| 2:03–2:25 | Saved attempt and Progress; optionally show one reviewed change only if verified hosted feature | “Progress connects the attempt to its concept and records in-app activity. It is evidence to review, not an automatic mastery verdict. A change proposal also needs a visible diff and my approval before any supported apply action.” |
-| 2:25–2:45 | Explicit project share, then separate prepared teacher account | “I choose what to share. My teacher sees the original attempt and relevant activity, rather than assuming a working AI-built project proves understanding. Class membership alone does not share every project.” |
-| 2:45–3:00 | End on learner's saved path, then small architecture card | “Meta powers the contextual guidance. GroundTruth helps me use it to build understanding, then practise without it. Understand the code. Think in systems. Make the next change yourself.” |
+| 0:00–0:14 | Understand the system. Try the next change. | AI can build a working app before its builder understands the system. GroundTruth helps the learner understand code and architecture, then practise the next change independently. |
+| 0:14–0:40 | Make independent understanding easier to inspect | Teachers face a connected problem. A polished, AI-assisted take-home artifact can conceal gaps in independent understanding. Responsible AI learners also need a fair chance to demonstrate ability. Reconstructing missing reasoning can add manual marking work. This edited walkthrough uses real interface captures and synthetic demo data. |
+| 0:40–0:52 | Start with a feature, before a filename | Start with a public repository and a feature. The learner chooses a backend workflow in our small study-task app, before needing to know a filename. |
+| 0:52–1:07 | Connect code to system responsibilities | The overview connects selected source to system responsibilities. Where does a request go? Which component validates it? A reading flow and glossary help the learner build that mental model. |
+| 1:07–1:21 | Find a shared concept to investigate | The concept tree links those responsibilities to focused practice. It also gives teacher and learner a shared concept to discuss, rather than relying only on the finished artifact. |
+| 1:21–1:40 | Ask about this code, rather than grade an artifact | Muse Spark generates code-linked MCQs and tiny coding tasks. The question responds to the source and goal. This is contextual practice, not AI grading of a take-home project. Suggested answers still need source review. |
+| 1:40–1:58 | Protect an explicit independent attempt | During an independent attempt, new study assistance pauses. The original submitted response is preserved before feedback. The learner may also end the attempt. GroundTruth cannot prevent outside help or infer authorship. |
+| 1:58–2:16 | Give the teacher context beyond the artifact | The learner chooses what to share. Original attempts and observed activity add context for review. The concept index is provisional evidence, not a grade. These synthetic records are not learning-effectiveness results. |
+| 2:16–2:35 | Inspect the answer. Choose a fresh follow-up. | The teacher can inspect the original answer and identify a concept worth a fresh unaided follow-up. This can inform teaching, while judgement stays human. Teacher AI quiz authoring, assignment distribution and cohort analytics remain future work. |
+| 2:35–2:55 | Responsible AI learning. Human judgement. | Meta provides contextual content. GroundTruth on Vercel controls access and learning state, with Supabase preserving evidence. Support responsible AI learning. Understand the system, try independently, and make the evidence inspectable. |
 
-## Preparation
+## What the teacher can do today
 
-- Freeze the tested release and write its commit and URL into the release manifest.
-- Prepare separate synthetic student and approved teacher accounts. Never record developer credentials, tokens, account settings or real student records.
-- Rehearse the exact workflow once and check every generated answer against the source. Keep one saved path ready as a labelled backup.
-- Record at a readable desktop size. Keep the pointer still while explaining source. Crop browser chrome only if it improves legibility without hiding important state.
-- Use one live Meta generation in the recording. If waiting is cut, add “Generation wait shortened” on screen. Label saved content and prepared states; do not imply cached content was just generated.
-- If hosted editing is unavailable, omit it. The core story is overview → practice → independent attempt → teacher review.
-- Use a short code task as the independent checkpoint. Use an MCQ to make the initial question understandable, not as proof of deep competence.
-- Stop at 3:00. If the teacher transition takes too long, use a labelled cut between the two separate accounts.
+Review an explicitly shared original answer, app-observed activity and provisional concept evidence. Use that context to decide which concept needs discussion or a fresh unaided check and to inform a teaching adjustment. These are human decisions, not an automated diagnosis. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.
 
-## Presenter prompts
+## Review limits
 
-Goal: “I am a complete beginner. Help me understand where title validation belongs in this app: the request, validation function and database write. Then practise trimming, empty-title rejection and length limits with simple MCQs and tiny functions.”
+- The filled coding answer and progress records are synthetic demonstration activity. They do not establish a real learner's ability or educational effectiveness.
+- New in-app study assistance pauses during the independent attempt. Outside tools remain beyond GroundTruth's control.
+- A model-suggested answer can be wrong. The original source and human review matter.
+- Do not claim improved grading fairness, reduced marking time, authorship detection or a universal trend in student behaviour.
+- The conceptual reading flow is bounded source guidance, not a verified whole-repository call graph.
 
-Transfer alternative: “I want to adapt the title-validation pattern to a reading-list app. Help me practise with book titles before I implement it.”
+## Rehearsal prompt
 
-These are presenter inputs, not fixed generated questions. Workflow names and exercises can vary.
+“I am a beginner. Help me understand where title validation belongs: the request, validation function and database write. Then practise trimming, empty-title rejection and length limits with simple MCQs and tiny functions.”
 
-## Suggested thumbnail
+The question content is generated from selected source. Presenter prompts are not preset question banks. Use [video/storyboard.json](video/storyboard.json), [video/transcript.md](video/transcript.md) and the final render report to review the exact deliverable.
 
-Headline: **AI built it. Can you change it?**
-
-Show a clean crop of the source and independent-practice state, with the GroundTruth wordmark. Avoid decorative dashboards or fabricated learning statistics.
+For a separate live presenter recording, follow the same sequence, label generation-time cuts and prepared states, and keep the duration below the official three-minute limit. The deck is a supporting asset, not a substitute for the video.

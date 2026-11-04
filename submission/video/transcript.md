@@ -2,42 +2,42 @@
 
 Edited walkthrough using real hosted UI captures and synthetic demonstration accounts. Offline synthetic narration.
 
-## 00:00:00.000 — Understand your code. Think in systems.
+## 00:00:00.000 — Understand the system. Try the next change.
 
-AI can produce a working app before its builder understands the system. Even a one-line change can send a beginner back to an assistant to reread the repository. GroundTruth addresses that next-change moment.
+AI can build a working app before its builder understands the system. GroundTruth helps the learner understand code and architecture, then practise the next change independently.
 
-## 00:00:15.500 — From generated software to independent builders
+## 00:00:13.542 — Make independent understanding easier to inspect
 
-The goal is a builder who understands the code and architecture, then practises making a change independently. This edited walkthrough uses real hosted interface captures and a synthetic demonstration account.
+Teachers face a connected problem. A polished, AI-assisted take-home artifact can conceal gaps in independent understanding. Responsible AI learners also need a fair chance to demonstrate ability. Reconstructing missing reasoning can add manual marking work. This edited walkthrough uses real interface captures and synthetic demo data.
 
-## 00:00:30.333 — Start with a feature, before a filename
+## 00:00:39.708 — Start with a feature, before a filename
 
-Bring a public GitHub repository and choose a feature to strengthen. Our small study-task project makes the journey easy to inspect. The learner chooses a backend workflow, rather than needing to know which file to open first.
+Start with a public repository and a feature. The learner chooses a backend workflow in our small study-task app, before needing to know a filename.
 
-## 00:00:47.083 — Connect source to system responsibilities
+## 00:00:51.667 — Connect code to system responsibilities
 
-GroundTruth explains the selected workflow with a beginner overview, reading flow, glossary and visible source at a pinned commit. Where does the request go? Which component validates it? The learner connects individual lines to system responsibilities.
+The overview connects selected source to system responsibilities. Where does a request go? Which component validates it? A reading flow and glossary help the learner build that mental model.
 
-## 00:01:06.000 — Focus on one concept at a time
+## 00:01:07.208 — Find a shared concept to investigate
 
-A small concept tree links the workflow to focused practice. The learner can strengthen validation before moving on. Muse Spark generates contextual learning content from the selected source and goal, within a consistent interface.
+The concept tree links those responsibilities to focused practice. It also gives teacher and learner a shared concept to discuss, rather than relying only on the finished artifact.
 
-## 00:01:23.333 — Make the first step approachable
+## 00:01:21.000 — Ask about this code, rather than grade an artifact
 
-A beginner can start with an MCQ, then try a tiny coding task. Questions belong to this selected code. The model's suggested answer is still reviewable against the source. A generated explanation is not automatically a fact.
+Muse Spark generates code-linked MCQs and tiny coding tasks. The question responds to the source and goal. This is contextual practice, not AI grading of a take-home project. Suggested answers still need source review.
 
-## 00:01:41.833 — Now the assistant steps aside
+## 00:01:40.000 — Protect an explicit independent attempt
 
-The independent attempt changes the rules. New study assistance pauses while the learner answers. The first submitted response is retained before feedback. The learner can also end an attempt without inventing a completed answer. Outside tools remain beyond GroundTruth's control.
+During an independent attempt, new study assistance pauses. The original submitted response is preserved before feedback. The learner may also end the attempt. GroundTruth cannot prevent outside help or infer authorship.
 
-## 00:02:03.167 — Keep evidence, rather than assume mastery
+## 00:01:58.083 — Give the teacher context beyond the artifact
 
-Progress brings the attempt and observed app activity together. The concept index is provisional evidence, not an automatic grade or a validated measure of mastery. The learner decides which project to share with an approved teacher.
+The learner chooses what to share. Original attempts and observed activity add context for review. The concept index is provisional evidence, not a grade. These synthetic records are not learning-effectiveness results.
 
-## 00:02:19.917 — Give the teacher something inspectable
+## 00:02:15.667 — Inspect the answer. Choose a fresh follow-up.
 
-The teacher reviews the original attempt and relevant activity. Class enrollment alone does not expose every project. A working AI-built application starts the conversation; the learner's independent attempt adds evidence.
+The teacher can inspect the original answer and identify a concept worth a fresh unaided follow-up. This can inform teaching, while judgement stays human. Teacher AI quiz authoring, assignment distribution and cohort analytics remain future work.
 
-## 00:02:36.667 — Contextual guidance with explicit boundaries
+## 00:02:34.833 — Responsible AI learning. Human judgement.
 
-Meta supplies contextual guidance. GroundTruth on Vercel controls access and learning state, with Supabase preserving the evidence. Our aim is simple: understand the code, think in systems, and make the next change yourself.
+Meta provides contextual content. GroundTruth on Vercel controls access and learning state, with Supabase preserving evidence. Support responsible AI learning. Understand the system, try independently, and make the evidence inspectable.

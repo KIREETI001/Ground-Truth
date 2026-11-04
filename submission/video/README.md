@@ -42,3 +42,7 @@ Burned-in short scene captions summarize each step; the SRT/VTT contain the full
 ## Review and delivery
 
 Play the full final MP4, including transitions and final audio. Confirm no clipping, unreadable decisive state, sensitive data or invented claim. Check the exact duration and file size in the report. No public upload happens in this renderer. A participant-approved accessible video URL is still needed for the official form.
+
+## Revised assessment story
+
+The narration gives the teacher-side assessment gap a major role alongside learner systems thinking. It describes take-home artifacts as incomplete evidence, supports responsible AI use, and reserves judgement and fresh follow-ups for humans. The synthetic answer is a demonstration, not a learner outcome. Quiz authoring, assignments and cohort analytics are explicitly future work. The participant will review everything; the official form must not be submitted.

@@ -12,19 +12,19 @@
       "id": "01-promise",
       "kind": "artwork",
       "image": "../thumbnail.png",
-      "title": "Understand your code. Think in systems.",
-      "caption": "The next change should become your decision.",
+      "title": "Understand the system. Try the next change.",
+      "caption": "A learning path for builders. Evidence for teachers.",
       "weight": 12,
-      "narration": "AI can produce a working app before its builder understands the system. Even a one-line change can send a beginner back to an assistant to reread the repository. GroundTruth addresses that next-change moment."
+      "narration": "AI can build a working app before its builder understands the system. GroundTruth helps the learner understand code and architecture, then practise the next change independently."
     },
     {
       "id": "02-entry",
       "kind": "ui",
       "image": "../assets/live-landing.png",
-      "title": "From generated software to independent builders",
-      "caption": "Build a mental model of the code and architecture.",
+      "title": "Make independent understanding easier to inspect",
+      "caption": "A polished take-home artifact is only part of the assessment story.",
       "weight": 14,
-      "narration": "The goal is a builder who understands the code and architecture, then practises making a change independently. This edited walkthrough uses real hosted interface captures and a synthetic demonstration account."
+      "narration": "Teachers face a connected problem. A polished, AI-assisted take-home artifact can conceal gaps in independent understanding. Responsible AI learners also need a fair chance to demonstrate ability. Reconstructing missing reasoning can add manual marking work. This edited walkthrough uses real interface captures and synthetic demo data."
     },
     {
       "id": "03-repository",
@@ -33,7 +33,7 @@
       "title": "Start with a feature, before a filename",
       "caption": "Choose the workflow you want to understand.",
       "weight": 20,
-      "narration": "Bring a public GitHub repository and choose a feature to strengthen. Our small study-task project makes the journey easy to inspect. The learner chooses a backend workflow, rather than needing to know which file to open first.",
+      "narration": "Start with a public repository and a feature. The learner chooses a backend workflow in our small study-task app, before needing to know a filename.",
       "crop": [
         275,
         145,
@@ -45,10 +45,10 @@
       "id": "04-workflow",
       "kind": "ui",
       "image": "../assets/live-workflow.png",
-      "title": "Connect source to system responsibilities",
+      "title": "Connect code to system responsibilities",
       "caption": "Follow a request through validation and persistence.",
       "weight": 22,
-      "narration": "GroundTruth explains the selected workflow with a beginner overview, reading flow, glossary and visible source at a pinned commit. Where does the request go? Which component validates it? The learner connects individual lines to system responsibilities.",
+      "narration": "The overview connects selected source to system responsibilities. Where does a request go? Which component validates it? A reading flow and glossary help the learner build that mental model.",
       "crop": [
         500,
         90,
@@ -60,10 +60,10 @@
       "id": "05-concepts",
       "kind": "ui",
       "image": "../assets/live-concepts.png",
-      "title": "Focus on one concept at a time",
-      "caption": "Build a systems view through focused practice.",
+      "title": "Find a shared concept to investigate",
+      "caption": "Use concept-linked evidence to focus the next discussion.",
       "weight": 16,
-      "narration": "A small concept tree links the workflow to focused practice. The learner can strengthen validation before moving on. Muse Spark generates contextual learning content from the selected source and goal, within a consistent interface.",
+      "narration": "The concept tree links those responsibilities to focused practice. It also gives teacher and learner a shared concept to discuss, rather than relying only on the finished artifact.",
       "crop": [
         500,
         235,
@@ -75,10 +75,10 @@
       "id": "06-practice",
       "kind": "ui",
       "image": "../assets/live-practice-mcq.png",
-      "title": "Make the first step approachable",
-      "caption": "Project-specific MCQs and tiny coding tasks.",
+      "title": "Ask about this code, rather than grade an artifact",
+      "caption": "Dynamic practice questions. No automatic artifact grading.",
       "weight": 20,
-      "narration": "A beginner can start with an MCQ, then try a tiny coding task. Questions belong to this selected code. The model's suggested answer is still reviewable against the source. A generated explanation is not automatically a fact.",
+      "narration": "Muse Spark generates code-linked MCQs and tiny coding tasks. The question responds to the source and goal. This is contextual practice, not AI grading of a take-home project. Suggested answers still need source review.",
       "crop": [
         500,
         330,
@@ -90,10 +90,10 @@
       "id": "07-independent",
       "kind": "ui",
       "image": "../assets/live-independent.png",
-      "title": "Now the assistant steps aside",
-      "caption": "Study help pauses. The first submission is preserved.",
+      "title": "Protect an explicit independent attempt",
+      "caption": "Study help pauses. The original response is retained.",
       "weight": 22,
-      "narration": "The independent attempt changes the rules. New study assistance pauses while the learner answers. The first submitted response is retained before feedback. The learner can also end an attempt without inventing a completed answer. Outside tools remain beyond GroundTruth's control.",
+      "narration": "During an independent attempt, new study assistance pauses. The original submitted response is preserved before feedback. The learner may also end the attempt. GroundTruth cannot prevent outside help or infer authorship.",
       "crop": [
         500,
         360,
@@ -105,10 +105,10 @@
       "id": "08-progress",
       "kind": "ui",
       "image": "../assets/live-progress.png",
-      "title": "Keep evidence, rather than assume mastery",
-      "caption": "Saved attempts connect back to concepts.",
+      "title": "Give the teacher context beyond the artifact",
+      "caption": "Original attempts and observed app activity, shared by choice.",
       "weight": 17,
-      "narration": "Progress brings the attempt and observed app activity together. The concept index is provisional evidence, not an automatic grade or a validated measure of mastery. The learner decides which project to share with an approved teacher.",
+      "narration": "The learner chooses what to share. Original attempts and observed activity add context for review. The concept index is provisional evidence, not a grade. These synthetic records are not learning-effectiveness results.",
       "crop": [
         500,
         240,
@@ -120,10 +120,10 @@
       "id": "09-teacher",
       "kind": "ui",
       "image": "../assets/live-teacher.png",
-      "title": "Give the teacher something inspectable",
-      "caption": "Explicit sharing. Original attempts. Human review.",
+      "title": "Inspect the answer. Choose a fresh follow-up.",
+      "caption": "Review now. Teacher quiz authoring and cohort analytics are future work.",
       "weight": 16,
-      "narration": "The teacher reviews the original attempt and relevant activity. Class enrollment alone does not expose every project. A working AI-built application starts the conversation; the learner's independent attempt adds evidence.",
+      "narration": "The teacher can inspect the original answer and identify a concept worth a fresh unaided follow-up. This can inform teaching, while judgement stays human. Teacher AI quiz authoring, assignment distribution and cohort analytics remain future work.",
       "crop": [
         400,
         500,
@@ -135,10 +135,11 @@
       "id": "10-close",
       "kind": "artwork",
       "image": "../architecture.png",
-      "title": "Contextual guidance with explicit boundaries",
-      "caption": "Understand the code. Think in systems. Make the next change yourself.",
+      "title": "Responsible AI learning. Human judgement.",
+      "caption": "Understand the system. Try independently. Make the evidence inspectable.",
       "weight": 16,
-      "narration": "Meta supplies contextual guidance. GroundTruth on Vercel controls access and learning state, with Supabase preserving the evidence. Our aim is simple: understand the code, think in systems, and make the next change yourself."
+      "narration": "Meta provides contextual content. GroundTruth on Vercel controls access and learning state, with Supabase preserving evidence. Support responsible AI learning. Understand the system, try independently, and make the evidence inspectable."
     }
-  ]
+  ],
+  "reviewStatus": "participant_review_hold_do_not_submit_form"
 }

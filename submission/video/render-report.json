@@ -5,7 +5,7 @@
   "height": 720,
   "fps": 24,
   "durationSeconds": 175,
-  "bytes": 3704769,
+  "bytes": 3681860,
   "decodeCheck": "passed",
   "voice": "Microsoft Zira Desktop",
   "speechRate": -1,
@@ -18,12 +18,12 @@
     {
       "scene": "01-promise",
       "image": "../thumbnail.png",
-      "sha256": "1e82bdb3120af7b5b07f6238700b3f565a21ff1b95d05294f263702372dc38aa",
+      "sha256": "328db741569497b34e49224c573eb22ca031f93cb99860c3ddb045efd4e3adbc",
       "kind": "artwork",
       "crop": null,
       "startSeconds": 0.0,
-      "durationSeconds": 15.5,
-      "narrationSeconds": 14.696780045351474
+      "durationSeconds": 13.541666666666666,
+      "narrationSeconds": 12.47718820861678
     },
     {
       "scene": "02-entry",
@@ -31,9 +31,9 @@
       "sha256": "f28e1c2ec05af6d33ec4d04898d204a5668bd1ca65e901d4893da2b0bda8201e",
       "kind": "ui",
       "crop": null,
-      "startSeconds": 15.5,
-      "durationSeconds": 14.833333333333334,
-      "narrationSeconds": 14.037097505668934
+      "startSeconds": 13.541666666666666,
+      "durationSeconds": 26.166666666666668,
+      "narrationSeconds": 25.08544217687075
     },
     {
       "scene": "03-repository",
@@ -46,9 +46,9 @@
         1620,
         680
       ],
-      "startSeconds": 30.333333333333332,
-      "durationSeconds": 16.75,
-      "narrationSeconds": 15.91156462585034
+      "startSeconds": 39.708333333333336,
+      "durationSeconds": 11.958333333333334,
+      "narrationSeconds": 10.67750566893424
     },
     {
       "scene": "04-workflow",
@@ -61,9 +61,9 @@
         1160,
         590
       ],
-      "startSeconds": 47.083333333333336,
-      "durationSeconds": 18.916666666666668,
-      "narrationSeconds": 18.071292517006803
+      "startSeconds": 51.666666666666664,
+      "durationSeconds": 15.541666666666666,
+      "narrationSeconds": 14.286984126984127
     },
     {
       "scene": "05-concepts",
@@ -76,9 +76,9 @@
         1160,
         460
       ],
-      "startSeconds": 66.0,
-      "durationSeconds": 17.333333333333332,
-      "narrationSeconds": 16.556462585034012
+      "startSeconds": 67.20833333333333,
+      "durationSeconds": 13.791666666666666,
+      "narrationSeconds": 12.692290249433107
     },
     {
       "scene": "06-practice",
@@ -91,9 +91,9 @@
         1160,
         630
       ],
-      "startSeconds": 83.33333333333333,
-      "durationSeconds": 18.5,
-      "narrationSeconds": 17.70172335600907
+      "startSeconds": 81.0,
+      "durationSeconds": 19.0,
+      "narrationSeconds": 17.78154195011338
     },
     {
       "scene": "07-independent",
@@ -106,9 +106,9 @@
         1160,
         630
       ],
-      "startSeconds": 101.83333333333333,
-      "durationSeconds": 21.333333333333332,
-      "narrationSeconds": 20.530975056689343
+      "startSeconds": 100.0,
+      "durationSeconds": 18.083333333333332,
+      "narrationSeconds": 16.826757369614512
     },
     {
       "scene": "08-progress",
@@ -121,9 +121,9 @@
         1160,
         600
       ],
-      "startSeconds": 123.16666666666667,
-      "durationSeconds": 16.75,
-      "narrationSeconds": 15.981632653061224
+      "startSeconds": 118.08333333333333,
+      "durationSeconds": 17.583333333333332,
+      "narrationSeconds": 16.46185941043084
     },
     {
       "scene": "09-teacher",
@@ -136,77 +136,78 @@
         1100,
         550
       ],
-      "startSeconds": 139.91666666666666,
-      "durationSeconds": 16.75,
-      "narrationSeconds": 15.98657596371882
+      "startSeconds": 135.66666666666666,
+      "durationSeconds": 19.166666666666668,
+      "narrationSeconds": 18.091383219954647
     },
     {
       "scene": "10-close",
       "image": "../architecture.png",
-      "sha256": "37397b37a35b436af971b2b38832e10d17433e2b8d321ce9df3c399966e6a0c4",
+      "sha256": "809ec4eb454278d18e7595aefa8857dcf2f161731aa39c9975478cf857ee2d8f",
       "kind": "artwork",
       "crop": null,
-      "startSeconds": 156.66666666666666,
-      "durationSeconds": 18.333333333333332,
-      "narrationSeconds": 17.551791383219953
+      "startSeconds": 154.83333333333334,
+      "durationSeconds": 20.166666666666668,
+      "narrationSeconds": 19.071156462585034
     }
   ],
   "subtitleAlignment": "sentence timing estimated within measured narration segments; human review required",
   "uploaded": false,
+  "containerDurationSeconds": 175.02,
+  "sha256": "17e69347c7387e5b4325abea5daa97be14a2cb0244ef3473c0bd372cc7625e5c",
+  "narrativeRevision": "teacher_assessment_gap_and_responsible_ai_learning_v2",
+  "participantReviewRequired": true,
   "audioPcmChecks": [
     {
       "scene": "01-promise",
-      "peakAmplitude": 24135,
+      "peakAmplitude": 23321,
       "clippedSamples": 0
     },
     {
       "scene": "02-entry",
-      "peakAmplitude": 23074,
+      "peakAmplitude": 22379,
       "clippedSamples": 0
     },
     {
       "scene": "03-repository",
-      "peakAmplitude": 24818,
+      "peakAmplitude": 25270,
       "clippedSamples": 0
     },
     {
       "scene": "04-workflow",
-      "peakAmplitude": 22821,
+      "peakAmplitude": 21594,
       "clippedSamples": 0
     },
     {
       "scene": "05-concepts",
-      "peakAmplitude": 25126,
+      "peakAmplitude": 22455,
       "clippedSamples": 0
     },
     {
       "scene": "06-practice",
-      "peakAmplitude": 25193,
+      "peakAmplitude": 25126,
       "clippedSamples": 0
     },
     {
       "scene": "07-independent",
-      "peakAmplitude": 22724,
+      "peakAmplitude": 24269,
       "clippedSamples": 0
     },
     {
       "scene": "08-progress",
-      "peakAmplitude": 24226,
+      "peakAmplitude": 22016,
       "clippedSamples": 0
     },
     {
       "scene": "09-teacher",
-      "peakAmplitude": 24986,
+      "peakAmplitude": 24330,
       "clippedSamples": 0
     },
     {
       "scene": "10-close",
-      "peakAmplitude": 21472,
+      "peakAmplitude": 25071,
       "clippedSamples": 0
     }
   ],
-  "audioClipping": "none",
-  "containerDurationSeconds": 175.02,
-  "sha256": "d020ecf499e4a1df9c7c4c29b0d69e48dbf44b19aa24fcf8a24c7eee26ccc664",
-  "visualFrameReview": "All ten composed scene frames inspected; readable contextual crops; no credentials; synthetic-account/still-edit labels present"
+  "audioClipping": "none"
 }

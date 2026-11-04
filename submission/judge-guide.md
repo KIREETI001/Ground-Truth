@@ -7,6 +7,10 @@ Video: https://groundtruth-meta.vercel.app/demo (2:55 edited walkthrough; verify
 
 ## Five-minute route
 
+**Review hold:** the participant will inspect all submission materials first. Do not submit the official form or accept publishing consent.
+
+The demonstration connects two needs: a builder learning how code and architecture fit together, and a teacher who needs evidence of independent understanding beyond a polished AI-assisted take-home artifact. Responsible AI use should have room for learning and an inspectable independent check.
+
 1. Open the live URL and create a Student profile, or use the separately supplied synthetic judge account. All roles use the same login. Public Developer registration is unavailable.
 2. Start a learning path and import the sample repository. Acknowledge the source-processing notice. Select a Backend feature about task submission or validation; generated labels may differ.
 3. Use this goal: “I am a beginner. Teach me task-title validation: trimming, empty titles and length limits. Use simple MCQs and tiny coding tasks.”
@@ -15,6 +19,8 @@ Video: https://groundtruth-meta.vercel.app/demo (2:55 edited walkthrough; verify
 6. Generate a short coding task. Start an independent attempt and confirm new study guidance pauses. Submit a short snippet, or choose End attempt. Submitted snippets are stored, not executed.
 7. Open Progress. Confirm the original response remains visible and the index is described as provisional evidence. An unreviewed response is not a teacher-certified skill.
 8. Optionally join a prepared class and explicitly share this project with the approved synthetic teacher. In a separate teacher account, inspect the saved attempt. No teacher/developer credentials belong in the public repository.
+
+For the teacher step, inspect the original submitted snippet, its concept link and the recorded in-app activity. This can inform the teacher's next discussion, fresh unaided check or teaching adjustment. Those remain human choices. The MVP has no teacher-side AI quiz authoring, assignment distribution or cohort analytics. It makes no claim of detecting outside AI, improving grades or reducing marking time.
 
 The hosted release supports controlled cloud drafts. Public checks verified manual draft editing, explicit review confirmation and idempotent apply. Browser checks verified the draft interface. This does not change the GitHub repository, execute code or establish that the AI proposal path works. Laptop-only filesystem behavior remains separate.
 

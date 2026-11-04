@@ -4,7 +4,9 @@ Checked against official documentation on 5 November 2026. Provider documentatio
 
 ## The argument to make
 
-“We use Meta to help the learner build a mental model of their code and architecture. It turns selected source and a goal into a workflow, connected concepts and focused practice. GroundTruth then deliberately removes assistance for an independent attempt. The meaningful integration is the learning-state loop around the model.”
+“We use Meta to help the learner build a mental model of their code and architecture. It turns selected source into a workflow, concepts and focused practice. GroundTruth pauses study assistance for an independent attempt and retains the response, giving teachers something more inspectable than a polished take-home artifact. The meaningful integration is the learning-and-review loop around the model.”
+
+The teacher-side reason for dynamic MCQs and short code tasks is an opportunity to inspect a concept-specific response. Meta does not assign a grade to the final artifact or infer AI authorship. A teacher can review the original answer and app-observed evidence to decide what needs a fresh unaided check. AI quiz authoring by teachers, assignment distribution and cohort analytics are future work. We have not measured grading fairness, marking-time savings or educational effectiveness.
 
 The design aims to avoid repeatedly sending a repository back to an assistant for every small change. Saved paths and focused context can support that goal, but no token-savings or independence improvement has been measured. Present it as the reason for the design, not a proven outcome.
 

@@ -9,7 +9,7 @@ Checkpoint: **5 November 2026**. This is an evidence summary, not a claim of fin
 | Source | Public `KIREETI001/Ground-Truth`, current release checkpoint on `main` |
 | Baseline commit | `bcbe7dcf01e2310cac945760f7560646707e56e0` |
 | Type checks | Passed |
-| Automated tests | 244 passed |
+| Automated tests | 246 passed |
 | Lint | Passed, zero findings |
 | Production build | Passed |
 | Supabase project | Active |
@@ -30,15 +30,15 @@ These results were supplied by the release operator from the working session. Th
 | Public student journey | Twelve additional public checks passed: real Meta map, overview/visual flow, concepts, MCQ, short code, hint, saved path, independent lock/exit and explicit share |
 | Public teacher journey | Public API checks verified pending access, approval, classes, enrollment and explicit-share reads; browser teacher workspace, original saved answer and review controls verified |
 | Hosted changes | Manual draft editing, review confirmation and idempotent apply verified on public API; draft UI verified; real Meta proposal, explicit approved apply and idempotent replay verified |
-| Video | MP4 rendered: 175.02 seconds, 3.70 MB, H.264/AAC 720p; decode/audio-clipping/frame checks passed. Public video deployment pending |
-| Final assets | Deck, SVG/PNG illustrations and actual live screenshots prepared; landing screenshot to be refreshed after role-card styling fix |
+| Video | MP4 rendered: 175.02 seconds, 3.68 MB, H.264/AAC 720p; decode/audio-clipping/frame checks passed. Previous video publicly verified; revised teacher-assessment narrative pending final deployment |
+| Final assets | Deck, SVG/PNG illustrations and actual live screenshots prepared; role-card styling fix already reflected in live landing capture; revised assessment narrative uses the same actual UI evidence |
 | Official submission | Form inspected; no submission receipt |
 
 The final release may have a later commit. Update [release-manifest.json](release-manifest.json) and this summary after the final build, deployment and Meta smoke test. Do not remove pending labels without corresponding evidence.
 
 Twenty actual public API checks passed: Supabase-backed writes; signup and Secure session cookie; login; pending-teacher denial and developer approval; class creation and idempotent joining; cross-owner 404; full pinned source; cloud manual drafts; explicit review confirmation; idempotent apply; and explicitly shared teacher reads. Browser verification covered an actual student login and cloud draft interface. Those checks do not substitute for a real Meta generation.
 
-Actual Meta generation is now separately verified. At commit `e9bda5a17aae57196a59c590d3c6e94b5711af6f`, twelve additional public journey checks passed against the live Vercel URL and persisted real generated content in Supabase. The independent attempt blocked new Meta guidance with 403, and ending the attempt released the lock without a fabricated submission. This brings the checkpoint to **32 public API checks**. An independent direct-adapter run passed **8/8 real Meta tasks**: repository map, beginner overview, concepts, MCQ, short code, grounded hint, controlled change and post-answer feedback. The final post-fix release commit remains to be recorded.
+Actual Meta generation is now separately verified. At commit `e9bda5a17aae57196a59c590d3c6e94b5711af6f`, twelve additional public journey checks passed against the live Vercel URL and persisted real generated content in Supabase. The independent attempt blocked new Meta guidance with 403, and ending the attempt released the lock without a fabricated submission. Seven subsequent public checks passed, bringing the checkpoint to **39 public API checks**. An independent direct-adapter run passed **8/8 real Meta tasks**: repository map, beginner overview, concepts, MCQ, short code, grounded hint, controlled change and post-answer feedback. The final post-fix release commit remains to be recorded.
 
 ## Shareable assets
 

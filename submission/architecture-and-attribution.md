@@ -61,3 +61,7 @@ Codex assisted coding, debugging, tests and documentation. The local workflow wa
 Third-party software includes React, Next.js, Drizzle, UI/icon packages and their transitive dependencies. Review the final lockfile and applicable licenses; retain required notices. The target hosting/backend services are Vercel and Supabase. The small public study-task repository is a demo input, not a real learner's measured achievement.
 
 No benchmark in this packet establishes model superiority. No user study in this packet establishes educational effectiveness. Historical survey and proposal numbers are excluded from the pitch because the underlying evidence has not been checked for this release.
+
+## Teacher assessment purpose and current scope
+
+A polished AI-assisted take-home artifact can leave independent ability uncertain, while responsible AI learning should have room to demonstrate understanding. Original committed answers, observed app activity, explicit shares and provisional concept evidence can give a teacher a clearer starting point for a discussion or fresh unaided follow-up. Those choices and any teaching adjustment remain human decisions. Teacher-side AI quiz authoring, assignment distribution and cohort analytics are not built. No measured improvement in grades, fairness, learning or marking time is claimed.

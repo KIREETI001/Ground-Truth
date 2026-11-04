@@ -1,5 +1,7 @@
 # Release and submission checklist
 
+**User review hold: do not submit the official form, grant publishing consent or treat a completed draft as approval.**
+
 Do not mark a task complete without its named evidence. This is a release checklist, not a record that the work has happened.
 
 ## Entry and official form
@@ -16,7 +18,7 @@ Do not mark a task complete without its named evidence. This is a release checkl
 - [ ] Freeze the final release commit after remaining fixes and Meta verification.
 - [x] Verify actual Muse Spark 1.3 API calls: 8/8 adapter tasks and 12 additional public journey checks passed with structured/source validation. No key or learner payload is included in public evidence.
 - [x] Apply and verify the Supabase schema: 32 tables with RLS enabled; private app-role connection with CA-verified TLS; zero security advisor findings at checkpoint. Server-to-Supabase login rehearsed.
-- [x] Run baseline type checks, tests (244 passed), lint (zero findings) and production build at bcbe7dcf01e2310cac945760f7560646707e56e0.
+- [x] Run baseline type checks, tests (246 passed), lint (zero findings) and production build at bcbe7dcf01e2310cac945760f7560646707e56e0.
 - [ ] Run or confirm appropriate final checks for later release changes and verify public runtime access boundaries.
 - [x] Verify actual public login → Meta repository map → focused path → overview/flow → concepts → MCQ → independent lock/exit → short code → grounded hint → explicit share. Screenshots and final submitted-attempt capture are being completed separately.
 - [x] Verify public API owner isolation, pending-teacher denial, approval, explicit teacher-share access, class enrollment and idempotent joining. Twenty public API checks passed.
@@ -31,7 +33,8 @@ Do not mark a task complete without its named evidence. This is a release checkl
 
 ## Media
 
-- [ ] Record and upload the final demo; insert the accessible video URL in the manifest and form. Label cuts, generated wait shortening and prepared states.
+- [x] Render the revised narrated real-UI-stills walkthrough, 175.02 seconds, with explicit edited/synthetic/crop labels and captions.
+- [ ] Verify the revised public video, then include its accessible URL in the draft form for participant review. Do not submit.
 - [x] Capture actual public deployment screenshots in `assets/live-landing.png` and `assets/live-cloud-draft.png`.
 - [ ] Refresh the landing screenshot after the role-card styling fix; capture generated practice/independent/teacher states after full verification.
 - [ ] Choose a project thumbnail and verify dimensions against the portal.

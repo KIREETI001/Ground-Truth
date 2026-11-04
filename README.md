@@ -32,7 +32,7 @@ Local cloud rehearsal opens on http://localhost:5174. Production uses encrypted 
 
 Use https://github.com/KIREETI001/groundtruth-demo-study-tasks, a deliberately small study-task application. Follow request → validation → persistence, then independently change a small validation rule. The demo example is separate from this application.
 
-The [submission packet](submission/README.md) contains the project narrative, three-minute script, judge guide, architecture, Meta model fit, attribution and release checklist. The manifest distinguishes verified release evidence from pending assets. A demo video and actual team details must be supplied truthfully.
+The [submission packet](submission/README.md) contains the project narrative, three-minute script, judge guide, architecture, Meta model fit, attribution and release checklist. The manifest distinguishes verified release evidence from pending assets. The narrated demo and participant-confirmed solo details are prepared. Start with [REVIEW_FIRST.md](submission/REVIEW_FIRST.md); the participant must review everything before submission. Publishing consent remains unchecked.
 
 ## Boundaries
 
