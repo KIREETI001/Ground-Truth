@@ -2,21 +2,84 @@
   "project": "GroundTruth",
   "packetDate": "2026-11-05",
   "submissionStatus": "not_submitted",
-  "liveUrl": null,
-  "sourceUrl": "https://github.com/KIREETI001/Ground-Truth",
-  "releaseCommit": null,
-  "sourceVisibilityVerified": false,
+  "liveUrl": "https://groundtruth-meta.vercel.app",
+  "sourceUrl": "https://github.com/KIREETI001/Ground-Truth/tree/codex/groundtruth-mvp",
+  "releaseCommit": "bcbe7dcf01e2310cac945760f7560646707e56e0",
+  "sourceBranch": "codex/groundtruth-mvp",
+  "sourceVisibilityVerified": true,
   "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
   "videoUrl": null,
-  "thumbnail": null,
-  "screenshots": [],
-  "track": { "recommended": "Indie Developer", "confirmed": false },
-  "theme": { "recommended": "Build for Your World", "confirmed": false },
+  "thumbnail": "thumbnail.svg",
+  "thumbnailPng": "thumbnail.png",
+  "pitchDeck": "pitch-deck.html",
+  "architectureIllustration": "architecture.svg",
+  "architecturePng": "architecture.png",
+  "screenshots": [
+    "assets/live-landing.png",
+    "assets/live-cloud-draft.png"
+  ],
+  "track": {
+    "recommended": "Indie Developer",
+    "confirmed": false
+  },
+  "theme": {
+    "recommended": "Build for Your World",
+    "confirmed": false
+  },
   "teamConfirmed": false,
-  "officialFormReviewed": false,
-  "targetArchitecture": { "hosting": "Vercel", "database": "Supabase PostgreSQL", "inference": "Meta Model API", "model": "muse-spark-1.3", "mode": "Standard" },
-  "cloudVerification": { "deployment": "pending", "metaRequest": "pending", "databaseMigration": "pending", "accessBoundaries": "pending", "learnerJourney": "pending", "teacherJourney": "pending", "hostedChanges": "pending" },
-  "checks": { "typecheck": "pending_release_run", "tests": "pending_release_run", "lint": "pending_release_run", "build": "pending_release_run", "liveSmoke": "pending" },
+  "officialFormReviewed": true,
+  "officialFormEvidence": "Authenticated official Cerebral Valley form inspected by release operator on 2026-11-05; exact copy fields recorded in official-form-copy.md",
+  "targetArchitecture": {
+    "hosting": "Vercel",
+    "database": "Supabase PostgreSQL",
+    "inference": "Meta Model API",
+    "model": "muse-spark-1.3",
+    "mode": "Standard"
+  },
+  "cloudVerification": {
+    "deployment": "ready_public_login_and_health_200",
+    "metaRequest": "blocked_api_key_pending",
+    "databaseMigration": "verified_32_tables_rls_enabled",
+    "accessBoundaries": "20_public_api_checks_passed",
+    "learnerJourney": "public_login_source_cloud_draft_verified_full_meta_journey_pending",
+    "teacherJourney": "public_api_approval_class_share_access_verified_ui_pending",
+    "hostedChanges": "manual_draft_ui_and_api_confirmation_idempotent_apply_verified_ai_proposal_pending"
+  },
+  "vercel": {
+    "deploymentId": "dpl_3ZdoWefXb7mmZCjVGiqntMYC7qP1",
+    "candidateUrl": "https://groundtruth-meta-d9un2r2v5-kireeti001s-projects.vercel.app",
+    "status": "READY",
+    "publicAccessVerified": true,
+    "productionUrl": "https://groundtruth-meta.vercel.app",
+    "region": "Singapore"
+  },
+  "supabase": {
+    "projectRef": "qsvaukgcyezywykkkkcy",
+    "status": "ACTIVE",
+    "tables": 32,
+    "rlsEnabledOnAllTables": true,
+    "securityAdvisorFindings": 0,
+    "runtimeConnection": "private_app_role_with_ca_verified_tls",
+    "serverLoginRehearsal": "passed"
+  },
+  "checks": {
+    "typecheck": "passed_baseline_commit",
+    "tests": "240_passed_baseline_commit",
+    "lint": "passed_zero_findings_baseline_commit",
+    "build": "passed_baseline_commit",
+    "liveSmoke": "20_public_api_checks_passed_plus_browser_login_and_manual_draft"
+  },
   "receipt": null,
-  "notes": ["This manifest records only observed release evidence. Do not replace pending values with assumptions."]
+  "notes": [
+    "This manifest records only observed release evidence. Do not replace pending values with assumptions.",
+    "Pitch deck, SVG assets and official form copy were added after the baseline commit; root must record the final packaged commit.",
+    "Meta API key is not yet configured; an implemented adapter is not evidence of a successful Meta request.",
+    "Public screenshots show actual hosted UI. The complete Meta-generated learning journey remains unverified until a real model request succeeds."
+  ],
+  "liveHealth": {
+    "login": 200,
+    "apiHealth": 200,
+    "database": "connected",
+    "inference": "not-configured"
+  }
 }

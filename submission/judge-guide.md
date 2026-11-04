@@ -1,8 +1,8 @@
 # Judge guide
 
-Live URL: **pending verified deployment**  
-GroundTruth source: **https://github.com/KIREETI001/Ground-Truth** — latest release visibility and commit must be verified  
-Sample repository: **https://github.com/KIREETI001/groundtruth-demo-study-tasks**  
+Live URL: **https://groundtruth-meta.vercel.app** — login and backend access verified; Meta inference is not configured yet
+GroundTruth source: **https://github.com/KIREETI001/Ground-Truth/tree/codex/groundtruth-mvp** — public baseline `bcbe7dcf01e2310cac945760f7560646707e56e0`; final release commit still to be recorded
+Sample repository: **https://github.com/KIREETI001/groundtruth-demo-study-tasks**
 Video: **pending recording and accessible upload**
 
 ## Five-minute route
@@ -16,7 +16,7 @@ Video: **pending recording and accessible upload**
 7. Open Progress. Confirm the original response remains visible and the index is described as provisional evidence. An unreviewed response is not a teacher-certified skill.
 8. Optionally join a prepared class and explicitly share this project with the approved synthetic teacher. In a separate teacher account, inspect the saved attempt. No teacher/developer credentials belong in the public repository.
 
-The live release may disable laptop-only working-copy operations. Read the release notes before judging Changes. A cloud-safe source proposal is not the same as a successful filesystem apply, GitHub push or executed test.
+The hosted release supports controlled cloud drafts. Public checks verified manual draft editing, explicit review confirmation and idempotent apply. Browser checks verified the draft interface. This does not change the GitHub repository, execute code or establish that the AI proposal path works. Laptop-only filesystem behavior remains separate.
 
 ## Grounded facts in the example
 
@@ -45,4 +45,4 @@ Retry from the visible action after the displayed error, or end an unfinished at
 
 ## Release evidence
 
-The final commit, migration identifier, actual Meta model, check logs, live smoke-test result and screenshot filenames must be recorded in [release-manifest.json](release-manifest.json). If that file has pending values, the cloud release is not yet verified.
+The final commit, migration identifier, actual Meta model, check logs, live smoke-test result and screenshot filenames must be recorded in [release-manifest.json](release-manifest.json). The hosted backend is verified at this checkpoint; pending Meta fields mean the complete generated learning journey is not yet verified.

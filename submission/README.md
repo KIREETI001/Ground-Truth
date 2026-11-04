@@ -13,9 +13,13 @@ GroundTruth helps builders understand AI-generated code and architecture, develo
 | [architecture-and-attribution.md](architecture-and-attribution.md) | System boundaries, data handling and original-work disclosure |
 | [release-checklist.md](release-checklist.md) | Required links, evidence and release gates |
 | [release-manifest.json](release-manifest.json) | Machine-readable record of verified release assets |
+| [official-form-copy.md](official-form-copy.md) | Answers for the inspected official form, with character limits |
+| [production-check-summary.md](production-check-summary.md) | Baseline checks and remaining production gates |
+| [pitch-deck.html](pitch-deck.html) | Standalone five-slide pitch with keyboard navigation and print layout |
+| [thumbnail.svg](thumbnail.svg) / [architecture.svg](architecture.svg) | Shareable vector illustrations; not product screenshots |
 
-The cloud migration is being prepared alongside this packet. Final claims must follow the evidence in the release manifest. A working local build is not evidence of a working Vercel deployment or successful Meta API calls.
+The cloud baseline has passed 240 tests, type checks, lint and production build. Supabase has been migrated and its connection rehearsed. Vercel is live at https://groundtruth-meta.vercel.app. Twenty public API checks and browser login/manual-draft checks passed. A real Meta request is blocked until the API key is configured. Final claims must follow the release manifest. A successful build is not evidence of a successful hosted inference call.
 
-The public event page lists **4 November, 9:00 p.m. ET**, which is **5 November 2026, 10:00 a.m. Singapore time**. Use the actual [Cerebral Valley submission portal](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit); do not assume this is a Devpost entry. Exact form limits remain unverified behind account access. [Official event page](https://dev.meta.ai/events/global-hackathon)
+The public event page lists **4 November, 9:00 p.m. ET**, which is **5 November 2026, 10:00 a.m. Singapore time**. Use the actual [Cerebral Valley submission portal](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit); do not assume this is a Devpost entry. The release operator inspected the authenticated form: a public GitHub URL, three-minute video URL and three narrative answers (3,000 characters each) are among its fields. See the exact copy and unresolved participant answers in [official-form-copy.md](official-form-copy.md). [Official event page](https://dev.meta.ai/events/global-hackathon)
 
-The existing planning documents report an earlier participant guide requiring a public repository, a three-minute demo and disclosure of event-period work. The original guide has not been recovered in this checkout; recheck the live form. The [official rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver) assign impact 30%, Meta tooling 25%, technical execution 20%, and demo 25%.
+The original participant guide has not been recovered in this checkout. The [official rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver) assign impact 30%, Meta tooling 25%, technical execution 20%, and demo 25%. Keep prior-work and assistance attribution explicit.

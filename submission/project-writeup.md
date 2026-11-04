@@ -68,7 +68,7 @@ Meta's model supplies contextual teaching content. GroundTruth supplies the sour
 
 The workflow was first developed and tested with local inference. The submission migration targets a Next.js application on Vercel, Supabase PostgreSQL for persistent backend data, and server-side Meta inference. API keys and database credentials remain on the server. The cloud release's actual configuration, successful requests, commit and check results belong in [release-manifest.json](release-manifest.json).
 
-**Cloud status at drafting:** implementation and deployment verification pending. Do not present this paragraph as a live-deployment success claim.
+**Cloud checkpoint:** the baseline passes 240 tests, type checks, lint and production build. Supabase has 32 tables with RLS enabled; its private-role TLS connection and login path were rehearsed. Vercel is live at https://groundtruth-meta.vercel.app with login and database health verified. Twenty public API checks passed, including role/owner boundaries and cloud manual drafts. Browser login and the draft interface were verified. The Meta API key and complete generated learning journey remain pending; this is a live backend release, not a verified end-to-end AI demonstration.
 
 Codex assisted development, refactoring, test creation, debugging and documentation. Model-generated content is checked through application contracts and source validation, with human review still required for semantic quality. Test results are engineering evidence; they do not prove learning gains.
 
