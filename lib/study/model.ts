@@ -102,6 +102,13 @@ export function constrainSourcePaths(schema:unknown,paths:string[]):Record<strin
  }
  visit(copy);return copy;
 }
+function metaStructuredSchema(schema:Record<string,unknown>){
+ // Meta rejects uniqueItems at request validation time. Source identity and
+ // output shape are checked by our application; retain supported wire bounds.
+ const copy=structuredClone(schema);
+ function visit(value:unknown){if(Array.isArray(value)){value.forEach(visit);return;}if(!value||typeof value!=='object')return;const node=value as Record<string,unknown>;delete node.uniqueItems;Object.values(node).forEach(visit);}
+ visit(copy);return copy;
+}
 export async function generateStudy(config:RuntimeConfig,userId:string,task:keyof typeof schemas,data:unknown,snapshot:ProjectSnapshot,fetcher:typeof fetch=fetch):Promise<unknown>{
  const provider=providerFor(config,userId);
  if(provider.kind==='local'&&running) throw new ApiError(429,'MODEL_BUSY','The local model is serving another request. Try again shortly.');
@@ -125,7 +132,7 @@ export async function generateStudy(config:RuntimeConfig,userId:string,task:keyo
 
  const taskContract=task==='exercise'&&data&&typeof data==='object'&&'questionFormat' in data&&data.questionFormat==='coding'?'Generate ONE short beginner coding task grounded in supplied source and goal. Return only title, prompt, kind, filePaths, reviewPoints, format (coding). No options, answer keys, explanations, source code or starterCode fields. The learner writes code in a blank editor. Prompt under 400 characters names a small function or SQL query, its inputs and expected output. Ask for 3-12 lines of code, never prose or a plan. Do not request changes to the actual repository. For transferChallenge=true use kind change-plan and an original separate practice task for the target project. Otherwise use trace or test-design. Include 2-4 private reviewPoints. Imported code is never executed.':taskInstructions[task];
  const outputTokens=task==='change'||task==='repository'?2400:task==='analyse'?1800:task==='exercise'&&data&&typeof data==='object'&&'questionFormat' in data&&data.questionFormat==='mcq'?1600:1100;
- const requestBody={model:provider.model,messages:[{role:provider.kind==='meta'?'developer':'system',content:instruction+taskContract},{role:'user',content:JSON.stringify({repository:snapshot.repository,sourceCoverage:snapshot.warnings,files:snapshot.files.filter(f=>f.excerpt).slice(0,3),references:task==='analyse'?allowedReferences:undefined,sourceEvidence:(task==='hint'||task==='feedback')?sourceEvidence(snapshot):undefined,task,data})}],stream:false,response_format:{type:'json_schema',json_schema:{name:'study_'+task,strict:true,schema:formatSchema}},...(provider.kind==='meta'?{max_completion_tokens:Math.max(4096,outputTokens*3),reasoning_effort:'low',safety_identifier:await safetyIdentifier(config,userId),prompt_cache_key:'groundtruth.study.v2.'+task}:{temperature:0.35,max_tokens:outputTokens,chat_template_kwargs:{enable_thinking:false}})};
+ const requestBody={model:provider.model,messages:[{role:provider.kind==='meta'?'developer':'system',content:instruction+taskContract},{role:'user',content:JSON.stringify({repository:snapshot.repository,sourceCoverage:snapshot.warnings,files:snapshot.files.filter(f=>f.excerpt).slice(0,3),references:task==='analyse'?allowedReferences:undefined,sourceEvidence:(task==='hint'||task==='feedback')?sourceEvidence(snapshot):undefined,task,data})}],stream:false,response_format:{type:'json_schema',json_schema:{name:'study_'+task,strict:true,schema:provider.kind==='meta'?metaStructuredSchema(formatSchema):formatSchema}},...(provider.kind==='meta'?{max_completion_tokens:Math.max(4096,outputTokens*3),reasoning_effort:'low',safety_identifier:await safetyIdentifier(config,userId),prompt_cache_key:'groundtruth.study.v2.'+task}:{temperature:0.35,max_tokens:outputTokens,chat_template_kwargs:{enable_thinking:false}})};
  const encoded=JSON.stringify(requestBody);
  if(new TextEncoder().encode(encoded).length>64000)throw new ApiError(413,'MODEL_CONTEXT_TOO_LARGE','The selected learning context is too large. Choose a smaller workflow.');
  const response=await fetcher(provider.url,{method:'POST',redirect:'manual',headers:{'Content-Type':'application/json',...(provider.key?{Authorization:'Bearer '+provider.key}:{})},signal:AbortSignal.timeout(90000),body:encoded});

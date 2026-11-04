@@ -53,6 +53,18 @@ test('Meta configuration rejects untrusted endpoints, unsupported models and abs
  }finally{d.close();}
 });
 
+test('Meta wire schemas omit unsupported uniqueItems while retaining bounded, enumerated source paths',async()=>{
+ const d=createTestDb();try{
+  await generateStudy(configured(d.db),'student','exercise',{questionFormat:'mcq'},snapshot,async(_url,init)=>{
+   const schema=JSON.parse(String(init?.body)).response_format.json_schema.schema;
+   assert.ok(!JSON.stringify(schema).includes('uniqueItems'));
+   assert.deepEqual(schema.properties.filePaths.items.enum,['src/tasks.ts']);
+   assert.equal(schema.properties.filePaths.maxItems,5);
+   return result({title:'Normalization',prompt:'Which call trims spaces?',kind:'trace',filePaths:['src/tasks.ts'],reviewPoints:['Trace the expression.','Compare the return value.'],format:'mcq',options:[{id:'A',text:'trim()'},{id:'B',text:'push()'},{id:'C',text:'pop()'},{id:'D',text:'join()'}],correctOption:'A',answerExplanation:'The selected expression calls trim().'});
+  });
+ }finally{d.close();}
+});
+
 test('Meta failures, redirects, refusals, truncation and incorrect citations fail closed and release the account lease',async()=>{
  const d=createTestDb();try{
   const responses=[()=>new Response('sensitive provider body',{status:401}),()=>new Response(null,{status:307,headers:{location:'https://other.test'}}),()=>result(hint,{model:'unexpected-model'}),()=>result(hint,{choices:[{finish_reason:'length',message:{content:JSON.stringify(hint)}}]}),()=>result(hint,{choices:[{finish_reason:'stop',message:{refusal:'No',content:JSON.stringify(hint)}}]}),()=>result({...hint,evidenceIds:['invented']}),()=>result({...hint,feedback:'Here is the answer.'}),()=>new Response('x'.repeat(65000)),()=>{throw new Error('network error reflecting test-secret-never-logged');}];
