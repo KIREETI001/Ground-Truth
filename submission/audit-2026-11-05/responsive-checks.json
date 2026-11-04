@@ -1,0 +1,35 @@
+[
+  {
+    "bodyFont": "16px",
+    "buttonFont": "16px",
+    "hasDemoEntry": false,
+    "headingFont": "57.6px",
+    "height": 900,
+    "scrollWidth": 1425,
+    "signInPresent": true,
+    "usernameInputFont": "16px",
+    "width": 1440
+  },
+  {
+    "bodyFont": "16px",
+    "buttonFont": "16px",
+    "hasDemoEntry": false,
+    "headingFont": "40px",
+    "height": 1024,
+    "scrollWidth": 753,
+    "signInPresent": true,
+    "usernameInputFont": "16px",
+    "width": 768
+  },
+  {
+    "bodyFont": "16px",
+    "buttonFont": "16px",
+    "hasDemoEntry": false,
+    "headingFont": "42px",
+    "height": 812,
+    "scrollWidth": 360,
+    "signInPresent": true,
+    "usernameInputFont": "16px",
+    "width": 375
+  }
+]

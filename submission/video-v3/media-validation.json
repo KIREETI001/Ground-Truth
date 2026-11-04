@@ -1,0 +1,39 @@
+{
+  "file": "GroundTruth_Demo_V3_final.mp4",
+  "status": "local_review_candidate",
+  "durationSeconds": 178.5,
+  "dimensions": [
+    1920,
+    1080
+  ],
+  "fps": 24,
+  "codec": "H.264 / AAC stereo 48kHz",
+  "sha256MatchesRender": true,
+  "sourceAudioMasterHashUnchanged": true,
+  "captionBytesUnchanged": true,
+  "speechSpeed": 1,
+  "speechRetimed": false,
+  "newSynthesisCalls": 0,
+  "firstProductUiSeconds": 0,
+  "firstTeacherEvidenceSeconds": 17.75,
+  "encodedIntegratedLufs": -16.1,
+  "encodedTruePeakDbtp": -0.96,
+  "loudnessMeasurementOnly": "Measurement does not modify the output artifact.",
+  "decodePassed": true,
+  "encodedFrameSamples": [
+    "opening-real-ui",
+    "sample-entry",
+    "teacher-payoff",
+    "private-diff",
+    "independent",
+    "human-review",
+    "evidence-limits",
+    "ending"
+  ],
+  "unverifiedCaptures": [],
+  "listening_review": "not_performed",
+  "poster": "poster.jpg",
+  "uploaded": false,
+  "published": false,
+  "submitted": false
+}

@@ -43,7 +43,7 @@ Bastani et al., *Generative AI without guardrails can harm learning: Evidence fr
 
 “Students can now build impressive software with AI. The assessment question is what they understand well enough to change themselves. Research in programming education shows that better assisted exercise performance does not necessarily mean greater independent understanding. GroundTruth turns the student's own repository into a learning journey, then pauses its assistance for a short independent attempt. Teachers can review the original answer alongside the source and the assistance used within GroundTruth.”
 
-This is a product interpretation of the evidence. GroundTruth's current evidence index is provisional and human-reviewed; it is not a validated grade, authorship detector or measure of AI dependence.
+This is a product interpretation of the evidence. GroundTruth displays observed attempts and human review states; these are not a validated grade, authorship detector or measure of AI dependence. No external participants have evaluated this revised MVP before submission (n = 0).
 
 ## Claims to exclude
 

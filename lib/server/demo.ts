@@ -9,6 +9,23 @@ import { boundedInteger, enforceRateLimit, isDemoUser, purgeExpiredDemoAccounts,
 const pilot = (config: RuntimeConfig) => config.PILOT_ID || 'groundtruth-pilot.v1';
 type DemoProjectRow = { id: string; goal: string; snapshot_json: string; analysis_json: string | null; expires_at: string };
 
+// Stored change context is authorized and hash-checked when the question is
+// created. Copy its public evidence fields explicitly, never arbitrary stored
+// prompt fields or rubric/key extensions into the read-only preview.
+function publicSourceContext(value: unknown): StudyExercise['prompt']['sourceContext'] {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  const source = value as Record<string, unknown>;
+  if (typeof source.path !== 'string' || typeof source.source !== 'string' || typeof source.hash !== 'string' || typeof source.label !== 'string') return undefined;
+  return { path: source.path, source: source.source, hash: source.hash, label: source.label,
+    ...(typeof source.changeProposalId === 'string' ? { changeProposalId: source.changeProposalId } : {}),
+    ...(typeof source.originalSource === 'string' ? { originalSource: source.originalSource } : {}),
+    ...(typeof source.baseHash === 'string' ? { baseHash: source.baseHash } : {}),
+    ...(typeof source.diff === 'string' ? { diff: source.diff } : {}),
+    ...(source.mode === 'ai' || source.mode === 'manual-declared' ? { mode: source.mode } : {}),
+    ...(typeof source.appliedAt === 'string' ? { appliedAt: source.appliedAt } : {}),
+  };
+}
+
 async function ownDemoProject(config: RuntimeConfig, userId: string): Promise<DemoProjectRow> {
   if (!isDemoUser(userId)) throw new ApiError(403, 'DEMO_SESSION_REQUIRED', 'Open the temporary sample to view its teacher preview.');
   const row = await config.DB.prepare(`SELECT p.id,p.goal,p.snapshot_json,p.analysis_json,p.expires_at FROM study_projects p
@@ -37,10 +54,15 @@ export async function demoTeacherPreview(config: RuntimeConfig, userId: string):
     }>();
   const safeExercises: StudyExercise[] = exercises.results.map(exercise => {
     const prompt = JSON.parse(exercise.prompt_json);
+    const sourceContext = publicSourceContext(prompt.sourceContext);
     return { id: exercise.id, prompt: {
       title: prompt.title, prompt: prompt.prompt, kind: prompt.kind, filePaths: prompt.filePaths,
       ...(prompt.format === 'mcq' ? { format: 'mcq' as const, options: prompt.options?.map((option: { id: string; text: string }) => ({ id: option.id, text: option.text })) } : {}),
       ...(prompt.format === 'coding' ? { format: 'coding' as const, starterCode: prompt.starterCode } : {}),
+      ...(['baseline', 'practice', 'transfer'].includes(prompt.phase) ? { phase: prompt.phase } : {}),
+      ...(typeof prompt.parentExerciseId === 'string' ? { parentExerciseId: prompt.parentExerciseId } : {}),
+      ...(prompt.intent === 'transfer' ? { intent: 'transfer' as const } : {}),
+      ...(sourceContext ? { sourceContext } : {}),
     }, status: exercise.ended_at ? 'ended' : exercise.status, endedAt: exercise.ended_at,
     answer: exercise.status === 'submitted' ? exercise.answer : null, feedback: null, mcqResult: null,
     startedAt: exercise.started_at, submittedAt: exercise.submitted_at, reviews: [] };

@@ -1,0 +1,765 @@
+{
+  "schemaVersion": "groundtruth-live-acceptance.v1",
+  "target": "https://groundtruth-meta-blth8gk3x-kireeti001s-projects.vercel.app",
+  "commit": "1e859023155d1c7bba4a5298fbb9239088f4554e",
+  "startedAt": "2026-11-04T20:21:48.000Z",
+  "updatedAt": "2026-11-04T20:22:58.079Z",
+  "disclaimer": "Automated Operator QA with temporary synthetic accounts and a synthetic approved teacher. Not an educator study, learner study, independent human assessment or evidence of learning effectiveness. Imported and submitted code is never executed.",
+  "guestClients": 2,
+  "checks": [
+    {
+      "id": "two-isolated-guests",
+      "status": "pass",
+      "at": "2026-11-04T20:21:48.516Z",
+      "detail": "Exactly two temporary password-free guest clients use separate private cookie jars."
+    },
+    {
+      "id": "cross-owner-denied",
+      "status": "pass",
+      "at": "2026-11-04T20:21:48.799Z",
+      "detail": "A different guest receives 404 for the first guest’s project, source, working copy and receipts."
+    },
+    {
+      "id": "teacher-page-and-own-preview-before-submit",
+      "status": "pass",
+      "at": "2026-11-04T20:21:49.104Z",
+      "detail": "An authenticated normal page request returns teacher-preview HTML with no redirect; the pre-submission API projection matches only this unexpired guest."
+    },
+    {
+      "id": "fresh-mcq-guided-hint",
+      "status": "pass",
+      "at": "2026-11-04T20:22:08.244Z",
+      "detail": "A fresh Meta MCQ has four distinct options and no private key; guided hint cites exact selected source."
+    },
+    {
+      "id": "independent-assistance-block",
+      "status": "pass",
+      "at": "2026-11-04T20:22:08.948Z",
+      "detail": "Independent mode rejects new hints and model generation before provider transmission."
+    },
+    {
+      "id": "immutable-mcq-answer",
+      "status": "pass",
+      "at": "2026-11-04T20:22:18.792Z",
+      "detail": "MCQ submission is immutable before and after source-grounded reflection feedback."
+    },
+    {
+      "id": "manual-change-review-hashes",
+      "status": "pass",
+      "at": "2026-11-04T20:22:20.581Z",
+      "detail": "A manual 80→100 draft change requires approval, rejects stale hashes and retains an idempotent apply receipt."
+    },
+    {
+      "id": "change-linked-coding",
+      "status": "pass",
+      "at": "2026-11-04T20:22:35.031Z",
+      "detail": "A generated coding task captures verified original/applied source, proposal ID, hashes and actual changed 100-character boundary."
+    },
+    {
+      "id": "wrong-coding-answer-retained",
+      "status": "pass",
+      "at": "2026-11-04T20:22:44.064Z",
+      "detail": "A deliberately insufficient synthetic coding answer is committed, unchanged by model reflection and resubmission denial."
+    },
+    {
+      "id": "fresh-linked-transfer",
+      "status": "pass",
+      "at": "2026-11-04T20:22:55.350Z",
+      "detail": "A fresh variation persists the submitted parent and the same verified applied proposal; ending it invents no submission."
+    },
+    {
+      "id": "read-only-own-preview-no-role",
+      "status": "pass",
+      "at": "2026-11-04T20:22:55.736Z",
+      "detail": "Own teacher-shaped preview strips answer keys and never grants teacher permissions or access to another project."
+    },
+    {
+      "id": "teacher-class-consent-review",
+      "status": "pass",
+      "at": "2026-11-04T20:22:57.880Z",
+      "detail": "Class enrollment alone shares nothing; explicit consent reveals name/class and permits a labelled operator QA review without changing the answer."
+    },
+    {
+      "id": "sanitized-receipts-original-hashes",
+      "status": "pass",
+      "at": "2026-11-04T20:22:58.077Z",
+      "detail": "All six real model requests have sanitized Meta receipts; no prompts, source, answers, credentials or raw provider errors are exposed."
+    }
+  ],
+  "requests": [
+    {
+      "operation": "create-guest-a",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 308,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "create-guest-b",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 195,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "cross-owner-project",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 63,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "cross-owner-source",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 93,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "cross-owner-working-copy",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 57,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "cross-owner-receipts",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 61,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "teacher-page-before-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 129,
+      "contentType": "text/html; charset=utf-8",
+      "hasLocation": false
+    },
+    {
+      "operation": "guest-expiry-before-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 68,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "own-preview-before-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 101,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "fresh-mcq",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 11512,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "guided-hint",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 7616,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 219,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "start-independent-mcq",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 247,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "blocked-independent-hint",
+      "method": "POST",
+      "status": 403,
+      "latencyMs": 105,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "INDEPENDENT_MODE"
+    },
+    {
+      "operation": "blocked-independent-generation",
+      "method": "POST",
+      "status": 403,
+      "latencyMs": 122,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "INDEPENDENT_MODE"
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 215,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "submit-mcq",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 255,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "reject-second-mcq-answer",
+      "method": "POST",
+      "status": 409,
+      "latencyMs": 84,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "EXERCISE_STATE_CHANGED"
+    },
+    {
+      "operation": "mcq-reflection",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 9279,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-or-create-draft",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 156,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "WORKSPACE_OPERATION_FAILED"
+    },
+    {
+      "operation": "deny-unconfirmed-draft",
+      "method": "POST",
+      "status": 400,
+      "latencyMs": 184,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "WORKSPACE_OPERATION_FAILED"
+    },
+    {
+      "operation": "create-approved-draft",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 210,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "deny-stale-proposal",
+      "method": "POST",
+      "status": 409,
+      "latencyMs": 104,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "WORKING_FILE_CHANGED"
+    },
+    {
+      "operation": "prepare-manual-diff",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 217,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "verify-draft-before-approval",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 139,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "deny-unconfirmed-apply",
+      "method": "POST",
+      "status": 400,
+      "latencyMs": 148,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "WORKSPACE_OPERATION_FAILED"
+    },
+    {
+      "operation": "apply-reviewed-diff",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 334,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "repeat-idempotent-apply",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 271,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "deny-unlinked-working-path",
+      "method": "POST",
+      "status": 400,
+      "latencyMs": 97,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "CHANGE_CONTEXT_REQUIRED"
+    },
+    {
+      "operation": "deny-client-forged-source",
+      "method": "POST",
+      "status": 400,
+      "latencyMs": 94,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "UNKNOWN_FIELD"
+    },
+    {
+      "operation": "change-linked-coding",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 14248,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 171,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "start-independent-coding",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 220,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 161,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "submit-deliberately-wrong-code",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 209,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "coding-reflection",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 8155,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "reject-second-coding-answer",
+      "method": "POST",
+      "status": 409,
+      "latencyMs": 97,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "EXERCISE_STATE_CHANGED"
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 156,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "fresh-linked-transfer",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 10576,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 179,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "end-guided-transfer",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 205,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 152,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "teacher-page-after-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 78,
+      "contentType": "text/html; charset=utf-8",
+      "hasLocation": false
+    },
+    {
+      "operation": "own-demo-teacher-preview",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 115,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "deny-preview-project-selection",
+      "method": "GET",
+      "status": 400,
+      "latencyMs": 66,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "UNKNOWN_FIELD"
+    },
+    {
+      "operation": "deny-guest-teacher-route",
+      "method": "GET",
+      "status": 403,
+      "latencyMs": 60,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "TEACHER_REQUIRED"
+    },
+    {
+      "operation": "deny-guest-review",
+      "method": "POST",
+      "status": 403,
+      "latencyMs": 53,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "TEACHER_REQUIRED"
+    },
+    {
+      "operation": "approved-synthetic-teacher-login",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 689,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-teacher-class-code",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 92,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "teacher-before-join",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 202,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "join-synthetic-teacher-class",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 125,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "teacher-after-join-before-sharing",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 200,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "deny-share-without-acknowledgement",
+      "method": "POST",
+      "status": 400,
+      "latencyMs": 62,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "SHARING_CONSENT_REQUIRED"
+    },
+    {
+      "operation": "explicit-approved-teacher-share",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 205,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "teacher-after-explicit-sharing",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 239,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "save-labelled-operator-qa-review",
+      "method": "POST",
+      "status": 201,
+      "latencyMs": 72,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "teacher-after-operator-review",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 225,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-sanitized-model-receipts",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 66,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 124,
+      "contentType": "application/json",
+      "hasLocation": false
+    }
+  ],
+  "modelAttempts": [
+    {
+      "operation": "fresh-mcq",
+      "startedAt": "2026-11-04T20:21:49.105Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "guided-hint",
+      "startedAt": "2026-11-04T20:22:00.623Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "mcq-reflection",
+      "startedAt": "2026-11-04T20:22:09.509Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "change-linked-coding",
+      "startedAt": "2026-11-04T20:22:20.776Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "coding-reflection",
+      "startedAt": "2026-11-04T20:22:35.802Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "fresh-linked-transfer",
+      "startedAt": "2026-11-04T20:22:44.225Z",
+      "status": "success",
+      "httpStatus": 200
+    }
+  ],
+  "sourceProof": {
+    "path": "server/validation.js",
+    "baseHash": "bf5faa68b8a04f454e43d31045c9bbd35aa9c9ec330ccf8cccb3380e88ceb680",
+    "resultHash": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+    "diffHash": "c82c073bb8664b2c4927b6de7f666f02dbed9f430660bca3a7dfc16154aa0fc8",
+    "proposalHash": "d78c6759bc6020b28cc653f86dc542db30174ee5d419f540ba34612770439aa8"
+  },
+  "teacherReview": {
+    "level": "insufficient",
+    "operatorQA": true,
+    "notEducatorStudy": true,
+    "identityVisible": true,
+    "classVisible": true,
+    "originalRetained": true
+  },
+  "modelReceipts": [
+    {
+      "task": "exercise",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 10205,
+      "inputTokens": 2721,
+      "outputTokens": 989,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:55.140Z"
+    },
+    {
+      "task": "feedback",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 7897,
+      "inputTokens": 1532,
+      "outputTokens": 697,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:44.314Z"
+    },
+    {
+      "task": "exercise",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 13857,
+      "inputTokens": 1841,
+      "outputTokens": 1170,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:35.352Z"
+    },
+    {
+      "task": "feedback",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 8946,
+      "inputTokens": 1599,
+      "outputTokens": 730,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:19.113Z"
+    },
+    {
+      "task": "hint",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 7282,
+      "inputTokens": 1287,
+      "outputTokens": 683,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:08.587Z"
+    },
+    {
+      "task": "exercise",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 11117,
+      "inputTokens": 1765,
+      "outputTokens": 1137,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:22:00.930Z"
+    }
+  ],
+  "answerHashes": {
+    "mcq": "a5b40a98b167b43e90be962689cffe99f1e6080ddc4c03a1900739e10cb7d2bc",
+    "coding": "1d47ee6379afa46b48fd24eb444ebe941ecb4bf7805529ea5e2bb288004a506c"
+  },
+  "completedAt": "2026-11-04T20:22:58.079Z",
+  "contentSpotReview": {
+    "reviewer": "Codex source-assisted operator QA",
+    "freshMcq": {
+      "oneSourceDefensibleOption": true,
+      "modelSuggestionAgreesWithInclusiveTrimmed1Through80": true
+    },
+    "changedCoding": {
+      "standaloneImplementation": true,
+      "updatedLimit100": true
+    },
+    "freshTransfer": {
+      "newDomain": "channel names",
+      "preservesTrimmed1Through100Invariant": true,
+      "oneSourceDefensibleOption": true,
+      "privateKeyNotInspectedBecauseAttemptEnded": true
+    },
+    "limitation": "Synthetic operator inspection only; not an independent human assessment or learner outcome."
+  },
+  "summary": {
+    "checks": 13,
+    "passed": 13,
+    "failed": 0,
+    "temporaryGuestClients": 2,
+    "modelRequests": 6,
+    "sanitizedReceiptCount": 6,
+    "inputTokens": 10745,
+    "outputTokens": 5406,
+    "cachedInputTokens": 0
+  },
+  "navigationObservation": {
+    "externalReport": {
+      "agent": "TinyFish",
+      "runId": "9f654db0-26d4-4626-a237-d25a2c2cbb8f",
+      "observation": "Teacher-preview link navigation reportedly redirected to sign-in."
+    },
+    "thisRunEvidence": [
+      {
+        "operation": "teacher-page-before-submit",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "hasLocation": false
+      },
+      {
+        "operation": "teacher-page-after-submit",
+        "status": 200,
+        "contentType": "text/html; charset=utf-8",
+        "hasLocation": false
+      }
+    ],
+    "rootReportedRecheck": "The parent operator reported that the same normal href worked in CUA with an authenticated own sample.",
+    "conclusion": "The redirect was not reproduced by the authenticated HTTP checks. The external automation cause remains unproven; no cookie policy change was made."
+  },
+  "postRunCorrection": {
+    "scope": "Saved-question hint source alignment",
+    "status": "Corrected and verified locally after this recorded preview run; not exercised on this deployment in the receipt above.",
+    "localChecks": "Changed guided/submitted question uses captured 100-character source; latest ordinary question retains original 80-character source; private keys/answers omitted; cross-owner denied.",
+    "additionalModelCalls": 0
+  }
+}

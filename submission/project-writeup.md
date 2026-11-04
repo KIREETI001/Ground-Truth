@@ -1,6 +1,6 @@
 # GroundTruth
 
-> Participant review draft. Do not submit the official form. The user will inspect all materials first; publishing consent stays unchecked. This outline is not a claim about the official form's fields.
+**Participant review draft. Revised release: PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT.** The implementation below awaits final exact-release deployment evidence. Official form submission and publishing consent remain under participant control.
 
 ## Tagline
 
@@ -8,88 +8,56 @@ Let AI cook. Know the recipe.
 
 ## One sentence
 
-GroundTruth helps AI-assisted builders understand systems and gives teachers inspectable evidence of their independent attempts.
-
-## Short description
-
-AI can produce a working app before its builder understands the system. That creates a learning gap for the builder and an assessment gap for the teacher: a polished artifact may reveal little about independent ability. GroundTruth connects actual code to focused concepts and practice, pauses study assistance for an independent attempt, and preserves the response for optional human review. It supports responsible AI learning and makes the evidence behind understanding more inspectable.
+GroundTruth connects actual code to a small independent change and an original attempt that a teacher can review.
 
 ## The problem
 
-A student can arrive at a working application and still feel stuck when the next requirement changes. “Where is this validated?” and “What happens before the database write?” become difficult questions. They may ask an assistant to reread the repository for even a one-line change, because they have not built a mental model of how the parts interact. A repository full of files is a poor starting point for a beginner. Another generated fix keeps the project moving while leaving the student's understanding unclear.
+AI can produce a working application before its builder understands the system. When a one-line requirement changes, the builder may still need an assistant to reread the repository. The missing piece is a mental model: where a request enters, which component owns validation, and what must hold before persistence.
 
-Teachers face a connected assessment problem. A take-home AI-assisted artifact can show what the software does while revealing much less about what its builder can do independently. A polished submission and a learner's actual ability may diverge. Students who use AI responsibly to learn also deserve an opportunity to show that understanding, rather than have their ability inferred from the final artifact alone.
+Teachers face a connected problem. A polished AI-assisted take-home artifact reveals the final software, but may reveal little about the learner's independent reasoning. Responsible AI learning needs space for guided exploration and a separate opportunity to try independently. The teacher needs inspectable evidence to choose a useful follow-up without treating software polish or an AI-use guess as a grade.
 
-A fresh unaided check can expose concepts that were not understood during assisted production. If the artifact contains little reasoning evidence, teachers may need extra manual questioning and marking to work out where the gap is. The product should help them inspect the learner's attempt, choose a useful follow-up and adapt teaching, while preserving human judgement. We have not measured improved grading fairness, reduced marking burden or better learning outcomes.
+## The journey
 
-GroundTruth protects space for responsible AI-assisted exploration followed by an explicit opportunity to try independently. It helps the learner build a systems view from real workflows and gives the teacher more than the finished artifact to discuss. Reducing repeated repository explanation, unnecessary generation and avoidable review effort are design goals, not measured savings.
+A judge opens `/login` and chooses Try sample learning path. The revised implementation creates a separate synthetic learner session, pinned sample project and private practice copy for that visitor. It expires after two hours. The overview and concepts were prepared with Meta; requesting a new question still makes a live model call. No shared password or teacher approval is needed for sample entry.
 
-## What it does
+The learner follows request → validation → persistence in a small public task application. They inspect selected source, read the workflow overview and choose a concept. An MCQ or short coding task gives them one concrete decision. Starting an independent attempt pauses new in-app study assistance; submission preserves the original response before feedback. End attempt is available when the learner needs to stop.
 
-The learner brings their own public project or a public reference repository. GroundTruth maps selected source into features and learning areas, so a beginner can choose “Backend” and “Task submission” before needing to know the filename.
+Next, the learner makes a small permitted change in a private draft, reviews the diff and explicitly applies it. An understanding check uses the owned applied proposal, before/after source hashes and reconstructed diff. A linked fresh variation supplies another task using the same idea. Initial, practice and variation attempts remain separate records. This linkage makes evidence inspectable; it does not by itself prove transfer or improvement.
 
-The selected workflow opens into a familiar sequence:
+The visitor can open `/demo/teacher` to inspect their own synthetic record in a read-only teacher-shaped view. It grants no Teacher role, exposes no other visitor and cannot save an assessment. In the classroom workflow, an enrolled learner explicitly selects an approved teacher and shares a chosen path. The teacher sees learner/class context, filters work awaiting review, inspects the committed answer and relevant source, and records a qualified human judgement and next step.
 
-1. **Workflow:** a plain-language overview, short visual reading flow, glossary and source at a pinned commit.
-2. **Concepts:** a small tree of relevant ideas, with practice connected to particular nodes.
-3. **Practice:** generated multiple-choice questions or tiny coding tasks. In an independent attempt, new in-app study assistance pauses until the learner submits or ends the attempt.
-4. **Changes / Apply skills:** a reviewed change to a permitted managed copy, or a challenge to adapt a reference pattern to the learner's own goal. The hosted release must advertise only the editing operations it actually supports.
-5. **Progress:** saved attempts, observed activity and optional sharing with an approved teacher. A human reviews evidence; the model does not award mastery.
+A teacher's review is evidence about that task. Displayed concept states distinguish unattempted, submitted/unreviewed and human-reviewed work; they do not award a mastery percentage because an answer was submitted. Class enrollment does not automatically share every project.
 
-Students can return through their saved repository collection. A shared login opens the correct workspace for a student, approved teacher or preconfigured developer. Teachers can create classes; joining a class does not automatically disclose all of a student's projects.
+## What Meta contributes
 
-## One concrete journey
+GroundTruth calls Muse Spark 1.3 Standard through Meta Model API for repository/workflow maps, beginner overviews, concepts, MCQs, small coding prompts, source-grounded hints, formative follow-up questions and controlled edit proposals. Structured output keeps task interfaces consistent. Application validation checks shape and permitted source references; semantic correctness still needs review.
 
-Imagine a beginner who used AI to build a study-task app. It runs, but they do not know where a title travels after clicking Add task, or which part should enforce a new limit. They import the repository and choose the backend task-submission workflow. GroundTruth explains the path from request to validation to persistence, alongside the selected source. This is the beginning of an architectural mental model: understand responsibilities and boundaries before changing a line.
+For an applied edit, Meta receives trusted before/after context and the reconstructed diff. For a fresh variation, the application links the earlier submitted task while retaining both original answers. The model supplies contextual teaching content; the application controls access, state, budgets, immutable submissions and the independent-mode boundary. See [why-meta.md](why-meta.md).
 
-The learner studies trimming, empty-value rejection and length limits. They practise one concept at a time. Next they start an independent short coding task: new study assistance pauses, and their first submitted snippet is retained. They may end the attempt if they need to stop. Finally, they choose to share the path with their teacher, who can review the original response and relevant activity together.
+## How it is built
 
-The teacher can inspect the shared original answer and relevant observed activity, identify an apparent concept gap, and decide on a fresh unaided follow-up or a change in teaching. Those are human decisions informed by evidence. The MVP does not author or distribute teacher quizzes, manage assignments or produce cohort analytics.
+Next.js on Vercel serves the browser and authorized API. Supabase PostgreSQL stores accounts, private paths, exercises, class enrollment, explicit shares and human reviews. Credentials remain server-side. Public GitHub source is tied to a commit; inference uses bounded relevant selection rather than a claim of complete repository understanding.
 
-This is an illustrative product journey, not a reported study outcome or evidence of improved grades.
+Cloud drafts preserve original/current source and reviewed proposals with hash checks. They do not push to GitHub or execute imported/student code. Separately reported fixed sample-fixture checks are operator-run engineering evidence, not arbitrary code execution in the web app.
 
-## Why it stands out
+Sanitized inference receipts retain task, provider/model, status, latency and available numeric usage. They omit prompts and learner answers. These help distinguish a prepared artifact, a successful new provider request and a visible failure. Exact final results, migration and deployment IDs belong in the [release manifest](release-manifest.json).
 
-**It begins with a feature, rather than a file.** The repository is reorganized around what the learner wants to understand.
+## What has and has not been evaluated
 
-**It connects local code to system responsibilities.** Learners investigate how a request crosses boundaries, which component owns a decision and which concept explains that behavior. The selected-source reading flow is conceptual guidance, not a verified complete call graph.
+Prior real Meta adapter evidence is recorded in [meta-verification.json](meta-verification.json). Revised-release test totals, production journeys and semantic-output reviews must come from actual final artifacts; earlier checks are not carried forward as proof of changed routes.
 
-**Assistance has an explicit stopping point.** Guided exploration and independent practice have different rules. The application enforces the transition and retains the original submitted response.
+There are no external user-study participants or collected feedback: **not conducted, n = 0**. Automated tests, operator review and TinyFish browser checks are engineering/QA evidence. A future [usability protocol and response sheet](evaluation/user-study-plan.md) is prepared. None establishes learning gains, retention, assessment validity, fairer grades, reduced marking time, lower token spending or superiority over another model.
 
-**The source stays visible.** Generated guidance refers to a bounded selection at a pinned commit. Learners can challenge an explanation against that code.
+## Scope and limits
 
-**Teachers get an inspectable starting point for assessment.** Original answers, observed app activity and concept links can help them decide what needs further checking. The teacher owns the judgement. This is not external-AI detection, automated diagnosis or proof of educational effectiveness.
+GroundTruth cannot detect outside AI use, establish authorship or prevent external tools during an independent attempt. Suggested MCQ keys and model review guidance can be wrong. A fresh question is an observable opportunity to reason; a human must decide what the response supports.
 
-**Learning has two purposes.** A learner can understand a project they need to maintain or learn a public pattern before adapting it elsewhere.
+Public source coverage is bounded; the reading flow is not a complete call graph, security audit or standards certification. Selected code and contextual inputs leave the device for Meta processing. Normal saved paths and temporary demos have different expiry rules; visibility expiry is not a blanket claim of scheduled physical deletion.
 
-## How Meta AI contributes
+Teacher-side AI quiz authoring, assignment distribution, cohort analytics, private-repository OAuth, arbitrary-code execution and model comparison studies remain future work.
 
-The production integration targets **Muse Spark 1.3 Standard through Meta Model API**. It turns repository context and the learner's goal into a structured map, overview, concept tree, exercises and source-linked guidance. Fixed output contracts keep navigation consistent while the content changes with the repository. The server validates the output and controls permissions, phases and persistence.
+## Original work and license
 
-Meta's model supplies contextual teaching content. GroundTruth supplies the source boundary, saved state, independent-mode rules and teacher workflow. Structured output controls shape; it does not establish factual correctness. See [why-meta.md](why-meta.md) for verified provider capabilities and the distinction between shipped behavior and future possibilities.
+The participant confirmed a solo hackathon entry as Kireeti Kumar and authorized the [MIT license](../LICENSE) for the submitted implementation. Earlier GroundTruth ideation is credited to Attili Kireeti, Delfine Yew, V Narthananilaa and Dr. Wesley Tan, separately from the hackathon roster. [NOTICE](../NOTICE) retains that attribution and third-party notices.
 
-## How we built it
-
-The workflow was first developed and tested with local inference. The submission migration targets a Next.js application on Vercel, Supabase PostgreSQL for persistent backend data, and server-side Meta inference. API keys and database credentials remain on the server. The cloud release's actual configuration, successful requests, commit and check results belong in [release-manifest.json](release-manifest.json).
-
-**Cloud checkpoint:** the baseline passes 246 tests, type checks, lint and production build. Supabase has 32 tables with RLS enabled; its private-role TLS connection and login path were rehearsed. Vercel is live at https://groundtruth-meta.vercel.app with login and database health verified. Twenty public API checks passed, including role/owner boundaries and cloud manual drafts. Browser login and the draft interface were verified. Actual Meta generation is verified for the map, overview, concepts, MCQ, short code and grounded hint. The independent lock and voluntary exit passed public checks. Thirty-two public API checks and eight direct Meta adapter tasks passed at this checkpoint.
-
-Codex assisted development, refactoring, test creation, debugging and documentation. Model-generated content is checked through application contracts and source validation, with human review still required for semantic quality. Test results are engineering evidence; they do not prove learning gains.
-
-## Challenges and what we learned
-
-The hardest product problem was deciding when help should stop. A useful educational assistant needs an observable boundary between supported exploration and the learner's own attempt. That boundary also has to work across tabs, saved paths and interrupted activities.
-
-The second challenge was keeping explanations usable for beginners. A clean, consistent interface matters as much as generating more text. Small concept trees, source near the top, immediate MCQ choices and optional help keep the learner focused on one decision.
-
-## Next steps
-
-Run consent-based usability sessions, review generated questions against source facts, and assess whether learners can make a fresh change with less assistance. Study whether teachers can identify useful follow-up concepts from the evidence, without assuming a time saving. Teacher-side AI quiz authoring, assignment distribution and cohort analytics are future work. Extend repository coverage and improve question quality from observed errors; separately evaluate multimodal or institution-hosted variants.
-
-## Honest limits
-
-This is an MVP, not a learning-effectiveness or assessment-validity study. Its concept index is provisional evidence, not a validated skill score or automatic grade. It cannot detect outside AI use or establish authorship. We have not demonstrated fairer grades, reduced marking time, improved transfer or a rising population trend of dependence. Source selection is bounded and is not a full audit or standards certification. Imported code and student snippets are not executed. Generated suggestions can be incorrect. Cloud hosting means selected repository context and learning inputs are processed by external services; this is not the earlier local-only privacy model.
-
-## Research context
-
-Selected primary studies help motivate separating assisted artifacts from independent checks; they do not validate GroundTruth or establish a universal trend. See [research-evidence.md](research-evidence.md) for study-specific settings and limitations.
+Codex assisted implementation, debugging, tests and documentation. Earlier local work used Qwen via llama.cpp; that is not Meta usage. Third-party components retain their own licenses. External research motivates the problem but does not evaluate GroundTruth; see [research-evidence.md](research-evidence.md).

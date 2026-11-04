@@ -10,6 +10,9 @@ import { handleLocalAuth, localIdentity } from '../lib/server/local-auth.ts';
 import { handleStudy } from '../lib/study/server.ts';
 import { platformRole } from '../lib/server/access.ts';
 import { requestIdentity } from '../lib/demo/security.ts';
+import { cloudWorkspace } from '../lib/cloud/workspace.ts';
+import type { ChangeProposal, WorkingCopy } from '../lib/study/workspace.ts';
+import type { StudyProject } from '../lib/study/types.ts';
 import type { RuntimeConfig } from '../lib/contracts.ts';
 
 const origin = 'https://groundtruth.example';
@@ -91,6 +94,58 @@ test('teacher preview resolves only its own authenticated demo and withholds pri
     await assert.rejects(() => handleDemo(request('/api/demo/teacher', { method: 'GET' }), c, {}), /AUTH_REQUIRED/);
     await assert.rejects(() => handleDemo(request('/api/demo/teacher?projectId=operator-seed', { method: 'GET', cookie: visitor.token }), c, {}), /UNKNOWN_FIELD/);
     await assert.rejects(() => handleDemo(request('/api/demo/teacher', { cookie: visitor.token }), c, {}), /METHOD_NOT_ALLOWED/);
+  } finally { d.close(); }
+});
+
+test('own demo preview keeps captured applied source, diff and transfer linkage without exposing any private keys', async () => {
+  const d = createTestDb(); try {
+    d.sqlite.exec(readFileSync(new URL('../lib/cloud/workspace-schema.sql', import.meta.url), 'utf8'));
+    const c = config(d.db); await seed(c);
+    const original = "export function taskTitle(value) {\n  if (typeof value !== 'string') return null;\n  const title = value.trim();\n  if (title.length < 1 || title.length > 80) return null;\n  return title;\n}\n";
+    const changed = original.replace('> 80', '> 100'), path = 'src/tasks.ts';
+    const row = await d.db.prepare("SELECT snapshot_json FROM study_projects WHERE id='operator-seed'").first<{ snapshot_json: string }>();
+    const snapshot = JSON.parse(row!.snapshot_json); snapshot.files[0].excerpt = original;
+    await d.db.prepare("UPDATE study_projects SET snapshot_json=? WHERE id='operator-seed'").bind(JSON.stringify(snapshot)).run();
+    const visitor = await start(c), other = await start(c, '198.51.100.2');
+    const identity = { ownerId: visitor.userId, projectId: visitor.result.projectId };
+    const copy = await cloudWorkspace(c, 'create', { ...identity, url: snapshot.url, commit: snapshot.commit, paths: [path], ownershipConfirmed: true }, async () => ({ files: [{ path, source: original }] })) as WorkingCopy;
+    const proposal = await cloudWorkspace(c, 'propose', { ...identity, path, baseHash: copy.files[0].hash, source: changed, mode: 'manual-declared', summary: 'Raise the maximum trimmed title length from 80 to 100.' }) as ChangeProposal;
+    await cloudWorkspace(c, 'apply', { ...identity, proposalId: proposal.id, confirmed: true });
+    const quiz = { format: 'mcq', title: 'Check the changed title boundary', prompt: 'Which title is accepted at the revised maximum length?', kind: 'trace', filePaths: [path],
+      options: [{ id: 'A', text: 'A trimmed title of 100 characters.' }, { id: 'B', text: 'A trimmed title of 101 characters.' }, { id: 'C', text: 'An empty title.' }, { id: 'D', text: 'A non-string value.' }],
+      correctOption: 'A', answerExplanation: 'PRIVATE_CHANGE_KEY: the revised maximum is 100.', reviewPoints: ['PRIVATE_CHANGE_RUBRIC: inspect the bound.', 'Keep blank rejection and trimming.'] };
+    const base = { workingPath: path, changeProposalId: proposal.id, questionFormat: 'mcq' };
+    const first = await (await handleStudy(request('/api/study/projects/' + identity.projectId + '/exercise'), c, visitor.userId, { ...base, phase: 'practice' }, async () => quiz))!.json() as StudyProject;
+    const commit = async (exerciseId: string) => {
+      await handleStudy(request('/api/study/projects/' + identity.projectId + '/independent'), c, visitor.userId, { exerciseId });
+      await handleStudy(request('/api/study/projects/' + identity.projectId + '/submit'), c, visitor.userId, { exerciseId, optionId: 'A' });
+    };
+    await commit(first.exercises[0].id);
+    const variation = { ...quiz, title: 'Fresh minimum-length variation', prompt: 'For a fresh rule requiring at least three trimmed characters and at most 100, which input is rejected?', kind: 'change-plan',
+      options: [{ id: 'A', text: 'A trimmed title of two characters.' }, { id: 'B', text: 'A trimmed title of three characters.' }, { id: 'C', text: 'A trimmed title of 80 characters.' }, { id: 'D', text: 'A trimmed title of 100 characters.' }],
+      answerExplanation: 'PRIVATE_TRANSFER_KEY: two characters is below the fresh minimum of three.' };
+    const transferred = await (await handleStudy(request('/api/study/projects/' + identity.projectId + '/exercise'), c, visitor.userId, { ...base, phase: 'transfer', parentExerciseId: first.exercises[0].id }, async () => variation))!.json() as StudyProject;
+    const transfer = transferred.exercises[0]; await commit(transfer.id);
+    // Even malformed extra fields in stored JSON must not cross the explicit projection allowlist.
+    const stored = await d.db.prepare('SELECT prompt_json FROM study_exercises WHERE id=?').bind(transfer.id).first<{ prompt_json: string }>();
+    const malformed = JSON.parse(stored!.prompt_json);
+    malformed.correctOption = 'PRIVATE_PROMPT_KEY'; malformed.answerExplanation = 'PRIVATE_PROMPT_EXPLANATION'; malformed.reviewPoints = ['PRIVATE_PROMPT_RUBRIC'];
+    malformed.sourceContext.correctOption = 'PRIVATE_CONTEXT_KEY'; malformed.sourceContext.answerExplanation = 'PRIVATE_CONTEXT_EXPLANATION'; malformed.sourceContext.reviewPoints = ['PRIVATE_CONTEXT_RUBRIC'];
+    await d.db.prepare('UPDATE study_exercises SET prompt_json=?,feedback_json=? WHERE id=?').bind(JSON.stringify(malformed), JSON.stringify({ version: 4, report: { feedback: 'PRIVATE_MODEL_FEEDBACK', nextStep: 'PRIVATE_MODEL_NEXT' } }), transfer.id).run();
+    const preview = await (await handleDemo(request('/api/demo/teacher', { method: 'GET', cookie: visitor.token }), c, {}))!.json() as { readOnly: boolean; project: StudyProject };
+    const saved = preview.project.exercises.find(exercise => exercise.id === transfer.id)!;
+    assert.equal(preview.readOnly, true); assert.equal(saved.status, 'submitted'); assert.ok(saved.answer);
+    assert.equal(saved.prompt.phase, 'transfer'); assert.equal(saved.prompt.intent, 'transfer'); assert.equal(saved.prompt.parentExerciseId, first.exercises[0].id);
+    assert.deepEqual(saved.prompt.sourceContext, transfer.prompt.sourceContext); assert.equal(saved.prompt.sourceContext?.source, changed); assert.equal(saved.prompt.sourceContext?.originalSource, original);
+    assert.equal(saved.prompt.sourceContext?.changeProposalId, proposal.id); assert.equal(saved.prompt.sourceContext?.hash, proposal.resultHash); assert.equal(saved.prompt.sourceContext?.baseHash, proposal.baseHash); assert.equal(saved.prompt.sourceContext?.mode, 'manual-declared'); assert.ok(saved.prompt.sourceContext?.appliedAt);
+    assert.match(saved.prompt.sourceContext?.diff || '', /-.*> 80/); assert.match(saved.prompt.sourceContext?.diff || '', /\+.*> 100/);
+    assert.match(preview.project.snapshot.files[0].excerpt, /> 80/); assert.match(saved.prompt.sourceContext!.source, /> 100/);
+    assert.equal(saved.mcqResult, null); assert.equal(saved.feedback, null); assert.equal('reviewEvidence' in saved, false); assert.deepEqual(saved.reviews, []);
+    for (const forbidden of ['PRIVATE_', 'correctOption', 'answerExplanation', 'reviewPoints', 'teacherId":"teacher']) assert.ok(!JSON.stringify(preview).includes(forbidden), forbidden);
+    const otherPreview = await (await handleDemo(request('/api/demo/teacher', { method: 'GET', cookie: other.token, headers: { 'x-user-id': visitor.userId } }), c, {}))!.json() as { project: StudyProject };
+    assert.equal(otherPreview.project.id, other.result.projectId); assert.equal(otherPreview.project.exercises.length, 0); assert.ok(!JSON.stringify(otherPreview).includes(proposal.id));
+    await assert.rejects(() => handleDemo(request('/api/demo/teacher?projectId=' + identity.projectId, { method: 'GET', cookie: other.token }), c, {}), /UNKNOWN_FIELD/);
+    await assert.rejects(() => handleStudy(request('/api/study/projects/' + identity.projectId, { method: 'GET' }), c, other.userId, {}), /PROJECT_NOT_FOUND/);
   } finally { d.close(); }
 });
 

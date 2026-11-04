@@ -125,3 +125,32 @@ test('the server keeps a change-linked practice and fresh transfer tied to an im
   assert.deepEqual(await c.DB.prepare('SELECT answer FROM study_exercises WHERE id=?').bind(exercise.id).first(),committed);
  }finally{d.close();}
 });
+
+test('hints use the latest owned question capture, preserve ordinary source, and omit committed answers and private rubrics',async()=>{
+ const d=createTestDb();try{
+  const c:RuntimeConfig={DB:d.db,PILOT_ID:'pilot'},sourcePath='server/validation.js';
+  const before='export function taskTitle(title) { if (title.length < 1 || title.length > 80) return null; return title; }';
+  const after=before.replace('> 80','> 100'),base={...snapshot,files:[{path:sourcePath,language:'JavaScript',excerpt:before}]};
+  await c.DB.prepare('INSERT INTO study_projects(id,owner_id,pilot_id,goal,snapshot_json,created_at,expires_at) VALUES(?,?,?,?,?,?,?)').bind(projectId,'student','pilot','Understand the accepted title boundary',JSON.stringify(base),'2026-11-05T00:00:00Z','2099-01-01T00:00:00Z').run();
+  const prompt={format:'coding',title:'Changed title boundary',prompt:'Implement one title check that accepts a trimmed length from 1 through 100.',phase:'practice',kind:'trace',filePaths:[sourcePath],sourceContext:{path:sourcePath,source:after,hash:await sourceHash(after),originalSource:before,baseHash:await sourceHash(before),changeProposalId:'owned-applied-proposal',label:'Captured draft'}};
+  const rubric={reviewPoints:['PRIVATE_REVIEW_CRITERION'],mcq:{correctOption:'C',answerExplanation:'PRIVATE_KEY_RATIONALE'}};
+  await c.DB.prepare("INSERT INTO study_exercises(id,project_id,prompt_json,rubric_json,status,created_at) VALUES(?,?,?,?,'guided',?)").bind('captured-question',projectId,JSON.stringify(prompt),JSON.stringify(rubric),'2026-11-05T00:00:01Z').run();
+  const request=()=>new Request('https://groundtruth.test/api/study/projects/'+projectId+'/hint',{method:'POST'});
+  let calls=0;
+  const hint=async(expectedSource:string,expectedTitle:string)=>handleStudy(request(),c,'student',{question:'Which boundary should I inspect?'},async(task,data,selected)=>{
+   calls++;assert.equal(task,'hint');assert.equal(selected.files[0].excerpt,expectedSource);
+   const context=data as {exercise:{title:string;prompt:string;phase?:string}};assert.equal(context.exercise.title,expectedTitle);
+   const encoded=JSON.stringify(data);assert.ok(!encoded.includes('PRIVATE_'));assert.ok(!encoded.includes('COMMITTED_ANSWER'));assert.ok(!encoded.includes('correctOption'));assert.ok(!encoded.includes('reviewPoints'));assert.ok(!encoded.includes('sourceContext'));
+   return {feedback:'How does the comparison treat the endpoint?',nextStep:'Inspect the selected title comparison.',evidence:[{path:sourcePath,quote:expectedSource.includes('> 100')?'title.length > 100':'title.length > 80'}]};
+  });
+  await hint(after,prompt.title);
+  await c.DB.prepare("UPDATE study_exercises SET status='submitted',answer=?,started_at=?,submitted_at=? WHERE id=?").bind('COMMITTED_ANSWER_MUST_STAY_PRIVATE','2026-11-05T00:00:02Z','2026-11-05T00:00:03Z','captured-question').run();
+  await hint(after,prompt.title);
+  const ordinary={format:'coding',title:'Original source check',prompt:'Implement the original source check.',kind:'trace',filePaths:[sourcePath]};
+  await c.DB.prepare("INSERT INTO study_exercises(id,project_id,prompt_json,rubric_json,status,created_at) VALUES(?,?,?,?,'guided',?)").bind('ordinary-question',projectId,JSON.stringify(ordinary),'[]','2026-11-05T00:00:04Z').run();
+  await hint(before,ordinary.title);
+  await c.DB.prepare('UPDATE study_exercises SET ended_at=? WHERE id=?').bind('2026-11-05T00:00:05Z','ordinary-question').run();
+  await hint(after,prompt.title);
+  await assert.rejects(()=>handleStudy(request(),c,'someone-else',{question:'Read another learner source.'},async()=>{calls++;return {};}),{code:'PROJECT_NOT_FOUND'});assert.equal(calls,4);
+ }finally{d.close();}
+});

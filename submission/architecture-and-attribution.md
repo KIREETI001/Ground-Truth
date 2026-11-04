@@ -1,67 +1,65 @@
 # Architecture, boundaries and attribution
 
-**The Vercel/Supabase backend and actual Meta inference are live.** Thirty-two public API checks and eight direct real-Meta adapter tasks passed at this checkpoint. Browser capture of the generated journey is in progress. This document distinguishes tested functionality from educational claims. It is not a security certification.
+**Revised release: PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT.** This describes implemented design. Exact deployed behavior, migration, checks and media provenance belong in [release-manifest.json](release-manifest.json). It is not a security or educational-effectiveness certification.
 
-## Target architecture
+## Architecture
 
 ```mermaid
 flowchart LR
-  L[Student browser] --> W[GroundTruth on Vercel]
-  T[Approved teacher browser] --> W
-  W --> A[Server authentication and role checks]
-  A --> S[Supabase PostgreSQL]
-  W --> G[Public GitHub source at pinned commit]
-  W --> M[Meta Model API\nMuse Spark 1.3 Standard]
-  M --> V[Validate structure and source references]
-  V --> S
-  S --> E[Original attempt and activity evidence]
+  V[Visitor or learner browser] --> N[Next.js on Vercel]
+  T[Approved teacher browser] --> N
+  N --> A[Opaque session, role and owner checks]
+  A --> D[Supabase PostgreSQL private schema]
+  N --> G[Public GitHub source at pinned commit]
+  N --> M[Meta Model API: Muse Spark 1.3 Standard]
+  M --> C[Shape and source-reference validation]
+  C --> D
+  D --> E[Original attempts, applied diffs and review evidence]
   E --> T
 ```
 
-The hosted browser talks to GroundTruth's server. Model credentials and privileged database connection settings are server-only. The actual Supabase schema, RLS/revocation configuration, runtime database role and deployed environment must be checked before public release. Do not infer row-level protection merely from using Supabase.
+The browser talks to the application server. Privileged database credentials and model keys stay on that server. The database uses a restricted application role and RLS/revocations, but end-user isolation depends primarily on server authorization and owner predicates. Do not describe the shared server role's policies as per-user database isolation.
 
-## What the model owns
+## Isolated judge entry
 
-Generated repository summaries, selected workflow descriptions, concept suggestions, MCQs, short coding prompts, hints and supported change proposals. All are suggestions, even when schema-valid. The server checks the output shape and validates source references against the selected snapshot.
+`POST /api/demo/start` accepts no client seed/project ID. Operator configuration selects one validated public pinned seed, with a readiness record identifying genuine Meta-generated overview/concepts. It must also attest public-repository status, MIT licensing and the license commit before the sample is exposed. The server creates a unique reserved synthetic learner account, private project/map and opaque HttpOnly session. No real user's project, teacher assignment, exercise, answer or review is copied.
 
-## What the application owns
+The session/project expires after two hours by default. Demo creation has verified-ingress-identity, global-start and active-session budgets. Temporary accounts do not consume the real signup cap. Expired demo accounts and related records are cleaned on subsequent starts; this is opportunistic cleanup, not a scheduled deletion service. A shared username/password is not used for judge sessions.
 
-Authentication, persisted roles, owner isolation, explicit teacher shares, class enrollment, source limits, model budgets, phase transitions, independent-mode restrictions, immutable submissions and persistence. A model response cannot grant access or award a grade.
+`/demo/teacher` and its API require the current visitor's authenticated temporary account. The read-only projection selects only that owner's sample. It accepts no project selector, exposes no other visitor and grants no Teacher role. Private pre-commit rubric/key fields are excluded. This preview is distinct from the real teacher-review permission boundary.
 
 ## Source and change boundaries
 
-- Imports cover public repositories and supported selected files, tied to a commit. They are not whole-repository audits or execution traces.
-- README/repository text and learner text are untrusted inputs, not instructions to alter server permissions or reveal secrets.
-- Imported source and submitted snippets are not executed. A short coding response is retained for review, not automatically tested or applied.
-- The local prototype has a separate managed working-copy service with diff approval and stale-hash protection. Its loopback service and laptop paths must not be exposed to Vercel. Hosted Changes uses controlled cloud drafts; manual editing, review confirmation and idempotent apply have passed public checks. The draft does not execute source or push to GitHub. A direct real-Meta change proposal passed schema/source validation. The public proposal-to-apply browser route still needs its own final check.
-- Reference-repository learning does not imply ownership or permission to push changes.
+Public imports are tied to a commit and bounded selected files. Relevant-line selection improves context within a finite budget; the reading flow remains a suggested explanation of that selection, not a verified complete call graph or audit.
 
-## Learning and evidence boundaries
+A private draft stores original/current source and reviewed proposals. Explicit application checks hashes and stale state. Change-linked practice reconstructs before/after source and diff from a stored owned applied proposal; it does not trust client-supplied replacement source as provenance. Linked initial/practice/fresh-variation attempts retain original responses.
 
-Independent mode stops new study assistance within GroundTruth until submission or voluntary exit. It cannot control external tools. A submitted first answer is retained before feedback. Model answer keys can be wrong. The concept index separates unreviewed attempts from human-reviewed evidence; it is provisional, not a validated mastery score, authorship detector or automatic grade.
+The hosted app does not execute arbitrary imported code or submitted snippets, and does not push to GitHub. A separately reported fixed trusted sample-fixture check is an operator-run engineering check with named inputs/results. It must not be presented as a general code runner or an external learner outcome. Reference learning does not imply ownership of that repository.
 
-Teachers need an approved role and explicit project sharing to inspect learner records. Joining a class does not share all projects. Developer access is provisioned by the operator and cannot be selected during public signup.
+Repository text, comments, goals and learner inputs are untrusted context, not instructions to alter permissions or reveal secrets. The model cannot grant a role, override independent mode, manufacture an execution result or award a grade.
 
-## Cloud data handling
+## Learning and teacher evidence
 
-Selected public source, the learner's goal and contextual learning inputs may be sent to Meta for generation. Account and learning records are stored in Supabase; the application runs on Vercel. This differs from the prior laptop-only setup. Use synthetic examples in the public demo. Do not publish database contents, account secrets, raw operational traces, local working-copy backups or private learner records.
+Starting an independent attempt pauses new in-app study assistance until submission or voluntary exit. The first submitted answer is preserved before follow-up. External tools remain outside the application's control. MCQ keys and review guidance are suggestions that can be wrong.
 
-Meta Standard mode is the intended production choice. The provider says content is not used for training in this mode. This does not establish zero retention, anonymous processing, institutional compliance or permission to upload private material. [Official pricing modes](https://dev.meta.ai/docs/pricing-rate-limits)
+An approved teacher receives only explicitly shared projects, with privacy-scoped learner display name and relevant class labels. Enrollment alone does not share records. The queue separates committed answers awaiting review from reviewed work. Source, question, original answer, relevant in-app activity and saved human notes support a task-specific judgement. Teacher guidance/key data is restricted to authorized post-commit evidence.
 
-Saved-path expiry in the current product is a visibility rule. Do not claim scheduled physical deletion unless a verified cleanup job implements it. Check the deployed retention policy before enrolling real learners.
+Displayed concept evidence uses observed/reviewed states rather than a mastery percentage. None proves authorship, detects outside AI, establishes assessment validity or demonstrates learning gains. Teacher-side AI quiz authoring, assignment distribution and cohort analytics are future work. Developer registration remains closed and teacher signup requires approval.
 
-## Original-work and assistance disclosure
+## Data and observability
 
-GroundTruth's educational idea predates this submission. Earlier ideation was developed by **Attili Kireeti, Delfine Yew, V Narthananilaa and Dr. Wesley Tan**. This list credits the earlier proposal; it does not establish the hackathon team, consent to this entry or ownership of every component. The entrant must confirm the actual team and right to submit before accepting the competition's representations.
+Selected public source, goals and contextual inputs may be processed by Meta. Accounts and learning records are persisted in Supabase; Vercel serves the application. The direct provider uses Muse Spark 1.3 Standard. Meta states Standard-mode content is not used for model training; this is not a zero-retention or institutional-compliance claim. [Official model documentation](https://dev.meta.ai/docs/models).
 
-The hackathon implementation must be described using the commit record: repository-based workflow selection, local-to-cloud inference integration, role-based application behavior, beginner guidance, practice, independent attempts, controlled changes, class/teacher review, and responsive UI. Do not describe all earlier work as newly built during the competition.
+Sanitized receipts contain bounded task/provider/model/status/timing and available numeric usage fields. They omit prompts, learner answers, credentials and raw provider errors. A prepared sample, prerecorded video and fresh provider request are distinct evidence categories.
 
-Codex assisted coding, debugging, tests and documentation. The local workflow was developed using Qwen3.5 9B via llama.cpp before the Meta migration. Qwen and llama.cpp are not Meta model usage. Only verified Meta calls count as the submitted model contribution.
+Normal saved paths have configured availability/retention rules; demo expiry is shorter. Visibility expiry must not be presented as scheduled physical deletion. Use synthetic public captures and never publish database dumps, operational credentials or private learner material.
 
-Third-party software includes React, Next.js, Drizzle, UI/icon packages and their transitive dependencies. Review the final lockfile and applicable licenses; retain required notices. The target hosting/backend services are Vercel and Supabase. The small public study-task repository is a demo input, not a real learner's measured achievement.
+## License, original work and assistance
 
-No benchmark in this packet establishes model superiority. No user study in this packet establishes educational effectiveness. Historical survey and proposal numbers are excluded from the pitch because the underlying evidence has not been checked for this release.
+The participant confirmed a solo hackathon implementation entry as **Kireeti Kumar** and authorized the [MIT license](../LICENSE). [NOTICE](../NOTICE) credits earlier GroundTruth ideation to **Attili Kireeti, Delfine Yew, V Narthananilaa and Dr. Wesley Tan**, separately from the hackathon roster. Attribution does not make earlier contributors entrants or imply all prior work was created during the event.
 
-## Teacher assessment purpose and current scope
+The submitted implementation builds on the earlier concept and local prototype. The commit record should identify actual hackathon work: hosted Meta integration, repository learning paths, isolated judge entry, source/diff-linked practice, teacher evidence/sharing, application authorization, persistence and responsive interface.
 
-A polished AI-assisted take-home artifact can leave independent ability uncertain, while responsible AI learning should have room to demonstrate understanding. Original committed answers, observed app activity, explicit shares and provisional concept evidence can give a teacher a clearer starting point for a discussion or fresh unaided follow-up. Those choices and any teaching adjustment remain human decisions. Teacher-side AI quiz authoring, assignment distribution and cohort analytics are not built. No measured improvement in grades, fairness, learning or marking time is claimed.
+Codex assisted implementation, debugging, tests and documentation. Earlier local inference used Qwen through llama.cpp; those experiments are not Meta usage. React, Next.js, Drizzle, UI/icon libraries and transitive components retain their licenses. NOTICE preserves existing vendored/build-plugin notices; the MIT grant does not relicense third-party components. The public study-task repository is a synthetic input, not a learner's measured achievement.
+
+No external user study has been conducted: **n = 0**. Automated tests, operator/source review, controlled sample checks and TinyFish browser QA are separate from participant evidence. External research motivates the problem; it does not validate GroundTruth's outcomes.

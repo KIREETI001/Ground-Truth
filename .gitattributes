@@ -1,0 +1,5 @@
+# Preserve review-artifact hashes across Windows and Linux checkouts.
+*.vtt -text whitespace=cr-at-eol
+*.srt -text whitespace=cr-at-eol
+/submission/video-v2/*.json -text whitespace=cr-at-eol
+/submission/video-v3/*.json -text whitespace=cr-at-eol

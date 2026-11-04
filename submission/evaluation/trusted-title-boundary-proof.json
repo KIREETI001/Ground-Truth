@@ -1,0 +1,1027 @@
+{
+  "schema": "groundtruth.trusted-title-proof.v1",
+  "generatedAt": "2026-11-04T20:20:48.577Z",
+  "kind": "operator-authored trusted-fixture validation",
+  "fixture": {
+    "repository": "C:\\Users\\Kireeti\\Desktop\\Ground Truth\\groundtruth-demo-study-tasks",
+    "commit": "026d25d212336d5e26c42b32bb31a37c1bfc157b",
+    "path": "server/validation.js",
+    "license": "MIT",
+    "licenseSha256": "da2e1f2676ceb13732fd7933b10f505648e297921fae7fc3794f1bb3e226eeaf",
+    "sourceSha256": "bf5faa68b8a04f454e43d31045c9bbd35aa9c9ec330ccf8cccb3380e88ceb680"
+  },
+  "scope": {
+    "humanLearners": 0,
+    "educatorValidation": false,
+    "liveModelCalls": 0,
+    "executedArbitraryCode": false,
+    "executedDownloadedFile": false,
+    "wholeAppTest": false,
+    "temporaryDirectoryRemoved": true
+  },
+  "downloadedDraft": {
+    "path": "C:\\Users\\Kireeti\\Downloads\\validation.js",
+    "rawSha256": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+    "normalizedSha256": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+    "matches": "manual100",
+    "normalization": "CRLF → LF only",
+    "executedDownloadedFile": false
+  },
+  "results": [
+    {
+      "variant": "original80",
+      "minimum": 1,
+      "maximum": 80,
+      "sha256": "bf5faa68b8a04f454e43d31045c9bbd35aa9c9ec330ccf8cccb3380e88ceb680",
+      "titleChecks": 28,
+      "idRegressionChecks": 12,
+      "passed": 40,
+      "checks": [
+        {
+          "id": "blank-empty",
+          "group": "taskTitle",
+          "input": "Empty string",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-spaces",
+          "group": "taskTitle",
+          "input": "Spaces only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-whitespace",
+          "group": "taskTitle",
+          "input": "Tabs and line breaks only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-normal",
+          "group": "taskTitle",
+          "input": "Spaces around Learn SQL",
+          "expected": "accepted · 9 code units",
+          "actual": "accepted · 9 code units",
+          "passed": true
+        },
+        {
+          "id": "minimum-1",
+          "group": "taskTitle",
+          "input": "One character",
+          "expected": "accepted · 1 code unit",
+          "actual": "accepted · 1 code unit",
+          "passed": true
+        },
+        {
+          "id": "minimum-2",
+          "group": "taskTitle",
+          "input": "Two characters",
+          "expected": "accepted · 2 code units",
+          "actual": "accepted · 2 code units",
+          "passed": true
+        },
+        {
+          "id": "minimum-3",
+          "group": "taskTitle",
+          "input": "Three characters",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-2",
+          "group": "taskTitle",
+          "input": "Padded two-character title",
+          "expected": "accepted · 2 code units",
+          "actual": "accepted · 2 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-3",
+          "group": "taskTitle",
+          "input": "Padded three-character title",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "internal-space",
+          "group": "taskTitle",
+          "input": "Internal space is retained",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "length-79",
+          "group": "taskTitle",
+          "input": "79 ASCII characters",
+          "expected": "accepted · 79 code units",
+          "actual": "accepted · 79 code units",
+          "passed": true
+        },
+        {
+          "id": "length-80",
+          "group": "taskTitle",
+          "input": "80 ASCII characters",
+          "expected": "accepted · 80 code units",
+          "actual": "accepted · 80 code units",
+          "passed": true
+        },
+        {
+          "id": "length-81",
+          "group": "taskTitle",
+          "input": "81 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "length-99",
+          "group": "taskTitle",
+          "input": "99 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "length-100",
+          "group": "taskTitle",
+          "input": "100 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "length-101",
+          "group": "taskTitle",
+          "input": "101 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-100",
+          "group": "taskTitle",
+          "input": "100 characters with surrounding whitespace",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-101",
+          "group": "taskTitle",
+          "input": "101 characters with surrounding whitespace",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-number",
+          "group": "taskTitle",
+          "input": "Number 123",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-zero",
+          "group": "taskTitle",
+          "input": "Number zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-null",
+          "group": "taskTitle",
+          "input": "Null",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-undefined",
+          "group": "taskTitle",
+          "input": "Undefined",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-object",
+          "group": "taskTitle",
+          "input": "Object",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-array",
+          "group": "taskTitle",
+          "input": "Array",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-boolean",
+          "group": "taskTitle",
+          "input": "Boolean",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "punctuation",
+          "group": "taskTitle",
+          "input": "Punctuation is plain title text",
+          "expected": "accepted · 33 code units",
+          "actual": "accepted · 33 code units",
+          "passed": true
+        },
+        {
+          "id": "utf16-100",
+          "group": "taskTitle",
+          "input": "50 emoji = 100 UTF-16 code units",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "utf16-102",
+          "group": "taskTitle",
+          "input": "51 emoji = 102 UTF-16 code units",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-one",
+          "group": "taskId regression",
+          "input": "Positive ID 1",
+          "expected": "1",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "id": "id-normal",
+          "group": "taskId regression",
+          "input": "Positive ID 42",
+          "expected": "42",
+          "actual": "42",
+          "passed": true
+        },
+        {
+          "id": "id-safe-max",
+          "group": "taskId regression",
+          "input": "Maximum safe integer",
+          "expected": "9007199254740991",
+          "actual": "9007199254740991",
+          "passed": true
+        },
+        {
+          "id": "id-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-negative",
+          "group": "taskId regression",
+          "input": "Invalid ID: negative",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-decimal",
+          "group": "taskId regression",
+          "input": "Invalid ID: decimal",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-alphabetic",
+          "group": "taskId regression",
+          "input": "Invalid ID: alphabetic",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-unsafe",
+          "group": "taskId regression",
+          "input": "Invalid ID: unsafe",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-leading-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: leading-zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-exponent",
+          "group": "taskId regression",
+          "input": "Invalid ID: exponent",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-padded",
+          "group": "taskId regression",
+          "input": "Invalid ID: padded",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-empty",
+          "group": "taskId regression",
+          "input": "Invalid ID: empty",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "variant": "manual100",
+      "minimum": 1,
+      "maximum": 100,
+      "sha256": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+      "titleChecks": 28,
+      "idRegressionChecks": 12,
+      "passed": 40,
+      "checks": [
+        {
+          "id": "blank-empty",
+          "group": "taskTitle",
+          "input": "Empty string",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-spaces",
+          "group": "taskTitle",
+          "input": "Spaces only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-whitespace",
+          "group": "taskTitle",
+          "input": "Tabs and line breaks only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-normal",
+          "group": "taskTitle",
+          "input": "Spaces around Learn SQL",
+          "expected": "accepted · 9 code units",
+          "actual": "accepted · 9 code units",
+          "passed": true
+        },
+        {
+          "id": "minimum-1",
+          "group": "taskTitle",
+          "input": "One character",
+          "expected": "accepted · 1 code unit",
+          "actual": "accepted · 1 code unit",
+          "passed": true
+        },
+        {
+          "id": "minimum-2",
+          "group": "taskTitle",
+          "input": "Two characters",
+          "expected": "accepted · 2 code units",
+          "actual": "accepted · 2 code units",
+          "passed": true
+        },
+        {
+          "id": "minimum-3",
+          "group": "taskTitle",
+          "input": "Three characters",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-2",
+          "group": "taskTitle",
+          "input": "Padded two-character title",
+          "expected": "accepted · 2 code units",
+          "actual": "accepted · 2 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-3",
+          "group": "taskTitle",
+          "input": "Padded three-character title",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "internal-space",
+          "group": "taskTitle",
+          "input": "Internal space is retained",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "length-79",
+          "group": "taskTitle",
+          "input": "79 ASCII characters",
+          "expected": "accepted · 79 code units",
+          "actual": "accepted · 79 code units",
+          "passed": true
+        },
+        {
+          "id": "length-80",
+          "group": "taskTitle",
+          "input": "80 ASCII characters",
+          "expected": "accepted · 80 code units",
+          "actual": "accepted · 80 code units",
+          "passed": true
+        },
+        {
+          "id": "length-81",
+          "group": "taskTitle",
+          "input": "81 ASCII characters",
+          "expected": "accepted · 81 code units",
+          "actual": "accepted · 81 code units",
+          "passed": true
+        },
+        {
+          "id": "length-99",
+          "group": "taskTitle",
+          "input": "99 ASCII characters",
+          "expected": "accepted · 99 code units",
+          "actual": "accepted · 99 code units",
+          "passed": true
+        },
+        {
+          "id": "length-100",
+          "group": "taskTitle",
+          "input": "100 ASCII characters",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "length-101",
+          "group": "taskTitle",
+          "input": "101 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-100",
+          "group": "taskTitle",
+          "input": "100 characters with surrounding whitespace",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-101",
+          "group": "taskTitle",
+          "input": "101 characters with surrounding whitespace",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-number",
+          "group": "taskTitle",
+          "input": "Number 123",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-zero",
+          "group": "taskTitle",
+          "input": "Number zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-null",
+          "group": "taskTitle",
+          "input": "Null",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-undefined",
+          "group": "taskTitle",
+          "input": "Undefined",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-object",
+          "group": "taskTitle",
+          "input": "Object",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-array",
+          "group": "taskTitle",
+          "input": "Array",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-boolean",
+          "group": "taskTitle",
+          "input": "Boolean",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "punctuation",
+          "group": "taskTitle",
+          "input": "Punctuation is plain title text",
+          "expected": "accepted · 33 code units",
+          "actual": "accepted · 33 code units",
+          "passed": true
+        },
+        {
+          "id": "utf16-100",
+          "group": "taskTitle",
+          "input": "50 emoji = 100 UTF-16 code units",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "utf16-102",
+          "group": "taskTitle",
+          "input": "51 emoji = 102 UTF-16 code units",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-one",
+          "group": "taskId regression",
+          "input": "Positive ID 1",
+          "expected": "1",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "id": "id-normal",
+          "group": "taskId regression",
+          "input": "Positive ID 42",
+          "expected": "42",
+          "actual": "42",
+          "passed": true
+        },
+        {
+          "id": "id-safe-max",
+          "group": "taskId regression",
+          "input": "Maximum safe integer",
+          "expected": "9007199254740991",
+          "actual": "9007199254740991",
+          "passed": true
+        },
+        {
+          "id": "id-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-negative",
+          "group": "taskId regression",
+          "input": "Invalid ID: negative",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-decimal",
+          "group": "taskId regression",
+          "input": "Invalid ID: decimal",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-alphabetic",
+          "group": "taskId regression",
+          "input": "Invalid ID: alphabetic",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-unsafe",
+          "group": "taskId regression",
+          "input": "Invalid ID: unsafe",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-leading-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: leading-zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-exponent",
+          "group": "taskId regression",
+          "input": "Invalid ID: exponent",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-padded",
+          "group": "taskId regression",
+          "input": "Invalid ID: padded",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-empty",
+          "group": "taskId regression",
+          "input": "Invalid ID: empty",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        }
+      ]
+    },
+    {
+      "variant": "transferMin3",
+      "minimum": 3,
+      "maximum": 100,
+      "sha256": "361d542f1613c6efde6ed2161499061ed69ef14cd5c41cd3666fae7402c46f20",
+      "titleChecks": 28,
+      "idRegressionChecks": 12,
+      "passed": 40,
+      "checks": [
+        {
+          "id": "blank-empty",
+          "group": "taskTitle",
+          "input": "Empty string",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-spaces",
+          "group": "taskTitle",
+          "input": "Spaces only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "blank-whitespace",
+          "group": "taskTitle",
+          "input": "Tabs and line breaks only",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-normal",
+          "group": "taskTitle",
+          "input": "Spaces around Learn SQL",
+          "expected": "accepted · 9 code units",
+          "actual": "accepted · 9 code units",
+          "passed": true
+        },
+        {
+          "id": "minimum-1",
+          "group": "taskTitle",
+          "input": "One character",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "minimum-2",
+          "group": "taskTitle",
+          "input": "Two characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "minimum-3",
+          "group": "taskTitle",
+          "input": "Three characters",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-2",
+          "group": "taskTitle",
+          "input": "Padded two-character title",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-minimum-3",
+          "group": "taskTitle",
+          "input": "Padded three-character title",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "internal-space",
+          "group": "taskTitle",
+          "input": "Internal space is retained",
+          "expected": "accepted · 3 code units",
+          "actual": "accepted · 3 code units",
+          "passed": true
+        },
+        {
+          "id": "length-79",
+          "group": "taskTitle",
+          "input": "79 ASCII characters",
+          "expected": "accepted · 79 code units",
+          "actual": "accepted · 79 code units",
+          "passed": true
+        },
+        {
+          "id": "length-80",
+          "group": "taskTitle",
+          "input": "80 ASCII characters",
+          "expected": "accepted · 80 code units",
+          "actual": "accepted · 80 code units",
+          "passed": true
+        },
+        {
+          "id": "length-81",
+          "group": "taskTitle",
+          "input": "81 ASCII characters",
+          "expected": "accepted · 81 code units",
+          "actual": "accepted · 81 code units",
+          "passed": true
+        },
+        {
+          "id": "length-99",
+          "group": "taskTitle",
+          "input": "99 ASCII characters",
+          "expected": "accepted · 99 code units",
+          "actual": "accepted · 99 code units",
+          "passed": true
+        },
+        {
+          "id": "length-100",
+          "group": "taskTitle",
+          "input": "100 ASCII characters",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "length-101",
+          "group": "taskTitle",
+          "input": "101 ASCII characters",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "trim-100",
+          "group": "taskTitle",
+          "input": "100 characters with surrounding whitespace",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "trim-101",
+          "group": "taskTitle",
+          "input": "101 characters with surrounding whitespace",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-number",
+          "group": "taskTitle",
+          "input": "Number 123",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-zero",
+          "group": "taskTitle",
+          "input": "Number zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-null",
+          "group": "taskTitle",
+          "input": "Null",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-undefined",
+          "group": "taskTitle",
+          "input": "Undefined",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-object",
+          "group": "taskTitle",
+          "input": "Object",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-array",
+          "group": "taskTitle",
+          "input": "Array",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "non-string-boolean",
+          "group": "taskTitle",
+          "input": "Boolean",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "punctuation",
+          "group": "taskTitle",
+          "input": "Punctuation is plain title text",
+          "expected": "accepted · 33 code units",
+          "actual": "accepted · 33 code units",
+          "passed": true
+        },
+        {
+          "id": "utf16-100",
+          "group": "taskTitle",
+          "input": "50 emoji = 100 UTF-16 code units",
+          "expected": "accepted · 100 code units",
+          "actual": "accepted · 100 code units",
+          "passed": true
+        },
+        {
+          "id": "utf16-102",
+          "group": "taskTitle",
+          "input": "51 emoji = 102 UTF-16 code units",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-one",
+          "group": "taskId regression",
+          "input": "Positive ID 1",
+          "expected": "1",
+          "actual": "1",
+          "passed": true
+        },
+        {
+          "id": "id-normal",
+          "group": "taskId regression",
+          "input": "Positive ID 42",
+          "expected": "42",
+          "actual": "42",
+          "passed": true
+        },
+        {
+          "id": "id-safe-max",
+          "group": "taskId regression",
+          "input": "Maximum safe integer",
+          "expected": "9007199254740991",
+          "actual": "9007199254740991",
+          "passed": true
+        },
+        {
+          "id": "id-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-negative",
+          "group": "taskId regression",
+          "input": "Invalid ID: negative",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-decimal",
+          "group": "taskId regression",
+          "input": "Invalid ID: decimal",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-alphabetic",
+          "group": "taskId regression",
+          "input": "Invalid ID: alphabetic",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-unsafe",
+          "group": "taskId regression",
+          "input": "Invalid ID: unsafe",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-leading-zero",
+          "group": "taskId regression",
+          "input": "Invalid ID: leading-zero",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-exponent",
+          "group": "taskId regression",
+          "input": "Invalid ID: exponent",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-padded",
+          "group": "taskId regression",
+          "input": "Invalid ID: padded",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        },
+        {
+          "id": "id-empty",
+          "group": "taskId regression",
+          "input": "Invalid ID: empty",
+          "expected": "rejected",
+          "actual": "rejected",
+          "passed": true
+        }
+      ]
+    }
+  ],
+  "passed": 120,
+  "total": 120
+}

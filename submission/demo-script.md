@@ -1,42 +1,41 @@
-# GroundTruth — three-minute demo story
+# GroundTruth — product-first V3 demo script and evidence plan
 
-**Participant review hold: do not submit the official form or accept publishing consent.**
+**Local review only. No public media change, official submission or publishing consent is performed by this edit.** The local candidate is [video-v3/GroundTruth_Demo_V3_final.mp4](video-v3/GroundTruth_Demo_V3_final.mp4). Exact local encoding checks are in its render/validation reports; public browser playback and publication belong to the root release manifest.
 
-The deliverable is a 175-second narrated walkthrough of actual hosted interface captures, openly labelled as edited stills using a synthetic demo account. The voice is generated offline. It does not pretend to be continuous live interaction or a real student outcome.
+V3 reuses the exact approved Alyssa narration, original V2 audio master and 64 verbatim caption cues at natural **1x**. No new spoken words, voice synthesis, speech cuts, reordered speech or speed changes are introduced. Its 36-scene visual recut starts real product UI at 0 seconds and teacher evidence at 17.75 seconds. The local encode is **178.5 seconds**, 1920×1080, 24 fps. The ending displays the canonical application URL above the caption band.
 
-The central story joins the learner and teacher problems: a builder needs a systems mental model; a teacher needs evidence of independent understanding beyond a polished AI-assisted take-home artifact. Support responsible AI learning and keep assessment judgement human.
+The walkthrough is edited from real hosted captures with synthetic operator records. It is not an uninterrupted live session or an external learner study. Prepared Meta overview/concepts are labelled; a prerecorded capture is not evidence of a new request at playback time.
 
-## Screen and narration
+## V3 visual timeline
 
-| Time | Real captured screen / illustration | Narration |
+| Time | Product evidence and editorial purpose | Evidence state |
 | --- | --- | --- |
-| 0:00–0:14 | Understand the system. Try the next change. | AI can build a working app before its builder understands the system. GroundTruth helps the learner understand code and architecture, then practise the next change independently. |
-| 0:14–0:40 | Make independent understanding easier to inspect | Teachers face a connected problem. A polished, AI-assisted take-home artifact can conceal gaps in independent understanding. Responsible AI learners also need a fair chance to demonstrate ability. Reconstructing missing reasoning can add manual marking work. This edited walkthrough uses real interface captures and synthetic demo data. |
-| 0:40–0:52 | Start with a feature, before a filename | Start with a public repository and a feature. The learner chooses a backend workflow in our small study-task app, before needing to know a filename. |
-| 0:52–1:07 | Connect code to system responsibilities | The overview connects selected source to system responsibilities. Where does a request go? Which component validates it? A reading flow and glossary help the learner build that mental model. |
-| 1:07–1:21 | Find a shared concept to investigate | The concept tree links those responsibilities to focused practice. It also gives teacher and learner a shared concept to discuss, rather than relying only on the finished artifact. |
-| 1:21–1:40 | Ask about this code, rather than grade an artifact | Muse Spark generates code-linked MCQs and tiny coding tasks. The question responds to the source and goal. This is contextual practice, not AI grading of a take-home project. Suggested answers still need source review. |
-| 1:40–1:58 | Protect an explicit independent attempt | During an independent attempt, new study assistance pauses. The original submitted response is preserved before feedback. The learner may also end the attempt. GroundTruth cannot prevent outside help or infer authorship. |
-| 1:58–2:16 | Give the teacher context beyond the artifact | The learner chooses what to share. Original attempts and observed activity add context for review. The concept index is provisional evidence, not a grade. These synthetic records are not learning-effectiveness results. |
-| 2:16–2:35 | Inspect the answer. Choose a fresh follow-up. | The teacher can inspect the original answer and identify a concept worth a fresh unaided follow-up. This can inform teaching, while judgement stays human. Teacher AI quiz authoring, assignment distribution and cohort analytics remain future work. |
-| 2:35–2:55 | Responsible AI learning. Human judgement. | Meta provides contextual content. GroundTruth on Vercel controls access and learning state, with Supabase preserving evidence. Support responsible AI learning. Understand the system, try independently, and make the evidence inspectable. |
+| 0:00–0:17.75 | Open with the private change, sample entry and source-linked overview while the approved voice poses the one-line challenge | Actual preview-release captures; prepared overview disclosed |
+| 0:17.75–0:40.60 | Show the payoff early: original committed answer, source and a qualified human next step while the voice explains the teacher's problem | Approved synthetic teacher reviewing the same explicitly shared guest path; persisted operator note visible |
+| 0:40.60–0:51.63 | Preview a small private diff and a task tied to the applied change, then introduce GroundTruth | Owned stored proposal, hashes and reconstructed diff; no arbitrary execution |
+| 0:51.63–1:25.50 | Trace the selected feature, overview, actual validation source and private edit | Bounded pinned source; model guidance remains challengeable |
+| 1:25.50–1:54.75 | Show concepts, real practice prompts, source guidance and the change-linked understanding check | Fresh generation belongs to the recorded session; suggested keys need source review |
+| 1:54.75–2:14.70 | Show paused in-app assistance, preserved original response, voluntary exit, a fresh variation and evidence states | Separate original attempts, with no automatic learning/mastery verdict |
+| 2:14.70–2:32.40 | Return to original teacher evidence, explicit teacher choice, human review and the visitor's own read-only preview | Approved teacher review and own-record preview are distinct permission boundaries |
+| 2:32.40–2:45.43 | Explain synthetic evidence, n = 0 external participants, current evidence states and outside-AI limitations | No learning-gain, authorship, causal or model-superiority claim |
+| 2:45.43–2:58.50 | Explain Meta/Vercel/Supabase responsibilities and close on the actual entry action | MIT implementation; final public URL/version verified separately |
 
-## What the teacher can do today
+## Exact speech and removed index
 
-Review an explicitly shared original answer, app-observed activity and provisional concept evidence. Use that context to decide which concept needs discussion or a fresh unaided check and to inform a teaching adjustment. These are human decisions, not an automated diagnosis. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.
+The approved audio includes “The index is provisional evidence.” That audio remains unchanged. During 2:36.40–2:45.43, V3 explicitly displays: **Current release: observed and reviewed states. No validated mastery score.** The obsolete percentage is not reproduced as a current capability. Captions stay verbatim rather than silently rewriting what the voice says.
 
-## Review limits
+The exact spoken text is in [video-v3/transcript.md](video-v3/transcript.md), sourced from the retained [V2 speech provenance](video-v2/speech-provenance.json). The exact time map is [video-v3/source-to-final-map.json](video-v3/source-to-final-map.json). V2 remains preserved.
 
-- The filled coding answer and progress records are synthetic demonstration activity. They do not establish a real learner's ability or educational effectiveness.
-- New in-app study assistance pauses during the independent attempt. Outside tools remain beyond GroundTruth's control.
-- A model-suggested answer can be wrong. The original source and human review matter.
-- Do not claim improved grading fairness, reduced marking time, authorship detection or a universal trend in student behaviour.
-- The conceptual reading flow is bounded source guidance, not a verified whole-repository call graph.
+## Teacher purpose and limits
 
-## Rehearsal prompt
+A real approved teacher can inspect explicitly shared committed answers, relevant source and in-app activity, distinguish learner/class context, filter work awaiting review and save a qualified review/next step. The model's key and suggestions can be wrong. Teacher judgement concerns the particular task, not a certified mastery score.
 
-“I am a beginner. Help me understand where title validation belongs: the request, validation function and database write. Then practise trimming, empty-title rejection and length limits with simple MCQs and tiny functions.”
+The judge's `/demo/teacher` route exposes only that visitor's own temporary sample, read-only, and grants no Teacher role. Class enrollment alone does not share projects. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.
 
-The question content is generated from selected source. Presenter prompts are not preset question banks. Use [video/storyboard.json](video/storyboard.json), [video/transcript.md](video/transcript.md) and the final render report to review the exact deliverable.
+There are no external participants, quotes or feedback: **not conducted, n = 0**. Automated checks, fixed trusted-fixture behavior checks, operator review and TinyFish browser QA remain separate engineering evidence. GroundTruth cannot detect outside AI use, prove authorship, prevent external tools or claim measured learning gains, fairer grades, reduced marking time or token savings.
 
-For a separate live presenter recording, follow the same sequence, label generation-time cuts and prepared states, and keep the duration below the official three-minute limit. The deck is a supporting asset, not a substitute for the video.
+## Reproduce and review
+
+Use [video-v3/README.md](video-v3/README.md) and its deterministic scripts. `capture-manifest.json` tracks actual screenshot paths, crops, deployment/context and required visible state. Legacy assets are explicitly provisional and block a final render. A provisional filename is required for local layout proofs. No script publishes the result or touches the official form.
+
+A full audible listening review is **not performed**. Decode, timing, hash and layout checks do not establish listening quality; participant review remains necessary.

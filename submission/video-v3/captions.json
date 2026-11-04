@@ -1,0 +1,2050 @@
+[
+  {
+    "start": 0.299,
+    "end": 2.083,
+    "text": "Your app works. Great.",
+    "words": [
+      {
+        "word": "Your",
+        "start": 0.299,
+        "end": 0.4267
+      },
+      {
+        "word": "app",
+        "start": 0.469,
+        "end": 0.597
+      },
+      {
+        "word": "works.",
+        "start": 0.725,
+        "end": 1.173
+      },
+      {
+        "word": "Great.",
+        "start": 1.451,
+        "end": 1.963
+      }
+    ]
+  },
+  {
+    "start": 2.261,
+    "end": 4.877,
+    "text": "Now change one line without asking AI.",
+    "words": [
+      {
+        "word": "Now",
+        "start": 2.261,
+        "end": 2.4747
+      },
+      {
+        "word": "change",
+        "start": 2.517,
+        "end": 2.7307
+      },
+      {
+        "word": "one",
+        "start": 2.859,
+        "end": 3.157
+      },
+      {
+        "word": "line",
+        "start": 3.243,
+        "end": 3.456
+      },
+      {
+        "word": "without",
+        "start": 3.584,
+        "end": 3.669
+      },
+      {
+        "word": "asking",
+        "start": 3.84,
+        "end": 4.096
+      },
+      {
+        "word": "AI.",
+        "start": 4.267,
+        "end": 4.757
+      }
+    ]
+  },
+  {
+    "start": 4.949,
+    "end": 7.117,
+    "text": "That is where understanding starts to matter.",
+    "words": [
+      {
+        "word": "That",
+        "start": 4.949,
+        "end": 5.12
+      },
+      {
+        "word": "is",
+        "start": 5.205,
+        "end": 5.2907
+      },
+      {
+        "word": "where",
+        "start": 5.333,
+        "end": 5.461
+      },
+      {
+        "word": "understanding",
+        "start": 5.504,
+        "end": 5.973
+      },
+      {
+        "word": "starts",
+        "start": 6.144,
+        "end": 6.357
+      },
+      {
+        "word": "to",
+        "start": 6.485,
+        "end": 6.5707
+      },
+      {
+        "word": "matter.",
+        "start": 6.613,
+        "end": 6.997
+      }
+    ]
+  },
+  {
+    "start": 7.253,
+    "end": 8.518,
+    "text": "AI can help a beginner",
+    "words": [
+      {
+        "word": "AI",
+        "start": 7.253,
+        "end": 7.68
+      },
+      {
+        "word": "can",
+        "start": 7.765,
+        "end": 7.8507
+      },
+      {
+        "word": "help",
+        "start": 7.893,
+        "end": 8.064
+      },
+      {
+        "word": "a",
+        "start": 8.107,
+        "end": 8.149
+      },
+      {
+        "word": "beginner",
+        "start": 8.192,
+        "end": 8.405
+      }
+    ]
+  },
+  {
+    "start": 8.533,
+    "end": 10.353,
+    "text": "build impressive software before they",
+    "words": [
+      {
+        "word": "build",
+        "start": 8.533,
+        "end": 8.704
+      },
+      {
+        "word": "impressive",
+        "start": 8.789,
+        "end": 9.301
+      },
+      {
+        "word": "software",
+        "start": 9.344,
+        "end": 9.856
+      },
+      {
+        "word": "before",
+        "start": 9.941,
+        "end": 10.0267
+      },
+      {
+        "word": "they",
+        "start": 10.24,
+        "end": 10.325
+      }
+    ]
+  },
+  {
+    "start": 10.368,
+    "end": 12.188,
+    "text": "understand how its parts connect.",
+    "words": [
+      {
+        "word": "understand",
+        "start": 10.368,
+        "end": 10.837
+      },
+      {
+        "word": "how",
+        "start": 10.965,
+        "end": 11.093
+      },
+      {
+        "word": "its",
+        "start": 11.136,
+        "end": 11.221
+      },
+      {
+        "word": "parts",
+        "start": 11.307,
+        "end": 11.477
+      },
+      {
+        "word": "connect.",
+        "start": 11.605,
+        "end": 12.068
+      }
+    ]
+  },
+  {
+    "start": 12.318,
+    "end": 13.867,
+    "text": "When the next requirement changes,",
+    "words": [
+      {
+        "word": "When",
+        "start": 12.318,
+        "end": 12.445
+      },
+      {
+        "word": "the",
+        "start": 12.488,
+        "end": 12.5308
+      },
+      {
+        "word": "next",
+        "start": 12.573,
+        "end": 12.6588
+      },
+      {
+        "word": "requirement",
+        "start": 12.829,
+        "end": 13.213
+      },
+      {
+        "word": "changes,",
+        "start": 13.256,
+        "end": 13.747
+      }
+    ]
+  },
+  {
+    "start": 14.024,
+    "end": 15.588,
+    "text": "they can end up asking the assistant",
+    "words": [
+      {
+        "word": "they",
+        "start": 14.024,
+        "end": 14.1948
+      },
+      {
+        "word": "can",
+        "start": 14.238,
+        "end": 14.3228
+      },
+      {
+        "word": "end",
+        "start": 14.366,
+        "end": 14.4508
+      },
+      {
+        "word": "up",
+        "start": 14.493,
+        "end": 14.621
+      },
+      {
+        "word": "asking",
+        "start": 14.664,
+        "end": 14.8348
+      },
+      {
+        "word": "the",
+        "start": 15.005,
+        "end": 15.133
+      },
+      {
+        "word": "assistant",
+        "start": 15.176,
+        "end": 15.56
+      }
+    ]
+  },
+  {
+    "start": 15.603,
+    "end": 17.557,
+    "text": "to rediscover the whole project.",
+    "words": [
+      {
+        "word": "to",
+        "start": 15.603,
+        "end": 15.7308
+      },
+      {
+        "word": "rediscover",
+        "start": 15.774,
+        "end": 16.2428
+      },
+      {
+        "word": "the",
+        "start": 16.371,
+        "end": 16.456
+      },
+      {
+        "word": "whole",
+        "start": 16.499,
+        "end": 16.584
+      },
+      {
+        "word": "project.",
+        "start": 16.669,
+        "end": 17.437
+      }
+    ]
+  },
+  {
+    "start": 25.992,
+    "end": 27.428,
+    "text": "Teachers face the same gap",
+    "words": [
+      {
+        "word": "Teachers",
+        "start": 25.992,
+        "end": 26.3335
+      },
+      {
+        "word": "face",
+        "start": 26.462,
+        "end": 26.5895
+      },
+      {
+        "word": "the",
+        "start": 26.718,
+        "end": 26.8028
+      },
+      {
+        "word": "same",
+        "start": 26.846,
+        "end": 27.0588
+      },
+      {
+        "word": "gap",
+        "start": 27.144,
+        "end": 27.3575
+      }
+    ]
+  },
+  {
+    "start": 27.443,
+    "end": 28.544,
+    "text": "from the other side.",
+    "words": [
+      {
+        "word": "from",
+        "start": 27.443,
+        "end": 27.5708
+      },
+      {
+        "word": "the",
+        "start": 27.613,
+        "end": 27.699
+      },
+      {
+        "word": "other",
+        "start": 27.741,
+        "end": 27.784
+      },
+      {
+        "word": "side.",
+        "start": 27.912,
+        "end": 28.424
+      }
+    ]
+  },
+  {
+    "start": 28.723,
+    "end": 30.2935,
+    "text": "A polished take-home submission",
+    "words": [
+      {
+        "word": "A",
+        "start": 28.723,
+        "end": 28.765
+      },
+      {
+        "word": "polished",
+        "start": 28.808,
+        "end": 29.192
+      },
+      {
+        "word": "take-home",
+        "start": 29.405,
+        "end": 29.7895
+      },
+      {
+        "word": "submission",
+        "start": 29.875,
+        "end": 30.1735
+      }
+    ]
+  },
+  {
+    "start": 30.472,
+    "end": 31.863,
+    "text": "shows the finished product.",
+    "words": [
+      {
+        "word": "shows",
+        "start": 30.472,
+        "end": 30.6855
+      },
+      {
+        "word": "the",
+        "start": 30.771,
+        "end": 30.8988
+      },
+      {
+        "word": "finished",
+        "start": 30.942,
+        "end": 31.112
+      },
+      {
+        "word": "product.",
+        "start": 31.24,
+        "end": 31.743
+      }
+    ]
+  },
+  {
+    "start": 32.033,
+    "end": 33.554,
+    "text": "It may reveal very little about",
+    "words": [
+      {
+        "word": "It",
+        "start": 32.033,
+        "end": 32.2036
+      },
+      {
+        "word": "may",
+        "start": 32.246,
+        "end": 32.374
+      },
+      {
+        "word": "reveal",
+        "start": 32.417,
+        "end": 32.673
+      },
+      {
+        "word": "very",
+        "start": 32.758,
+        "end": 32.929
+      },
+      {
+        "word": "little",
+        "start": 33.057,
+        "end": 33.2276
+      },
+      {
+        "word": "about",
+        "start": 33.398,
+        "end": 33.526
+      }
+    ]
+  },
+  {
+    "start": 33.569,
+    "end": 36.377,
+    "text": "what the student can explain or change independently.",
+    "words": [
+      {
+        "word": "what",
+        "start": 33.569,
+        "end": 33.654
+      },
+      {
+        "word": "the",
+        "start": 33.697,
+        "end": 33.782
+      },
+      {
+        "word": "student",
+        "start": 33.825,
+        "end": 33.9956
+      },
+      {
+        "word": "can",
+        "start": 34.124,
+        "end": 34.209
+      },
+      {
+        "word": "explain",
+        "start": 34.294,
+        "end": 34.465
+      },
+      {
+        "word": "or",
+        "start": 34.764,
+        "end": 34.934
+      },
+      {
+        "word": "change",
+        "start": 35.02,
+        "end": 35.233
+      },
+      {
+        "word": "independently.",
+        "start": 35.446,
+        "end": 36.257
+      }
+    ]
+  },
+  {
+    "start": 36.556,
+    "end": 38.845,
+    "text": "Responsible AI learners need a fair chance",
+    "words": [
+      {
+        "word": "Responsible",
+        "start": 36.556,
+        "end": 37.0676
+      },
+      {
+        "word": "AI",
+        "start": 37.196,
+        "end": 37.4516
+      },
+      {
+        "word": "learners",
+        "start": 37.537,
+        "end": 37.8356
+      },
+      {
+        "word": "need",
+        "start": 37.964,
+        "end": 38.092
+      },
+      {
+        "word": "a",
+        "start": 38.134,
+        "end": 38.177
+      },
+      {
+        "word": "fair",
+        "start": 38.22,
+        "end": 38.39
+      },
+      {
+        "word": "chance",
+        "start": 38.476,
+        "end": 38.7316
+      }
+    ]
+  },
+  {
+    "start": 38.86,
+    "end": 40.558,
+    "text": "to show that understanding, too.",
+    "words": [
+      {
+        "word": "to",
+        "start": 38.86,
+        "end": 38.945
+      },
+      {
+        "word": "show",
+        "start": 38.988,
+        "end": 39.158
+      },
+      {
+        "word": "that",
+        "start": 39.201,
+        "end": 39.286
+      },
+      {
+        "word": "understanding,",
+        "start": 39.329,
+        "end": 39.862
+      },
+      {
+        "word": "too.",
+        "start": 39.969,
+        "end": 40.438
+      }
+    ]
+  },
+  {
+    "start": 47.78,
+    "end": 50.097,
+    "text": "Meet GroundTruth. Understand your code.",
+    "words": [
+      {
+        "word": "Meet",
+        "start": 47.78,
+        "end": 47.95
+      },
+      {
+        "word": "GroundTruth.",
+        "start": 48.036,
+        "end": 48.676
+      },
+      {
+        "word": "Understand",
+        "start": 48.846,
+        "end": 49.358
+      },
+      {
+        "word": "your",
+        "start": 49.401,
+        "end": 49.529
+      },
+      {
+        "word": "code.",
+        "start": 49.572,
+        "end": 49.977
+      }
+    ]
+  },
+  {
+    "start": 50.212,
+    "end": 51.468,
+    "text": "Think in systems.",
+    "words": [
+      {
+        "word": "Think",
+        "start": 50.212,
+        "end": 50.425
+      },
+      {
+        "word": "in",
+        "start": 50.51,
+        "end": 50.5956
+      },
+      {
+        "word": "systems.",
+        "start": 50.638,
+        "end": 51.348
+      }
+    ]
+  },
+  {
+    "start": 51.631,
+    "end": 53.031,
+    "text": "Bring a public GitHub project",
+    "words": [
+      {
+        "word": "Bring",
+        "start": 51.631,
+        "end": 51.844
+      },
+      {
+        "word": "a",
+        "start": 51.887,
+        "end": 51.9298
+      },
+      {
+        "word": "public",
+        "start": 51.972,
+        "end": 52.143
+      },
+      {
+        "word": "GitHub",
+        "start": 52.314,
+        "end": 52.655
+      },
+      {
+        "word": "project",
+        "start": 52.698,
+        "end": 52.911
+      }
+    ]
+  },
+  {
+    "start": 53.124,
+    "end": 54.332,
+    "text": "and choose a feature.",
+    "words": [
+      {
+        "word": "and",
+        "start": 53.124,
+        "end": 53.3378
+      },
+      {
+        "word": "choose",
+        "start": 53.38,
+        "end": 53.551
+      },
+      {
+        "word": "a",
+        "start": 53.636,
+        "end": 53.679
+      },
+      {
+        "word": "feature.",
+        "start": 53.722,
+        "end": 54.212
+      }
+    ]
+  },
+  {
+    "start": 54.447,
+    "end": 56.487,
+    "text": "Here, we are exploring task submission",
+    "words": [
+      {
+        "word": "Here,",
+        "start": 54.447,
+        "end": 54.767
+      },
+      {
+        "word": "we",
+        "start": 54.916,
+        "end": 55.044
+      },
+      {
+        "word": "are",
+        "start": 55.087,
+        "end": 55.1298
+      },
+      {
+        "word": "exploring",
+        "start": 55.172,
+        "end": 55.599
+      },
+      {
+        "word": "task",
+        "start": 55.684,
+        "end": 55.9405
+      },
+      {
+        "word": "submission",
+        "start": 56.111,
+        "end": 56.367
+      }
+    ]
+  },
+  {
+    "start": 56.581,
+    "end": 57.895,
+    "text": "in a small study app.",
+    "words": [
+      {
+        "word": "in",
+        "start": 56.581,
+        "end": 56.666
+      },
+      {
+        "word": "a",
+        "start": 56.709,
+        "end": 56.751
+      },
+      {
+        "word": "small",
+        "start": 56.794,
+        "end": 57.007
+      },
+      {
+        "word": "study",
+        "start": 57.093,
+        "end": 57.263
+      },
+      {
+        "word": "app.",
+        "start": 57.391,
+        "end": 57.775
+      }
+    ]
+  },
+  {
+    "start": 58.031,
+    "end": 59.943,
+    "text": "Follow the selected request flow.",
+    "words": [
+      {
+        "word": "Follow",
+        "start": 58.031,
+        "end": 58.2445
+      },
+      {
+        "word": "the",
+        "start": 58.373,
+        "end": 58.4578
+      },
+      {
+        "word": "selected",
+        "start": 58.501,
+        "end": 58.8845
+      },
+      {
+        "word": "request",
+        "start": 58.927,
+        "end": 59.2258
+      },
+      {
+        "word": "flow.",
+        "start": 59.354,
+        "end": 59.823
+      }
+    ]
+  },
+  {
+    "start": 60.122,
+    "end": 61.82,
+    "text": "The API receives an input.",
+    "words": [
+      {
+        "word": "The",
+        "start": 60.122,
+        "end": 60.207
+      },
+      {
+        "word": "API",
+        "start": 60.25,
+        "end": 60.6338
+      },
+      {
+        "word": "receives",
+        "start": 60.719,
+        "end": 60.975
+      },
+      {
+        "word": "an",
+        "start": 61.06,
+        "end": 61.103
+      },
+      {
+        "word": "input.",
+        "start": 61.146,
+        "end": 61.7
+      }
+    ]
+  },
+  {
+    "start": 61.914,
+    "end": 63.642,
+    "text": "A validation helper checks it.",
+    "words": [
+      {
+        "word": "A",
+        "start": 61.914,
+        "end": 61.956
+      },
+      {
+        "word": "validation",
+        "start": 61.999,
+        "end": 62.4258
+      },
+      {
+        "word": "helper",
+        "start": 62.554,
+        "end": 62.767
+      },
+      {
+        "word": "checks",
+        "start": 62.852,
+        "end": 63.0658
+      },
+      {
+        "word": "it.",
+        "start": 63.151,
+        "end": 63.522
+      }
+    ]
+  },
+  {
+    "start": 63.765,
+    "end": 66.381,
+    "text": "Valid data continues towards persistence.",
+    "words": [
+      {
+        "word": "Valid",
+        "start": 63.765,
+        "end": 64.106
+      },
+      {
+        "word": "data",
+        "start": 64.191,
+        "end": 64.362
+      },
+      {
+        "word": "continues",
+        "start": 64.49,
+        "end": 65.002
+      },
+      {
+        "word": "towards",
+        "start": 65.087,
+        "end": 65.258
+      },
+      {
+        "word": "persistence.",
+        "start": 65.386,
+        "end": 66.261
+      }
+    ]
+  },
+  {
+    "start": 66.623,
+    "end": 68.578,
+    "text": "Suddenly, a folder full of files",
+    "words": [
+      {
+        "word": "Suddenly,",
+        "start": 66.623,
+        "end": 67.157
+      },
+      {
+        "word": "a",
+        "start": 67.306,
+        "end": 67.5195
+      },
+      {
+        "word": "folder",
+        "start": 67.562,
+        "end": 67.8609
+      },
+      {
+        "word": "full",
+        "start": 67.946,
+        "end": 68.074
+      },
+      {
+        "word": "of",
+        "start": 68.117,
+        "end": 68.202
+      },
+      {
+        "word": "files",
+        "start": 68.245,
+        "end": 68.458
+      }
+    ]
+  },
+  {
+    "start": 68.714,
+    "end": 70.1569,
+    "text": "becomes a set of responsibilities",
+    "words": [
+      {
+        "word": "becomes",
+        "start": 68.714,
+        "end": 68.842
+      },
+      {
+        "word": "a",
+        "start": 69.013,
+        "end": 69.1409
+      },
+      {
+        "word": "set",
+        "start": 69.184,
+        "end": 69.312
+      },
+      {
+        "word": "of",
+        "start": 69.354,
+        "end": 69.3969
+      },
+      {
+        "word": "responsibilities",
+        "start": 69.44,
+        "end": 70.0369
+      }
+    ]
+  },
+  {
+    "start": 70.25,
+    "end": 71.475,
+    "text": "you can reason about.",
+    "words": [
+      {
+        "word": "you",
+        "start": 70.25,
+        "end": 70.3355
+      },
+      {
+        "word": "can",
+        "start": 70.378,
+        "end": 70.506
+      },
+      {
+        "word": "reason",
+        "start": 70.549,
+        "end": 70.719
+      },
+      {
+        "word": "about.",
+        "start": 70.847,
+        "end": 71.355
+      }
+    ]
+  },
+  {
+    "start": 85.649,
+    "end": 86.836,
+    "text": "The concept tree turns",
+    "words": [
+      {
+        "word": "The",
+        "start": 85.649,
+        "end": 85.692
+      },
+      {
+        "word": "concept",
+        "start": 85.735,
+        "end": 85.9907
+      },
+      {
+        "word": "tree",
+        "start": 86.247,
+        "end": 86.417
+      },
+      {
+        "word": "turns",
+        "start": 86.545,
+        "end": 86.716
+      }
+    ]
+  },
+  {
+    "start": 86.887,
+    "end": 88.884,
+    "text": "that workflow into focused practice:",
+    "words": [
+      {
+        "word": "that",
+        "start": 86.887,
+        "end": 87.0147
+      },
+      {
+        "word": "workflow",
+        "start": 87.057,
+        "end": 87.441
+      },
+      {
+        "word": "into",
+        "start": 87.527,
+        "end": 87.6547
+      },
+      {
+        "word": "focused",
+        "start": 87.783,
+        "end": 88.124
+      },
+      {
+        "word": "practice:",
+        "start": 88.209,
+        "end": 88.764
+      }
+    ]
+  },
+  {
+    "start": 89.105,
+    "end": 90.655,
+    "text": "trimming, length limits,",
+    "words": [
+      {
+        "word": "trimming,",
+        "start": 89.105,
+        "end": 89.575
+      },
+      {
+        "word": "length",
+        "start": 89.788,
+        "end": 90.001
+      },
+      {
+        "word": "limits,",
+        "start": 90.129,
+        "end": 90.535
+      }
+    ]
+  },
+  {
+    "start": 90.684,
+    "end": 92.912,
+    "text": "numeric IDs and request handling.",
+    "words": [
+      {
+        "word": "numeric",
+        "start": 90.684,
+        "end": 91.1107
+      },
+      {
+        "word": "IDs",
+        "start": 91.153,
+        "end": 91.58
+      },
+      {
+        "word": "and",
+        "start": 91.665,
+        "end": 91.793
+      },
+      {
+        "word": "request",
+        "start": 91.836,
+        "end": 92.1347
+      },
+      {
+        "word": "handling.",
+        "start": 92.22,
+        "end": 92.792
+      }
+    ]
+  },
+  {
+    "start": 93.065,
+    "end": 95.354,
+    "text": "Meta's Muse Spark generates an overview,",
+    "words": [
+      {
+        "word": "Meta's",
+        "start": 93.065,
+        "end": 93.449
+      },
+      {
+        "word": "Muse",
+        "start": 93.492,
+        "end": 93.705
+      },
+      {
+        "word": "Spark",
+        "start": 93.791,
+        "end": 94.004
+      },
+      {
+        "word": "generates",
+        "start": 94.132,
+        "end": 94.473
+      },
+      {
+        "word": "an",
+        "start": 94.559,
+        "end": 94.644
+      },
+      {
+        "word": "overview,",
+        "start": 94.687,
+        "end": 95.263
+      }
+    ]
+  },
+  {
+    "start": 95.369,
+    "end": 96.705,
+    "text": "source-linked guidance,",
+    "words": [
+      {
+        "word": "source-linked",
+        "start": 95.369,
+        "end": 95.924
+      },
+      {
+        "word": "guidance,",
+        "start": 96.009,
+        "end": 96.585
+      }
+    ]
+  },
+  {
+    "start": 96.82,
+    "end": 99.45,
+    "text": "multiple-choice questions and tiny coding tasks",
+    "words": [
+      {
+        "word": "multiple-choice",
+        "start": 96.82,
+        "end": 97.417
+      },
+      {
+        "word": "questions",
+        "start": 97.503,
+        "end": 97.716
+      },
+      {
+        "word": "and",
+        "start": 98.057,
+        "end": 98.2708
+      },
+      {
+        "word": "tiny",
+        "start": 98.313,
+        "end": 98.569
+      },
+      {
+        "word": "coding",
+        "start": 98.697,
+        "end": 98.9108
+      },
+      {
+        "word": "tasks",
+        "start": 98.996,
+        "end": 99.38
+      }
+    ]
+  },
+  {
+    "start": 99.465,
+    "end": 101.292,
+    "text": "from this code and the learner's goal.",
+    "words": [
+      {
+        "word": "from",
+        "start": 99.465,
+        "end": 99.5508
+      },
+      {
+        "word": "this",
+        "start": 99.593,
+        "end": 99.721
+      },
+      {
+        "word": "code",
+        "start": 99.807,
+        "end": 100.02
+      },
+      {
+        "word": "and",
+        "start": 100.191,
+        "end": 100.319
+      },
+      {
+        "word": "the",
+        "start": 100.361,
+        "end": 100.404
+      },
+      {
+        "word": "learner's",
+        "start": 100.447,
+        "end": 100.745
+      },
+      {
+        "word": "goal.",
+        "start": 100.788,
+        "end": 101.172
+      }
+    ]
+  },
+  {
+    "start": 101.428,
+    "end": 102.821,
+    "text": "The format stays familiar while",
+    "words": [
+      {
+        "word": "The",
+        "start": 101.428,
+        "end": 101.4708
+      },
+      {
+        "word": "format",
+        "start": 101.513,
+        "end": 101.8548
+      },
+      {
+        "word": "stays",
+        "start": 101.897,
+        "end": 102.1108
+      },
+      {
+        "word": "familiar",
+        "start": 102.196,
+        "end": 102.409
+      },
+      {
+        "word": "while",
+        "start": 102.665,
+        "end": 102.793
+      }
+    ]
+  },
+  {
+    "start": 102.836,
+    "end": 104.673,
+    "text": "the content changes with the project.",
+    "words": [
+      {
+        "word": "the",
+        "start": 102.836,
+        "end": 102.8788
+      },
+      {
+        "word": "content",
+        "start": 102.921,
+        "end": 103.1348
+      },
+      {
+        "word": "changes",
+        "start": 103.391,
+        "end": 103.604
+      },
+      {
+        "word": "with",
+        "start": 103.732,
+        "end": 103.86
+      },
+      {
+        "word": "the",
+        "start": 103.903,
+        "end": 103.988
+      },
+      {
+        "word": "project.",
+        "start": 104.031,
+        "end": 104.553
+      }
+    ]
+  },
+  {
+    "start": 114.948,
+    "end": 116.497,
+    "text": "Then comes the important moment:",
+    "words": [
+      {
+        "word": "Then",
+        "start": 114.948,
+        "end": 115.1609
+      },
+      {
+        "word": "comes",
+        "start": 115.204,
+        "end": 115.374
+      },
+      {
+        "word": "the",
+        "start": 115.46,
+        "end": 115.5875
+      },
+      {
+        "word": "important",
+        "start": 115.63,
+        "end": 115.8435
+      },
+      {
+        "word": "moment:",
+        "start": 116.014,
+        "end": 116.377
+      }
+    ]
+  },
+  {
+    "start": 116.612,
+    "end": 117.542,
+    "text": "try it yourself.",
+    "words": [
+      {
+        "word": "try",
+        "start": 116.612,
+        "end": 116.8249
+      },
+      {
+        "word": "it",
+        "start": 116.868,
+        "end": 116.91
+      },
+      {
+        "word": "yourself.",
+        "start": 116.953,
+        "end": 117.422
+      }
+    ]
+  },
+  {
+    "start": 117.763,
+    "end": 119.974,
+    "text": "New in-app study assistance pauses.",
+    "words": [
+      {
+        "word": "New",
+        "start": 117.763,
+        "end": 117.9769
+      },
+      {
+        "word": "in-app",
+        "start": 118.062,
+        "end": 118.3609
+      },
+      {
+        "word": "study",
+        "start": 118.403,
+        "end": 118.574
+      },
+      {
+        "word": "assistance",
+        "start": 118.745,
+        "end": 119.086
+      },
+      {
+        "word": "pauses.",
+        "start": 119.214,
+        "end": 119.854
+      }
+    ]
+  },
+  {
+    "start": 120.238,
+    "end": 123.238,
+    "text": "The first submitted response is preserved before feedback.",
+    "words": [
+      {
+        "word": "The",
+        "start": 120.238,
+        "end": 120.2809
+      },
+      {
+        "word": "first",
+        "start": 120.323,
+        "end": 120.5369
+      },
+      {
+        "word": "submitted",
+        "start": 120.622,
+        "end": 120.878
+      },
+      {
+        "word": "response",
+        "start": 121.006,
+        "end": 121.1769
+      },
+      {
+        "word": "is",
+        "start": 121.518,
+        "end": 121.603
+      },
+      {
+        "word": "preserved",
+        "start": 121.646,
+        "end": 122.03
+      },
+      {
+        "word": "before",
+        "start": 122.158,
+        "end": 122.243
+      },
+      {
+        "word": "feedback.",
+        "start": 122.457,
+        "end": 123.118
+      }
+    ]
+  },
+  {
+    "start": 123.395,
+    "end": 124.66,
+    "text": "You can also end an attempt",
+    "words": [
+      {
+        "word": "You",
+        "start": 123.395,
+        "end": 123.481
+      },
+      {
+        "word": "can",
+        "start": 123.523,
+        "end": 123.6089
+      },
+      {
+        "word": "also",
+        "start": 123.651,
+        "end": 123.779
+      },
+      {
+        "word": "end",
+        "start": 123.95,
+        "end": 124.1209
+      },
+      {
+        "word": "an",
+        "start": 124.206,
+        "end": 124.2489
+      },
+      {
+        "word": "attempt",
+        "start": 124.334,
+        "end": 124.547
+      }
+    ]
+  },
+  {
+    "start": 124.675,
+    "end": 125.699,
+    "text": "and return later.",
+    "words": [
+      {
+        "word": "and",
+        "start": 124.675,
+        "end": 124.803
+      },
+      {
+        "word": "return",
+        "start": 124.846,
+        "end": 124.931
+      },
+      {
+        "word": "later.",
+        "start": 125.188,
+        "end": 125.579
+      }
+    ]
+  },
+  {
+    "start": 134.843,
+    "end": 136.648,
+    "text": "Now the teacher has more to inspect:",
+    "words": [
+      {
+        "word": "Now",
+        "start": 134.843,
+        "end": 135.013
+      },
+      {
+        "word": "the",
+        "start": 135.056,
+        "end": 135.141
+      },
+      {
+        "word": "teacher",
+        "start": 135.184,
+        "end": 135.3548
+      },
+      {
+        "word": "has",
+        "start": 135.483,
+        "end": 135.6108
+      },
+      {
+        "word": "more",
+        "start": 135.653,
+        "end": 135.824
+      },
+      {
+        "word": "to",
+        "start": 135.867,
+        "end": 135.952
+      },
+      {
+        "word": "inspect:",
+        "start": 135.995,
+        "end": 136.528
+      }
+    ]
+  },
+  {
+    "start": 136.72,
+    "end": 137.864,
+    "text": "the original attempt,",
+    "words": [
+      {
+        "word": "the",
+        "start": 136.72,
+        "end": 136.805
+      },
+      {
+        "word": "original",
+        "start": 136.848,
+        "end": 137.0188
+      },
+      {
+        "word": "attempt,",
+        "start": 137.275,
+        "end": 137.744
+      }
+    ]
+  },
+  {
+    "start": 138,
+    "end": 140.488,
+    "text": "the concepts practised and requests for help.",
+    "words": [
+      {
+        "word": "the",
+        "start": 138,
+        "end": 138.0428
+      },
+      {
+        "word": "concepts",
+        "start": 138.085,
+        "end": 138.512
+      },
+      {
+        "word": "practised",
+        "start": 138.597,
+        "end": 139.0668
+      },
+      {
+        "word": "and",
+        "start": 139.195,
+        "end": 139.3228
+      },
+      {
+        "word": "requests",
+        "start": 139.365,
+        "end": 139.7068
+      },
+      {
+        "word": "for",
+        "start": 139.749,
+        "end": 139.877
+      },
+      {
+        "word": "help.",
+        "start": 139.92,
+        "end": 140.368
+      }
+    ]
+  },
+  {
+    "start": 140.688,
+    "end": 142.707,
+    "text": "The learner chooses which path to share.",
+    "words": [
+      {
+        "word": "The",
+        "start": 140.688,
+        "end": 140.773
+      },
+      {
+        "word": "learner",
+        "start": 140.816,
+        "end": 141.072
+      },
+      {
+        "word": "chooses",
+        "start": 141.115,
+        "end": 141.456
+      },
+      {
+        "word": "which",
+        "start": 141.541,
+        "end": 141.6268
+      },
+      {
+        "word": "path",
+        "start": 141.712,
+        "end": 141.925
+      },
+      {
+        "word": "to",
+        "start": 142.011,
+        "end": 142.096
+      },
+      {
+        "word": "share.",
+        "start": 142.139,
+        "end": 142.587
+      }
+    ]
+  },
+  {
+    "start": 142.864,
+    "end": 143.873,
+    "text": "Those records can guide",
+    "words": [
+      {
+        "word": "Those",
+        "start": 142.864,
+        "end": 143.0775
+      },
+      {
+        "word": "records",
+        "start": 143.12,
+        "end": 143.4188
+      },
+      {
+        "word": "can",
+        "start": 143.504,
+        "end": 143.632
+      },
+      {
+        "word": "guide",
+        "start": 143.675,
+        "end": 143.8028
+      }
+    ]
+  },
+  {
+    "start": 143.888,
+    "end": 145.452,
+    "text": "a fresh unaided follow-up",
+    "words": [
+      {
+        "word": "a",
+        "start": 143.888,
+        "end": 143.9735
+      },
+      {
+        "word": "fresh",
+        "start": 144.016,
+        "end": 144.2295
+      },
+      {
+        "word": "unaided",
+        "start": 144.443,
+        "end": 144.784
+      },
+      {
+        "word": "follow-up",
+        "start": 144.912,
+        "end": 145.3388
+      }
+    ]
+  },
+  {
+    "start": 145.467,
+    "end": 147.281,
+    "text": "and a better teaching conversation.",
+    "words": [
+      {
+        "word": "and",
+        "start": 145.467,
+        "end": 145.595
+      },
+      {
+        "word": "a",
+        "start": 145.638,
+        "end": 145.68
+      },
+      {
+        "word": "better",
+        "start": 145.723,
+        "end": 145.8508
+      },
+      {
+        "word": "teaching",
+        "start": 145.979,
+        "end": 146.2348
+      },
+      {
+        "word": "conversation.",
+        "start": 146.32,
+        "end": 147.161
+      }
+    ]
+  },
+  {
+    "start": 156.532,
+    "end": 158.21,
+    "text": "These are synthetic demo records,",
+    "words": [
+      {
+        "word": "These",
+        "start": 156.532,
+        "end": 156.66
+      },
+      {
+        "word": "are",
+        "start": 156.703,
+        "end": 156.788
+      },
+      {
+        "word": "synthetic",
+        "start": 156.831,
+        "end": 157.3
+      },
+      {
+        "word": "demo",
+        "start": 157.386,
+        "end": 157.556
+      },
+      {
+        "word": "records,",
+        "start": 157.642,
+        "end": 158.09
+      }
+    ]
+  },
+  {
+    "start": 158.239,
+    "end": 159.874,
+    "text": "not measured learning gains.",
+    "words": [
+      {
+        "word": "not",
+        "start": 158.239,
+        "end": 158.452
+      },
+      {
+        "word": "measured",
+        "start": 158.538,
+        "end": 158.7936
+      },
+      {
+        "word": "learning",
+        "start": 158.879,
+        "end": 159.007
+      },
+      {
+        "word": "gains.",
+        "start": 159.135,
+        "end": 159.754
+      }
+    ]
+  },
+  {
+    "start": 160.116,
+    "end": 161.879,
+    "text": "The index is provisional evidence,",
+    "words": [
+      {
+        "word": "The",
+        "start": 160.116,
+        "end": 160.2016
+      },
+      {
+        "word": "index",
+        "start": 160.244,
+        "end": 160.543
+      },
+      {
+        "word": "is",
+        "start": 160.671,
+        "end": 160.756
+      },
+      {
+        "word": "provisional",
+        "start": 160.799,
+        "end": 161.183
+      },
+      {
+        "word": "evidence,",
+        "start": 161.311,
+        "end": 161.759
+      }
+    ]
+  },
+  {
+    "start": 161.994,
+    "end": 163.344,
+    "text": "and outside AI use",
+    "words": [
+      {
+        "word": "and",
+        "start": 161.994,
+        "end": 162.164
+      },
+      {
+        "word": "outside",
+        "start": 162.207,
+        "end": 162.3776
+      },
+      {
+        "word": "AI",
+        "start": 162.634,
+        "end": 162.932
+      },
+      {
+        "word": "use",
+        "start": 163.018,
+        "end": 163.231
+      }
+    ]
+  },
+  {
+    "start": 163.359,
+    "end": 165.285,
+    "text": "is beyond the platform's view.",
+    "words": [
+      {
+        "word": "is",
+        "start": 163.359,
+        "end": 163.487
+      },
+      {
+        "word": "beyond",
+        "start": 163.53,
+        "end": 163.743
+      },
+      {
+        "word": "the",
+        "start": 164.042,
+        "end": 164.127
+      },
+      {
+        "word": "platform's",
+        "start": 164.17,
+        "end": 164.6816
+      },
+      {
+        "word": "view.",
+        "start": 164.724,
+        "end": 165.165
+      }
+    ]
+  },
+  {
+    "start": 165.434,
+    "end": 167.069,
+    "text": "GroundTruth runs on Vercel,",
+    "words": [
+      {
+        "word": "GroundTruth",
+        "start": 165.434,
+        "end": 165.946
+      },
+      {
+        "word": "runs",
+        "start": 166.032,
+        "end": 166.202
+      },
+      {
+        "word": "on",
+        "start": 166.288,
+        "end": 166.373
+      },
+      {
+        "word": "Vercel,",
+        "start": 166.416,
+        "end": 166.949
+      }
+    ]
+  },
+  {
+    "start": 167.098,
+    "end": 168.626,
+    "text": "with Supabase preserving evidence",
+    "words": [
+      {
+        "word": "with",
+        "start": 167.098,
+        "end": 167.3117
+      },
+      {
+        "word": "Supabase",
+        "start": 167.354,
+        "end": 167.781
+      },
+      {
+        "word": "preserving",
+        "start": 167.909,
+        "end": 168.2077
+      },
+      {
+        "word": "evidence",
+        "start": 168.336,
+        "end": 168.506
+      }
+    ]
+  },
+  {
+    "start": 168.762,
+    "end": 171.272,
+    "text": "and Meta powering contextual guidance.",
+    "words": [
+      {
+        "word": "and",
+        "start": 168.762,
+        "end": 169.018
+      },
+      {
+        "word": "Meta",
+        "start": 169.061,
+        "end": 169.2317
+      },
+      {
+        "word": "powering",
+        "start": 169.36,
+        "end": 169.701
+      },
+      {
+        "word": "contextual",
+        "start": 169.829,
+        "end": 170.341
+      },
+      {
+        "word": "guidance.",
+        "start": 170.469,
+        "end": 171.152
+      }
+    ]
+  },
+  {
+    "start": 171.493,
+    "end": 172.637,
+    "text": "Let AI cook.",
+    "words": [
+      {
+        "word": "Let",
+        "start": 171.493,
+        "end": 171.706
+      },
+      {
+        "word": "AI",
+        "start": 171.749,
+        "end": 172.005
+      },
+      {
+        "word": "cook.",
+        "start": 172.09,
+        "end": 172.517
+      }
+    ]
+  },
+  {
+    "start": 172.73,
+    "end": 173.704,
+    "text": "Know the recipe.",
+    "words": [
+      {
+        "word": "Know",
+        "start": 172.73,
+        "end": 172.9437
+      },
+      {
+        "word": "the",
+        "start": 172.986,
+        "end": 173.0717
+      },
+      {
+        "word": "recipe.",
+        "start": 173.114,
+        "end": 173.584
+      }
+    ]
+  },
+  {
+    "start": 173.84,
+    "end": 175.353,
+    "text": "Make the next change your own.",
+    "words": [
+      {
+        "word": "Make",
+        "start": 173.84,
+        "end": 174.01
+      },
+      {
+        "word": "the",
+        "start": 174.053,
+        "end": 174.181
+      },
+      {
+        "word": "next",
+        "start": 174.224,
+        "end": 174.309
+      },
+      {
+        "word": "change",
+        "start": 174.437,
+        "end": 174.6077
+      },
+      {
+        "word": "your",
+        "start": 174.693,
+        "end": 174.821
+      },
+      {
+        "word": "own.",
+        "start": 174.864,
+        "end": 175.233
+      }
+    ]
+  }
+]

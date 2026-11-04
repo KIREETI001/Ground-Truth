@@ -1,54 +1,51 @@
 # Judge guide
 
-Live URL: **https://groundtruth-meta.vercel.app** — real Meta generation and Supabase persistence verified
-GroundTruth source: **https://github.com/KIREETI001/Ground-Truth** — current cloud checkpoint `e9bda5a17aae57196a59c590d3c6e94b5711af6f`; final post-fix commit still to be recorded
-Sample repository: **https://github.com/KIREETI001/groundtruth-demo-study-tasks**
-Video: https://groundtruth-meta.vercel.app/demo (2:55 edited walkthrough; verify final deployment before submitting)
+Release status: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. These instructions describe the revised implementation. The release operator must verify the deployed journey and fill the [release manifest](release-manifest.json) before presenting it as release evidence.
+
+- Application: [GroundTruth](https://groundtruth-meta.vercel.app/login)
+- Source: [Ground-Truth](https://github.com/KIREETI001/Ground-Truth)
+- Public sample: [groundtruth-demo-study-tasks](https://github.com/KIREETI001/groundtruth-demo-study-tasks)
+- Video: [Walkthrough](https://groundtruth-meta.vercel.app/demo). Revised asset/playback: **PENDING_FINAL_VIDEO_VERIFICATION**.
+
+The official competition form remains unsubmitted. Publishing consent remains unchecked.
+
+## Start in one click
+
+After the revised release is deployed, open `/login` and choose **Try sample learning path**. No signup or shared password is needed. Each visitor gets a separate temporary learner session and private practice copy, expiring after two hours. Another visitor cannot sign you out or read your project.
+
+The pinned public sample, overview and concepts were prepared in advance with Meta and validated by the operator. They are labelled as prepared content. **Generate question** makes a new Meta request; a prerecorded walkthrough or prepared overview is not evidence of a fresh generation.
+
+At mobile width the sample action appears before the story and animation, followed by the Student/Teacher role cards. Production visual checks at 375 pixels are a release gate.
 
 ## Five-minute route
 
-**Review hold:** the participant will inspect all submission materials first. Do not submit the official form or accept publishing consent.
+1. **Trace the code.** In Workflow, read the overview and selected source. Find the request, validation helper and database write. The reading flow covers selected files at a pinned commit, not the entire repository.
+2. **Make an initial attempt.** Choose a concept and generate an MCQ or small coding task. Start independently: new in-app study assistance pauses. Submit your response, or use End attempt to stop. A submitted response is retained before feedback.
+3. **Make one small change.** In Changes, create a private draft only after reviewing its permission checkbox. Change a title-length boundary, review the diff and explicitly apply it. This updates your practice copy; it does not push to GitHub.
+4. **Check the actual change.** Use Check my understanding on the applied change. The server reconstructs its before/after source, hashes and diff from your owned proposal. The task can address the edit rather than only the current file. Generate a fresh variation after submission to inspect the same idea in a new task; both attempts remain saved.
+5. **See the teacher perspective.** Use the sample banner's link to `/demo/teacher`. It shows only your own synthetic sample record, read-only. Inspect the original committed answer, task and source. This preview grants no Teacher role and cannot save an assessment.
 
-The demonstration connects two needs: a builder learning how code and architecture fit together, and a teacher who needs evidence of independent understanding beyond a polished AI-assisted take-home artifact. Responsible AI use should have room for learning and an inspectable independent check.
+For a real classroom account, the learner can select an enrolled approved teacher by name and explicitly share a path. An approved teacher sees learner/class context, filters Needs review or Reviewed, inspects committed answers and source, and saves a qualified human review. Class enrollment alone does not share projects. Teacher/Developer credentials are never public demo credentials.
 
-1. Open the live URL and create a Student profile, or use the separately supplied synthetic judge account. All roles use the same login. Public Developer registration is unavailable.
-2. Start a learning path and import the sample repository. Acknowledge the source-processing notice. Select a Backend feature about task submission or validation; generated labels may differ.
-3. Use this goal: “I am a beginner. Teach me task-title validation: trimming, empty titles and length limits. Use simple MCQs and tiny coding tasks.”
-4. Read the Workflow overview and its visual reading flow. Open the selected source. This is a pinned, bounded source selection, not a complete repository audit.
-5. Open Concepts and choose a validation concept. Generate an MCQ in Practice. Options appear immediately. Check the suggested answer against the actual source after submitting.
-6. Generate a short coding task. Start an independent attempt and confirm new study guidance pauses. Submit a short snippet, or choose End attempt. Submitted snippets are stored, not executed.
-7. Open Progress. Confirm the original response remains visible and the index is described as provisional evidence. An unreviewed response is not a teacher-certified skill.
-8. Optionally join a prepared class and explicitly share this project with the approved synthetic teacher. In a separate teacher account, inspect the saved attempt. No teacher/developer credentials belong in the public repository.
+## What to inspect in the sample
 
-For the teacher step, inspect the original submitted snippet, its concept link and the recorded in-app activity. This can inform the teacher's next discussion, fresh unaided check or teaching adjustment. Those remain human choices. The MVP has no teacher-side AI quiz authoring, assignment distribution or cohort analytics. It makes no claim of detecting outside AI, improving grades or reducing marking time.
-
-The hosted release supports controlled cloud drafts. Public checks verified manual draft editing, explicit review confirmation and idempotent apply. Browser checks verified the draft interface. This does not change the GitHub repository, execute code or establish that the AI proposal path works. Laptop-only filesystem behavior remains separate.
-
-## Grounded facts in the example
-
-| Source | Fact to inspect |
+| Source | Responsibility |
 | --- | --- |
-| `server/validation.js` | Trims the title; rejects a blank title and titles longer than 80 characters |
-| `server/api.js` | Task creation returns 201; invalid input returns 400 |
-| `db/schema.sql` | A row has a primary key; a new task starts incomplete |
-| `db/store.js` | SQL values are supplied separately through placeholders |
-| `frontend/app.js` | Uses `textContent` for task-title display |
+| `server/validation.js` | Trimming, blank-title rejection and the title-length boundary |
+| `server/api.js` | Valid/invalid task-creation responses |
+| `db/schema.sql` and `db/store.js` | Row structure and parameterized persistence |
+| `frontend/app.js` | How a task title reaches the interface |
 
-These source facts describe the supplied demo repository at the version rehearsed. Recheck its pinned commit if changed. Do not treat a generated answer key as authoritative without source review.
+Check the pinned source before accepting a generated explanation or suggested answer key. If final evidence includes a trusted sample-fixture result, record its exact commit, inputs and expected/observed outputs. That operator-run check is separate from the hosted app and never executes arbitrary imported or submitted code.
 
-## Access and data boundaries
+## Boundaries and failures
 
-- A Student sees their own paths. Teachers need approval and an explicit project share. Class enrollment alone does not grant all-project access.
-- Developer access is provisioned by the operator; role choice on signup cannot grant it.
-- Independent mode pauses assistance inside GroundTruth. It cannot prevent external tools or establish authorship.
-- Public-repository import needs GitHub availability and supported file sizes. Private repository access is not part of this demo.
-- Provider errors should remain visible. A failure must not be replaced by an unlabeled fixed question or local response.
-- Use synthetic data. The submission contains no real learner research results.
+- Independent mode pauses assistance inside GroundTruth. It cannot detect outside AI use, prove authorship or stop external tools.
+- Displayed concept evidence uses observed/reviewed states. Submitting an answer does not award a mastery percentage or certify understanding.
+- MCQ keys and review suggestions can be wrong. Human source review and a fresh task remain necessary.
+- Teacher-side AI quiz authoring, assignment distribution and cohort analytics are future work.
+- Model failures remain visible. Retry the action or end the unfinished attempt; no canned question is silently substituted.
+- Demo creation has per-identity, global and active-session budgets. A capacity error is not an invitation to use shared credentials.
+- Demo records are synthetic. No external learner/teacher study has been conducted: **n = 0**. Operator or TinyFish checks are QA, not participant feedback.
 
-## If a generation fails
-
-Retry from the visible action after the displayed error, or end an unfinished attempt before beginning another. Do not submit a fake response merely to clear the state. Operator diagnostics should inspect only sanitized request status/model/usage and never disclose API keys or passwords.
-
-## Release evidence
-
-The final commit, migration identifier, actual Meta model, check logs, live smoke-test result and screenshot filenames must be recorded in [release-manifest.json](release-manifest.json). The hosted backend and generated learning journey are verified at this checkpoint. Keep final release changes and media evidence synchronized with the manifest.
+The final commit, deployed version, checks, model receipts, screenshots and video verification belong in [release-manifest.json](release-manifest.json). Earlier evidence does not certify this revised release.

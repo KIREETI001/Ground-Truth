@@ -1,0 +1,56 @@
+{
+  "units": "seconds",
+  "source": "../video-v2/narration-alyssa.mp3",
+  "sourceDuration": 118.46530612244898,
+  "speed": 1,
+  "holds": [
+    {
+      "sourceTime": 17.75,
+      "duration": 8,
+      "id": "research",
+      "purpose": "Early original-answer and teacher-evidence payoff",
+      "originalV2Purpose": "Programming research: assisted performance is not independent understanding"
+    },
+    {
+      "sourceTime": 32.6,
+      "duration": 7,
+      "id": "assessment-gap",
+      "purpose": "Private diff and change-linked task preview",
+      "originalV2Purpose": "Teacher assessment pain: polished artifact and independent ability are different evidence"
+    },
+    {
+      "sourceTime": 56.5,
+      "duration": 14,
+      "id": "source-demo",
+      "purpose": "Pinned source and actual applied-diff inspection",
+      "originalV2Purpose": "Trace real task validation and examine source at readable size"
+    },
+    {
+      "sourceTime": 75.75,
+      "duration": 10,
+      "id": "practice-demo",
+      "purpose": "Source inspection and change-understanding task",
+      "originalV2Purpose": "Read actual MCQ and coding task; source remains available"
+    },
+    {
+      "sourceTime": 86.7,
+      "duration": 9,
+      "id": "independent-demo",
+      "purpose": "Fresh variation and observed/reviewed evidence states",
+      "originalV2Purpose": "Inspect paused assistance, original answer, voluntary exit"
+    },
+    {
+      "sourceTime": 99.4,
+      "duration": 9,
+      "id": "teacher-demo",
+      "purpose": "Synthetic evidence and current-state limitations",
+      "originalV2Purpose": "Inspect real teacher evidence and distinguish engineering from educational validation"
+    }
+  ],
+  "tailSeconds": 3,
+  "totalDuration": 178.465306122449,
+  "audioMaster": "../video-v2/mix-master.wav",
+  "timingUnchangedFrom": "../video-v2/source-to-final-map.json",
+  "visualsRecutIndependently": true,
+  "speechReordered": false
+}

@@ -278,7 +278,14 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
  }
  if(action==='hint'){
   fields(body,['question','sessionId']);const question=string(body.question,'question',3,1000);const sessionId=body.sessionId===undefined?null:string(body.sessionId,'sessionId',1,100);await event(c,id,'guidance-query',{question,sessionId});
-  const out=await call('hint',{goal:p.goal,question});
+  const latest=await c.DB.prepare("SELECT prompt_json FROM study_exercises WHERE project_id=? AND ended_at IS NULL AND status IN ('guided','submitted') ORDER BY created_at DESC,rowid DESC LIMIT 1").bind(id).first<{prompt_json:string}>();
+  const prompt=latest?JSON.parse(latest.prompt_json):null,captured=prompt?.sourceContext;
+  let hintSnapshot=snapshot;
+  if(captured){
+   if(typeof captured.path!=='string'||typeof captured.source!=='string'||captured.source.length>6000||!snapshot.files.some(file=>file.path===captured.path))throw new ApiError(409,'HINT_SOURCE_CONTEXT_INVALID','The saved question source is unavailable. Start a new exercise.');
+   hintSnapshot={...snapshot,files:[{path:captured.path,language:snapshot.files.find(file=>file.path===captured.path)?.language||'source',excerpt:captured.source}]};
+  }
+  const out=await call('hint',{goal:p.goal,question,...(prompt?{exercise:{title:prompt.title,prompt:prompt.prompt,phase:prompt.phase}}:{}),...(captured?{sourceLabel:captured.label}:{})},hintSnapshot);
   await event(c,id,'assistance-requested',{question,response:out});
   return json({response:out,project:await view(c,p)});
  }

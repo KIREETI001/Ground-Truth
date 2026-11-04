@@ -1,0 +1,89 @@
+{
+  "date": "2026-11-05",
+  "kind": "Engineering and automated browser QA; no external participants",
+  "parallelSearch": {
+    "provider": "Parallel Search",
+    "searchedAt": "2026-11-04T20:05:00Z",
+    "status": "success",
+    "sources": [
+      {
+        "url": "https://dev.meta.ai/docs/prompt-caching",
+        "title": "Prompt caching - Meta Model API"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/cookbook/prompt-caching",
+        "title": "Model API | Prompt caching - dev.meta.ai"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/structured-output",
+        "title": "Structured output - Meta Model API"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/prompt-caching.md",
+        "title": "Prompt caching"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/cookbook/api-fundamentals",
+        "title": "API fundamentals — Meta Model API cookbook - Meta Model API"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/pricing-rate-limits",
+        "title": "Pricing and rate limits - Meta Model API"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/cookbook/prompt-caching.md",
+        "title": "Prompt caching"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/cookbook/structured-output",
+        "title": "Structured output - Meta Model API"
+      },
+      {
+        "url": "https://dev.meta.ai/llms.txt",
+        "title": "https://dev.meta.ai/llms.txt"
+      },
+      {
+        "url": "https://dev.meta.ai/docs/protocols/chat-completions?project_id=27817722687883336&team_id=1027110573642699",
+        "title": "Chat completion - Meta Model API - dev.meta.ai"
+      }
+    ],
+    "use": "Verify current official Meta prompt-caching and structured-output capabilities; no comparative model-performance claim.",
+    "initialAttempt": "Rate limited; retried after provider-specified interval."
+  },
+  "tinyFish": {
+    "runId": "9f654db0-26d4-4626-a237-d25a2c2cbb8f",
+    "runUrl": "https://agent.tinyfish.ai/runs/9f654db0-26d4-4626-a237-d25a2c2cbb8f",
+    "kind": "automated browser QA; no human participants",
+    "status": "completed",
+    "steps": 29,
+    "durationSeconds": 236,
+    "findings": {
+      "learnerEntry": true,
+      "sourceAndConcepts": true,
+      "freshMcqCommitted": true,
+      "horizontalOverflowObserved": false,
+      "teacherPreview": "automated browser reported redirect; same-host normal browser and authenticated page/API checks passed; retain discrepancy"
+    },
+    "recordingRequested": true,
+    "downloadableRecordingReturned": false
+  },
+  "context7": {
+    "library": "/vercel/next.js",
+    "use": "Checked current Next.js server authorization and secure-cookie guidance against local bundled documentation.",
+    "changes": "Server access checks remain authoritative; no client role selection grants a role."
+  },
+  "omgSkills": {
+    "skill": "ComeOnOliver/skillshub:skills/guanyang/antigravity-skills/evaluation",
+    "pinnedRef": "def8531e65114c0fca8fb8551c1871ee0eed705c",
+    "use": "Separate outcome-specific automatic and source-assisted content checks; retain concerns and failures; distinguish operator QA from human validation."
+  },
+  "externalStudy": {
+    "status": "not_conducted",
+    "learners": 0,
+    "educators": 0
+  },
+  "officialForm": {
+    "submitted": false,
+    "consentAccepted": false
+  }
+}

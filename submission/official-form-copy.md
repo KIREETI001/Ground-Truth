@@ -1,101 +1,104 @@
-# Official Cerebral Valley form copy
+# Official form copy — local review only
 
-Form inspected in the authenticated official portal on 5 November 2026. The three narrative answers below are each under the observed 3,000-character limit. They are editorial drafts. **User review hold: do not submit this form. The participant will inspect everything first. Leave publishing consent unchecked.** Actual Meta runtime calls and the public learning-state journey have passed acceptance checks at this checkpoint.
+**Local editable copy only. Do not submit the official portal or accept publishing consent.** The participant retains final review. These file changes do not update any existing portal draft.
 
-## Team Name
+Revised release: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. Video asset/playback: **PENDING_FINAL_VIDEO_VERIFICATION**. The narrative describes implemented code; exact final hosted behavior and evidence still need release verification.
 
-GroundTruth
+The authenticated form was previously inspected on 5 November 2026. Recheck current required fields/declarations before any authorized final submission. Values below match form-values.json.
 
-## Team Members
+## Participant-confirmed fields
 
-Confirmed by the participant: solo submission as Kireeti Kumar (`kireeti2`). Prior proposal authors remain attribution, not hackathon team members.
+- Team: GroundTruth
+- Solo entrant: Kireeti Kumar (`kireeti2`)
+- Track: Indie Developer Track
+- Problem: Build for Your World
+- Likelihood of building with Meta Model API: Very likely
+- Overall opinion: Very favorable
 
-## Track — required
+## Project Description
 
-Confirmed: **Indie Developer Track**.
-
-## Problem — required
-
-Confirmed: **Build for Your World**.
-
-## Project Description — maximum 3,000 characters
-
-```text
-AI can build a working app before its builder understands the system. Even a one-line change can send a beginner back to an assistant to reread the repository. GroundTruth helps that learner understand the code and architecture, think in systems, and practise the next change independently.
-
-Teachers face a connected assessment problem. An AI-assisted take-home artifact can look polished while revealing little about independent ability. Students using AI responsibly to learn also need a fair opportunity to demonstrate what they understand. A fresh unaided check may expose gaps the artifact hides; reconstructing those gaps through extra manual questioning and marking can add to the teacher's workload. The goal is evidence for better judgement, not an AI-use detector.
-
-Bring a public GitHub repository and choose a feature, such as backend task submission. GroundTruth connects selected source at a pinned commit to a beginner overview, visual reading flow and small concept tree. The learner explores with contextual guidance, then answers an MCQ or writes a tiny snippet with new in-app study assistance paused. The original submitted answer is preserved before feedback. They can end an attempt, revisit saved paths, and choose what to share with an approved teacher.
-
-The teacher sees that original answer, relevant observed app activity and concept-linked evidence. This can help them identify a concept worth discussing, choose a fresh unaided follow-up and adapt their teaching. Those follow-ups remain human decisions: teacher-side AI quiz authoring, assignment distribution and cohort analytics are future work. Class enrollment alone does not disclose every project.
-
-The current concept index is provisional evidence, not a validated mastery score or automatic grade. GroundTruth cannot detect outside AI use, establish authorship or claim measured learning, grading-fairness or marking-time gains.
-
-The live MVP uses Muse Spark 1.3 Standard through Meta Model API, Vercel and Supabase PostgreSQL. Its server enforces access, learning state and immutable submissions; imported code and student snippets are not executed. The demo uses a synthetic account tracing request → validation → persistence, then sharing its practice evidence for human review.
-
-Support responsible AI learning. Make independent understanding visible.
-
-Live demo: https://groundtruth-meta.vercel.app
-```
-
-## Public GitHub Repository
-
-`https://github.com/KIREETI001/Ground-Truth`
-
-Verified deployed code: `0b37fa2529cc561050b19e08613827ffb2a4e79d` on `main`. The sample study-task repository belongs in the description or guide; it is not the GroundTruth source submission.
-
-## 3-Minute Demo Video
-
-Local MP4 complete: [video/GroundTruth_Demo.mp4](video/GroundTruth_Demo.mp4), 2:55.02, 720p H.264/AAC. It is an openly labelled narrated walkthrough of actual hosted UI stills, using a synthetic account. Verified public video page: https://groundtruth-meta.vercel.app/demo. A script or slide deck is not the required video.
-
-## Describe your use of Meta products to build the submitted project — maximum 3,000 characters
+2151 / 3000 characters.
 
 ```text
-GroundTruth uses Muse Spark 1.3 Standard through Meta Model API to turn selected public code, a learner's goal and the current task into contextual learning content: repository maps, beginner overviews, concept nodes, MCQs, short coding prompts, grounded hints and supported change proposals.
+AI can produce a working app before its builder understands the system. When a small requirement changes, the builder may still need an assistant to reread the repository. GroundTruth helps them trace actual code, think in system responsibilities and try the next change independently.
 
-The same structured integration feeds workflow → concepts → practice → changes/apply skills → progress. Different repositories retain a familiar interface while their actual selected code determines the content. Server-side schemas validate output shape and approved-source references. A valid structure does not make an explanation or suggested answer infallible.
+A judge starts with Try sample learning path: an isolated two-hour synthetic learner session and private practice copy, with no shared password. The pinned overview and concepts were prepared with Meta; new questions still make live requests. The learner follows request → validation → persistence, chooses a concept and answers an MCQ or tiny coding task. New in-app study assistance pauses during an independent attempt, and the original submission is preserved before feedback.
 
-For assessment, Meta generates focused practice that can surface something more inspectable than a polished take-home artifact: the learner's own response to a code-linked question. The application then pauses new study assistance for an independent attempt and preserves the original submission. Teachers can review explicitly shared attempts and observed app activity. The model does not grade the artifact, infer outside AI use or certify understanding. Teacher-side AI quiz authoring and assignment management are not built.
+The learner can make a small permitted edit, review and apply its diff, then request a task grounded in the stored before/after source and hashes. A linked fresh variation retains both attempts. The hosted app does not execute imported code or submitted snippets, or push changes to GitHub. Separate fixed demo checks are operator engineering evidence.
 
-The application owns authentication, roles, explicit shares, budgets, immutable answers and phase transitions. Meta cannot grant access, invent execution results or override the independent-mode boundary. This supports responsible AI-assisted exploration followed by an observable opportunity to try independently.
+For human review, a learner explicitly shares a chosen path with an approved teacher. The teacher sees privacy-scoped learner/class context, filters answers awaiting review, inspects original responses and source, and saves a qualified judgement and next step. Enrollment alone does not share projects. A read-only teacher perspective lets each demo visitor inspect only their own sample without receiving teacher privileges.
 
-The workflow was first developed with local Qwen inference, then moved to Meta's hosted model. Qwen and llama.cpp are not counted as Meta usage. Codex assisted implementation, debugging, tests and documentation; it is not a Meta product.
+Concept evidence uses observed/reviewed states, not a mastery percentage. GroundTruth cannot detect outside AI, prove authorship or automatically grade understanding. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.
 
-The deployed provider is Meta directly, using the Standard model ID and a server-only key, with no silent local or preset-response fallback. Selected inputs leave the device; Standard mode's no-training policy is not a zero-retention claim.
+The implementation uses Muse Spark 1.3 Standard through Meta Model API, Next.js/Vercel and Supabase PostgreSQL. There are no external user-study participants or feedback (n = 0); tests and operator/TinyFish QA do not establish learning gains, fairer grading or reduced marking time.
 
-Eight actual Muse Spark adapter tasks passed schema/source checks. The public deployment also generated and persisted learning content and verified independent assistance blocking and voluntary exit. These are engineering acceptance checks, not educational-effectiveness or assessment-validity results.
+Live demo: https://groundtruth-meta.vercel.app/login
 ```
 
-## Why are Meta's models important to your solution? — maximum 3,000 characters
+## Describe your use of Meta products to build the submitted project
+
+2280 / 3000 characters.
 
 ```text
-GroundTruth needs a model that understands code and system responsibilities while producing concise, contextual learning content. Muse Spark 1.3 combines documented coding capabilities with structured output, allowing one validated integration to create maps, overviews, concepts, MCQs, short coding tasks and hints from selected source.
+GroundTruth uses Muse Spark 1.3 Standard through Meta Model API to turn selected public source and a learner goal into workflow maps, beginner overviews, concept suggestions, MCQs, small coding tasks, source-grounded hints, formative follow-up questions and controlled edit proposals.
 
-The important use is a question about this learner's code, rather than a score for a polished artifact. A dynamic MCQ or tiny coding task creates an opportunity to demonstrate understanding of a specific concept. GroundTruth pauses new study assistance during the attempt and preserves the response for optional teacher review. Meta helps scaffold the learning; the teacher retains judgement about what the evidence supports and what fresh unaided follow-up is needed.
+The same direct structured-output integration supports code → concepts → independent practice → a small applied change → human review. The server validates output shape and allowed source references. Relevant-line selection prioritizes useful code within a bounded context; valid JSON is not proof of factual correctness or one unambiguous answer.
 
-This matters when take-home AI-assisted work and independent ability are difficult to distinguish from the final product alone. We want to protect room for responsible AI learning and make gaps discussable. We do not claim to detect AI authorship, improve grading fairness or reduce marking time. Teacher-side AI quiz creation and cohort analytics remain future work.
+Change-linked questions receive before/after source, hashes and a reconstructed diff from an owned stored applied proposal. Fresh-variation tasks link an earlier submitted attempt while retaining both original answers. The model cannot create the provenance by accepting arbitrary client text.
 
-Structured outputs keep the interface consistent across repositories. Strict application schemas and approved-source checks constrain each response; the model cannot award mastery, change roles or bypass independent mode. Generated answer keys still need source review.
+The application owns opaque sessions, roles, private projects, explicit teacher shares, budgets, independent-mode transitions and immutable answers. Starting an independent attempt pauses new study assistance. A teacher reviews authorized committed evidence; Meta does not grant access, infer outside AI use, certify mastery or award a grade. Teacher quiz authoring and assignment management are future work.
 
-Frequent learning interactions also need a budget. We use selected files and focused goals rather than repeatedly sending an entire repository. Actual requests reported cached prompt tokens for source-grounded hints and feedback. Published Spark Standard pricing provides a transparent budgeting basis. We have not measured total learner token savings or comparative model performance.
+The judge sample reuses a validated Meta-prepared overview and concepts, clearly labelled. New questions require new Meta calls. Sanitized receipts record task/provider/model/status/timing and available numeric usage without prompts or learner answers. Prerecorded video is demonstration material, not fresh inference evidence.
 
-Standard mode avoids opting learner context into model training, although selected content still goes to Meta. The wider Meta model family offers future options for demanding reasoning or institution-managed open-weight deployments, which require separate evaluation.
+Earlier workflow development used local Qwen via llama.cpp. That is not Meta usage. Codex assisted coding, debugging, tests and documentation; it is not Muse Code. Runtime credentials remain server-only and no silent local or canned-question fallback is used. Selected context leaves the device; Standard mode's no-training policy is not a zero-retention claim.
 
-Meta is a strong technical fit for contextual teaching content; GroundTruth's distinctive contribution is the loop around it: understand a system, practise with assistance paused, retain the original attempt, and support human review.
+Historical real-provider acceptance evidence and the final release's actual checks are reported separately. Neither engineering checks nor operator source review establish educational effectiveness, assessment validity or comparative model quality.
 ```
 
-## Partner technology feedback — maximum 150 characters
+## Why are Meta's models important to your solution?
+
+2001 / 3000 characters.
 
 ```text
-Vercel hosts GroundTruth; Supabase persists learning evidence. Real Meta structured outputs and public learner-state checks passed.
+GroundTruth needs contextual code reasoning and small, consistent teaching outputs. Muse Spark 1.3 supports the coding and structured-output workflow we use: selected source becomes an overview, concepts and one focused task through a validated integration.
+
+The meaningful use is a question about the learner's actual code and applied diff. It creates something a human can inspect alongside a polished take-home artifact: the learner's original response. GroundTruth pauses new in-app study assistance during that attempt and keeps the response. Meta scaffolds exploration; a teacher decides what the evidence supports and which fresh follow-up would help.
+
+Structured output keeps the interface consistent across repositories. Source-reference checks constrain citations, and trusted change context ties a task to a real saved edit. Generated explanations, MCQ keys and review suggestions can still be wrong. The model cannot award mastery, change roles or bypass independent mode.
+
+Frequent small interactions also need bounded context and observable failure. We use selected relevant source and record sanitized provider timing/status/usage where available. Prepared sample context reduces entry friction, while fresh questions remain live. These are design choices, not measured token savings or a guarantee of latency.
+
+We use the Standard model ID, for which Meta states content is not used for model training. Selected inputs still leave the device, and we make no zero-retention claim. The direct server-side integration has no silent preset/local fallback.
+
+There is no provider-comparison benchmark and no external user study (n = 0). We do not claim Meta is faster, cheaper, more accurate or safer than alternatives, or that GroundTruth improves grades or saves marking time. Teacher-side AI quiz authoring and cohort analytics are future work.
+
+Meta supplies contextual teaching content; GroundTruth contributes the source-to-change-to-independent-attempt-to-human-review loop around it.
 ```
 
-## Other observed fields
+## Partner technology feedback
 
-- Optional viral X post URL: leave blank unless a real relevant post is provided. Do not create or send a social post without the user's instruction.
-- Required likelihood of building with Meta Model API and overall opinion: participant confirmed **Very likely** and **Very favorable** respectively. Do not infer other survey ratings from these answers.
-- Meta Model API NPS (0–5) and Muse Code NPS (0–5): preserve the form's actual scale. Codex usage is not Muse Code usage. “Not used” or an explanation may be appropriate only if the form supports it.
-- Biggest obstacle, performance comparison, importance, switching and production-blocker questions: use actual observed experience. At this checkpoint, actual Meta generation and hosted state checks passed; there is no provider comparison benchmark.
-- Publishing/marketing consent checkbox: grants rights to Meta/Cerebral Valley. Do not accept on the participant's behalf. The participant must review the actual declaration before final submission.
+122 / 150 characters.
 
-There is no separate observed live-deployment URL field; include the verified URL in Project Description. Retain a success receipt only after the official portal confirms submission.
+```text
+Meta supplies contextual practice; Vercel hosts the app; Supabase stores source-linked attempts for optional human review.
+```
+
+## Public GitHub repository
+
+https://github.com/KIREETI001/Ground-Truth
+
+Final commit: **PENDING_FINAL_COMMIT**. The public study-task sample is a demo input, not the GroundTruth source submission. The implementation is MIT licensed; preserve LICENSE, NOTICE and third-party attribution.
+
+## Three-minute demo video
+
+https://groundtruth-meta.vercel.app/demo
+
+**PENDING_FINAL_VIDEO_VERIFICATION.** The release manifest must identify the revised asset, exact duration/dimensions/hash, captions/transcript and observed browser playback. Edited/prerecorded captures and prepared model outputs are labelled; they do not demonstrate a fresh inference request. Do not carry historical media specifications forward.
+
+## Other observed fields and review controls
+
+- Optional viral X post URL: leave blank unless the participant supplies an actual relevant post.
+- API/Muse Code ratings, obstacle, comparison, switching and production-blocker answers must reflect the participant's actual experience and the form's scale. Codex is not Muse Code, and no provider-comparison benchmark exists.
+- No external usability sessions or feedback were collected: not conducted, n = 0. Operator/TinyFish QA is separate.
+- Publishing/marketing consent remains false/unchecked. Do not accept participant declarations on their behalf.
+- A completed local copy, deployment or existing portal draft is not a submission receipt. The official form remains unsubmitted.

@@ -1,0 +1,23 @@
+{
+  "approvedSpeechSource": "../video-v2/narration-alyssa.mp3",
+  "approvedSpeechSha256": "def24bb16491c5b17e6628f7dc1e9b26c0bce701168ba8e9abf3b085b7f7a5d8",
+  "audioMasterSource": "../video-v2/mix-master.wav",
+  "audioMasterSha256": "2deda89ddcc013bf75dc84803af43340859235b5a95253a235aeb95c95462767",
+  "speechProvenance": "../video-v2/speech-provenance.json",
+  "captionSource": "../video-v2/captions.json",
+  "captionSha256": "84bd80e19d7db3cae915ce355aed0044fe54969422bae5546590f9d3cbb93b12",
+  "voice": "Alyssa",
+  "returnedEngine": "orca",
+  "speechSpeed": 1,
+  "newSynthesisCalls": 0,
+  "speechTrimmedWords": 0,
+  "speechReordered": false,
+  "audioFiltersAdded": [],
+  "audioMixChanged": false,
+  "listening_review": "not_performed",
+  "listeningLimitation": "No audible listening review was performed. Decode/alignment measurements do not establish listening quality.",
+  "legacySpeechClarification": "The exact approved speech mentions the earlier provisional index. V3 displays the current evidence states and explicitly notes the removed percentage.",
+  "uploaded": false,
+  "published": false,
+  "submitted": false
+}

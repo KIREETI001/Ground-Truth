@@ -1,0 +1,255 @@
+1
+00:00:00,299 --> 00:00:02,083
+Your app works. Great.
+
+2
+00:00:02,261 --> 00:00:04,877
+Now change one line without asking AI.
+
+3
+00:00:04,949 --> 00:00:07,117
+That is where understanding starts to matter.
+
+4
+00:00:07,253 --> 00:00:08,518
+AI can help a beginner
+
+5
+00:00:08,533 --> 00:00:10,353
+build impressive software before they
+
+6
+00:00:10,368 --> 00:00:12,188
+understand how its parts connect.
+
+7
+00:00:12,318 --> 00:00:13,867
+When the next requirement changes,
+
+8
+00:00:14,024 --> 00:00:15,588
+they can end up asking the assistant
+
+9
+00:00:15,603 --> 00:00:17,557
+to rediscover the whole project.
+
+10
+00:00:25,992 --> 00:00:27,428
+Teachers face the same gap
+
+11
+00:00:27,443 --> 00:00:28,544
+from the other side.
+
+12
+00:00:28,723 --> 00:00:30,294
+A polished take-home submission
+
+13
+00:00:30,472 --> 00:00:31,863
+shows the finished product.
+
+14
+00:00:32,033 --> 00:00:33,554
+It may reveal very little about
+
+15
+00:00:33,569 --> 00:00:36,377
+what the student can explain or change independently.
+
+16
+00:00:36,556 --> 00:00:38,845
+Responsible AI learners need a fair chance
+
+17
+00:00:38,860 --> 00:00:40,558
+to show that understanding, too.
+
+18
+00:00:47,780 --> 00:00:50,097
+Meet GroundTruth. Understand your code.
+
+19
+00:00:50,212 --> 00:00:51,468
+Think in systems.
+
+20
+00:00:51,631 --> 00:00:53,031
+Bring a public GitHub project
+
+21
+00:00:53,124 --> 00:00:54,332
+and choose a feature.
+
+22
+00:00:54,447 --> 00:00:56,487
+Here, we are exploring task submission
+
+23
+00:00:56,581 --> 00:00:57,895
+in a small study app.
+
+24
+00:00:58,031 --> 00:00:59,943
+Follow the selected request flow.
+
+25
+00:01:00,122 --> 00:01:01,820
+The API receives an input.
+
+26
+00:01:01,914 --> 00:01:03,642
+A validation helper checks it.
+
+27
+00:01:03,765 --> 00:01:06,381
+Valid data continues towards persistence.
+
+28
+00:01:06,623 --> 00:01:08,578
+Suddenly, a folder full of files
+
+29
+00:01:08,714 --> 00:01:10,157
+becomes a set of responsibilities
+
+30
+00:01:10,250 --> 00:01:11,475
+you can reason about.
+
+31
+00:01:25,649 --> 00:01:26,836
+The concept tree turns
+
+32
+00:01:26,887 --> 00:01:28,884
+that workflow into focused practice:
+
+33
+00:01:29,105 --> 00:01:30,655
+trimming, length limits,
+
+34
+00:01:30,684 --> 00:01:32,912
+numeric IDs and request handling.
+
+35
+00:01:33,065 --> 00:01:35,354
+Meta's Muse Spark generates an overview,
+
+36
+00:01:35,369 --> 00:01:36,705
+source-linked guidance,
+
+37
+00:01:36,820 --> 00:01:39,450
+multiple-choice questions and tiny coding tasks
+
+38
+00:01:39,465 --> 00:01:41,292
+from this code and the learner's goal.
+
+39
+00:01:41,428 --> 00:01:42,821
+The format stays familiar while
+
+40
+00:01:42,836 --> 00:01:44,673
+the content changes with the project.
+
+41
+00:01:54,948 --> 00:01:56,497
+Then comes the important moment:
+
+42
+00:01:56,612 --> 00:01:57,542
+try it yourself.
+
+43
+00:01:57,763 --> 00:01:59,974
+New in-app study assistance pauses.
+
+44
+00:02:00,238 --> 00:02:03,238
+The first submitted response is preserved before feedback.
+
+45
+00:02:03,395 --> 00:02:04,660
+You can also end an attempt
+
+46
+00:02:04,675 --> 00:02:05,699
+and return later.
+
+47
+00:02:14,843 --> 00:02:16,648
+Now the teacher has more to inspect:
+
+48
+00:02:16,720 --> 00:02:17,864
+the original attempt,
+
+49
+00:02:18,000 --> 00:02:20,488
+the concepts practised and requests for help.
+
+50
+00:02:20,688 --> 00:02:22,707
+The learner chooses which path to share.
+
+51
+00:02:22,864 --> 00:02:23,873
+Those records can guide
+
+52
+00:02:23,888 --> 00:02:25,452
+a fresh unaided follow-up
+
+53
+00:02:25,467 --> 00:02:27,281
+and a better teaching conversation.
+
+54
+00:02:36,532 --> 00:02:38,210
+These are synthetic demo records,
+
+55
+00:02:38,239 --> 00:02:39,874
+not measured learning gains.
+
+56
+00:02:40,116 --> 00:02:41,879
+The index is provisional evidence,
+
+57
+00:02:41,994 --> 00:02:43,344
+and outside AI use
+
+58
+00:02:43,359 --> 00:02:45,285
+is beyond the platform's view.
+
+59
+00:02:45,434 --> 00:02:47,069
+GroundTruth runs on Vercel,
+
+60
+00:02:47,098 --> 00:02:48,626
+with Supabase preserving evidence
+
+61
+00:02:48,762 --> 00:02:51,272
+and Meta powering contextual guidance.
+
+62
+00:02:51,493 --> 00:02:52,637
+Let AI cook.
+
+63
+00:02:52,730 --> 00:02:53,704
+Know the recipe.
+
+64
+00:02:53,840 --> 00:02:55,353
+Make the next change your own.

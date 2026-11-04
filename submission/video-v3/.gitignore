@@ -1,0 +1,5 @@
+__pycache__/
+*.log
+encoded-keyframes/
+frames.ffconcat
+*provisional*.mp4

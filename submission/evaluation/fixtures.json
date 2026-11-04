@@ -1,0 +1,314 @@
+{
+  "schemaVersion": "groundtruth-study-content-fixtures.v1",
+  "evaluationId": "groundtruth-study-content-2026-11-05-v1",
+  "verifiedAt": "2026-11-04 19:57:48 UTC",
+  "provider": "meta",
+  "model": "muse-spark-1.3",
+  "plannedCases": 12,
+  "maxRequests": 18,
+  "scope": "One overview, one MCQ, one tiny coding task and one Socratic hint per repository. Source-only inspection; no imported code is executed. Deterministic shape/citation checks plus separate Codex semantic inspection, not a human study or model comparison.",
+  "repositories": [
+    {
+      "id": "study-tasks",
+      "repository": "KIREETI001/groundtruth-demo-study-tasks",
+      "url": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
+      "branch": "main",
+      "commit": "d964b3a62d84aa210b93c54271c364ad8e81ebc9",
+      "verificationUrls": [
+        "https://api.github.com/repos/KIREETI001/groundtruth-demo-study-tasks/branches/main",
+        "https://api.github.com/repos/KIREETI001/groundtruth-demo-study-tasks/git/trees/7af96c228bf5b598a256703a5c5aba1d040b40b9?recursive=1"
+      ],
+      "files": [
+        {
+          "path": "server/validation.js",
+          "language": "JavaScript",
+          "source": "export function taskTitle(value) {\n  if (typeof value !== 'string') return null;\n  const title = value.trim();\n  if (title.length < 1 || title.length > 80) return null;\n  return title;\n}\n\nexport function taskId(value) {\n  if (!/^[1-9][0-9]*$/.test(value)) return null;\n  const id = Number(value);\n  return Number.isSafeInteger(id) ? id : null;\n}\n",
+          "blobSha": "1e9b977c94d22b73fe32af2483f558419f1f59ec",
+          "url": "https://github.com/KIREETI001/groundtruth-demo-study-tasks/blob/d964b3a62d84aa210b93c54271c364ad8e81ebc9/server/validation.js"
+        },
+        {
+          "path": "server/api.js",
+          "language": "JavaScript",
+          "source": "import { taskTitle, taskId } from './validation.js';\n\nexport function handleTasks(method, path, body, store) {\n  if (method === 'GET' && path === '/api/tasks') {\n    return { status: 200, data: store.list() };\n  }\n  if (method === 'POST' && path === '/api/tasks') {\n    const title = taskTitle(body?.title);\n    if (!title) return { status: 400, data: { error: 'Use a title of 1–80 characters.' } };\n    return { status: 201, data: store.add(title) };\n  }\n  const match = path.match(/^\\/api\\/tasks\\/([^/]+)\\/complete$/);\n  if (method === 'POST' && match) {\n    const id = taskId(match[1]);\n    if (!id) return { status: 400, data: { error: 'Invalid task ID.' } };\n    const task = store.complete(id);\n    return task ? { status: 200, data: task }\n      : { status: 404, data: { error: 'Task not found.' } };\n  }\n  return { status: 404, data: { error: 'Route not found.' } };\n}\n",
+          "blobSha": "1068b752f50630287dacd3ea37687b10565f049e",
+          "url": "https://github.com/KIREETI001/groundtruth-demo-study-tasks/blob/d964b3a62d84aa210b93c54271c364ad8e81ebc9/server/api.js"
+        },
+        {
+          "path": "db/store.js",
+          "language": "JavaScript",
+          "source": "import { DatabaseSync } from 'node:sqlite';\nimport { readFileSync } from 'node:fs';\n\nexport function openStore(filename = ':memory:') {\n  const db = new DatabaseSync(filename);\n  db.exec(readFileSync(new URL('./schema.sql', import.meta.url), 'utf8'));\n  return {\n    list() {\n      return db.prepare('SELECT * FROM tasks ORDER BY id').all();\n    },\n    add(title) {\n      const result = db.prepare('INSERT INTO tasks (title) VALUES (?)').run(title);\n      return db.prepare('SELECT * FROM tasks WHERE id = ?').get(result.lastInsertRowid);\n    },\n    complete(id) {\n      db.prepare('UPDATE tasks SET completed = 1 WHERE id = ?').run(id);\n      return db.prepare('SELECT * FROM tasks WHERE id = ?').get(id);\n    },\n    close() { db.close(); }\n  };\n}\n",
+          "blobSha": "6346c13daad9f321263606c6f8f0f1abdbcc8447",
+          "url": "https://github.com/KIREETI001/groundtruth-demo-study-tasks/blob/d964b3a62d84aa210b93c54271c364ad8e81ebc9/db/store.js"
+        }
+      ],
+      "facts": [
+        {
+          "id": "title-type",
+          "assertion": "taskTitle returns null for a non-string input.",
+          "path": "server/validation.js",
+          "quote": "if (typeof value !== 'string') return null;"
+        },
+        {
+          "id": "trim-length",
+          "assertion": "taskTitle trims surrounding whitespace before requiring a length of 1 through 80 inclusive.",
+          "path": "server/validation.js",
+          "quote": "if (title.length < 1 || title.length > 80) return null;"
+        },
+        {
+          "id": "positive-safe-id",
+          "assertion": "taskId requires a decimal positive non-zero form and a safe integer.",
+          "path": "server/validation.js",
+          "quote": "return Number.isSafeInteger(id) ? id : null;"
+        },
+        {
+          "id": "invalid-post",
+          "assertion": "POST /api/tasks rejects a missing/invalid normalized title with status 400 before store.add.",
+          "path": "server/api.js",
+          "quote": "if (!title) return { status: 400, data: { error: 'Use a title of 1–80 characters.' } };"
+        },
+        {
+          "id": "parameterized-insert",
+          "assertion": "store.add passes title as a bound parameter to its INSERT, then reads the inserted row.",
+          "path": "db/store.js",
+          "quote": "const result = db.prepare('INSERT INTO tasks (title) VALUES (?)').run(title);"
+        }
+      ],
+      "cases": [
+        {
+          "id": "study-tasks-overview",
+          "label": "Beginner overview",
+          "task": "analyse",
+          "data": {
+            "goal": "Understand taskTitle validation and how POST /api/tasks passes an accepted title to the store."
+          }
+        },
+        {
+          "id": "study-tasks-mcq",
+          "label": "Multiple choice",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand taskTitle validation and how POST /api/tasks passes an accepted title to the store.",
+            "questionFormat": "mcq",
+            "phase": "baseline",
+            "questionFocus": "Use a concrete input to taskTitle and ask about the value or rejection after trimming and the length/type check."
+          }
+        },
+        {
+          "id": "study-tasks-coding",
+          "label": "Tiny coding task",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand taskTitle validation and how POST /api/tasks passes an accepted title to the store.",
+            "questionFormat": "coding",
+            "phase": "practice",
+            "questionFocus": "Use a concrete input to taskTitle and ask about the value or rejection after trimming and the length/type check."
+          }
+        },
+        {
+          "id": "study-tasks-hint",
+          "label": "Socratic hint",
+          "task": "hint",
+          "data": {
+            "goal": "Understand taskTitle validation and how POST /api/tasks passes an accepted title to the store.",
+            "question": "Where should I inspect to understand why a title containing only spaces is not added?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "isarray",
+      "repository": "juliangruber/isarray",
+      "url": "https://github.com/juliangruber/isarray",
+      "branch": "master",
+      "commit": "8c8dd70d48ad5d0897733ca6726302a54ca9e177",
+      "verificationUrls": [
+        "https://api.github.com/repos/juliangruber/isarray/branches/master",
+        "https://api.github.com/repos/juliangruber/isarray/git/trees/446cbdae7876520bcac93962a88a71e514dd2e7f?recursive=1"
+      ],
+      "files": [
+        {
+          "path": "index.js",
+          "language": "JavaScript",
+          "source": "'use strict';\n\nvar toString = {}.toString;\n\nmodule.exports = Array.isArray || function (arr) {\n  return toString.call(arr) === '[object Array]';\n};\n",
+          "blobSha": "61eab906a411f9dcab033b7c90f61cd8642cc047",
+          "url": "https://github.com/juliangruber/isarray/blob/8c8dd70d48ad5d0897733ca6726302a54ca9e177/index.js"
+        },
+        {
+          "path": "test.js",
+          "language": "JavaScript",
+          "source": "'use strict';\n\nvar isArray = require('./');\nvar test = require('tape');\n\nvar nativeIsArray = Array.isArray;\n\ntest('is array (only polyfill)', function (t) {\n  delete Array.isArray;\n  t.ok(isArray([]));\n  t.notOk(isArray({}));\n  t.notOk(isArray(null));\n  t.notOk(isArray(false));\n  t.notOk(isArray(''));\n  t.notOk(isArray('42'));\n  t.notOk(isArray(42));\n  t.notOk(isArray(34.00));\n  t.notOk(isArray(123e-5));\n  t.notOk(isArray('[]'));\n  t.notOk(isArray(undefined));\n  t.notOk(isArray(function () {}));\n\n  var obj = {};\n  obj[0] = true;\n  t.notOk(isArray(obj));\n\n  var arr = [];\n  arr.foo = 'bar';\n  t.ok(isArray(arr));\n\n  t.end();\n});\n\ntest('is array (native)', function (t) {\n  Array.isArray = nativeIsArray;\n  t.ok(isArray([]));\n  t.notOk(isArray({}));\n  t.notOk(isArray(null));\n  t.notOk(isArray(false));\n  t.notOk(isArray(''));\n  t.notOk(isArray('42'));\n  t.notOk(isArray(42));\n  t.notOk(isArray(34.00));\n  t.notOk(isArray(123e-5));\n  t.notOk(isArray('[]'));\n  t.notOk(isArray(undefined));\n  t.notOk(isArray(function () {}));\n\n  var obj = {};\n  obj[0] = true;\n  t.notOk(isArray(obj));\n\n  var arr = [];\n  arr.foo = 'bar';\n  t.ok(isArray(arr));\n\n  t.end();\n});\n",
+          "blobSha": "4e4cf3cf45e1ce5a38f4dc2e0a746fd1bb02e796",
+          "url": "https://github.com/juliangruber/isarray/blob/8c8dd70d48ad5d0897733ca6726302a54ca9e177/test.js"
+        }
+      ],
+      "facts": [
+        {
+          "id": "module-load-choice",
+          "assertion": "The module chooses the truthy native Array.isArray at module initialization, otherwise it exports a fallback.",
+          "path": "index.js",
+          "quote": "module.exports = Array.isArray || function (arr) {"
+        },
+        {
+          "id": "fallback-tag",
+          "assertion": "The fallback compares Object.prototype.toString.call(arr) with the exact tag [object Array].",
+          "path": "index.js",
+          "quote": "return toString.call(arr) === '[object Array]';"
+        },
+        {
+          "id": "array-like-rejected",
+          "assertion": "Tests expect a plain object with a numeric key to be rejected and an array with an extra property to be accepted.",
+          "path": "test.js",
+          "quote": "t.notOk(isArray(obj));"
+        },
+        {
+          "id": "test-coverage-limitation",
+          "assertion": "The test file requires the export before deleting Array.isArray; test names alone do not prove that the fallback was exercised when native support exists.",
+          "path": "test.js",
+          "quote": "var isArray = require('./');"
+        }
+      ],
+      "cases": [
+        {
+          "id": "isarray-overview",
+          "label": "Beginner overview",
+          "task": "analyse",
+          "data": {
+            "goal": "Understand how this small predicate distinguishes arrays from plain and array-like objects, including the native/fallback choice."
+          }
+        },
+        {
+          "id": "isarray-mcq",
+          "label": "Multiple choice",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand how this small predicate distinguishes arrays from plain and array-like objects, including the native/fallback choice.",
+            "questionFormat": "mcq",
+            "phase": "baseline",
+            "questionFocus": "Use one concrete array, plain object, array-like object or string input; avoid claiming full specification conformance or that a particular fallback test actually ran."
+          }
+        },
+        {
+          "id": "isarray-coding",
+          "label": "Tiny coding task",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand how this small predicate distinguishes arrays from plain and array-like objects, including the native/fallback choice.",
+            "questionFormat": "coding",
+            "phase": "practice",
+            "questionFocus": "Use one concrete array, plain object, array-like object or string input; avoid claiming full specification conformance or that a particular fallback test actually ran."
+          }
+        },
+        {
+          "id": "isarray-hint",
+          "label": "Socratic hint",
+          "task": "hint",
+          "data": {
+            "goal": "Understand how this small predicate distinguishes arrays from plain and array-like objects, including the native/fallback choice.",
+            "question": "Where should I inspect to distinguish the string \"[]\" from an actual empty array?"
+          }
+        }
+      ]
+    },
+    {
+      "id": "is-number",
+      "repository": "jonschlinkert/is-number",
+      "url": "https://github.com/jonschlinkert/is-number",
+      "branch": "master",
+      "commit": "98e8ff1da1a89f93d1397a24d7413ed15421c139",
+      "verificationUrls": [
+        "https://api.github.com/repos/jonschlinkert/is-number/branches/master",
+        "https://api.github.com/repos/jonschlinkert/is-number/git/trees/37450e1347ebbad642393376ee3ef67f576d1109?recursive=1"
+      ],
+      "files": [
+        {
+          "path": "index.js",
+          "language": "JavaScript",
+          "source": "/*!\n * is-number <https://github.com/jonschlinkert/is-number>\n *\n * Copyright (c) 2014-present, Jon Schlinkert.\n * Released under the MIT License.\n */\n\n'use strict';\n\nmodule.exports = function(num) {\n  if (typeof num === 'number') {\n    return num - num === 0;\n  }\n  if (typeof num === 'string' && num.trim() !== '') {\n    return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);\n  }\n  return false;\n};\n",
+          "blobSha": "27f19b757f7c1186b92c405a213bf0dd9b6cbe95",
+          "url": "https://github.com/jonschlinkert/is-number/blob/98e8ff1da1a89f93d1397a24d7413ed15421c139/index.js"
+        },
+        {
+          "path": "test.js",
+          "language": "JavaScript",
+          "source": "/*!\n * is-number <https://github.com/jonschlinkert/is-number>\n *\n * Copyright (c) 2014-2018, Jon Schlinkert.\n * Licensed under the MIT License.\n */\n\n'use strict';\n\nrequire('mocha');\nvar assert = require('assert');\nvar isNumber = require('./');\n\ndescribe('is a number', function() {\n  var fixtures = [\n    0xff,\n    5e3,\n    0,\n    0.1,\n    -0.1,\n    -1.1,\n    37,\n    3.14,\n\n    1,\n    1.1,\n    10,\n    10.1,\n    100,\n    -100,\n\n    '0.1',\n    '-0.1',\n    '-1.1',\n    '0',\n    '012',\n    '0xff',\n    '1',\n    '1.1',\n    '10',\n    '10.10',\n    '100',\n    '5e3',\n    '   56\\r\\n  ', // issue#3\n\n    Math.LN2,\n\n    // 012, Octal literal not allowed in strict mode\n    parseInt('012'),\n    parseFloat('012'),\n    Math.abs(1),\n    Math.acos(1),\n    Math.asin(1),\n    Math.atan(1),\n    Math.atan2(1, 2),\n    Math.ceil(1),\n    Math.cos(1),\n    Math.E,\n    Math.exp(1),\n    Math.floor(1),\n    Math.LN10,\n    Math.LN2,\n    Math.log(1),\n    Math.LOG10E,\n    Math.LOG2E,\n    Math.max(1, 2),\n    Math.min(1, 2),\n    Math.PI,\n    Math.pow(1, 2),\n    Math.pow(5, 5),\n    Math.random(1),\n    Math.round(1),\n    Math.sin(1),\n    Math.sqrt(1),\n    Math.SQRT1_2,\n    Math.SQRT2,\n    Math.tan(1),\n\n    Number.MAX_VALUE,\n    Number.MIN_VALUE,\n\n    '0.0',\n    '0x0',\n    '0e+5',\n    '000',\n    '0.0e-5',\n    '0.0E5',\n\n    +'',\n    +1,\n    +3.14,\n    +37,\n    +5,\n    +[],\n    +false,\n    +Math.LN2,\n    +true,\n    +null,\n    +new Date()\n  ];\n\n  fixtures.forEach(function(num, idx) {\n    it(JSON.stringify(num) + ' should be a number', function() {\n      assert(isNumber(num), 'expected \"' + String(num) + '\" to be a number');\n    });\n  });\n});\n\ndescribe('is not a number', function() {\n  var fixtures = [\n    '   ', // issue#3\n    '\\r\\n\\t', // issue#3\n    '',\n    '',\n    '3a',\n    'abc',\n    'false',\n    'null',\n    'true',\n    'undefined',\n    +'abc',\n    +/foo/,\n    +[1, 2, 4],\n    +Infinity,\n    +Math.sin,\n    +NaN,\n    +undefined,\n    +{ a: 1 },\n    +{},\n    /foo/,\n    [1, 2, 3],\n    [1],\n    [],\n    true,\n    false,\n    +function() {},\n    function() {},\n    Infinity,\n    -Infinity,\n    Math.sin,\n    NaN,\n    new Date(),\n    null,\n    undefined,\n    {}\n  ];\n\n  fixtures.forEach(function(num) {\n    it(JSON.stringify(num) + ' should not be a number', function() {\n      assert(!isNumber(num), 'expected \"' + String(num) + '\" to not be a number');\n    });\n  });\n});\n",
+          "blobSha": "0f0242777b6b1ce79853ebc20621ced787c94751",
+          "url": "https://github.com/jonschlinkert/is-number/blob/98e8ff1da1a89f93d1397a24d7413ed15421c139/test.js"
+        }
+      ],
+      "facts": [
+        {
+          "id": "finite-native-number",
+          "assertion": "The number branch returns num - num === 0, rejecting NaN and positive/negative infinity.",
+          "path": "index.js",
+          "quote": "return num - num === 0;"
+        },
+        {
+          "id": "blank-string-rejected",
+          "assertion": "String coercion is considered only when the trimmed string is nonempty.",
+          "path": "index.js",
+          "quote": "if (typeof num === 'string' && num.trim() !== '') {"
+        },
+        {
+          "id": "numeric-string",
+          "assertion": "A nonblank string is converted with unary plus and checked for finiteness, so numeric strings including hexadecimal notation can be accepted.",
+          "path": "index.js",
+          "quote": "return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);"
+        },
+        {
+          "id": "other-types-rejected",
+          "assertion": "Values outside the number and permitted string branches return false rather than being broadly coerced.",
+          "path": "index.js",
+          "quote": "return false;"
+        },
+        {
+          "id": "whitespace-test",
+          "assertion": "The test fixture includes whitespace-only strings among nonnumbers.",
+          "path": "test.js",
+          "quote": "'   ', // issue#3"
+        }
+      ],
+      "cases": [
+        {
+          "id": "is-number-overview",
+          "label": "Beginner overview",
+          "task": "analyse",
+          "data": {
+            "goal": "Understand finite numbers, nonblank numeric strings and other values at the is-number input boundary."
+          }
+        },
+        {
+          "id": "is-number-mcq",
+          "label": "Multiple choice",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand finite numbers, nonblank numeric strings and other values at the is-number input boundary.",
+            "questionFormat": "mcq",
+            "phase": "baseline",
+            "questionFocus": "Use a concrete whitespace-only string, numeric string, infinity or nonnumber input and ask about the boundary result."
+          }
+        },
+        {
+          "id": "is-number-coding",
+          "label": "Tiny coding task",
+          "task": "exercise",
+          "data": {
+            "goal": "Understand finite numbers, nonblank numeric strings and other values at the is-number input boundary.",
+            "questionFormat": "coding",
+            "phase": "practice",
+            "questionFocus": "Use a concrete whitespace-only string, numeric string, infinity or nonnumber input and ask about the boundary result."
+          }
+        },
+        {
+          "id": "is-number-hint",
+          "label": "Socratic hint",
+          "task": "hint",
+          "data": {
+            "goal": "Understand finite numbers, nonblank numeric strings and other values at the is-number input boundary.",
+            "question": "Where should I inspect to understand why whitespace-only strings are treated differently from numeric strings?"
+          }
+        }
+      ]
+    }
+  ]
+}
+

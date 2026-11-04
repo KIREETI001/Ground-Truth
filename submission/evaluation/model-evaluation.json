@@ -1,0 +1,1528 @@
+{
+  "schemaVersion": "groundtruth-study-content-evaluation.v1",
+  "evaluationId": "groundtruth-study-content-2026-11-05-v1",
+  "model": "muse-spark-1.3",
+  "provider": "meta",
+  "startedAt": "2026-11-04T20:00:10.998Z",
+  "updatedAt": "2026-11-04T20:11:34.532Z",
+  "fixtureHash": "d4743e41d2c60bf33dd2956c8c24bf74f547c156592f70e377db03d7ceae83ed",
+  "modelCodeHash": "54fe9bb76802730574049d69d538db77bba5aacfe112b5b8e3625c9ba9846ca3",
+  "plannedCases": 12,
+  "maxRequests": 18,
+  "operatorIdentity": "operator-study-content-eval-v1",
+  "method": "Small 12-case engineering/content review: deterministic application-shape and exact-citation assertions, followed by a separate Codex inspection against pinned source facts. One planned output per task/repository; no human participants, learning study, model comparison or independently calibrated assessor.",
+  "limitations": [
+    "Three deliberately small JavaScript repositories and four content types; this is not broad repository coverage.",
+    "One planned sample per task/repository; no repeated-run consistency estimate or comparative model trial.",
+    "Codex content inspection can miss errors and is not a human teacher or learner study.",
+    "Automatic checks establish format, paths and quote identity; they do not establish factual correctness or unique MCQ defensibility.",
+    "No imported repository, generated student code or model-suggested command is executed. Coding feasibility is inspected, not runtime tested.",
+    "No evidence here establishes learning gains, grading fairness, mastery, outside-AI detection, authorship or reduced teacher workload.",
+    "Observed token/cache counts apply only to these calls; no measured total learner savings or cost comparison is claimed."
+  ],
+  "cases": [
+    {
+      "id": "study-tasks-overview",
+      "repository": "KIREETI001/groundtruth-demo-study-tasks",
+      "task": "analyse",
+      "label": "Beginner overview",
+      "attempts": [
+        {
+          "index": 1,
+          "startedAt": "2026-11-04T20:00:11.467Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:00:25.878Z",
+          "wallLatencyMs": 14409,
+          "receipt": {
+            "task": "analyse",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 14274,
+            "inputTokens": 1487,
+            "outputTokens": 1619,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:00:25.744Z"
+          }
+        }
+      ],
+      "output": {
+        "summary": "When you create a task, the title travels through three places. POST /api/tasks in server/api.js asks taskTitle in server/validation.js to trim spaces and allow only 1-80 characters. If the result is missing, the API returns an error and nothing is saved. If it passes, that clean title is handed to the store in db/store.js, which inserts it into the tasks list.",
+        "filePaths": [
+          "server/validation.js",
+          "server/api.js",
+          "db/store.js"
+        ],
+        "checks": [
+          {
+            "referenceId": "node-assert",
+            "status": "review-needed",
+            "observation": "Are negative boundary cases for taskTitle, such as empty, 80-character, 81-character, and non-string inputs, covered by explicit assertions?",
+            "filePaths": [
+              "server/validation.js"
+            ]
+          }
+        ],
+        "glossary": [
+          {
+            "term": "taskTitle validation",
+            "meaning": "Short check that cleans up extra spaces and allows only titles between 1 and 80 characters long."
+          },
+          {
+            "term": "POST /api/tasks",
+            "meaning": "The create-task inbox: a message sent to /api/tasks that carries a title to be saved."
+          },
+          {
+            "term": "store",
+            "meaning": "A helper that saves tasks and can list them or mark one as done."
+          }
+        ],
+        "flow": [
+          {
+            "title": "Check and clean the title",
+            "description": "Read taskTitle to see how it trims spaces and only accepts text of 1-80 characters, returning null otherwise.",
+            "filePaths": [
+              "server/validation.js"
+            ]
+          },
+          {
+            "title": "Accept or reject the request",
+            "description": "See how POST /api/tasks calls taskTitle, returns a 400 error if null, and only continues if a clean title exists.",
+            "filePaths": [
+              "server/api.js",
+              "server/validation.js"
+            ]
+          },
+          {
+            "title": "Pass clean title to store",
+            "description": "Follow the accepted clean title into store.add, which saves it and returns the new task record.",
+            "filePaths": [
+              "server/api.js",
+              "db/store.js"
+            ]
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "beginner-structure",
+          "passed": true,
+          "detail": "Expected 2–4 glossary terms and 2–5 reading-flow steps."
+        },
+        {
+          "id": "selected-paths-only",
+          "passed": true,
+          "detail": "Top-level paths resolve to selected source; nested flow/check paths are checked by application validation."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "concern",
+        "note": "The summary, glossary and reading flow correctly trace trim/type/length validation through POST to store.add. One optional review question calls an 80-character title a negative boundary case, although length 80 is accepted. This is a wording/content concern, not evidence that the implementation rejects 80 characters.",
+        "factsChecked": [
+          "title-type",
+          "trim-length",
+          "invalid-post",
+          "parameterized-insert"
+        ]
+      }
+    },
+    {
+      "id": "study-tasks-mcq",
+      "repository": "KIREETI001/groundtruth-demo-study-tasks",
+      "task": "exercise",
+      "label": "Multiple choice",
+      "attempts": [
+        {
+          "index": 2,
+          "startedAt": "2026-11-04T20:00:25.994Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:00:37.270Z",
+          "wallLatencyMs": 11274,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 11239,
+            "inputTokens": 1975,
+            "outputTokens": 1242,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:00:37.235Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "How taskTitle handles padded input for POST tasks",
+        "prompt": "What does taskTitle(\"  Write report  \") return after trimming and the 1-80 length check, and how does POST /api/tasks use that result?",
+        "kind": "trace",
+        "filePaths": [
+          "server/validation.js",
+          "server/api.js"
+        ],
+        "reviewPoints": [
+          "server/validation.js: 'const title = value.trim();' plus 'return title;' shows padded input becomes 'Write report' - grounds trimmed return.",
+          "server/validation.js: 'if (title.length < 1 || title.length > 80) return null;' shows 12-char trimmed value passes, only empty or >80 returns null.",
+          "server/api.js: 'const title = taskTitle(body?.title);' plus 'return { status: 201, data: store.add(title) };' shows accepted trimmed value is passed to store."
+        ],
+        "format": "mcq",
+        "options": [
+          {
+            "id": "A",
+            "text": "Returns 'Write report' and POST /api/tasks passes it to store.add(title) to create the task."
+          },
+          {
+            "id": "B",
+            "text": "Returns null as invalid because leading spaces fail validation, so POST returns 400."
+          },
+          {
+            "id": "C",
+            "text": "Returns the original padded string unchanged and POST stores it with spaces included."
+          },
+          {
+            "id": "D",
+            "text": "Returns true to signal validity and POST then reads body.title again for storage."
+          }
+        ],
+        "correctOption": "A",
+        "answerExplanation": "Input is a string, trim removes surrounding spaces to 'Write report' (12 chars) which passes 1-80 check, so it returns the trimmed title. api.js then calls store.add(title) on success."
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "mcq-shape",
+          "passed": true,
+          "detail": "Four distinct option IDs/texts and one declared key; unique factual defensibility requires semantic review."
+        },
+        {
+          "id": "private-review-fields",
+          "passed": true,
+          "detail": "Review points/key/rationale are separate fields. Server tests separately verify public response filtering."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "The declared key A uniquely matches the padded input: taskTitle returns the 12-character trimmed title and the POST branch passes that result to store.add. B incorrectly rejects leading spaces, C incorrectly retains them and D incorrectly treats the return as a boolean. The stem does not disclose the key; private review criteria quote the selected source.",
+        "factsChecked": [
+          "title-type",
+          "trim-length",
+          "invalid-post"
+        ]
+      }
+    },
+    {
+      "id": "study-tasks-coding",
+      "repository": "KIREETI001/groundtruth-demo-study-tasks",
+      "task": "exercise",
+      "label": "Tiny coding task",
+      "attempts": [
+        {
+          "index": 3,
+          "startedAt": "2026-11-04T20:00:37.302Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:00:49.535Z",
+          "wallLatencyMs": 12231,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 12044,
+            "inputTokens": 1738,
+            "outputTokens": 1127,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:00:49.348Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "Trace taskTitle trim and length check",
+        "prompt": "In a blank editor, write 3-12 lines defining function probeTitles() that returns [taskTitle('  Read  '), taskTitle(''), taskTitle(42)]. Show the expected output array.",
+        "kind": "trace",
+        "filePaths": [
+          "server/validation.js",
+          "server/api.js"
+        ],
+        "reviewPoints": [
+          "server/validation.js: \"if (typeof value !== 'string') return null;\" — input 42 must trace to null rejection.",
+          "server/validation.js: \"if (title.length < 1 || title.length > 80) return null;\" — empty string after trim must trace to null.",
+          "server/validation.js: \"return title;\" + server/api.js: \"if (method === 'POST' && path === '/api/tasks') {\" — '  Read  ' trims to 'Read' and is the accepted value passed to the store."
+        ],
+        "format": "coding",
+        "starterCode": ""
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "small-code-format",
+          "passed": true,
+          "detail": "Coding format with a bounded prompt; feasibility and missing requirements are reviewed separately. Student code is not executed."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "concern",
+        "note": "The three requested outcomes are source-supported: Read, null and null. A tiny response is feasible, but the prompt asks for a wrapper returning already-written taskTitle calls and also asks to show the expected output array. That mixes code construction with a trace answer and does not clearly require independently implementing the validation boundary. An instructor should clarify the requested code-only artifact before using this task.",
+        "factsChecked": [
+          "title-type",
+          "trim-length"
+        ]
+      }
+    },
+    {
+      "id": "study-tasks-hint",
+      "repository": "KIREETI001/groundtruth-demo-study-tasks",
+      "task": "hint",
+      "label": "Socratic hint",
+      "attempts": [
+        {
+          "index": 4,
+          "startedAt": "2026-11-04T20:00:49.617Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:02.496Z",
+          "wallLatencyMs": 12877,
+          "receipt": {
+            "task": "hint",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 12740,
+            "inputTokens": 1501,
+            "outputTokens": 960,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:02.359Z"
+          }
+        }
+      ],
+      "output": {
+        "feedback": "How does the length check handle a title that becomes empty?",
+        "nextStep": "Inspect server/validation.js to review the taskTitle function.",
+        "evidence": [
+          {
+            "path": "server/validation.js",
+            "quote": "if (title.length < 1 || title.length > 80) return null;"
+          },
+          {
+            "path": "server/api.js",
+            "quote": "if (!title) return { status: 400, data: { error: 'Use a title of 1–80 characters.' } };"
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "exact-source-evidence",
+          "passed": true,
+          "detail": "Every resolved source quote occurs exactly in a selected public file."
+        },
+        {
+          "id": "socratic-shape",
+          "passed": true,
+          "detail": "A bounded question; whether it gives away the answer is reviewed separately."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "The question directs attention to the length check after trimming without declaring an answer or replacement implementation. Both returned evidence quotes are exact selected-source substrings and jointly connect the validator to the API rejection boundary. Source is intentionally available for inspection; no student answer or correctness grade is supplied.",
+        "factsChecked": [
+          "trim-length",
+          "invalid-post"
+        ]
+      }
+    },
+    {
+      "id": "isarray-overview",
+      "repository": "juliangruber/isarray",
+      "task": "analyse",
+      "label": "Beginner overview",
+      "attempts": [
+        {
+          "index": 5,
+          "startedAt": "2026-11-04T20:01:02.663Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:14.423Z",
+          "wallLatencyMs": 11759,
+          "receipt": {
+            "task": "analyse",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 11636,
+            "inputTokens": 1423,
+            "outputTokens": 1229,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:14.300Z"
+          }
+        }
+      ],
+      "output": {
+        "summary": "This tiny module exports one test: is this value a real Array? If JavaScript already provides Array.isArray it uses that native check, otherwise it falls back to seeing if the value's type string is '[object Array]'. Tests show true for plain arrays, even with extra properties, and false for objects, array-like objects, strings, numbers, functions, null and undefined.",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "checks": [
+          {
+            "referenceId": "ecma-array",
+            "status": "review-needed",
+            "observation": "How does the toString.call fallback compare to the ECMAScript Array.isArray definition for edge cases like cross-realm values?",
+            "filePaths": [
+              "index.js"
+            ]
+          }
+        ],
+        "glossary": [
+          {
+            "term": "Array.isArray",
+            "meaning": "Built-in JavaScript check that returns true only for real arrays, not for plain objects."
+          },
+          {
+            "term": "Fallback",
+            "meaning": "Replacement code used when the built-in check is missing, so older setups behave the same."
+          },
+          {
+            "term": "Array-like object",
+            "meaning": "A plain object that looks like an array because it has numbered keys, but is not a real array."
+          }
+        ],
+        "flow": [
+          {
+            "title": "See the single exported choice",
+            "description": "Read index.js to see it exports Array.isArray when present, otherwise a replacement function.",
+            "filePaths": [
+              "index.js"
+            ]
+          },
+          {
+            "title": "Learn the fallback type-string test",
+            "description": "Read the fallback in index.js that checks the value with toString.call against '[object Array]'.",
+            "filePaths": [
+              "index.js"
+            ]
+          },
+          {
+            "title": "Check behavior on many examples",
+            "description": "Read test.js to see true cases for arrays and false cases for plain objects, array-like objects, and other values.",
+            "filePaths": [
+              "test.js"
+            ]
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "beginner-structure",
+          "passed": true,
+          "detail": "Expected 2–4 glossary terms and 2–5 reading-flow steps."
+        },
+        {
+          "id": "selected-paths-only",
+          "passed": true,
+          "detail": "Top-level paths resolve to selected source; nested flow/check paths are checked by application validation."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "concern",
+        "note": "The exported native-or-fallback choice and the ordinary array/plain-object examples are accurately described. The fallback glossary says older setups behave the same; universal native/fallback equivalence is not established by this tag comparison or the selected test file. The test imports the export before deleting Array.isArray, so its labels also do not prove fallback execution. The review question appropriately leaves edge-case comparison open.",
+        "factsChecked": [
+          "module-load-choice",
+          "fallback-tag",
+          "array-like-rejected",
+          "test-coverage-limitation"
+        ]
+      }
+    },
+    {
+      "id": "isarray-mcq",
+      "repository": "juliangruber/isarray",
+      "task": "exercise",
+      "label": "Multiple choice",
+      "attempts": [
+        {
+          "index": 6,
+          "startedAt": "2026-11-04T20:01:14.839Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:28.712Z",
+          "wallLatencyMs": 13871,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 13677,
+            "inputTokens": 1682,
+            "outputTokens": 1249,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:28.518Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "Fallback check for array with extra property",
+        "prompt": "Using the fallback function defined in index.js, what should the check return for an array with an added property created by arr = []; arr.foo = 'bar'?",
+        "kind": "trace",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "reviewPoints": [
+          "index.js quote \"return toString.call(arr) === '[object Array]';\" — grounds that extra property does not change tag, so expected true.",
+          "test.js quote \"arr.foo = 'bar';\" with t.ok(isArray(arr)) — grounds boundary that arrays with custom props stay true, while obj[0]=true stays false."
+        ],
+        "format": "mcq",
+        "options": [
+          {
+            "id": "A",
+            "text": "true, because the internal tag stays '[object Array]' despite the extra property"
+          },
+          {
+            "id": "B",
+            "text": "false, because adding a named property converts an array to a plain object"
+          },
+          {
+            "id": "C",
+            "text": "false, because the fallback rejects values with non-numeric properties"
+          },
+          {
+            "id": "D",
+            "text": "undefined, because the fallback only handles strings and plain objects"
+          }
+        ],
+        "correctOption": "A",
+        "answerExplanation": "The fallback uses `toString.call(arr) === '[object Array]'`. Adding `foo` does not change that tag, so it returns true, matching the test expectation that `arr.foo='bar'` is still an array."
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "mcq-shape",
+          "passed": true,
+          "detail": "Four distinct option IDs/texts and one declared key; unique factual defensibility requires semantic review."
+        },
+        {
+          "id": "private-review-fields",
+          "passed": true,
+          "detail": "Review points/key/rationale are separate fields. Server tests separately verify public response filtering."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "For the explicitly stated ordinary array with an extra foo property, A is uniquely defensible: the array tag remains the compared Array tag. B and C wrongly claim named properties change/reject the array; D wrongly claims a non-boolean result and a restricted input set. The question explicitly asks about the fallback rather than claiming the selected test actually executed it.",
+        "factsChecked": [
+          "fallback-tag",
+          "array-like-rejected"
+        ]
+      }
+    },
+    {
+      "id": "isarray-coding",
+      "repository": "juliangruber/isarray",
+      "task": "exercise",
+      "label": "Tiny coding task",
+      "attempts": [
+        {
+          "index": 7,
+          "startedAt": "2026-11-04T20:01:28.809Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:37.881Z",
+          "wallLatencyMs": 9070,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 9033,
+            "inputTokens": 1445,
+            "outputTokens": 1018,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:37.844Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "Predicate arrays vs array-like objects",
+        "prompt": "In a blank editor, write function isReallyArray(x) in 4-10 lines. It must return true for [] and for [] with foo='bar', and false for object with 0:true and for string '[]'. Show its expected true/false for those 4 inputs.",
+        "kind": "test-design",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "reviewPoints": [
+          "index.js \"return toString.call(arr) === '[object Array]';\" - true only for real Arrays, so extra props still true but indexed objects false.",
+          "test.js \"t.notOk(isArray(function () {}));\" - functions and plain objects must be false, only Array tag passes.",
+          "index.js \"module.exports = Array.isArray || function (arr) {\" - predicate must match native choice: arrays true, array-likes/strings false."
+        ],
+        "format": "coding",
+        "starterCode": ""
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "small-code-format",
+          "passed": true,
+          "detail": "Coding format with a bounded prompt; feasibility and missing requirements are reviewed separately. Student code is not executed."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "concern",
+        "note": "The four ordinary input expectations agree with the selected source and a short predicate plus checks is feasible. The prompt also asks to show expected booleans without specifying whether those belong in code/assertions, so the requested response is less clear than a single code-only function. Its private review point says the tag comparison is true only for real arrays; the selected source supports the listed examples but does not establish universal equivalence to the native predicate.",
+        "factsChecked": [
+          "fallback-tag",
+          "array-like-rejected",
+          "test-coverage-limitation"
+        ]
+      }
+    },
+    {
+      "id": "isarray-hint",
+      "repository": "juliangruber/isarray",
+      "task": "hint",
+      "label": "Socratic hint",
+      "attempts": [
+        {
+          "index": 8,
+          "startedAt": "2026-11-04T20:01:37.914Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:43.314Z",
+          "wallLatencyMs": 5399,
+          "receipt": {
+            "task": "hint",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 5195,
+            "inputTokens": 1188,
+            "outputTokens": 548,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:43.110Z"
+          }
+        }
+      ],
+      "output": {
+        "feedback": "What would toString.call show for '[]' versus [] when compared to '[object Array]'?",
+        "nextStep": "Inspect index.js to see how the fallback check is written",
+        "evidence": [
+          {
+            "path": "index.js",
+            "quote": "return toString.call(arr) === '[object Array]';"
+          },
+          {
+            "path": "index.js",
+            "quote": "var toString = {}.toString;"
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "exact-source-evidence",
+          "passed": true,
+          "detail": "Every resolved source quote occurs exactly in a selected public file."
+        },
+        {
+          "id": "socratic-shape",
+          "passed": true,
+          "detail": "A bounded question; whether it gives away the answer is reviewed separately."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "This asks the learner to compare the string and array through the displayed toString-based check. It supplies no true/false verdict, worked solution or grade. Both quotes exactly match index.js, and the prompt is answerable by reading that source.",
+        "factsChecked": [
+          "fallback-tag"
+        ]
+      }
+    },
+    {
+      "id": "is-number-overview",
+      "repository": "jonschlinkert/is-number",
+      "task": "analyse",
+      "label": "Beginner overview",
+      "attempts": [
+        {
+          "index": 9,
+          "startedAt": "2026-11-04T20:01:43.831Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:01:54.507Z",
+          "wallLatencyMs": 10674,
+          "receipt": {
+            "task": "analyse",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 10519,
+            "inputTokens": 1995,
+            "outputTokens": 1294,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:01:54.352Z"
+          }
+        }
+      ],
+      "output": {
+        "summary": "is-number decides if an input counts as a usable finite number. Real numbers pass when num - num is zero, which filters out NaN and Infinity. Strings pass only when not blank after trimming and converting to a finite number. All other values like empty text, words, arrays, objects, booleans, null and undefined return false.",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "checks": [
+          {
+            "referenceId": "node-assert",
+            "status": "review-needed",
+            "observation": "Does the assert coverage in test.js need more negative boundary cases for whitespace, empty strings, and non-number objects?",
+            "filePaths": [
+              "test.js"
+            ]
+          }
+        ],
+        "glossary": [
+          {
+            "term": "finite number",
+            "meaning": "A regular usable number, excluding Infinity, -Infinity and NaN."
+          },
+          {
+            "term": "numeric string",
+            "meaning": "Text like '1', '0.1' or '5e3' that becomes a finite number when converted with +num."
+          },
+          {
+            "term": "nonblank guard",
+            "meaning": "First checking that trimmed text is not empty, so blanks like '   ' are rejected in index.js."
+          }
+        ],
+        "flow": [
+          {
+            "title": "See accepted inputs",
+            "description": "Scan the passing list in test.js to see which numbers and numeric strings count as numbers.",
+            "filePaths": [
+              "test.js"
+            ]
+          },
+          {
+            "title": "Learn number check",
+            "description": "Read index.js to see how real numbers are accepted only when num - num equals zero.",
+            "filePaths": [
+              "index.js"
+            ]
+          },
+          {
+            "title": "Learn string check",
+            "description": "Read index.js to see how trimmed non-empty strings are converted and checked for finiteness.",
+            "filePaths": [
+              "index.js"
+            ]
+          },
+          {
+            "title": "See rejected inputs",
+            "description": "Scan the failing list in test.js to see blanks, words, booleans, arrays, and other values return false.",
+            "filePaths": [
+              "test.js"
+            ]
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "beginner-structure",
+          "passed": true,
+          "detail": "Expected 2–4 glossary terms and 2–5 reading-flow steps."
+        },
+        {
+          "id": "selected-paths-only",
+          "passed": true,
+          "detail": "Top-level paths resolve to selected source; nested flow/check paths are checked by application validation."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "The number branch, NaN/infinity exclusion, nonblank-string guard, numeric conversion and false result for other direct input types are accurately summarized. The selected tests support the ordinary examples. The optional test-review question is phrased as an inquiry, not an unsupported finding that coverage is missing or tests passed.",
+        "factsChecked": [
+          "finite-native-number",
+          "blank-string-rejected",
+          "numeric-string",
+          "other-types-rejected",
+          "whitespace-test"
+        ]
+      }
+    },
+    {
+      "id": "is-number-mcq",
+      "repository": "jonschlinkert/is-number",
+      "task": "exercise",
+      "label": "Multiple choice",
+      "attempts": [
+        {
+          "index": 10,
+          "startedAt": "2026-11-04T20:01:54.683Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:02:04.307Z",
+          "wallLatencyMs": 9623,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 9506,
+            "inputTokens": 2336,
+            "outputTokens": 978,
+            "cachedInputTokens": 753,
+            "createdAt": "2026-11-04T20:02:04.190Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "Whitespace string boundary in is-number",
+        "prompt": "According to index.js and test.js, what does isNumber with a whitespace-only string return and why?",
+        "kind": "trace",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "reviewPoints": [
+          "index.js quote \"if (typeof num === 'string' && num.trim() !== '')\" shows blank strings fail the guard and fall to return false.",
+          "test.js quote \"describe('is not a number', function()\" includes '   ' and '\\r\\n\\t' fixtures expected to be false, confirming boundary."
+        ],
+        "format": "mcq",
+        "options": [
+          {
+            "id": "A",
+            "text": "true, because any value with typeof string is accepted as a number"
+          },
+          {
+            "id": "B",
+            "text": "false, because the string is blank after trim so the numeric check is skipped"
+          },
+          {
+            "id": "C",
+            "text": "true, because trimming whitespace leaves a valid zero value"
+          },
+          {
+            "id": "D",
+            "text": "false, because the function throws an error for whitespace strings"
+          }
+        ],
+        "correctOption": "B",
+        "answerExplanation": "index.js requires a non-blank string before finite check, so '   ' skips to return false; test.js lists whitespace-only strings as not a number."
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "mcq-shape",
+          "passed": true,
+          "detail": "Four distinct option IDs/texts and one declared key; unique factual defensibility requires semantic review."
+        },
+        {
+          "id": "private-review-fields",
+          "passed": true,
+          "detail": "Review points/key/rationale are separate fields. Server tests separately verify public response filtering."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "B is uniquely correct for a whitespace-only string: the trimmed nonblank guard fails and execution reaches false. A and C contradict that guard; D gives an incorrect throwing explanation. The key/rationale remain separate from the stem and the private criteria refer to actual source/test expectations.",
+        "factsChecked": [
+          "blank-string-rejected",
+          "whitespace-test"
+        ]
+      }
+    },
+    {
+      "id": "is-number-coding",
+      "repository": "jonschlinkert/is-number",
+      "task": "exercise",
+      "label": "Tiny coding task",
+      "attempts": [
+        {
+          "index": 11,
+          "startedAt": "2026-11-04T20:02:04.446Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:02:12.666Z",
+          "wallLatencyMs": 8219,
+          "receipt": {
+            "task": "exercise",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 8076,
+            "inputTokens": 2099,
+            "outputTokens": 827,
+            "cachedInputTokens": 497,
+            "createdAt": "2026-11-04T20:02:12.523Z"
+          }
+        }
+      ],
+      "output": {
+        "title": "Finite number and string boundary check",
+        "prompt": "Write function isNum(v) in 3-12 lines: return true for finite numbers like 37 and numeric strings like '56', false for whitespace-only '   ', Infinity, NaN, and booleans. Include calls showing isNum('   '), isNum('56'), isNum(Infinity).",
+        "kind": "test-design",
+        "filePaths": [
+          "index.js",
+          "test.js"
+        ],
+        "reviewPoints": [
+          "index.js `if (typeof num === 'string' && num.trim() !== '')` requires non-blank strings, so '   ' must be false.",
+          "index.js `return num - num === 0;` makes NaN/Infinity false for number inputs.",
+          "index.js `return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);` makes '56' true and Infinity false."
+        ],
+        "format": "coding",
+        "starterCode": ""
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "small-code-format",
+          "passed": true,
+          "detail": "Coding format with a bounded prompt; feasibility and missing requirements are reviewed separately. Student code is not executed."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "A 3-12-line function with explicit type guards, a finite-number check and the requested calls is feasible from the displayed implementation. The stated finite-number, numeric-string, blank-string, infinity, NaN and boolean outcomes are consistent with source. It requests code/calls rather than an essay; no generated learner code was executed or treated as proof of correctness.",
+        "factsChecked": [
+          "finite-native-number",
+          "blank-string-rejected",
+          "numeric-string",
+          "other-types-rejected"
+        ]
+      }
+    },
+    {
+      "id": "is-number-hint",
+      "repository": "jonschlinkert/is-number",
+      "task": "hint",
+      "label": "Socratic hint",
+      "attempts": [
+        {
+          "index": 12,
+          "startedAt": "2026-11-04T20:02:12.918Z",
+          "status": "success",
+          "completedAt": "2026-11-04T20:02:18.956Z",
+          "wallLatencyMs": 6037,
+          "receipt": {
+            "task": "hint",
+            "provider": "meta",
+            "model": "muse-spark-1.3",
+            "status": "success",
+            "latencyMs": 6001,
+            "inputTokens": 1850,
+            "outputTokens": 645,
+            "cachedInputTokens": 0,
+            "createdAt": "2026-11-04T20:02:18.920Z"
+          }
+        }
+      ],
+      "output": {
+        "feedback": "What must a string satisfy after trimming before it can be checked as finite?",
+        "nextStep": "Inspect index.js to review the string type check.",
+        "evidence": [
+          {
+            "path": "index.js",
+            "quote": "if (typeof num === 'string' && num.trim() !== '') {"
+          },
+          {
+            "path": "index.js",
+            "quote": "return Number.isFinite ? Number.isFinite(+num) : isFinite(+num);"
+          }
+        ]
+      },
+      "automaticChecks": [
+        {
+          "id": "validated-output",
+          "passed": true,
+          "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+        },
+        {
+          "id": "exact-source-evidence",
+          "passed": true,
+          "detail": "Every resolved source quote occurs exactly in a selected public file."
+        },
+        {
+          "id": "socratic-shape",
+          "passed": true,
+          "detail": "A bounded question; whether it gives away the answer is reviewed separately."
+        }
+      ],
+      "semanticReview": {
+        "reviewer": "Codex source inspection",
+        "status": "pass",
+        "note": "The single question prompts inspection of the trimmed-string precondition without giving an output verdict or replacement function. Both evidence quotes are exact source substrings from the nonblank guard and finite conversion, and the neutral next step points to the selected file.",
+        "factsChecked": [
+          "blank-string-rejected",
+          "numeric-string"
+        ]
+      }
+    }
+  ],
+  "completedAt": "2026-11-04T20:02:18.987Z",
+  "semanticReviewedAt": "2026-11-04T20:04:11.481Z",
+  "revisions": [
+    {
+      "id": "boundary-coding-fallback-v2",
+      "modelCodeHash": "a766f56641c2dd995cd0f9e374c299a9bf15374c6671fc35e06df0f3d2e3b9c7",
+      "description": "General prompt corrections distinguish accepted/rejected bounds, require a single standalone coding implementation, and avoid unproved native/fallback equivalence. The coding schema now also supports replay of an intentionally blank editor. Raw baseline outputs and their four concerns remain unchanged.",
+      "startedAt": "2026-11-04T20:09:17.227Z",
+      "updatedAt": "2026-11-04T20:10:11.492Z",
+      "cases": [
+        {
+          "id": "study-tasks-overview",
+          "repository": "KIREETI001/groundtruth-demo-study-tasks",
+          "task": "analyse",
+          "label": "Beginner overview",
+          "attempts": [
+            {
+              "index": 13,
+              "startedAt": "2026-11-04T20:09:17.841Z",
+              "status": "success",
+              "completedAt": "2026-11-04T20:09:31.286Z",
+              "wallLatencyMs": 13442,
+              "receipt": {
+                "task": "analyse",
+                "provider": "meta",
+                "model": "muse-spark-1.3",
+                "status": "success",
+                "latencyMs": 13235,
+                "inputTokens": 1567,
+                "outputTokens": 1212,
+                "cachedInputTokens": 0,
+                "createdAt": "2026-11-04T20:09:31.080Z"
+              }
+            }
+          ],
+          "output": {
+            "summary": "To make a task, you send a title to POST /api/tasks. The app first cleans the title by removing edge spaces, then keeps it only if it is text with 1 to 80 characters left. If valid, the cleaned title is passed to the store, which saves it and returns the new task. If not valid, the app returns an error and nothing is saved.",
+            "filePaths": [
+              "server/validation.js",
+              "server/api.js",
+              "db/store.js"
+            ],
+            "checks": [
+              {
+                "referenceId": "node-assert",
+                "status": "review-needed",
+                "observation": "Do the checks for taskTitle include explicit negative boundary cases, such as empty text, 81 characters, and non-string input?",
+                "filePaths": [
+                  "server/validation.js"
+                ]
+              }
+            ],
+            "glossary": [
+              {
+                "term": "taskTitle",
+                "meaning": "A small checker that removes spaces from the ends of the sent text and keeps it only if 1 to 80 characters remain."
+              },
+              {
+                "term": "POST /api/tasks",
+                "meaning": "The create-task web address; sending data here asks the app to make a new task."
+              },
+              {
+                "term": "store",
+                "meaning": "The save helper that adds the accepted title to the task list and returns the new task."
+              }
+            ],
+            "flow": [
+              {
+                "title": "Check the title",
+                "description": "See how taskTitle trims spaces and accepts only text that remains 1 to 80 characters long.",
+                "filePaths": [
+                  "server/validation.js"
+                ]
+              },
+              {
+                "title": "Handle the create request",
+                "description": "See how POST /api/tasks rejects a bad title with an error or forwards a good title onward.",
+                "filePaths": [
+                  "server/api.js",
+                  "server/validation.js"
+                ]
+              },
+              {
+                "title": "Save the accepted title",
+                "description": "See how the accepted clean title is saved as a new row and returned as the new task.",
+                "filePaths": [
+                  "db/store.js",
+                  "server/api.js"
+                ]
+              }
+            ]
+          },
+          "automaticChecks": [
+            {
+              "id": "validated-output",
+              "passed": true,
+              "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+            },
+            {
+              "id": "beginner-structure",
+              "passed": true,
+              "detail": "Expected 2–4 glossary terms and 2–5 reading-flow steps."
+            },
+            {
+              "id": "selected-paths-only",
+              "passed": true,
+              "detail": "Top-level paths resolve to selected source; nested flow/check paths are checked by application validation."
+            }
+          ],
+          "semanticReview": {
+            "reviewer": "Codex source inspection",
+            "status": "pass",
+            "note": "The 1-80 accepted range is retained, while the optional negative-boundary question now lists empty text, 81 characters and non-string input. It no longer mislabels accepted length 80 as negative. The create-request handoff to store.add remains consistent with the selected source.",
+            "factsChecked": [
+              "title-type",
+              "trim-length",
+              "invalid-post",
+              "parameterized-insert"
+            ]
+          }
+        },
+        {
+          "id": "study-tasks-coding",
+          "repository": "KIREETI001/groundtruth-demo-study-tasks",
+          "task": "exercise",
+          "label": "Tiny coding task",
+          "attempts": [
+            {
+              "index": 14,
+              "startedAt": "2026-11-04T20:09:31.551Z",
+              "status": "success",
+              "completedAt": "2026-11-04T20:09:40.827Z",
+              "wallLatencyMs": 9274,
+              "receipt": {
+                "task": "exercise",
+                "provider": "meta",
+                "model": "muse-spark-1.3",
+                "status": "success",
+                "latencyMs": 9235,
+                "inputTokens": 1876,
+                "outputTokens": 882,
+                "cachedInputTokens": 0,
+                "createdAt": "2026-11-04T20:09:40.788Z"
+              }
+            }
+          ],
+          "output": {
+            "title": "Trim and validate a task title",
+            "prompt": "Implement function cleanTitle(value): takes any value, returns trimmed title string or null. Return null if not a string; trim it; return null if length <1 or >80, else return trimmed string. Keep implementation to 3-12 lines.",
+            "kind": "trace",
+            "filePaths": [
+              "server/validation.js"
+            ],
+            "reviewPoints": [
+              "Check server/validation.js quote `if (typeof value !== 'string') return null;` — non-strings must reject with null.",
+              "Check server/validation.js quote `if (title.length < 1 || title.length > 80) return null;` — trimmed length 1-80 accepted, 0 and 81+ rejected.",
+              "Check server/validation.js quote `return title;` — accepted case returns trimmed value, not original with spaces."
+            ],
+            "format": "coding",
+            "starterCode": ""
+          },
+          "automaticChecks": [
+            {
+              "id": "validated-output",
+              "passed": true,
+              "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+            },
+            {
+              "id": "small-code-format",
+              "passed": true,
+              "detail": "Coding format with a bounded prompt; feasibility and missing requirements are reviewed separately. Student code is not executed."
+            }
+          ],
+          "semanticReview": {
+            "reviewer": "Codex source inspection",
+            "status": "pass",
+            "note": "The prompt now requests only one standalone cleanTitle implementation, with explicit non-string rejection, trimming, inclusive lengths 1-80 and null for invalid input. It is feasible in 3-12 lines and no longer asks for a wrapper, extra output array or explanation. The blank editor survives schema replay.",
+            "factsChecked": [
+              "title-type",
+              "trim-length"
+            ]
+          }
+        },
+        {
+          "id": "isarray-overview",
+          "repository": "juliangruber/isarray",
+          "task": "analyse",
+          "label": "Beginner overview",
+          "attempts": [
+            {
+              "index": 15,
+              "startedAt": "2026-11-04T20:09:40.858Z",
+              "status": "success",
+              "completedAt": "2026-11-04T20:09:58.406Z",
+              "wallLatencyMs": 17546,
+              "receipt": {
+                "task": "analyse",
+                "provider": "meta",
+                "model": "muse-spark-1.3",
+                "status": "success",
+                "latencyMs": 17509,
+                "inputTokens": 1503,
+                "outputTokens": 1764,
+                "cachedInputTokens": 0,
+                "createdAt": "2026-11-04T20:09:58.369Z"
+              }
+            }
+          ],
+          "output": {
+            "summary": "This helper answers 'is this a real array?' It uses the built-in Array.isArray when available, otherwise checks the value's type label with {}.toString for '[object Array]'. Tests show [] passes, while {}, numbers, strings, and an object with a 0 key do not, and an array with an extra property still passes.",
+            "filePaths": [
+              "index.js",
+              "test.js"
+            ],
+            "checks": [
+              {
+                "referenceId": "ecma-array",
+                "status": "review-needed",
+                "observation": "How should the toString fallback be compared with native Array.isArray for array-like edge cases?",
+                "filePaths": [
+                  "index.js",
+                  "test.js"
+                ]
+              }
+            ],
+            "glossary": [
+              {
+                "term": "Array",
+                "meaning": "An ordered list of values made with [] or Array, which this helper should accept."
+              },
+              {
+                "term": "Array-like object",
+                "meaning": "A plain object that looks like an array, for example with a 0 key, but should still be rejected."
+              },
+              {
+                "term": "Fallback",
+                "meaning": "A backup method used only when the built-in array check is missing."
+              }
+            ],
+            "flow": [
+              {
+                "title": "See native-or-fallback choice",
+                "description": "Read index.js to see the choice to use built-in Array.isArray when present, otherwise a backup check.",
+                "filePaths": [
+                  "index.js"
+                ]
+              },
+              {
+                "title": "Understand fallback label test",
+                "description": "Look at the backup in index.js that checks the hidden type label for '[object Array]'.",
+                "filePaths": [
+                  "index.js"
+                ]
+              },
+              {
+                "title": "Walk through array versus tricky cases",
+                "description": "Read test.js to see how true arrays pass while plain objects and array-like objects are rejected.",
+                "filePaths": [
+                  "test.js"
+                ]
+              }
+            ]
+          },
+          "automaticChecks": [
+            {
+              "id": "validated-output",
+              "passed": true,
+              "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+            },
+            {
+              "id": "beginner-structure",
+              "passed": true,
+              "detail": "Expected 2–4 glossary terms and 2–5 reading-flow steps."
+            },
+            {
+              "id": "selected-paths-only",
+              "passed": true,
+              "detail": "Top-level paths resolve to selected source; nested flow/check paths are checked by application validation."
+            }
+          ],
+          "semanticReview": {
+            "reviewer": "Codex source inspection",
+            "status": "pass",
+            "note": "The fallback is described as a backup tag-check mechanism, and ordinary array/array-like examples agree with the selected code and test expectations. The previous assertion that older setups behave the same is absent. The comparison with the native function remains an open review question rather than a conformance guarantee; no test-execution claim is made.",
+            "factsChecked": [
+              "module-load-choice",
+              "fallback-tag",
+              "array-like-rejected",
+              "test-coverage-limitation"
+            ]
+          }
+        },
+        {
+          "id": "isarray-coding",
+          "repository": "juliangruber/isarray",
+          "task": "exercise",
+          "label": "Tiny coding task",
+          "attempts": [
+            {
+              "index": 16,
+              "startedAt": "2026-11-04T20:09:58.444Z",
+              "status": "success",
+              "completedAt": "2026-11-04T20:10:11.436Z",
+              "wallLatencyMs": 12991,
+              "receipt": {
+                "task": "exercise",
+                "provider": "meta",
+                "model": "muse-spark-1.3",
+                "status": "success",
+                "latencyMs": 12809,
+                "inputTokens": 1583,
+                "outputTokens": 1053,
+                "cachedInputTokens": 0,
+                "createdAt": "2026-11-04T20:10:11.254Z"
+              }
+            }
+          ],
+          "output": {
+            "title": "Array check via toString tag",
+            "prompt": "Implement function isArrayPolyfill(value) in 3-12 lines without calling Array.isArray. Use ({}).toString.call(value) compared to '[object Array]'. Return true for [] and for an array with added foo property, false for {}, {0:true}, '[]', and function(){}.",
+            "kind": "test-design",
+            "filePaths": [
+              "index.js",
+              "test.js"
+            ],
+            "reviewPoints": [
+              "index.js: \"return toString.call(arr) === '[object Array]';\" — only that tag returns true, so extra props still pass.",
+              "index.js: \"var toString = {}.toString;\" — must use generic call form to inspect value's tag.",
+              "test.js: \"t.notOk(isArray(function () {}));\" and obj[0] case — functions and 0-key objects must be rejected."
+            ],
+            "format": "coding",
+            "starterCode": ""
+          },
+          "automaticChecks": [
+            {
+              "id": "validated-output",
+              "passed": true,
+              "detail": "Accepted by the application output schema and source-path checks; this does not prove factual correctness."
+            },
+            {
+              "id": "small-code-format",
+              "passed": true,
+              "detail": "Coding format with a bounded prompt; feasibility and missing requirements are reviewed separately. Student code is not executed."
+            }
+          ],
+          "semanticReview": {
+            "reviewer": "Codex source inspection",
+            "status": "pass",
+            "note": "The task now requests one standalone tag-comparison function and states ordinary input expectations without requesting extra calls, assertions or a second output answer. It is feasible in 3-12 lines. The private criteria correctly say that the compared tag returns true rather than asserting universal equivalence to native Array.isArray.",
+            "factsChecked": [
+              "fallback-tag",
+              "array-like-rejected"
+            ]
+          }
+        }
+      ],
+      "completedAt": "2026-11-04T20:10:11.492Z",
+      "semanticReviewedAt": "2026-11-04T20:11:34.414Z"
+    }
+  ],
+  "summary": {
+    "baseline": {
+      "planned": 12,
+      "returned": 12,
+      "attempts": 12,
+      "automaticPassed": 12,
+      "semantic": {
+        "reviewed": 12,
+        "pass": 8,
+        "concern": 4,
+        "fail": 0
+      }
+    },
+    "mitigationRecheck": {
+      "planned": 4,
+      "returned": 4,
+      "attempts": 4,
+      "automaticPassed": 4,
+      "semantic": {
+        "reviewed": 4,
+        "pass": 4,
+        "concern": 0,
+        "fail": 0
+      }
+    },
+    "total": {
+      "generationAttempts": 16,
+      "failedGenerationAttempts": 0,
+      "receiptCount": 16,
+      "inputTokens": 27248,
+      "outputTokens": 17647,
+      "cachedInputTokens": 1250,
+      "latencyMs": {
+        "observed": 16,
+        "min": 5195,
+        "median": 11437.5,
+        "max": 17509
+      }
+    },
+    "perRepository": [
+      {
+        "repository": "KIREETI001/groundtruth-demo-study-tasks",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 2,
+            "concern": 2,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 2,
+          "returned": 2,
+          "attempts": 2,
+          "automaticPassed": 2,
+          "semantic": {
+            "reviewed": 2,
+            "pass": 2,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 6,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 6,
+        "inputTokens": 10144,
+        "outputTokens": 7042,
+        "cachedInputTokens": 0,
+        "latencyMs": {
+          "observed": 6,
+          "min": 9235,
+          "median": 12392,
+          "max": 14274
+        }
+      },
+      {
+        "repository": "juliangruber/isarray",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 2,
+            "concern": 2,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 2,
+          "returned": 2,
+          "attempts": 2,
+          "automaticPassed": 2,
+          "semantic": {
+            "reviewed": 2,
+            "pass": 2,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 6,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 6,
+        "inputTokens": 8824,
+        "outputTokens": 6861,
+        "cachedInputTokens": 0,
+        "latencyMs": {
+          "observed": 6,
+          "min": 5195,
+          "median": 12222.5,
+          "max": 17509
+        }
+      },
+      {
+        "repository": "jonschlinkert/is-number",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 4,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 0,
+          "returned": 0,
+          "attempts": 0,
+          "automaticPassed": 0,
+          "semantic": {
+            "reviewed": 0,
+            "pass": 0,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 4,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 4,
+        "inputTokens": 8280,
+        "outputTokens": 3744,
+        "cachedInputTokens": 1250,
+        "latencyMs": {
+          "observed": 4,
+          "min": 6001,
+          "median": 8791,
+          "max": 10519
+        }
+      }
+    ]
+  }
+}

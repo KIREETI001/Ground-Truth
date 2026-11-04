@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "groundtruth-usability-status.v1",
+  "updatedOn": "2026-11-05",
+  "status": "not_conducted",
+  "reason": "The participant stated that no external participants are available. Only a future protocol and blank response sheet were prepared.",
+  "participantCount": 0,
+  "learnerParticipantCount": 0,
+  "educatorParticipantCount": 0,
+  "sessionCount": 0,
+  "feedbackCount": 0,
+  "participants": [],
+  "sessions": [],
+  "feedbackQuotes": [],
+  "observedLearningOutcomes": [],
+  "causalInferenceSupported": false,
+  "comparativeModelClaimsSupported": false,
+  "externalOutreachPerformed": false,
+  "externalDataCollectionPerformed": false,
+  "futureProtocol": "user-study-plan.md",
+  "operatorAndAutomatedEvidence": {
+    "includedInParticipantCounts": false,
+    "categories": [
+      "automated engineering tests",
+      "operator source and semantic-output review",
+      "fixed trusted sample-fixture checks",
+      "TinyFish browser QA"
+    ],
+    "resultsLocation": "../release-manifest.json",
+    "note": "Report actual completion in the relevant release/QA artifacts. These categories are not external user feedback or evidence of causal learning gains."
+  },
+  "unsupportedClaims": [
+    "measured learning gains or retention",
+    "validated mastery or assessment validity",
+    "fairer grades or reduced marking time",
+    "proof of authorship or outside-AI detection",
+    "model superiority",
+    "measured learner token savings"
+  ]
+}

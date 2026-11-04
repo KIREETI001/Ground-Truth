@@ -1,28 +1,43 @@
-# GroundTruth — submission packet
+# GroundTruth submission packet
 
-**Participant review draft, 5 November 2026. Do not submit the official form. The user will inspect all materials first; publishing consent stays unchecked. Nothing in this folder records a successful competition submission.**
+**Participant review draft. The official form remains unsubmitted and publishing consent unchecked.** The participant will review the completed materials before any final portal action.
 
-GroundTruth helps builders understand AI-generated code and architecture, develop a systems mindset, and make the next change independently. The core demonstration connects a beginner tracing request → validation → persistence with a teacher inspecting the original independent attempt. A polished take-home artifact may not reveal independent ability; responsible AI learners need room to demonstrate understanding. Evidence can guide a human follow-up without turning GroundTruth into a detector or automatic grader.
+Revised release: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. The code and narrative have been reconciled around one journey: understand actual code, make a small independent change, retain the original attempt and support human review. The release operator still needs final deployment and media evidence.
 
 | File | Purpose |
 | --- | --- |
-| [project-writeup.md](project-writeup.md) | Reusable project description and short versions |
-| [video/GroundTruth_Demo.mp4](video/GroundTruth_Demo.mp4) | 2:55 narrated walkthrough of real hosted UI captures |
-| [demo-script.md](demo-script.md) | Presenter script and alternative live recording plan |
-| [judge-guide.md](judge-guide.md) | Judge journey, source facts and expected behavior |
-| [why-meta.md](why-meta.md) | Documented model fit, differentiation and honest comparisons |
-| [architecture-and-attribution.md](architecture-and-attribution.md) | System boundaries, data handling and original-work disclosure |
-| [release-checklist.md](release-checklist.md) | Required links, evidence and release gates |
-| [release-manifest.json](release-manifest.json) | Machine-readable record of verified release assets |
-| [official-form-copy.md](official-form-copy.md) | Answers for the inspected official form, with character limits |
-| [production-check-summary.md](production-check-summary.md) | Baseline checks and remaining production gates |
-| [pitch-deck.html](pitch-deck.html) | Standalone five-slide pitch with keyboard navigation and print layout |
-| [thumbnail.svg](thumbnail.svg) / [architecture.svg](architecture.svg) | Shareable vector illustrations; not product screenshots |
+| [judge-guide.md](judge-guide.md) | One-click isolated sample and code-to-change-to-review route |
+| [project-writeup.md](project-writeup.md) | Project story, implementation and limits |
+| [official-form-copy.md](official-form-copy.md) | Local copy of observed form fields and answers |
+| [form-values.json](form-values.json) | Matching local field values; no submission action |
+| [why-meta.md](why-meta.md) | Direct Meta integration, model fit and evaluation boundaries |
+| [architecture-and-attribution.md](architecture-and-attribution.md) | Authorization, source/data boundaries, licensing and prior work |
+| [release-checklist.md](release-checklist.md) | Evidence gates for this revised release |
+| [release-manifest.json](release-manifest.json) | Canonical final version, checks and media provenance |
+| [production-check-summary.md](production-check-summary.md) | Production observations recorded by the release operator |
+| [evaluation/user-study-plan.md](evaluation/user-study-plan.md) | Future optional usability protocol and response sheet |
+| [evaluation/user-study-results.json](evaluation/user-study-results.json) | Explicit not-conducted status, n = 0 |
+| [research-evidence.md](research-evidence.md) | External research context, distinct from product validation |
 
-The cloud baseline has passed 246 tests, type checks, lint and production build. Supabase has been migrated and its connection rehearsed. Vercel is live at https://groundtruth-meta.vercel.app. Thirty-nine public API checks and browser learner/teacher checks passed. Actual Meta requests are verified: eight adapter tasks and twelve public learning-journey checks passed. Final claims must follow the release manifest. A successful build is not evidence of a successful hosted inference call.
+## Revised implementation
 
-The public event page lists **4 November, 9:00 p.m. ET**, which is **5 November 2026, 10:00 a.m. Singapore time**. Use the actual [Cerebral Valley submission portal](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/hackathon/submit); do not assume this is a Devpost entry. The release operator inspected the authenticated form: a public GitHub URL, three-minute video URL and three narrative answers (3,000 characters each) are among its fields. See the exact copy and unresolved participant answers in [official-form-copy.md](official-form-copy.md). [Official event page](https://dev.meta.ai/events/global-hackathon)
+- `/login` offers Try sample learning path before the marketing story. Each visitor receives an isolated two-hour synthetic learner session and private practice copy.
+- Prepared sample overview/concepts come from validated Meta output at a pinned public source commit. New questions still call Meta; prepared artifacts are labelled.
+- An applied change provides trusted before/after source, hashes and diff for an understanding check. Linked initial/practice/fresh-variation attempts retain their original answers.
+- Teachers get privacy-scoped learner/class context, explicit sharing, a review queue, readable committed evidence and saved human reviews. Displayed states replace a mastery percentage.
+- `/demo/teacher` is a read-only view of the current visitor's own sample, with no teacher privilege or access to another visitor.
+- Source selection prioritizes relevant lines within bounded context. Sanitized inference receipts record provider/model, task, status, timing and available usage metadata, not prompts or answers.
 
-The original participant guide has not been recovered in this checkout. The [official rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver) assign impact 30%, Meta tooling 25%, technical execution 20%, and demo 25%. Keep prior-work and assistance attribution explicit.
+These are implementation facts. Final hosted behavior and refreshed media are pending exact-release checks. Historical Meta acceptance evidence remains in [meta-verification.json](meta-verification.json); it is not a semantic benchmark or proof that every revised route passed production checks.
 
-The teacher-side motivation and limits of supporting studies are documented in [research-evidence.md](research-evidence.md). The MVP does not implement teacher-side AI quiz authoring, assignment distribution or cohort analytics.
+## Review and media
+
+Application target: [groundtruth-meta.vercel.app](https://groundtruth-meta.vercel.app/login). Public source: [Ground-Truth](https://github.com/KIREETI001/Ground-Truth). Video target: [walkthrough page](https://groundtruth-meta.vercel.app/demo). The video is edited/prerecorded material; its presence does not demonstrate a new live inference request. Use only the final asset, duration, dimensions, captions and transcript named in the release manifest. Historical media must not be described as the revised release.
+
+The participant confirmed a solo entry as Kireeti Kumar, Indie Developer Track, Build for Your World. The observed official portal has three narrative limits of 3,000 characters and a partner-feedback limit of 150. The [official event](https://cerebralvalley.ai/e/meta-ai-developer-hackathon) and [official rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver) remain the organizer's authority; later changes must be checked before submission.
+
+## Evidence and licensing
+
+There are **no external user-study participants or collected feedback (n = 0)**. Automated tests, operator source review, controlled sample checks and TinyFish browser QA must be labelled separately. None establishes causal learning gains, assessment validity, reduced marking time or model superiority.
+
+The submitted implementation is [MIT licensed](../LICENSE). [NOTICE](../NOTICE) preserves prior GroundTruth ideation and third-party attribution. Third-party components retain their own licenses. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.

@@ -5,7 +5,7 @@ export const metadata = {
   description: 'Understand the code, practise independently, and give teachers evidence of the learning behind an AI-assisted project.',
 };
 
-const revision = 'b7e788a8';
+const revision = 'f6dbbb92';
 const videoSrc = `/groundtruth-demo.mp4?v=${revision}`;
 const captionsSrc = `/groundtruth-demo.vtt?v=${revision}`;
 
@@ -16,7 +16,7 @@ export default function Demo() {
       <h1 style={{ fontSize: 'clamp(28px,3vw,40px)', lineHeight: 1.2, margin: '20px 0' }}>
         Understand your code. Think in systems.
       </h1>
-      <p>See a learner explore a real project, practise independently, and share their original work with a teacher.</p>
+      <p>Follow one small code change into a source-linked question, a fresh coding task, and an inspectable teacher review.</p>
       <p style={{ color: '#657080' }}>2:58 · 1080p · English captions included</p>
       <video
         controls
@@ -35,9 +35,9 @@ export default function Demo() {
         <Link href="/login">Try GroundTruth</Link>
       </p>
       <p style={{ color: '#657080', fontSize: 16 }}>
-        Edited walkthrough with real hosted captures, explanatory animation and synthetic demo accounts.
-        Example attempts show the workflow; learning outcomes remain unmeasured. Meta Muse Spark supplies
-        contextual guidance, while teachers review the original learner evidence.
+        Edited walkthrough with real hosted captures and explicitly labelled synthetic operator activity.
+        The saved review demonstrates the workflow; no external learner or educator study was conducted.
+        Meta Muse Spark supplies contextual guidance, while the application retains original responses for review.
       </p>
     </main>
   );

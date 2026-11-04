@@ -1,64 +1,58 @@
-# Release and submission checklist
+# Revised release and submission checklist
 
-**User review hold: do not submit the official form, grant publishing consent or treat a completed draft as approval.**
+**Status: PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT.** This checklist requests evidence for the revised release; previous green checks do not automatically close these items. The official form remains unsubmitted and publishing consent unchecked until the participant's final review.
 
-Do not mark a task complete without its named evidence. This is a release checklist, not a record that the work has happened.
+## Version and rights
 
-## Entry and official form
+- [x] Participant confirmed solo entry: Kireeti Kumar; Indie Developer Track; Build for Your World.
+- [x] Participant authorized MIT licensing of the submitted implementation; project LICENSE and NOTICE exist locally.
+- [ ] Freeze and publish the final source commit; record exact SHA, source branch, deployed version and migration identifiers in release-manifest.json.
+- [ ] Verify LICENSE/NOTICE and third-party attribution in published source and confirm sample reuse permission.
+- [ ] Check tracked files and deployment uploads for secrets, private records, runtime databases and local caches.
 
-- [ ] Confirm accepted participation and correct logged-in Cerebral Valley account.
-- [ ] Confirm the entrant, actual team roster, representative and rights to the prior GroundTruth work. Recommended fit: Indie Developer / Build for Your World; record the user's actual selection.
-- [x] Read the authenticated official form. Record the required public GitHub URL, three-minute video URL, three main answers (3,000 characters each), partner feedback (150 characters), and participant surveys in official-form-copy.md.
-- [ ] Recheck announcements and any unobserved file/media restrictions or declarations before final submission.
-- [ ] Confirm the live deadline. Public page: 5 November 2026, 10:00 a.m. Singapore time. [Official event](https://dev.meta.ai/events/global-hackathon)
+## Judge entry and account isolation
 
-## Cloud release
+- [ ] Open deployed `/login` at 1440, 768 and 375 pixels; sample action is visible before story/animation, roles remain readable and no horizontal overflow appears.
+- [ ] Start two separate browser sessions. Each receives its own learner identity, project and private practice copy; signing in or attempting work in one does not invalidate the other.
+- [ ] Verify prepared overview/concepts against the operator-approved pinned public seed and Meta provenance event. Record that these are prepared assets.
+- [ ] Verify a newly requested MCQ/coding task reaches Meta and persists; retain a sanitized receipt and source review.
+- [ ] Verify per-identity/global creation budgets, active cap, reserved namespace, two-hour expiry and cleanup; synthetic accounts do not consume the real signup cap.
+- [ ] Confirm normal signup/login/logout, pending-teacher denial, closed developer registration and cross-owner project denial.
+- [ ] Verify `/demo/teacher` requires the current visitor's valid sample session, exposes only their record, stays read-only and never returns private pre-commit rubric/key data.
 
-- [x] Record the public Vercel production URL: https://groundtruth-meta.vercel.app, READY in Singapore. Login and `/api/health` return 200; database connected.
-- [ ] Freeze the final release commit after remaining fixes and Meta verification.
-- [x] Verify actual Muse Spark 1.3 API calls: 8/8 adapter tasks and 12 additional public journey checks passed with structured/source validation. No key or learner payload is included in public evidence.
-- [x] Apply and verify the Supabase schema: 32 tables with RLS enabled; private app-role connection with CA-verified TLS; zero security advisor findings at checkpoint. Server-to-Supabase login rehearsed.
-- [x] Run baseline type checks, tests (246 passed), lint (zero findings) and production build at bcbe7dcf01e2310cac945760f7560646707e56e0.
-- [ ] Run or confirm appropriate final checks for later release changes and verify public runtime access boundaries.
-- [x] Verify actual public login → Meta repository map → focused path → overview/flow → concepts → MCQ → independent lock/exit → short code → grounded hint → explicit share. Screenshots and final submitted-attempt capture are being completed separately.
-- [x] Verify public API owner isolation, pending-teacher denial, approval, explicit teacher-share access, class enrollment and idempotent joining. Twenty public API checks passed.
-- [ ] Verify final developer-signup denial and the complete browser teacher journey on the release.
-- [ ] Verify independent mode, voluntary End attempt, immutable submission, post-answer feedback and no silent provider fallback.
-- [x] Verify cloud manual drafts, review confirmation and idempotent apply in public API checks; verify the draft UI in a real browser. The cloud draft does not push to GitHub or execute code.
-- [x] Verify a real Meta-generated change proposal through the direct adapter. Keep the local companion unexposed.
-- [ ] Verify the final public AI-proposal-to-apply route independently of the manual draft checks.
-- [ ] Confirm readable desktop/mobile layout and keyboard operation on the deployed build.
-- [ ] Check published source and deployment uploads for secrets, personal records, generated local databases, caches and private runtime files.
-- [x] Verify the public landing/login and health endpoints are accessible. Judge narrative links to the correct published source branch.
+## Complete code → change → human-review loop
 
-## Media
+- [ ] Trace the pinned sample's request → validation → persistence responsibilities in the deployed overview/source.
+- [ ] Generate and submit an initial independent attempt. New in-app guidance pauses across tabs until submission or voluntary exit; the original answer remains immutable.
+- [ ] Create a private permitted draft; make a small manual edit, review the exact diff, explicitly apply and verify stale-source/concurrent-apply protections.
+- [ ] Generate an understanding task tied to the stored applied proposal, before/after hashes and reconstructed diff. Client-supplied source/proposal IDs cannot bypass ownership checks.
+- [ ] Submit a linked fresh variation; preserve the earlier response and label its phase. Repeated wording alone must not be presented as independent transfer validation.
+- [ ] If reporting trusted demo behavior checks, record fixed fixture version, exact inputs, expected/observed results and operator role. Do not imply arbitrary visitor snippets were executed.
+- [ ] Enroll synthetic learners in a synthetic class, select the approved teacher by name and explicitly share only the chosen project.
+- [ ] In an approved teacher session, distinguish two learners using the same repo, filter Needs review/Reviewed, inspect original answers/source and save a qualified human review/follow-up.
+- [ ] Confirm enrollment alone grants no project access; revocation/expiry blocks further access. No public teacher/developer credentials appear.
+- [ ] Confirm evidence states replace mastery percentages and imply no correctness or learning verdict for unreviewed answers.
 
-- [x] Render the revised narrated real-UI-stills walkthrough, 175.02 seconds, with explicit edited/synthetic/crop labels and captions.
-- [ ] Verify the revised public video, then include its accessible URL in the draft form for participant review. Do not submit.
-- [x] Capture actual public deployment screenshots in `assets/live-landing.png` and `assets/live-cloud-draft.png`.
-- [ ] Refresh the landing screenshot after the role-card styling fix; capture generated practice/independent/teacher states after full verification.
-- [ ] Choose a project thumbnail and verify dimensions against the portal.
-- [ ] Add captions or a transcript to the video. Use synthetic accounts and no private browser tabs.
+## Model and release checks
 
-Recommended screenshot set:
+- [ ] Apply final database migration and verify restricted server connection, RLS/revocations and application owner predicates. RLS alone is not the end-user authorization boundary.
+- [ ] Run typecheck, appropriate tests, lint and production build on the exact final commit; record results without carrying forward obsolete totals.
+- [ ] Check actual Meta model identity, structured output/source validation, visible failure/retry, independent-mode enforcement and absence of silent preset/local fallback.
+- [ ] Verify relevant source later in a file survives context selection; record bounded-coverage limits.
+- [ ] Verify sanitized model receipts contain task/provider/model/status/timing and available numeric usage, with no prompt, learner answer, key or raw error payload.
+- [ ] Record actual semantic-output sample, pinned repositories, outcome-specific review dimensions, failures and denominators. JSON validity alone is not semantic correctness.
+- [ ] Keep operator tests, automated tests, TinyFish QA and future external study in separate categories. External study currently not conducted, n = 0.
 
-| Filename | Capture | Shows |
-| --- | --- | --- |
-| `01-landing.png` | Full landing view | Promise, visible roles and clear entry |
-| `02-workflow.png` | Beginner overview and source | Repository-specific content and source grounding |
-| `03-practice.png` | MCQ with all options visible | Simple, focused practice |
-| `04-independent.png` | Short code attempt and assistance-paused state | The central product boundary |
-| `05-progress.png` | Saved attempt / provisional evidence | Inspectable progress without fabricated mastery |
-| `06-teacher.png` | Approved teacher reviewing explicit share | Real role boundary and human review |
+## Media and official form
 
-## Final copy
+- [ ] Refresh real product captures for visible sample entry, source/overview, independent attempt, applied diff, fresh variation and teacher evidence. Label synthetic records and operator review.
+- [ ] Verify revised public video is within the observed three-minute limit; record exact duration, dimensions, hash, captions/transcript and browser playback/seek checks.
+- [ ] State that edited/prerecorded captures and prepared model output are not fresh generation. Show actual current product evidence early.
+- [ ] Reconcile judge guide, write-up, local form copy, JSON values, main README, production summary, transcript and release manifest.
+- [ ] Confirm three narrative fields remain at most 3,000 characters and partner feedback at most 150 after final editing.
+- [ ] Recheck current organizer deadline, announcements, required fields and participant declarations in the actual portal.
+- [ ] Present final local packet to participant. Do not submit, change publishing consent or claim a receipt without their authorized final action.
 
-- [ ] Replace pending URLs, cloud status and validation details in the packet with observed facts.
-- [ ] Match the write-up and video to the actual release. Keep optional/future capabilities out of shipped-feature claims.
-- [ ] Include prior-work/AI-tool/dependency attribution and accurate team contributions.
-- [ ] Paste only into the actual official form fields; the packet headings are editorial conveniences.
-- [ ] Review required declarations before final submission, then retain the portal's success receipt and timestamp.
+## Current external-evaluation status
 
-## Assets still requiring external action
-
-The packet itself cannot supply unprovided API access, paid-service approval, competition acceptance, team consent, final presenter voice/video, or a submission receipt. Record each blocker precisely rather than reporting the project submitted.
+No external participants are available. No sessions, quotes or feedback have been fabricated. The prepared [future protocol](evaluation/user-study-plan.md) and [not-conducted record](evaluation/user-study-results.json) remain explicit limitations. Operator or TinyFish completion is product QA, not a user study or causal evidence.

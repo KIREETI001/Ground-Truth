@@ -1,0 +1,395 @@
+{
+  "status": "all_active_captures_current_and_verified_for_local_render",
+  "captures": {
+    "landing": {
+      "path": "captures/landing-desktop.jpg",
+      "crop": [
+        1375,
+        108,
+        1825,
+        425
+      ],
+      "status": "live_verified",
+      "requiredState": "landing_demo_cta",
+      "verifiedState": "landing_demo_cta",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Native1905x1072 current preview landing captured by parent operator after guest logout. Shows sample CTA, Meta-prepared overview/concepts disclosure, fresh-question live disclosure and Student/Teacher role cards. No credentials appear. Crops preserve real pixels and proportions.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "workflow": {
+      "path": "captures/workflow.jpg",
+      "crop": [
+        520,
+        365,
+        1640,
+        760
+      ],
+      "status": "live_verified",
+      "requiredState": "workflow_overview",
+      "verifiedState": "workflow_overview",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual preview deployment groundtruth-meta-blth8gk3x-kireeti001s-projects.vercel.app; isolated synthetic visitor. Prepared Meta overview/concepts, public source commit d964b3a62d84aa210b93c54271c364ad8e81ebc9. Parent release operator supplied capture and context.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "sessionCreatedAt": "2026-11-05T04:13:00+08:00"
+    },
+    "repository": {
+      "path": "../assets/live-repository-map.png",
+      "crop": [
+        285,
+        150,
+        1830,
+        900
+      ],
+      "status": "provisional_legacy",
+      "requiredState": "repository_map",
+      "verifiedState": null,
+      "capturedAt": null,
+      "applicationCommit": null,
+      "context": "Real earlier hosted capture; layout proof only. Replace before final render.",
+      "syntheticRecords": true
+    },
+    "source": {
+      "path": "captures/source.jpg",
+      "crop": [
+        520,
+        330,
+        1140,
+        720
+      ],
+      "status": "live_verified",
+      "requiredState": "pinned_source",
+      "verifiedState": "pinned_source",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual preview deployment groundtruth-meta-blth8gk3x-kireeti001s-projects.vercel.app; isolated synthetic visitor. Prepared Meta overview/concepts, public source commit d964b3a62d84aa210b93c54271c364ad8e81ebc9. Parent release operator supplied capture and context.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "sessionCreatedAt": "2026-11-05T04:13:00+08:00"
+    },
+    "concepts": {
+      "path": "captures/concepts.jpg",
+      "crop": [
+        520,
+        360,
+        1640,
+        845
+      ],
+      "status": "live_verified",
+      "requiredState": "concept_evidence_states",
+      "verifiedState": "concept_evidence_states",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual preview deployment groundtruth-meta-blth8gk3x-kireeti001s-projects.vercel.app; isolated synthetic visitor. Prepared Meta overview/concepts, public source commit d964b3a62d84aa210b93c54271c364ad8e81ebc9. Parent release operator supplied capture and context.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "sessionCreatedAt": "2026-11-05T04:13:00+08:00"
+    },
+    "change": {
+      "path": "captures/applied-diff.jpg",
+      "crop": [
+        525,
+        595,
+        1260,
+        845
+      ],
+      "status": "live_verified",
+      "requiredState": "change_applied",
+      "verifiedState": "change_applied",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual preview deployment. A synthetic operator manually changed the title limit from 80 to 100 in the private guest copy, reviewed/applied it and downloaded the saved file. The parent release operator verified the exact manual hash against the download and 120 fixed trusted-fixture checks. This is operator engineering evidence, not an external learner outcome.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "change-question": {
+      "path": "captures/change-linked-question.jpg",
+      "crop": [
+        520,
+        340,
+        1480,
+        455
+      ],
+      "status": "live_verified",
+      "requiredState": "change_linked_question",
+      "verifiedState": "change_linked_question",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual fresh Meta task explicitly asks about applied taskTitle maximum80→100, a90-character title and whitespace-only input. Synthetic operator guest, guided pre-commit state. Parent release operator captured current preview deployment.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "mcq": {
+      "path": "captures/change-linked-question.jpg",
+      "crop": [
+        520,
+        400,
+        1645,
+        880
+      ],
+      "status": "live_verified",
+      "requiredState": "fresh_meta_mcq",
+      "verifiedState": "fresh_meta_mcq",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Same newly generated change-linked MCQ, with all four options visible before commitment. No key or suggested answer is exposed. Parent release operator captured current preview deployment.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "coding": {
+      "path": "captures/fresh-variation.jpg",
+      "crop": [
+        520,
+        405,
+        1460,
+        665
+      ],
+      "status": "live_verified",
+      "requiredState": "fresh_meta_coding",
+      "verifiedState": "fresh_meta_coding",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual newly generated linked skill-transfer coding prompt: implement standalone checkComment using trimming, a type check and the 1–100 boundary from the earlier applied title change. This image shows the guided prompt; it does not establish a submitted second answer or learning gain. Synthetic operator guest on the current preview deployment. The parent operator subsequently submitted the coding variation too; the pre-commit image remains labelled by its actual visible guided state.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "hint": {
+      "path": "../video-v2/captures/learner-hint.jpg",
+      "crop": [
+        14,
+        311,
+        640,
+        645
+      ],
+      "status": "provisional_legacy",
+      "requiredState": "source_grounded_hint",
+      "verifiedState": null,
+      "capturedAt": null,
+      "applicationCommit": null,
+      "context": "Real earlier hosted capture; layout proof only. Replace before final render.",
+      "syntheticRecords": true
+    },
+    "independent": {
+      "path": "captures/independent.jpg",
+      "crop": [
+        520,
+        280,
+        1645,
+        955
+      ],
+      "status": "live_verified",
+      "requiredState": "independent_assistance_paused",
+      "verifiedState": "independent_assistance_paused",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual independent MCQ attempt showing AIpaused badge and synthetic operator-selected option before commitment. Parent release operator captured current preview deployment.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "original": {
+      "path": "captures/submitted-original.jpg",
+      "crop": [
+        520,
+        565,
+        1645,
+        845
+      ],
+      "status": "live_verified",
+      "requiredState": "original_committed_answer",
+      "verifiedState": "original_committed_answer",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual submitted MCQ; original committed optionA remains visible. Suggested answer match is model guidance, not mastery. Parent release operator captured current preview deployment.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "fresh-variation": {
+      "path": "captures/fresh-variation.jpg",
+      "crop": [
+        520,
+        405,
+        1460,
+        665
+      ],
+      "status": "live_verified",
+      "requiredState": "linked_fresh_variation",
+      "verifiedState": "linked_fresh_variation",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual newly generated linked skill-transfer coding prompt: implement standalone checkComment using trimming, a type check and the 1–100 boundary from the earlier applied title change. This image shows the guided prompt; it does not establish a submitted second answer or learning gain. Synthetic operator guest on the current preview deployment. The parent operator subsequently submitted the coding variation too; the pre-commit image remains labelled by its actual visible guided state.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "progress": {
+      "path": "captures/progress-states.jpg",
+      "crop": [
+        520,
+        180,
+        1645,
+        460
+      ],
+      "status": "live_verified",
+      "requiredState": "concept_evidence_states",
+      "verifiedState": "concept_evidence_states",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual pre-review progress: two committed workflow attempts, zero reviewed, two awaiting review and one declared manual change. Unselected individual concept nodes remain at zero; no automatic concept mastery is claimed.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "teacher-evidence": {
+      "path": "captures/teacher-original-answer.jpg",
+      "crop": [
+        440,
+        715,
+        1210,
+        970
+      ],
+      "status": "live_verified",
+      "requiredState": "authorized_teacher_committed_evidence",
+      "verifiedState": "authorized_teacher_committed_evidence",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Approved synthetic teacher views THIS same explicitly shared root guest path and original six-line checkComment answer. Two workflow attempts were committed. Actor is operator QA, not an external educator/learner participant.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "actor": "operator QA",
+      "externalParticipants": 0
+    },
+    "teacher-review": {
+      "path": "captures/teacher-saved-review.jpg",
+      "crop": [
+        440,
+        145,
+        1460,
+        380
+      ],
+      "status": "live_verified",
+      "requiredState": "teacher_saved_review",
+      "verifiedState": "teacher_saved_review",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Persisted operator QA review on THIS same root guest checkComment answer, timestamp 04:32SGT. Level Needs guided support; note describes the boundary and a fresh supervised next step, explicitly saying this is synthetic operator QA and not an educator or learner study.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "actor": "operator QA",
+      "externalParticipants": 0
+    },
+    "sharing": {
+      "path": "captures/sharing-teacher-selector.jpg",
+      "crop": [
+        520,
+        530,
+        1185,
+        675
+      ],
+      "status": "live_verified",
+      "requiredState": "explicit_teacher_selection",
+      "verifiedState": "explicit_teacher_selection",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "The same guest path selects Demo teacher [synthetic QA] from the enrolled class by name. The parent operator confirms this path was subsequently shared successfully.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "teacher-preview": {
+      "path": "captures/own-teacher-preview.jpg",
+      "crop": [
+        420,
+        100,
+        1470,
+        400
+      ],
+      "status": "live_verified",
+      "requiredState": "own_readonly_teacher_preview",
+      "verifiedState": "own_readonly_teacher_preview",
+      "capturedAt": "2026-11-05",
+      "applicationCommit": "1e85902",
+      "context": "Actual preview deployment; current isolated guest own-record read-only teacher perspective. This capture precedes a committed answer and demonstrates only the own-record/no-teacher-role boundary. Parent release operator supplied capture/context.",
+      "syntheticRecords": true,
+      "captureTimestampPrecision": "date; exact capture time not recorded"
+    },
+    "sharing-consent": {
+      "requiredState": "explicit_project_sharing_consent",
+      "path": "captures/sharing-teacher-selector.jpg",
+      "crop": [
+        520,
+        815,
+        1180,
+        955
+      ],
+      "status": "live_verified",
+      "verifiedState": "explicit_project_sharing_consent",
+      "capturedAt": "2026-11-05",
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "applicationCommit": "1e85902",
+      "context": "Actual checked consent to share this guest learning path with the selected approved synthetic teacher, followed by Share learning path. This is project sharing, not official competition publishing consent.",
+      "syntheticRecords": true
+    },
+    "landing-wide": {
+      "requiredState": "landing_demo_cta",
+      "path": "captures/landing-desktop.jpg",
+      "crop": [
+        65,
+        105,
+        1825,
+        675
+      ],
+      "status": "live_verified",
+      "verifiedState": "landing_demo_cta",
+      "capturedAt": "2026-11-05",
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "applicationCommit": "1e85902",
+      "context": "Native1905x1072 current preview landing captured by parent operator after guest logout. Shows sample CTA, Meta-prepared overview/concepts disclosure, fresh-question live disclosure and Student/Teacher role cards. No credentials appear. Crops preserve real pixels and proportions.",
+      "syntheticRecords": true
+    },
+    "teacher-source": {
+      "requiredState": "authorized_teacher_captured_change_context",
+      "path": "captures/teacher-captured-source.jpg",
+      "crop": [
+        440,
+        575,
+        1210,
+        835
+      ],
+      "status": "live_verified",
+      "verifiedState": "authorized_teacher_captured_change_context",
+      "capturedAt": "2026-11-05",
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "applicationCommit": "1e85902",
+      "context": "Approved synthetic teacher inspects this committed task captured private draft: saved source hash and taskTitle limit100, before/after diff available beneath. This is the same shared guest path and operator QA, with no learning validation claim.",
+      "syntheticRecords": true,
+      "actor": "operator QA",
+      "externalParticipants": 0
+    },
+    "teacher-queue": {
+      "requiredState": "authorized_teacher_review_filter",
+      "path": "captures/teacher-queue.jpg",
+      "crop": [
+        420,
+        395,
+        1040,
+        610
+      ],
+      "status": "live_verified",
+      "verifiedState": "authorized_teacher_review_filter",
+      "capturedAt": "2026-11-05",
+      "captureTimestampPrecision": "date; exact capture time not recorded",
+      "applicationCommit": "1e85902",
+      "context": "Actual approved synthetic teacher Reviewed filter shows two saved operator QA reviews, including root guest and another test record. All class/account/count data is synthetic testing, not external participant numbers. Crop excludes the class join code.",
+      "syntheticRecords": true,
+      "actor": "operator QA",
+      "externalParticipants": 0
+    }
+  },
+  "captureFreeze": "Parent release operator confirmed capture freeze before final V3 render.",
+  "limitations": [
+    "All teacher and learner actors are synthetic operator QA, not external participants.",
+    "Own read-only preview capture predates guest answers and is cropped only to its scope banner.",
+    "The independent typing screenshot is not used in the final plan; coding is shown with the generated prompt and actual committed answer.",
+    "Captures represent the identified preview deployment; later source/textarea/context safety fixes are documented by the root release operator."
+  ]
+}

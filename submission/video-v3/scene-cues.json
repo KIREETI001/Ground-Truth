@@ -1,0 +1,361 @@
+{
+  "title": "GroundTruth — own the next change",
+  "status": "local_review_only",
+  "width": 1920,
+  "height": 1080,
+  "fps": 24,
+  "durationSeconds": 178.465306122449,
+  "audioMaster": "../video-v2/mix-master.wav",
+  "narrationSpeed": 1,
+  "speechReordered": false,
+  "speechRetimed": false,
+  "captionSafeArea": [
+    96,
+    914,
+    1824,
+    1050
+  ],
+  "firstProductUiSeconds": 0,
+  "firstTeacherEvidenceSeconds": 17.75,
+  "captureManifest": "capture-manifest.json",
+  "scenes": [
+    {
+      "id": "one-line-challenge",
+      "kind": "ui",
+      "start": 0,
+      "end": 7.253,
+      "capture": "change",
+      "title": "Your app works. Own the next change.",
+      "note": "Private practice copy · no GitHub push"
+    },
+    {
+      "id": "one-click-entry",
+      "kind": "ui",
+      "start": 7.253,
+      "end": 12.5,
+      "capture": "landing",
+      "title": "Try a sample. Keep your own session.",
+      "note": "Isolated synthetic visitor · expires after 2 hours"
+    },
+    {
+      "id": "mental-model",
+      "kind": "ui",
+      "start": 12.5,
+      "end": 17.75,
+      "capture": "workflow",
+      "title": "See the responsibilities behind the code.",
+      "note": "Prepared Meta overview · pinned public sample"
+    },
+    {
+      "id": "teacher-payoff-early",
+      "kind": "ui",
+      "start": 17.75,
+      "end": 25.75,
+      "capture": "teacher-evidence",
+      "title": "The payoff: inspect the original answer.",
+      "note": "Question + committed answer + source · human judgement"
+    },
+    {
+      "id": "teacher-evidence-early",
+      "kind": "ui",
+      "start": 25.75,
+      "end": 33.6,
+      "capture": "teacher-source",
+      "title": "Compare the answer with captured source.",
+      "note": "Synthetic operator QA · test accounts are not study participants"
+    },
+    {
+      "id": "teacher-review-early",
+      "kind": "ui",
+      "start": 33.6,
+      "end": 40.6,
+      "capture": "teacher-review",
+      "title": "Choose a qualified human next step.",
+      "note": "An approved teacher reviews explicitly shared work"
+    },
+    {
+      "id": "private-diff-preview",
+      "kind": "ui",
+      "start": 40.6,
+      "end": 44.4,
+      "capture": "change",
+      "title": "One small edit. A reviewed diff.",
+      "note": "Private copy · trusted before/after hashes"
+    },
+    {
+      "id": "linked-question-preview",
+      "kind": "ui",
+      "start": 44.4,
+      "end": 47.6,
+      "capture": "change-question",
+      "title": "Ask about the change that was actually applied.",
+      "note": "Owned proposal + reconstructed diff · new Meta question"
+    },
+    {
+      "id": "groundtruth-introduction",
+      "kind": "ui",
+      "start": 47.6,
+      "end": 51.631,
+      "capture": "landing-wide",
+      "title": "GroundTruth. Think in systems.",
+      "note": "Actual product capture · edited walkthrough"
+    },
+    {
+      "id": "choose-feature",
+      "kind": "ui",
+      "start": 51.631,
+      "end": 54.447,
+      "capture": "workflow",
+      "title": "Start with a feature, before a filename.",
+      "note": "Prepared sample feature · own public repositories can be imported separately"
+    },
+    {
+      "id": "overview",
+      "kind": "ui",
+      "start": 54.447,
+      "end": 60.122,
+      "capture": "workflow",
+      "title": "A beginner view of the selected code.",
+      "note": "Prepared overview is distinct from fresh question generation"
+    },
+    {
+      "id": "trace-source",
+      "kind": "ui",
+      "start": 60.122,
+      "end": 66.623,
+      "capture": "source",
+      "title": "Request → validation → persistence.",
+      "note": "Read the pinned source; challenge generated claims"
+    },
+    {
+      "id": "responsibility",
+      "kind": "ui",
+      "start": 66.623,
+      "end": 71.5,
+      "capture": "source",
+      "title": "Find the component that owns the rule.",
+      "note": ""
+    },
+    {
+      "id": "source-inspection",
+      "kind": "ui",
+      "start": 71.5,
+      "end": 78.5,
+      "capture": "source",
+      "title": "The selected source stays visible.",
+      "note": "Bounded selection · not a complete repository audit"
+    },
+    {
+      "id": "applied-diff",
+      "kind": "ui",
+      "start": 78.5,
+      "end": 85.5,
+      "capture": "change",
+      "title": "Review a small private change.",
+      "note": "Hosted source and learner snippets are never executed"
+    },
+    {
+      "id": "concepts",
+      "kind": "ui",
+      "start": 85.5,
+      "end": 93.065,
+      "capture": "concepts",
+      "title": "Focused concepts. Inspectable evidence states.",
+      "note": "No mastery percentage for merely submitting an answer"
+    },
+    {
+      "id": "meta-context",
+      "kind": "card",
+      "start": 93.065,
+      "end": 96.82,
+      "title": "Meta supplies contextual teaching content.",
+      "rows": [
+        "Muse Spark 1.3 Standard",
+        "The application controls access and learning state."
+      ],
+      "note": ""
+    },
+    {
+      "id": "fresh-mcq",
+      "kind": "ui",
+      "start": 96.82,
+      "end": 101.428,
+      "capture": "mcq",
+      "title": "One focused question from this source.",
+      "note": "Fresh Meta request · suggested keys still need source review"
+    },
+    {
+      "id": "short-code",
+      "kind": "ui",
+      "start": 101.428,
+      "end": 104.75,
+      "capture": "coding",
+      "title": "A small coding task, not a whole project.",
+      "note": ""
+    },
+    {
+      "id": "guided-hint",
+      "kind": "ui",
+      "start": 104.75,
+      "end": 109.75,
+      "capture": "source",
+      "title": "Guided exploration: inspect the source.",
+      "note": "Selected pinned code · contextual guidance stays source-bound"
+    },
+    {
+      "id": "change-understanding",
+      "kind": "ui",
+      "start": 109.75,
+      "end": 114.75,
+      "capture": "change-question",
+      "title": "Check understanding of the applied diff.",
+      "note": "Before/after source and hashes are reconstructed server-side"
+    },
+    {
+      "id": "independent",
+      "kind": "ui",
+      "start": 114.75,
+      "end": 120.238,
+      "capture": "independent",
+      "title": "Try it yourself. New in-app assistance pauses.",
+      "note": ""
+    },
+    {
+      "id": "preserved-answer",
+      "kind": "ui",
+      "start": 120.238,
+      "end": 123.395,
+      "capture": "original",
+      "title": "The original response stays preserved.",
+      "note": ""
+    },
+    {
+      "id": "end-attempt",
+      "kind": "ui",
+      "start": 123.395,
+      "end": 125.7,
+      "capture": "independent",
+      "title": "You can end an attempt and return later.",
+      "note": ""
+    },
+    {
+      "id": "fresh-variation",
+      "kind": "ui",
+      "start": 125.7,
+      "end": 130.2,
+      "capture": "fresh-variation",
+      "title": "A fresh variation. Keep the earlier attempt.",
+      "note": "Task linkage is evidence, not proof of learning gains"
+    },
+    {
+      "id": "evidence-states",
+      "kind": "ui",
+      "start": 130.2,
+      "end": 134.7,
+      "capture": "progress",
+      "title": "Observed and reviewed states, not a score.",
+      "note": ""
+    },
+    {
+      "id": "teacher-queue",
+      "kind": "ui",
+      "start": 134.7,
+      "end": 136.4,
+      "capture": "teacher-queue",
+      "title": "Find the work awaiting human review.",
+      "note": "Synthetic operator QA · all counts are test records, not participants"
+    },
+    {
+      "id": "teacher-original",
+      "kind": "ui",
+      "start": 136.4,
+      "end": 140.688,
+      "capture": "teacher-evidence",
+      "title": "Inspect the original answer alongside the source.",
+      "note": ""
+    },
+    {
+      "id": "learner-choice",
+      "kind": "ui",
+      "start": 140.688,
+      "end": 141.776,
+      "capture": "sharing",
+      "title": "The learner explicitly chooses a teacher.",
+      "note": "Class enrollment alone does not share projects"
+    },
+    {
+      "id": "learner-consent",
+      "kind": "ui",
+      "start": 141.776,
+      "end": 142.864,
+      "capture": "sharing-consent",
+      "title": "Sharing remains the learner’s explicit choice.",
+      "note": "Consent for this learning path · separate from class enrollment"
+    },
+    {
+      "id": "human-review",
+      "kind": "ui",
+      "start": 142.864,
+      "end": 147.4,
+      "capture": "teacher-review",
+      "title": "Human judgement stays central.",
+      "note": ""
+    },
+    {
+      "id": "own-preview",
+      "kind": "ui",
+      "start": 147.4,
+      "end": 152.4,
+      "capture": "teacher-preview",
+      "title": "Judges can inspect only their own sample.",
+      "note": "Read-only preview · no Teacher role or saved assessment"
+    },
+    {
+      "id": "evidence-boundary-hold",
+      "kind": "card",
+      "start": 152.4,
+      "end": 156.4,
+      "title": "What this demonstration establishes.",
+      "rows": [
+        "Synthetic operator records and inspectable workflow.",
+        "No external user study: n = 0."
+      ],
+      "note": "Teacher quiz authoring, assignment distribution and cohort analytics remain future work."
+    },
+    {
+      "id": "evidence-boundaries",
+      "kind": "card",
+      "start": 156.4,
+      "end": 165.434,
+      "title": "Current release: observed and reviewed states.",
+      "rows": [
+        "No validated mastery score.",
+        "Outside AI use remains beyond the platform’s view."
+      ],
+      "note": "The unchanged approved narration mentions the earlier provisional index. The displayed percentage has been removed."
+    },
+    {
+      "id": "stack",
+      "kind": "card",
+      "start": 165.434,
+      "end": 171.493,
+      "title": "Meta content. Application-controlled evidence.",
+      "rows": [
+        "Next.js / Vercel: access, owner checks and state",
+        "Supabase: original attempts and human review",
+        "Meta Model API: contextual guidance"
+      ],
+      "note": "MIT implementation · secrets stay server-side"
+    },
+    {
+      "id": "closing",
+      "kind": "ui",
+      "start": 171.493,
+      "end": 178.465306122449,
+      "capture": "landing",
+      "title": "Let AI cook. Know the recipe.",
+      "note": "Try the isolated sample · private two-hour session",
+      "callToActionUrl": "groundtruth-meta.vercel.app"
+    }
+  ]
+}
