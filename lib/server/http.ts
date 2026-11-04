@@ -10,7 +10,15 @@ export function json(value: unknown, status = 200, extra: Record<string, string>
 
 export async function readMutation(request: Request): Promise<Record<string, unknown>> {
   const url = new URL(request.url);
-  if (request.headers.get('origin') !== url.origin || request.headers.get('sec-fetch-site') === 'cross-site') {
+  // Next's Node adapter may normalize a loopback URL to localhost. The actual
+  // Host remains authoritative for browser same-origin requests through Vercel.
+  let sameOrigin = request.headers.get('origin') === url.origin;
+  try {
+    const origin = new URL(request.headers.get('origin') || '');
+    const host = request.headers.get('host');
+    if (host && origin.host === host && origin.protocol === url.protocol && !origin.username && !origin.password) sameOrigin = true;
+  } catch { /* A missing or malformed Origin is denied. */ }
+  if (!sameOrigin || request.headers.get('sec-fetch-site') === 'cross-site') {
     throw new ApiError(403, 'ORIGIN_REQUIRED');
   }
   if (request.method === 'DELETE') {

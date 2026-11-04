@@ -22,6 +22,69 @@
       "when": 1793150469373,
       "tag": "0002_learner_path_pulse",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1793776770086,
+      "tag": "0003_platform_access",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "6",
+      "when": 1793776805232,
+      "tag": "0004_access_indexes",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "6",
+      "when": 1793779623446,
+      "tag": "0005_project_study",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "6",
+      "when": 1793781809874,
+      "tag": "0006_teacher_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "6",
+      "when": 1793782471251,
+      "tag": "0007_concept_evidence",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "6",
+      "when": 1793787260726,
+      "tag": "0008_local_accounts",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "6",
+      "when": 1793790561578,
+      "tag": "0009_repository_learning",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "6",
+      "when": 1793796508308,
+      "tag": "0010_end_attempts",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "6",
+      "when": 1793803692669,
+      "tag": "0011_classes",
+      "breakpoints": true
     }
   ]
 }

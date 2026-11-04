@@ -5,8 +5,8 @@ type KeyPolicy = (intentId:string,keys:Record<string,string>,sessionKey:string) 
 
 // These functions issue the actual client plan's keys. The selected executable
 // function itself is displayed, so the source cannot diverge from execution.
-function disabledButtonKey(_intentId:string,_keys:Record<string,string>,_sessionKey:string) { return null; }
-function stableIntentKey(intentId:string,keys:Record<string,string>,_sessionKey:string) { return keys[intentId]; }
+function disabledButtonKey() { return null; }
+function stableIntentKey(intentId:string,keys:Record<string,string>) { return keys[intentId]; }
 function browserSessionKey(_intentId:string,_keys:Record<string,string>,sessionKey:string) { return sessionKey; }
 function keyPolicy(phase:LabPhase):KeyPolicy {
   return phase==='baseline'?disabledButtonKey:phase==='transfer'?browserSessionKey:stableIntentKey;

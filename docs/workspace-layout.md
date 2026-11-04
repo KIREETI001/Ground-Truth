@@ -1,0 +1,13 @@
+# Focused workspace and class enrollment
+
+The learning workspace fills the viewport: brand at the left, stages in the top bar, repository collection and account controls on the left, and a scrollable main activity. On narrower windows the collection collapses while navigation and account controls remain available. Source code is a disclosure above every stage.
+
+MCQs display all choices immediately. Selecting a choice starts independent mode; focusing the code field does the same for coding tasks. Commit is enabled after that transition succeeds. Existing model lock checks, immutable submissions and End attempt remain. Hints can be requested before the independent attempt; a visible note pauses the hint composer during independent mode.
+
+Ask for a hint opens a non-modal floating session beside the question. The session remains mounted across stage navigation, and separate path sessions are retained in the current workspace until their X is clicked. Drag the header or use the keyboard/pointer move controls. Resize its corner or use size buttons. A close clears the floating conversation; persisted learning-path query events remain. Reloading the browser starts a new floating session. Requests use the local model, with no cloud fallback. Each sent query is recorded before inference, including failed model requests; completed assistance is counted separately.
+
+Join a class is visible near New learning path. Approved teachers create classes and share random enrollment codes from their teacher page. Class codes are scoped to the pilot; only the owning teacher can list their codes and member counts. Authenticated users enroll or leave their own membership. Repeated joining is idempotent; guesses are throttled to 10 per 10 minutes. An account that loses approved Teacher access cannot create classes or accept new enrollments. Joining does not share any learning paths or grant project access; that still requires explicit sharing in Progress.
+
+Additive migration 0011_classes adds teacher_classes, class_enrollments and class_join_attempts. It has been applied to this laptop. Class membership persists until leaving; expired code-attempt windows are removed by operational cleanup. Drizzle schema and snapshot include these tables. Fresh environments must apply migrations in order; existing environments must not replay applied SQL.
+
+Proportions: the desktop rail is 268–300px (240px on smaller desktop windows); the header is 68px. Reading text stays 18px, increasing to 19px on wide screens. Navigation is 15px, concept titles 18–19px, and supporting labels 13–15px. Concept categories use flexible 250px minimum columns, compact cards, and a consistent title area. Mobile retains 17px reading text and a single concept column.

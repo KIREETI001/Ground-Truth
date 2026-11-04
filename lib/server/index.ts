@@ -1,3 +1,6 @@
+import { platformRole, handleDeveloper, requireOperator } from './access.ts';
+import { handleStudy } from '../study/server.ts';
+import { handleLocalAuth } from './local-auth.ts';
 import type { FixtureId, Me, Outcome, Prediction, RunPlan, RuntimeConfig } from '../contracts.ts';
 import { createRun, executeStep, finalizeRun, getEvidence, getRunSource, getRunState, LabError, sourceFor } from '../lab/engine.ts';
 import { runCoaching } from './coaching.ts';
@@ -6,7 +9,7 @@ import { handleDiscovery } from './discovery.ts';
 import { ENROLLMENT_WINDOW_MS, purgeExpired } from './retention.ts';
 import type { ApiOptions } from './coaching.ts';
 import { ApiError, fields, json, readMutation, requestId, string } from './http.ts';
-import { createSession, currentCase, digest, expiresIn30Days, getProfile, isInstructor, loadSession, makeCase,
+import { createSession, currentCase, digest, expiresIn30Days, getProfile, loadSession, makeCase,
   mutateSession, NOTICE_VERSION, now, pilotId, requiredExplanation, requireMember } from './state.ts';
 import type { SessionDocument } from './state.ts';
 
@@ -27,7 +30,8 @@ async function me(request: Request, config: RuntimeConfig, userId: string | null
   const profile = userId ? await getProfile(config.DB, userId) : null;
   const member = userId ? await config.DB.prepare('SELECT expires_at FROM pilot_memberships WHERE user_id=? AND pilot_id=?')
     .bind(userId, pilotId(config)).first<{ expires_at: string }>() : null;
-  return { authenticated: !!userId, userId, enrolled: !!member && member.expires_at > now(), instructor: !!userId && isInstructor(config, userId),
+  return { cloudDeployment: config.CLOUD_ENABLED==='true', modelProvider: config.MODEL_CALLS_ENABLED==='true'?'meta':config.LOCAL_LLM_ENABLED==='true'?'local':'disabled', authenticated: !!userId, userId, enrolled: !!member && member.expires_at > now(), instructor: !!userId && (await platformRole(config, userId)) !== 'user',
+    platformRole: userId ? await platformRole(config, userId) : 'user',
     noticeAcknowledged: profile?.notice_version === NOTICE_VERSION, researchConsent: profile?.research_opt_in === 1,
     aiAvailable: !!userId && config.MODEL_CALLS_ENABLED === 'true' && !!config.MODEL_API_KEY &&
       (config.MODEL_BASE_URL === undefined || ['https://api.meta.ai/v1', 'https://api.meta.ai/v1/'].includes(config.MODEL_BASE_URL)) &&
@@ -41,7 +45,11 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
     const body = request.method === 'GET' ? {} : await readMutation(request);
     const url = new URL(request.url);
     const path = url.pathname;
+    const authentication = await handleLocalAuth(request, config, body);
+    if (authentication) return authentication;
     if (path === '/api/me' && request.method === 'GET') return json(await me(request, config, userId));
+    const study = await handleStudy(request, config, userId, body);
+    if (study) return study;
     const discovery = await handleDiscovery(request, body);
     if (discovery) return discovery;
     const learner = await handleLearnerRoutes(request, config, userId, body);
@@ -87,7 +95,7 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
       if (existing) return json(await me(request, config, userId));
       const configuredLimit = Number(config.PILOT_MAX_MEMBERS || 5);
       const cap = Number.isInteger(configuredLimit) ? Math.max(0, Math.min(configuredLimit, 5)) : 5;
-      const role = isInstructor(config, userId) ? 'staff' : 'student';
+      const role = (await platformRole(config, userId)) !== 'user' ? 'staff' : 'student';
       const saved = await config.DB.prepare(`INSERT OR IGNORE INTO pilot_memberships(user_id,pilot_id,role,enrolled_at,expires_at)
         SELECT ?,?,?,?,? WHERE EXISTS(SELECT 1 FROM practice_profiles WHERE user_id=? AND notice_version=?)
         AND (?='staff' OR (SELECT count(*) FROM pilot_memberships WHERE pilot_id=? AND role='student' AND expires_at>?)<?)`)
@@ -109,16 +117,22 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
         config.DB.prepare('SELECT count(*) AS counters,max(window_started_at) AS latest_window_started_at FROM enrollment_attempts WHERE user_id=?').bind(userId),
         config.DB.prepare('DELETE FROM learner_records WHERE user_id=?').bind(userId),
         config.DB.prepare('DELETE FROM pulse_votes WHERE user_id=?').bind(userId),
+        config.DB.prepare('DELETE FROM study_projects WHERE owner_id=?').bind(userId),
+        config.DB.prepare('DELETE FROM account_profiles WHERE user_id=?').bind(userId),
+        config.DB.prepare('DELETE FROM study_repository_maps WHERE owner_id=?').bind(userId),
       ]);
       const security = results[6].results[0] as { counters: number; latest_window_started_at: number | null };
       return json({ deleted: { sessions: results[1].meta.changes, coachLocks: results[2].meta.changes,
         profiles: results[3].meta.changes, memberships: results[4].meta.changes, enrollmentAttempts: results[5].meta.changes,
-        learnerRecords: results[7].meta.changes, pulseVotes: results[8].meta.changes },
+        learnerRecords: results[7].meta.changes, pulseVotes: results[8].meta.changes, studyProjects: results[9].meta.changes, accountProfile: results[10].meta.changes },
         retained: { enrollmentSecurityCounters: security.counters,
           enrollmentSecurityWindowEndsAt: security.latest_window_started_at === null ? null : new Date(security.latest_window_started_at + ENROLLMENT_WINDOW_MS).toISOString(),
           enrollmentSecurityCleanup: 'Active enrollment security counters are retained for their ten-minute window. Expired counters are removed during moderator cleanup or a later deletion request; cleanup is not automatic.' } });
     }
 
+    const developer = await handleDeveloper(request, config, userId, body);
+    if (developer) return developer;
+    if (path === '/api/admin/purge-expired') await requireOperator(config, userId);
     await requireMember(config, userId);
     if (path === '/api/coach' && request.method === 'POST') return json(await runCoaching(request, config, userId, body, options));
     if (path === '/api/sessions' && request.method === 'POST') {
@@ -132,14 +146,14 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
     }
 
     if (path.startsWith('/api/admin/')) {
-      if (!isInstructor(config, userId)) throw new ApiError(403, 'INSTRUCTOR_REQUIRED');
+      if ((await platformRole(config, userId)) === 'user') throw new ApiError(403, 'INSTRUCTOR_REQUIRED');
       if (path === '/api/admin/purge-expired' && request.method === 'POST') {
         fields(body, []);
         return json(await purgeExpired(config));
       }
       if (path === '/api/admin/pilot' && request.method === 'GET') {
         const rows = await config.DB.prepare(`SELECT s.id,s.owner_id,s.phase,s.created_at FROM sessions s
-          JOIN pilot_memberships m ON m.user_id=s.owner_id WHERE m.pilot_id=? AND s.status='active' AND s.expires_at>? AND m.expires_at>? ORDER BY s.created_at DESC`)
+          JOIN session_scopes x ON x.session_id=s.id JOIN pilot_memberships m ON m.user_id=s.owner_id AND m.pilot_id=x.pilot_id WHERE x.pilot_id=? AND s.status='active' AND s.expires_at>? AND m.expires_at>? ORDER BY s.created_at DESC`)
           .bind(pilotId(config), now(), now()).all<{ id: string; owner_id: string; phase: string; created_at: string }>();
         const sessions = await Promise.all(rows.results.map(async (row) => ({ id: row.id, alias: `Learner-${(await digest([pilotId(config), row.owner_id])).slice(0, 10)}`, phase: row.phase, createdAt: row.created_at })));
         return json({ sessions });
@@ -149,7 +163,8 @@ export async function handleApi(request: Request, config: RuntimeConfig, userId:
         const { row, doc } = await loadSession(config.DB, adminProof[1]);
         const member = await config.DB.prepare('SELECT user_id FROM pilot_memberships WHERE user_id=? AND pilot_id=? AND expires_at>?')
           .bind(row.owner_id, pilotId(config), now()).first();
-        if (!member) throw new ApiError(404, 'NOT_FOUND');
+        const scoped = await config.DB.prepare('SELECT session_id FROM session_scopes WHERE session_id=? AND pilot_id=?').bind(row.id,pilotId(config)).first();
+        if (!member || !scoped) throw new ApiError(404, 'NOT_FOUND');
         return proof(config, doc);
       }
       throw new ApiError(404, 'NOT_FOUND');

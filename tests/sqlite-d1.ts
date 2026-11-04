@@ -1,3 +1,4 @@
+import { readFileSync } from 'node:fs';
 import { DatabaseSync } from 'node:sqlite';
 
 // A real SQLite database with the small D1 API surface used by the application.
@@ -10,6 +11,15 @@ export class SQLiteD1 {
     this.sqlite = new DatabaseSync(':memory:');
     this.sqlite.exec('PRAGMA foreign_keys = ON');
     this.sqlite.exec(TEST_SCHEMA);
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0003_platform_access.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0004_access_indexes.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0005_project_study.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0006_teacher_reviews.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0007_concept_evidence.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0008_local_accounts.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0009_repository_learning.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0010_end_attempts.sql', import.meta.url), 'utf8'));
+    this.sqlite.exec(readFileSync(new URL('../drizzle/0011_classes.sql', import.meta.url), 'utf8'));
     this.db = this as unknown as D1Database;
   }
 

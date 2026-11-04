@@ -3,7 +3,7 @@ import { ApiError } from '../server/http.ts';
 import type { DiscoveryFetcher, ProjectTree } from './types.ts';
 
 const API = 'https://api.github.com';
-const MAX_NETWORK_BYTES = 128 * 1024;
+const MAX_NETWORK_BYTES = 256 * 1024;
 const MAX_FILE_BYTES = 12 * 1024;
 const MAX_SELECTED_BYTES = 32 * 1024;
 const MAX_FILES = 200;
@@ -33,7 +33,7 @@ function repository(value: unknown): Repository {
   const name = `${match[1]}/${match[2]}`;
   return { repository: name, url: `https://github.com/${name}`, apiPath: `/repos/${match[1]}/${match[2]}` };
 }
-function language(path: unknown): string | null {
+export function language(path: unknown): string | null {
   if (typeof path !== 'string' || path.length > 200 || !/^[a-z0-9_ .@()+[\]/-]+$/i.test(path)) return null;
   const parts = path.split('/');
   if (parts.some(part => !part || part === '.' || part === '..' || part.startsWith('.') || EXCLUDED_DIRS.has(part.toLowerCase()))) return null;
@@ -124,7 +124,7 @@ async function pinnedTree(repo: Repository, commit: string, network: ReturnType<
   if (revision.sha !== commit) throw new ApiError(502, 'PROJECT_RESPONSE_INVALID');
   const root = object(revision.tree);
   if (typeof root.sha !== 'string' || !SHA.test(root.sha)) throw new ApiError(502, 'PROJECT_RESPONSE_INVALID');
-  const result = await network.json(`${repo.apiPath}/git/trees/${root.sha}?recursive=1`, 64 * 1024);
+  const result = await network.json(`${repo.apiPath}/git/trees/${root.sha}?recursive=1`, 192 * 1024);
   if (result.sha !== root.sha || !Array.isArray(result.tree) || typeof result.truncated !== 'boolean') throw new ApiError(502, 'PROJECT_RESPONSE_INVALID');
   const files: SourceFile[] = [];
   const found = new Set<string>();
@@ -145,13 +145,15 @@ async function pinnedTree(repo: Repository, commit: string, network: ReturnType<
   ] };
 }
 
-export async function projectTree(input: { url: unknown }, fetcher: DiscoveryFetcher = fetch): Promise<ProjectTree> {
+export async function projectTree(input: { url: unknown; ref?: unknown }, fetcher: DiscoveryFetcher = fetch): Promise<ProjectTree> {
   const repo = repository(input.url);
+  const requestedRef=input.ref===undefined?null:input.ref;
+  if(requestedRef!==null&&(typeof requestedRef!=='string'||!(/^[A-Za-z0-9][A-Za-z0-9._\/-]{0,119}$/).test(requestedRef)||requestedRef.includes('..')))throw new ApiError(400,'PROJECT_REF_INVALID','Choose a plain branch name.');
   const network = reader(fetcher);
   try {
     const metadata = await publicRepository(repo, network);
     if (typeof metadata.default_branch !== 'string' || !metadata.default_branch || metadata.default_branch.length > 200 || /[\u0000-\u001f\u007f]/.test(metadata.default_branch)) throw new ApiError(502, 'PROJECT_RESPONSE_INVALID');
-    const reference = await network.json(`${repo.apiPath}/git/ref/heads/${encodeURIComponent(metadata.default_branch)}`, 4 * 1024);
+    const reference = await network.json(`${repo.apiPath}/git/ref/heads/${encodeURIComponent(requestedRef as string || metadata.default_branch)}`, 4 * 1024);
     const head = object(reference.object);
     if (head.type !== 'commit' || typeof head.sha !== 'string' || !SHA.test(head.sha)) throw new ApiError(502, 'PROJECT_RESPONSE_INVALID');
     const commit = head.sha.toLowerCase();
@@ -185,6 +187,21 @@ function suggestedMission(signals: ProjectSnapshot['signals'], text: string): st
   if (/\.sort\s*\(/.test(text)) return 'move-the-marker';
   if (/\bMap\s*\(/.test(text)) return 'find-the-receipt';
   return 'scan-the-queue';
+}
+
+export function snapshotFromSources(tree:Pick<ProjectTree,'repository'|'url'|'commit'>,files:{path:string;source:string}[]):ProjectSnapshot{
+ if(!files.length||files.length>3||!SHA.test(tree.commit))throw new ApiError(400,'PROJECT_SOURCE_INVALID');
+ const snapshot:ProjectSnapshot={...tree,analysedAt:new Date().toISOString(),files:[],signals:[],suggestedMissionId:null,warnings:[CAVEAT]};
+ let bytes=0,sourceText='';
+ for(const file of files){
+  const supported=language(file.path),size=new TextEncoder().encode(file.source).length;bytes+=size;
+  if(!supported||size>MAX_FILE_BYTES||bytes>MAX_SELECTED_BYTES)throw new ApiError(400,'PROJECT_SOURCE_INVALID','The workflow source exceeds its supported read budget.');
+  if(!file.source.trim()||/[\u0000-\u0008\u000b\u000c\u000e-\u001f\u007f]/.test(file.source)||credentialLike(file.source)){snapshot.warnings.push(file.path+': potentially sensitive or unsupported source was skipped.');continue;}
+  snapshot.files.push({path:file.path,language:supported,excerpt:excerpt(file.source)});snapshot.signals.push(...textSignals(file.path,file.source,supported));sourceText+='\n'+file.source;
+  if(file.source.length>1500)snapshot.warnings.push(file.path+': excerpt shortened to 1,500 characters.');
+ }
+ if(!snapshot.files.length)throw new ApiError(422,'PROJECT_NO_READABLE_FILES','This workflow has no safely readable source. Choose another workflow.');
+ snapshot.signals=snapshot.signals.slice(0,20);snapshot.suggestedMissionId=suggestedMission(snapshot.signals,sourceText);return snapshot;
 }
 
 export async function analyseProject(input: { url: unknown; commit: unknown; paths: unknown }, fetcher: DiscoveryFetcher = fetch): Promise<ProjectSnapshot> {

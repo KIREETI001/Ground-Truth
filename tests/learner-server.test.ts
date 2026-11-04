@@ -214,7 +214,7 @@ test('delete-all covers owned learner records and votes while preserving another
 });
 
 test('moderator cleanup physically removes expired learner records and votes without deleting active rows', async t => {
-  const fixture = createTestDb(); t.after(() => fixture.close()); const config = { DB: fixture.db, STAFF_USER_ROLES: '{"tutor":"tutor"}' } satisfies RuntimeConfig;
+  const fixture = createTestDb(); t.after(() => fixture.close()); const config = { DB: fixture.db, STAFF_USER_ROLES: '{"tutor":"owner"}' } satisfies RuntimeConfig;
   const pulse = await read<Pulse>(await handleApi(request('/pulse'), config, null));
   for (const user of ['expired', 'active']) {
     await handleApi(request('/learner', 'POST', saveBody()), config, user);

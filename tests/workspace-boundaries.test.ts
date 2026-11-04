@@ -172,7 +172,7 @@ test('activity deletion removes expired enrollment counters but preserves an act
 
 test('authenticated moderator cleanup removes only expired enrollment counters', async t => {
   const { fixture, config, send } = setup(t); transport(t, config);
-  config.STAFF_USER_ROLES = JSON.stringify({ moderator: 'tutor' });
+  config.STAFF_USER_ROLES = JSON.stringify({ moderator: 'owner' });
   await start();
   await send('/api/notices/practice', 'POST', { version: 'practice.v1', acknowledged: true }, 'moderator');
   await send('/api/pilot/enroll', 'POST', { code: 'pilot-code' }, 'moderator');

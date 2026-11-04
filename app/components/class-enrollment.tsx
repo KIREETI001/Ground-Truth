@@ -1,0 +1,26 @@
+'use client';
+import { useEffect,useRef,useState } from 'react';
+import { api,post } from '@/lib/client/api';
+import { HelpTip } from './help-tip';
+
+type Joined={id:string;name:string;teacherName:string;teacherId:string};
+export function ClassEnrollment(){
+ const [classes,setClasses]=useState<Joined[]>([]),[open,setOpen]=useState(false),[code,setCode]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState(''),[notice,setNotice]=useState('');
+ const dialog=useRef<HTMLDialogElement>(null),trigger=useRef<HTMLButtonElement>(null),input=useRef<HTMLInputElement>(null),lock=useRef(false);
+ async function load(){const result=await api<{joined:Joined[]}>('/api/study/classes');setClasses(result.joined);}
+ useEffect(()=>{let active=true;void api<{joined:Joined[]}>('/api/study/classes').then(result=>{if(active)setClasses(result.joined);}).catch(()=>{});return()=>{active=false;};},[]);
+ useEffect(()=>{if(!open)return;const node=dialog.current,button=trigger.current;node?.showModal();input.current?.focus();return()=>{node?.close();button?.focus();};},[open]);
+ async function join(){if(lock.current)return;lock.current=true;setBusy(true);setError('');try{const result=await post<{name:string}>('/api/study/classes/join',{code,confirmed:true});await load();setOpen(false);setCode('');setNotice('Joined '+result.name+'.');}catch(e){setError(e instanceof Error?e.message:'Could not join this class.');}finally{lock.current=false;setBusy(false);}}
+ return <section className="sidebar-classes" aria-label="Your classes"><button ref={trigger} type="button" className="join-class-launch" onClick={()=>{setError('');setOpen(true);}}>＋ Join a class</button>
+  {notice&&<p role="status" className="class-notice">{notice}</p>}
+  {classes.length>0&&<details className="joined-class-list"><summary>My classes · {classes.length}</summary><ul>{classes.map(item=><li key={item.id}><strong>{item.name}</strong><small>{item.teacherName}</small><button type="button" disabled={busy} onClick={async()=>{if(lock.current)return;lock.current=true;setBusy(true);try{await post('/api/study/classes/leave',{classId:item.id});await load();setNotice('Left '+item.name+'.');}catch(e){setNotice(e instanceof Error?e.message:'Could not leave the class.');}finally{lock.current=false;setBusy(false);}}}>Leave class</button></li>)}</ul></details>}
+  <dialog ref={dialog} role="dialog" aria-modal="true" aria-labelledby="join-class-title" className="join-class-dialog" onCancel={event=>{event.preventDefault();if(!busy)setOpen(false);}}><div className="section-heading"><h2 id="join-class-title">Join a class</h2><button type="button" aria-label="Close class enrollment" disabled={busy} onClick={()=>setOpen(false)}>×</button></div><form onSubmit={event=>{event.preventDefault();void join();}}><label htmlFor="class-code">Teacher’s class code</label><input ref={input} id="class-code" required maxLength={30} autoComplete="off" value={code} onChange={event=>setCode(event.target.value)} placeholder="Enter the code from your teacher" disabled={busy}/><HelpTip label="Class enrollment">Joining adds you to the teacher’s class roster. Your learning paths remain private until you explicitly share them with a teacher in Progress. You can leave a class from My classes.</HelpTip>{error&&<p role="alert">{error}</p>}<div className="button-row"><button type="button" className="button button-outline" disabled={busy} onClick={()=>setOpen(false)}>Cancel</button><button className="button button-primary" disabled={busy}>{busy?'Joining…':'Join class'}</button></div></form></dialog>
+ </section>;
+}
+
+export function TeacherClasses(){
+ const [classes,setClasses]=useState<{id:string;name:string;joinCode:string;studentCount:number}[]>([]),[name,setName]=useState(''),[busy,setBusy]=useState(false),[error,setError]=useState('');
+ async function load(){const result=await api<{owned:typeof classes}>('/api/study/classes');setClasses(result.owned);}
+ useEffect(()=>{let active=true;void api<{owned:{id:string;name:string;joinCode:string;studentCount:number}[]}>('/api/study/classes').then(result=>{if(active)setClasses(result.owned);}).catch(e=>{if(active)setError(e instanceof Error?e.message:'Could not load classes.');});return()=>{active=false;};},[]);
+ return <section className="study-panel teacher-classes"><div className="section-heading"><h2>Your classes</h2><HelpTip label="Class codes">Share a class code so students can enroll. Enrollment alone does not grant access to their learning paths; students must explicitly share each path with you.</HelpTip></div><form onSubmit={async event=>{event.preventDefault();if(busy)return;setBusy(true);setError('');try{await post('/api/study/classes',{name});setName('');await load();}catch(e){setError(e instanceof Error?e.message:'Could not create the class.');}finally{setBusy(false);}}}><label>Class name<input required minLength={2} maxLength={80} value={name} onChange={event=>setName(event.target.value)} placeholder="e.g. Introduction to Web Development"/></label><button className="button button-primary" disabled={busy}>{busy?'Creating…':'Create class'}</button></form>{error&&<p role="alert">{error}</p>}<ul>{classes.map(item=><li key={item.id}><strong>{item.name}</strong><span>Class code: <code>{item.joinCode}</code></span><small>{item.studentCount} students enrolled</small></li>)}</ul></section>;
+}

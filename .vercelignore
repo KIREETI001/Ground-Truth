@@ -1,0 +1,13 @@
+.sites-runtime
+.wrangler
+.env*
+.dev.vars*
+node_modules
+dist
+.next
+.git
+sources
+tests
+submission/assets
+outputs
+work

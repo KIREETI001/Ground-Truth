@@ -1,3 +1,2 @@
-import { LearningExperience } from '../components/learning-experience';
-
-export default function LearnPage() { return <LearningExperience />; }
+import { redirect } from 'next/navigation';
+export default function Legacy(){redirect('/user');}

@@ -49,7 +49,7 @@ test('mutation only accepts JSON and bounded payloads', async () => {
 });
 
 function configFor(fixture: SQLiteD1): RuntimeConfig {
-  return { ...emptyConfig, DB: fixture.db, PILOT_ID: 'test-pilot', STAFF_USER_ROLES: JSON.stringify({ 'tutor-a': 'tutor' }) };
+  return { ...emptyConfig, DB: fixture.db, PILOT_ID: 'test-pilot', STAFF_USER_ROLES: JSON.stringify({ 'tutor-a': 'owner' }) };
 }
 
 async function enroll(config: RuntimeConfig, user = 'member-a') {

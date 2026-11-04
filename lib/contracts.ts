@@ -46,7 +46,10 @@ export interface LearningSession {
   suggestionDecisions?: { caseId: string; decision: 'accepted' | 'changed' | 'rejected'; reason: string; at: string }[];
 }
 export interface Me {
+  cloudDeployment?: boolean;
+  modelProvider?: 'meta' | 'local' | 'disabled';
   authenticated: boolean; userId: string | null; enrolled: boolean; instructor: boolean;
+  platformRole?: 'user' | 'teacher' | 'developer';
   noticeAcknowledged: boolean; researchConsent: boolean; aiAvailable: boolean;
   pilotOpen: boolean; localDevelopment: boolean;
 }
@@ -70,6 +73,12 @@ export interface CoachResult {
   model?: string; usage?: { inputTokens: number; outputTokens: number };
 }
 export interface RuntimeConfig {
+  CLOUD_ENABLED?: string;
+  DEVELOPER_PASSWORD_HASH?: string;
+  LOCAL_LLM_ENABLED?: string;
+  LOCAL_LLM_TOKEN?: string;
+  LOCAL_WORKSPACE_TOKEN?: string;
+  LOCAL_ACCOUNTS_ENABLED?: string;
   DB: D1Database;
   MODEL_API_KEY?: string; MODEL_BASE_URL?: string; MODEL_ID?: string; MODEL_CALLS_ENABLED?: string;
   PILOT_ID?: string; PILOT_MAX_MEMBERS?: string; PILOT_ENROLLMENT_CODE?: string;

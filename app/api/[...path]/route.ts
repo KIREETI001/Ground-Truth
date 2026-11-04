@@ -1,13 +1,19 @@
-import { env } from 'cloudflare:workers';
-import { getChatGPTUser } from '../../chatgpt-auth';
-import type { RuntimeConfig } from '../../../lib/contracts';
+import { getRuntime } from '../../../lib/cloud/runtime';
+import { localIdentity } from '../../../lib/server/local-auth';
 import { handleApi } from '../../../lib/server/index';
 
 export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+export const maxDuration = 120;
 
 async function dispatch(request: Request): Promise<Response> {
-  const user = await getChatGPTUser();
-  return handleApi(request, env as unknown as RuntimeConfig, user?.userId ?? null);
+  const config = getRuntime();
+  try {
+    const user = await localIdentity(request, config);
+    return handleApi(request, config, user?.userId ?? null);
+  } catch {
+    return Response.json({error:{code:'SERVICE_UNAVAILABLE',message:'The service is temporarily unavailable. Please retry shortly.'}}, {status:503,headers:{'Cache-Control':'no-store'}});
+  }
 }
 
 export const GET = dispatch;

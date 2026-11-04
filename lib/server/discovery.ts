@@ -12,8 +12,8 @@ export async function handleDiscovery(request: Request, body: Record<string, unk
   if (request.method !== method) throw new ApiError(405, 'METHOD_NOT_ALLOWED');
   if (path === '/api/radar') return json(await readRadar(fetcher));
   if (path === '/api/projects/tree') {
-    fields(body, ['url']);
-    return json(await projectTree({ url: body.url }, fetcher));
+    fields(body, ['url', 'ref']);
+    return json(await projectTree({ url: body.url, ref: body.ref }, fetcher));
   }
   fields(body, ['url', 'commit', 'paths']);
   return json(await analyseProject({ url: body.url, commit: body.commit, paths: body.paths }, fetcher));

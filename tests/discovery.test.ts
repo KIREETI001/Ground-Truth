@@ -323,7 +323,7 @@ test('project response budget prevents another blob request after large bounded 
     const value = String(url);
     if (value === API) return Response.json({ full_name: 'student/web-app', private: false, default_branch: 'main', padding: 'x'.repeat(15_000) });
     if (value.includes('/git/commits/')) return Response.json({ sha: COMMIT, tree: { sha: TREE }, padding: 'x'.repeat(11_000) });
-    if (value.includes('/git/trees/')) return Response.json({ sha: TREE, tree: Array.from({ length: 5 }, (_, index) => entry(`src/file-${index}.ts`, 'x')), truncated: false, padding: 'x'.repeat(63_000) });
+    if (value.includes('/git/trees/')) return Response.json({ sha: TREE, tree: Array.from({ length: 5 }, (_, index) => entry(`src/file-${index}.ts`, 'x')), truncated: false, padding: 'x'.repeat(194_000) });
     if (value.includes('/git/blobs/')) { blobs++; return new Response('x'.repeat(12_000)); }
     return fixture.fetcher(url, init);
   }) as DiscoveryFetcher;

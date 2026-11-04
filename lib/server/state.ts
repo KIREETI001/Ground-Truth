@@ -18,16 +18,6 @@ export interface SessionDocument {
 export function now(): string { return new Date().toISOString(); }
 export function expiresIn30Days(): string { return new Date(Date.now() + THIRTY_DAYS).toISOString(); }
 export function pilotId(config: RuntimeConfig): string { return config.PILOT_ID || 'groundtruth-pilot.v1'; }
-export function isInstructor(config: RuntimeConfig, userId: string): boolean {
-  if (!config.STAFF_USER_ROLES) return false;
-  try {
-    const roles: unknown = JSON.parse(config.STAFF_USER_ROLES);
-    if (!roles || typeof roles !== 'object' || Array.isArray(roles)) return false;
-    const role = Object.hasOwn(roles, userId) ? (roles as Record<string, unknown>)[userId] : null;
-    return role === 'owner' || role === 'tutor';
-  } catch { return false; }
-}
-
 export function getProfile(db: D1Database, userId: string): Promise<Profile | null> {
   return db.prepare('SELECT notice_version,research_opt_in FROM practice_profiles WHERE user_id=?').bind(userId).first<Profile>();
 }
