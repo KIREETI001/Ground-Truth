@@ -1,6 +1,6 @@
 # Official Cerebral Valley form copy
 
-Form inspected in the authenticated official portal on 5 November 2026. The three narrative answers below are each under the observed 3,000-character limit. They are editorial drafts. **Do not submit until the Meta call, final URL, team details and declarations are resolved.** The API integration is implemented, but actual Meta runtime use is awaiting the key at this checkpoint.
+Form inspected in the authenticated official portal on 5 November 2026. The three narrative answers below are each under the observed 3,000-character limit. They are editorial drafts. **Do not submit until the final video URL, team details and declarations are resolved.** Actual Meta runtime calls and the public learning-state journey have passed acceptance checks at this checkpoint.
 
 ## Team Name
 
@@ -8,15 +8,15 @@ GroundTruth
 
 ## Team Members
 
-The form currently shows Kireeti Kumar (`kireeti2`). This does not establish that the roster is complete. Confirm the actual team and authority to submit. Prior proposal authors are attribution, not automatic hackathon team members.
+Confirmed by the participant: solo submission as Kireeti Kumar (`kireeti2`). Prior proposal authors remain attribution, not hackathon team members.
 
 ## Track — required
 
-Recommended: **Indie**. User must confirm the final selection. The other observed option is Startups.
+Confirmed: **Indie Developer Track**.
 
 ## Problem — required
 
-Recommended: **Build for Your World**. The other observed option is Push the Frontier.
+Confirmed: **Build for Your World**.
 
 ## Project Description — maximum 3,000 characters
 
@@ -42,13 +42,13 @@ Live demo: https://groundtruth-meta.vercel.app
 
 ## Public GitHub Repository
 
-`https://github.com/KIREETI001/Ground-Truth/tree/codex/groundtruth-mvp`
+`https://github.com/KIREETI001/Ground-Truth`
 
-Public baseline commit: `bcbe7dcf01e2310cac945760f7560646707e56e0`. Replace with the final released branch/commit if changed. The sample study-task repository belongs in the description or guide; it is not the GroundTruth source submission.
+Current verified checkpoint: `e9bda5a17aae57196a59c590d3c6e94b5711af6f` on `main`. Replace with the final post-fix release commit if changed. The sample study-task repository belongs in the description or guide; it is not the GroundTruth source submission.
 
 ## 3-Minute Demo Video
 
-**Pending actual recording and accessible video URL.** Use [demo-script.md](demo-script.md). A script or slide deck is not the required video.
+Local MP4 complete: [video/GroundTruth_Demo.mp4](video/GroundTruth_Demo.mp4), 2:55.02, 720p H.264/AAC. It is an openly labelled narrated walkthrough of actual hosted UI stills, using a synthetic account. Planned public video page: https://groundtruth-meta.vercel.app/demo — verify deployment and player access before pasting. A script or slide deck is not the required video.
 
 ## Describe your use of Meta products to build the submitted project — maximum 3,000 characters
 
@@ -63,7 +63,7 @@ The workflow was first developed with local Qwen inference, then adapted for Met
 
 The intended deployed provider is Meta directly, with the Standard model ID and a server-only key. There is no silent local or preset-response fallback. Selected source and learning inputs leave the device for hosted inference. Standard mode's no-training policy is not a zero-retention claim.
 
-Integration code is complete, but the production key and real-call verification are pending at this draft checkpoint. Replace this final sentence only after recording an actual successful request and checking the resulting learning content against source.
+Eight actual Muse Spark adapter tasks passed schema and source validation: map, overview, concepts, MCQ, short code, hint, change and feedback. The public deployed journey also generated and persisted learning content, with independent assistance blocking and voluntary exit verified. These are engineering acceptance checks, not evidence of educational effectiveness.
 ```
 
 ## Why are Meta's models important to your solution? — maximum 3,000 characters
@@ -83,7 +83,7 @@ Our differentiation is the product loop around the model: feature-first navigati
 ## Partner technology feedback — maximum 150 characters
 
 ```text
-Vercel hosts the app; Supabase stores learning records. Integration checks passed; hosted Meta inference awaits final key verification.
+Vercel hosts GroundTruth; Supabase persists learning evidence. Real Meta structured outputs and public learner-state checks passed.
 ```
 
 ## Other observed fields
@@ -91,7 +91,7 @@ Vercel hosts the app; Supabase stores learning records. Integration checks passe
 - Optional viral X post URL: leave blank unless a real relevant post is provided. Do not create or send a social post without the user's instruction.
 - Required likelihood of building with Meta Model API and overall opinion: ask the participant for their actual opinion; do not invent ratings from engineering tests.
 - Meta Model API NPS (0–5) and Muse Code NPS (0–5): preserve the form's actual scale. Codex usage is not Muse Code usage. “Not used” or an explanation may be appropriate only if the form supports it.
-- Biggest obstacle, performance comparison, importance, switching and production-blocker questions: use actual observed experience. At this checkpoint, credentials and end-to-end hosted verification are unresolved; there is no provider comparison benchmark.
+- Biggest obstacle, performance comparison, importance, switching and production-blocker questions: use actual observed experience. At this checkpoint, actual Meta generation and hosted state checks passed; there is no provider comparison benchmark.
 - Publishing/marketing consent checkbox: grants rights to Meta/Cerebral Valley. Do not accept on the participant's behalf. The participant must review the actual declaration before final submission.
 
 There is no separate observed live-deployment URL field; include the verified URL in Project Description. Retain a success receipt only after the official portal confirms submission.

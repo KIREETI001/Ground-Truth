@@ -14,16 +14,17 @@ Do not mark a task complete without its named evidence. This is a release checkl
 
 - [x] Record the public Vercel production URL: https://groundtruth-meta.vercel.app, READY in Singapore. Login and `/api/health` return 200; database connected.
 - [ ] Freeze the final release commit after remaining fixes and Meta verification.
-- [ ] Verify Meta API access with the deployed server, correct model ID and actual completed structured output. Save only sanitized status/model/usage evidence; no key or learner payload.
+- [x] Verify actual Muse Spark 1.3 API calls: 8/8 adapter tasks and 12 additional public journey checks passed with structured/source validation. No key or learner payload is included in public evidence.
 - [x] Apply and verify the Supabase schema: 32 tables with RLS enabled; private app-role connection with CA-verified TLS; zero security advisor findings at checkpoint. Server-to-Supabase login rehearsed.
-- [x] Run baseline type checks, tests (240 passed), lint (zero findings) and production build at bcbe7dcf01e2310cac945760f7560646707e56e0.
+- [x] Run baseline type checks, tests (244 passed), lint (zero findings) and production build at bcbe7dcf01e2310cac945760f7560646707e56e0.
 - [ ] Run or confirm appropriate final checks for later release changes and verify public runtime access boundaries.
-- [ ] Smoke-test a fresh student account on the public URL: login → import → workflow → beginner overview → concepts → MCQ → independent short code attempt → saved Progress.
+- [x] Verify actual public login → Meta repository map → focused path → overview/flow → concepts → MCQ → independent lock/exit → short code → grounded hint → explicit share. Screenshots and final submitted-attempt capture are being completed separately.
 - [x] Verify public API owner isolation, pending-teacher denial, approval, explicit teacher-share access, class enrollment and idempotent joining. Twenty public API checks passed.
 - [ ] Verify final developer-signup denial and the complete browser teacher journey on the release.
 - [ ] Verify independent mode, voluntary End attempt, immutable submission, post-answer feedback and no silent provider fallback.
 - [x] Verify cloud manual drafts, review confirmation and idempotent apply in public API checks; verify the draft UI in a real browser. The cloud draft does not push to GitHub or execute code.
-- [ ] Verify Meta-generated change proposals after credentials are configured. Keep the local companion unexposed.
+- [x] Verify a real Meta-generated change proposal through the direct adapter. Keep the local companion unexposed.
+- [ ] Verify the final public AI-proposal-to-apply route independently of the manual draft checks.
 - [ ] Confirm readable desktop/mobile layout and keyboard operation on the deployed build.
 - [ ] Check published source and deployment uploads for secrets, personal records, generated local databases, caches and private runtime files.
 - [x] Verify the public landing/login and health endpoints are accessible. Judge narrative links to the correct published source branch.

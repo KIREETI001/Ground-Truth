@@ -3,30 +3,40 @@
   "packetDate": "2026-11-05",
   "submissionStatus": "not_submitted",
   "liveUrl": "https://groundtruth-meta.vercel.app",
-  "sourceUrl": "https://github.com/KIREETI001/Ground-Truth/tree/codex/groundtruth-mvp",
-  "releaseCommit": "bcbe7dcf01e2310cac945760f7560646707e56e0",
-  "sourceBranch": "codex/groundtruth-mvp",
+  "sourceUrl": "https://github.com/KIREETI001/Ground-Truth",
+  "releaseCommit": "e9bda5a17aae57196a59c590d3c6e94b5711af6f",
+  "sourceBranch": "main",
   "sourceVisibilityVerified": true,
   "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
-  "videoUrl": null,
+  "videoUrl": "https://groundtruth-meta.vercel.app/demo",
   "thumbnail": "thumbnail.svg",
   "thumbnailPng": "thumbnail.png",
   "pitchDeck": "pitch-deck.html",
   "architectureIllustration": "architecture.svg",
   "architecturePng": "architecture.png",
   "screenshots": [
+    "assets/live-cloud-draft.png",
+    "assets/live-concepts.png",
+    "assets/live-independent.png",
     "assets/live-landing.png",
-    "assets/live-cloud-draft.png"
+    "assets/live-practice-coding.png",
+    "assets/live-practice-mcq.png",
+    "assets/live-progress.png",
+    "assets/live-repository-map.png",
+    "assets/live-teacher.png",
+    "assets/live-workflow.png"
   ],
   "track": {
     "recommended": "Indie Developer",
-    "confirmed": false
+    "confirmed": true,
+    "selected": "Indie Developer"
   },
   "theme": {
     "recommended": "Build for Your World",
-    "confirmed": false
+    "confirmed": true,
+    "selected": "Build for Your World"
   },
-  "teamConfirmed": false,
+  "teamConfirmed": true,
   "officialFormReviewed": true,
   "officialFormEvidence": "Authenticated official Cerebral Valley form inspected by release operator on 2026-11-05; exact copy fields recorded in official-form-copy.md",
   "targetArchitecture": {
@@ -38,16 +48,16 @@
   },
   "cloudVerification": {
     "deployment": "ready_public_login_and_health_200",
-    "metaRequest": "blocked_api_key_pending",
+    "metaRequest": "verified_8_real_meta_adapter_tasks_and_12_public_journey_checks",
     "databaseMigration": "verified_32_tables_rls_enabled",
-    "accessBoundaries": "20_public_api_checks_passed",
-    "learnerJourney": "public_login_source_cloud_draft_verified_full_meta_journey_pending",
-    "teacherJourney": "public_api_approval_class_share_access_verified_ui_pending",
-    "hostedChanges": "manual_draft_ui_and_api_confirmation_idempotent_apply_verified_ai_proposal_pending"
+    "accessBoundaries": "32_public_api_checks_passed_at_checkpoint",
+    "learnerJourney": "public_meta_map_overview_concepts_mcq_code_hint_persisted_independent_lock_and_exit_verified",
+    "teacherJourney": "verified_live_browser_original_answer_and_review_controls",
+    "hostedChanges": "verified_live_manual_and_meta_proposals_review_hash_check_idempotent_apply"
   },
   "vercel": {
-    "deploymentId": "dpl_3ZdoWefXb7mmZCjVGiqntMYC7qP1",
-    "candidateUrl": "https://groundtruth-meta-d9un2r2v5-kireeti001s-projects.vercel.app",
+    "deploymentId": "dpl_qezFCmTXTfSpG3iiXso9DpVYHABd",
+    "candidateUrl": "https://groundtruth-meta.vercel.app",
     "status": "READY",
     "publicAccessVerified": true,
     "productionUrl": "https://groundtruth-meta.vercel.app",
@@ -64,22 +74,36 @@
   },
   "checks": {
     "typecheck": "passed_baseline_commit",
-    "tests": "240_passed_baseline_commit",
+    "tests": "244_passed",
     "lint": "passed_zero_findings_baseline_commit",
     "build": "passed_baseline_commit",
-    "liveSmoke": "20_public_api_checks_passed_plus_browser_login_and_manual_draft"
+    "liveSmoke": "32_public_api_checks_passed_plus_8_real_meta_adapter_tasks"
   },
   "receipt": null,
   "notes": [
     "This manifest records only observed release evidence. Do not replace pending values with assumptions.",
     "Pitch deck, SVG assets and official form copy were added after the baseline commit; root must record the final packaged commit.",
-    "Meta API key is not yet configured; an implemented adapter is not evidence of a successful Meta request.",
-    "Public screenshots show actual hosted UI. The complete Meta-generated learning journey remains unverified until a real model request succeeds."
+    "Eight direct adapter tasks and twelve public Meta journey checks passed on actual provider calls. A further independent-lock fix and final release commit are being prepared."
   ],
   "liveHealth": {
     "login": 200,
     "apiHealth": 200,
     "database": "connected",
-    "inference": "not-configured"
-  }
+    "inference": "configured_real_request_verified"
+  },
+  "videoArtifact": "video/GroundTruth_Demo.mp4",
+  "videoCaptions": "video/GroundTruth_Demo.vtt",
+  "videoDurationSeconds": 175.02,
+  "videoBytes": 3704769,
+  "videoPlannedPage": "https://groundtruth-meta.vercel.app/demo",
+  "videoPlannedDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
+  "videoHosting": "pending_final_deployment",
+  "videoSha256": "d020ecf499e4a1df9c7c4c29b0d69e48dbf44b19aa24fcf8a24c7eee26ccc664",
+  "team": [
+    {
+      "name": "Kireeti Kumar",
+      "role": "Solo builder"
+    }
+  ],
+  "videoDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4"
 }

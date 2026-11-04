@@ -1,6 +1,6 @@
 # Architecture, boundaries and attribution
 
-**The Vercel/Supabase backend is live; Meta inference awaits credentials and a successful real call.** Twenty public API checks and browser login/cloud-draft checks passed. This document distinguishes verified backend behavior from the complete generated learning journey still to be verified. It is not a security certification.
+**The Vercel/Supabase backend and actual Meta inference are live.** Thirty-two public API checks and eight direct real-Meta adapter tasks passed at this checkpoint. Browser capture of the generated journey is in progress. This document distinguishes tested functionality from educational claims. It is not a security certification.
 
 ## Target architecture
 
@@ -33,7 +33,7 @@ Authentication, persisted roles, owner isolation, explicit teacher shares, class
 - Imports cover public repositories and supported selected files, tied to a commit. They are not whole-repository audits or execution traces.
 - README/repository text and learner text are untrusted inputs, not instructions to alter server permissions or reveal secrets.
 - Imported source and submitted snippets are not executed. A short coding response is retained for review, not automatically tested or applied.
-- The local prototype has a separate managed working-copy service with diff approval and stale-hash protection. Its loopback service and laptop paths must not be exposed to Vercel. Hosted Changes uses controlled cloud drafts; manual editing, review confirmation and idempotent apply have passed public checks. The draft does not execute source or push to GitHub. Meta proposal generation remains unverified until a real request succeeds.
+- The local prototype has a separate managed working-copy service with diff approval and stale-hash protection. Its loopback service and laptop paths must not be exposed to Vercel. Hosted Changes uses controlled cloud drafts; manual editing, review confirmation and idempotent apply have passed public checks. The draft does not execute source or push to GitHub. A direct real-Meta change proposal passed schema/source validation. The public proposal-to-apply browser route still needs its own final check.
 - Reference-repository learning does not imply ownership or permission to push changes.
 
 ## Learning and evidence boundaries

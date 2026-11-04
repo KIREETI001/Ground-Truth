@@ -1,0 +1,212 @@
+{
+  "title": "GroundTruth \u2014 Understand your code. Think in systems.",
+  "format": "H.264 / AAC",
+  "width": 1280,
+  "height": 720,
+  "fps": 24,
+  "durationSeconds": 175,
+  "bytes": 3704769,
+  "decodeCheck": "passed",
+  "voice": "Microsoft Zira Desktop",
+  "speechRate": -1,
+  "narration": "offline Windows synthetic voice",
+  "presentation": "real captured UI stills; editorial intro and architecture; openly labelled edited walkthrough",
+  "liveUrl": "https://groundtruth-meta.vercel.app",
+  "releaseCommit": "e9bda5a17aae57196a59c590d3c6e94b5711af6f",
+  "metaVerification": "verified_8_real_meta_adapter_tasks_and_12_public_journey_checks",
+  "scenes": [
+    {
+      "scene": "01-promise",
+      "image": "../thumbnail.png",
+      "sha256": "1e82bdb3120af7b5b07f6238700b3f565a21ff1b95d05294f263702372dc38aa",
+      "kind": "artwork",
+      "crop": null,
+      "startSeconds": 0.0,
+      "durationSeconds": 15.5,
+      "narrationSeconds": 14.696780045351474
+    },
+    {
+      "scene": "02-entry",
+      "image": "../assets/live-landing.png",
+      "sha256": "f28e1c2ec05af6d33ec4d04898d204a5668bd1ca65e901d4893da2b0bda8201e",
+      "kind": "ui",
+      "crop": null,
+      "startSeconds": 15.5,
+      "durationSeconds": 14.833333333333334,
+      "narrationSeconds": 14.037097505668934
+    },
+    {
+      "scene": "03-repository",
+      "image": "../assets/live-repository-map.png",
+      "sha256": "2877060407149a1b1156132401985ed838a6452e91b95d857431d1273fcd652d",
+      "kind": "ui",
+      "crop": [
+        275,
+        145,
+        1620,
+        680
+      ],
+      "startSeconds": 30.333333333333332,
+      "durationSeconds": 16.75,
+      "narrationSeconds": 15.91156462585034
+    },
+    {
+      "scene": "04-workflow",
+      "image": "../assets/live-workflow.png",
+      "sha256": "297d25a921014ba76fe9fd464ef7dbc022bdf9bf8345814fed5890539a0123f7",
+      "kind": "ui",
+      "crop": [
+        500,
+        90,
+        1160,
+        590
+      ],
+      "startSeconds": 47.083333333333336,
+      "durationSeconds": 18.916666666666668,
+      "narrationSeconds": 18.071292517006803
+    },
+    {
+      "scene": "05-concepts",
+      "image": "../assets/live-concepts.png",
+      "sha256": "784cf1557ae1498abaab9ce55ff35d02bcced51b4365a9d8164a930f3f2c307f",
+      "kind": "ui",
+      "crop": [
+        500,
+        235,
+        1160,
+        460
+      ],
+      "startSeconds": 66.0,
+      "durationSeconds": 17.333333333333332,
+      "narrationSeconds": 16.556462585034012
+    },
+    {
+      "scene": "06-practice",
+      "image": "../assets/live-practice-mcq.png",
+      "sha256": "5f7d0050039e3cd753ef89265a959005f701d109ca4d1f74b43433b5cac3a893",
+      "kind": "ui",
+      "crop": [
+        500,
+        330,
+        1160,
+        630
+      ],
+      "startSeconds": 83.33333333333333,
+      "durationSeconds": 18.5,
+      "narrationSeconds": 17.70172335600907
+    },
+    {
+      "scene": "07-independent",
+      "image": "../assets/live-independent.png",
+      "sha256": "78267ea2448487681b0d112364e8b9031d57995d4b29ea0c0ed30dae4b955a9a",
+      "kind": "ui",
+      "crop": [
+        500,
+        360,
+        1160,
+        630
+      ],
+      "startSeconds": 101.83333333333333,
+      "durationSeconds": 21.333333333333332,
+      "narrationSeconds": 20.530975056689343
+    },
+    {
+      "scene": "08-progress",
+      "image": "../assets/live-progress.png",
+      "sha256": "011bf16dc789af4d4223e93f8f2abb650195920db9137ccb5da6b600c17acf50",
+      "kind": "ui",
+      "crop": [
+        500,
+        240,
+        1160,
+        600
+      ],
+      "startSeconds": 123.16666666666667,
+      "durationSeconds": 16.75,
+      "narrationSeconds": 15.981632653061224
+    },
+    {
+      "scene": "09-teacher",
+      "image": "../assets/live-teacher.png",
+      "sha256": "21702f669454ab8f8f5099251fcd4beeef6757ad3656eb44ecbf5ab1f92176f7",
+      "kind": "ui",
+      "crop": [
+        400,
+        500,
+        1100,
+        550
+      ],
+      "startSeconds": 139.91666666666666,
+      "durationSeconds": 16.75,
+      "narrationSeconds": 15.98657596371882
+    },
+    {
+      "scene": "10-close",
+      "image": "../architecture.png",
+      "sha256": "37397b37a35b436af971b2b38832e10d17433e2b8d321ce9df3c399966e6a0c4",
+      "kind": "artwork",
+      "crop": null,
+      "startSeconds": 156.66666666666666,
+      "durationSeconds": 18.333333333333332,
+      "narrationSeconds": 17.551791383219953
+    }
+  ],
+  "subtitleAlignment": "sentence timing estimated within measured narration segments; human review required",
+  "uploaded": false,
+  "audioPcmChecks": [
+    {
+      "scene": "01-promise",
+      "peakAmplitude": 24135,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "02-entry",
+      "peakAmplitude": 23074,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "03-repository",
+      "peakAmplitude": 24818,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "04-workflow",
+      "peakAmplitude": 22821,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "05-concepts",
+      "peakAmplitude": 25126,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "06-practice",
+      "peakAmplitude": 25193,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "07-independent",
+      "peakAmplitude": 22724,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "08-progress",
+      "peakAmplitude": 24226,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "09-teacher",
+      "peakAmplitude": 24986,
+      "clippedSamples": 0
+    },
+    {
+      "scene": "10-close",
+      "peakAmplitude": 21472,
+      "clippedSamples": 0
+    }
+  ],
+  "audioClipping": "none",
+  "containerDurationSeconds": 175.02,
+  "sha256": "d020ecf499e4a1df9c7c4c29b0d69e48dbf44b19aa24fcf8a24c7eee26ccc664",
+  "visualFrameReview": "All ten composed scene frames inspected; readable contextual crops; no credentials; synthetic-account/still-edit labels present"
+}

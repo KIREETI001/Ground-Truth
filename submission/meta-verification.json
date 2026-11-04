@@ -1,0 +1,99 @@
+{
+  "observedAt": "2026-11-04T17:29:28.545Z",
+  "provider": "Meta Model API",
+  "realProvider": true,
+  "model": "muse-spark-1.3",
+  "repository": "KIREETI001/groundtruth-demo-study-tasks",
+  "sourceCommit": "d964b3a62d84aa210b93c54271c364ad8e81ebc9",
+  "checks": [
+    {
+      "task": "repository",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 14168,
+      "promptTokens": 1431,
+      "cachedInputTokens": 0,
+      "completionTokens": 1022
+    },
+    {
+      "task": "beginner-overview",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 10743,
+      "promptTokens": 1615,
+      "cachedInputTokens": 0,
+      "completionTokens": 1178
+    },
+    {
+      "task": "concept-tree",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 15526,
+      "promptTokens": 1272,
+      "cachedInputTokens": 0,
+      "completionTokens": 1020
+    },
+    {
+      "task": "multiple-choice",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 12959,
+      "promptTokens": 1543,
+      "cachedInputTokens": 0,
+      "completionTokens": 1228
+    },
+    {
+      "task": "short-code",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 10574,
+      "promptTokens": 1312,
+      "cachedInputTokens": 0,
+      "completionTokens": 1231
+    },
+    {
+      "task": "source-hint",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 5890,
+      "promptTokens": 2009,
+      "cachedInputTokens": 1905,
+      "completionTokens": 336
+    },
+    {
+      "task": "controlled-change",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 7484,
+      "promptTokens": 443,
+      "cachedInputTokens": 369,
+      "completionTokens": 838
+    },
+    {
+      "task": "post-answer-feedback",
+      "passed": true,
+      "httpStatus": 200,
+      "returnedModel": "muse-spark-1.3",
+      "structured": true,
+      "latencyMs": 6830,
+      "promptTokens": 2031,
+      "cachedInputTokens": 1905,
+      "completionTokens": 370
+    }
+  ],
+  "scope": "Single engineering acceptance run; source/shape validation passed. No comparative quality, throughput, cost or learning benchmark. Private prompts, keys, IDs and learner data omitted."
+}

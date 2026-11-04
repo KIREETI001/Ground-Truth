@@ -28,6 +28,8 @@ Sources: [Models](https://dev.meta.ai/docs/models), [Structured output](https://
 
 **One consistent model contract across contextual tasks.** The application can reuse a validated adapter for maps, beginner summaries, questions and hints. The product advantage comes from reliable state transitions and source checks around those outputs. Other providers also support structured output; this capability alone is not unique to Meta. [Structured output](https://dev.meta.ai/docs/structured-output)
 
+**An observed prompt-cache fit.** In one actual acceptance run, the provider reported 1,905 cached input tokens out of 2,009 for a source-grounded hint, and 1,905 out of 2,031 for post-answer feedback. This is a concrete example of reuse around stable application context. It is not a guaranteed cache rate, measured lesson cost saving or cross-provider comparison. The sanitized run summary is in [meta-verification.json](meta-verification.json).
+
 **An upgrade path within Meta.** The documented model family supports a future division between frequent Spark interactions and more demanding Wonder work. Do not claim task routing exists unless implemented and tested. [Models](https://dev.meta.ai/docs/models)
 
 **A potential deployment-choice story.** Meta also offers open-weight models. A future institutional version could evaluate an appropriate model on infrastructure the institution controls. Model sizes, licenses and hardware must be checked first; this is not a promise that the cloud model runs on the demo laptop. [Open-weight models](https://dev.meta.ai/docs/models#open-weight-models)

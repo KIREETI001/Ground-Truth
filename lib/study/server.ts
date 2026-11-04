@@ -180,10 +180,16 @@ export async function handleStudy(request:Request,c:RuntimeConfig,user:string|nu
  if(action==='independent'){
   fields(body,['exerciseId']);
   const exId=string(body.exerciseId,'exerciseId',1,100);
-  const busy=await c.DB.prepare('SELECT token FROM coach_locks WHERE user_id=? AND expires_at>?').bind('__study_model__',now()).first();
-  if(busy)throw new ApiError(409,'MODEL_STILL_RUNNING','Wait for the active model request to finish before starting independently.');
-  const changed=await c.DB.prepare("UPDATE study_exercises SET status='independent',started_at=? WHERE id=? AND project_id=? AND status='guided' AND ended_at IS NULL").bind(now(),exId,id).run();
-  if(!changed.meta.changes)throw new ApiError(409,'EXERCISE_STATE_CHANGED');
+  const modelKeys=['__study_model__','__study_meta__:'+user];
+  const modelBusy=()=>c.DB.prepare('SELECT token FROM coach_locks WHERE user_id IN (?,?) AND expires_at>?').bind(...modelKeys,now()).first();
+  const modelRunning=()=>new ApiError(409,'MODEL_STILL_RUNNING','Wait for your active AI request to finish before starting independently.');
+  if(await modelBusy())throw modelRunning();
+  // Recheck in the guarded write: an inference lease can start after the first
+  // read, including on another Vercel instance. Other users' Meta leases do not
+  // block this learner; the single-slot local model retains its shared lease.
+  const at=now();
+  const changed=await c.DB.prepare("UPDATE study_exercises SET status='independent',started_at=? WHERE id=? AND project_id=? AND status='guided' AND ended_at IS NULL AND NOT EXISTS(SELECT 1 FROM coach_locks WHERE user_id IN (?,?) AND expires_at>?)").bind(at,exId,id,...modelKeys,at).run();
+  if(!changed.meta.changes){if(await modelBusy())throw modelRunning();throw new ApiError(409,'EXERCISE_STATE_CHANGED');}
   await event(c,id,'independent-started',{},exId);return json(await view(c,p));
  }
  if(action==='submit'){

@@ -1,9 +1,9 @@
 # Judge guide
 
-Live URL: **https://groundtruth-meta.vercel.app** — login and backend access verified; Meta inference is not configured yet
-GroundTruth source: **https://github.com/KIREETI001/Ground-Truth/tree/codex/groundtruth-mvp** — public baseline `bcbe7dcf01e2310cac945760f7560646707e56e0`; final release commit still to be recorded
+Live URL: **https://groundtruth-meta.vercel.app** — real Meta generation and Supabase persistence verified
+GroundTruth source: **https://github.com/KIREETI001/Ground-Truth** — current cloud checkpoint `e9bda5a17aae57196a59c590d3c6e94b5711af6f`; final post-fix commit still to be recorded
 Sample repository: **https://github.com/KIREETI001/groundtruth-demo-study-tasks**
-Video: **pending recording and accessible upload**
+Video: https://groundtruth-meta.vercel.app/demo (2:55 edited walkthrough; verify final deployment before submitting)
 
 ## Five-minute route
 
@@ -45,4 +45,4 @@ Retry from the visible action after the displayed error, or end an unfinished at
 
 ## Release evidence
 
-The final commit, migration identifier, actual Meta model, check logs, live smoke-test result and screenshot filenames must be recorded in [release-manifest.json](release-manifest.json). The hosted backend is verified at this checkpoint; pending Meta fields mean the complete generated learning journey is not yet verified.
+The final commit, migration identifier, actual Meta model, check logs, live smoke-test result and screenshot filenames must be recorded in [release-manifest.json](release-manifest.json). The hosted backend and generated learning journey are verified at this checkpoint. Keep final release changes and media evidence synchronized with the manifest.
