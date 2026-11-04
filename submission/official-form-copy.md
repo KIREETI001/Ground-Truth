@@ -42,11 +42,11 @@ Live demo: https://groundtruth-meta.vercel.app
 
 `https://github.com/KIREETI001/Ground-Truth`
 
-Current verified checkpoint: `e9bda5a17aae57196a59c590d3c6e94b5711af6f` on `main`. Replace with the final post-fix release commit if changed. The sample study-task repository belongs in the description or guide; it is not the GroundTruth source submission.
+Verified deployed code: `0b37fa2529cc561050b19e08613827ffb2a4e79d` on `main`. The sample study-task repository belongs in the description or guide; it is not the GroundTruth source submission.
 
 ## 3-Minute Demo Video
 
-Local MP4 complete: [video/GroundTruth_Demo.mp4](video/GroundTruth_Demo.mp4), 2:55.02, 720p H.264/AAC. It is an openly labelled narrated walkthrough of actual hosted UI stills, using a synthetic account. Planned public video page: https://groundtruth-meta.vercel.app/demo — verify deployment and player access before pasting. A script or slide deck is not the required video.
+Local MP4 complete: [video/GroundTruth_Demo.mp4](video/GroundTruth_Demo.mp4), 2:55.02, 720p H.264/AAC. It is an openly labelled narrated walkthrough of actual hosted UI stills, using a synthetic account. Verified public video page: https://groundtruth-meta.vercel.app/demo. A script or slide deck is not the required video.
 
 ## Describe your use of Meta products to build the submitted project — maximum 3,000 characters
 

@@ -1,48 +1,39 @@
-# Production candidate — verification checkpoint
+# Verified GroundTruth MVP — participant review
 
-Checkpoint: **5 November 2026**. This is an evidence summary, not a claim of final production or competition submission success.
+**Nothing has been submitted. Kireeti will review every item before submission; publishing consent remains unchecked.**
 
-## Verified baseline
+## Release
 
-| Item | Result |
+- Application: https://groundtruth-meta.vercel.app
+- Narrated demo: https://groundtruth-meta.vercel.app/demo
+- Pitch: https://groundtruth-meta.vercel.app/pitch.html
+- Public source: https://github.com/KIREETI001/Ground-Truth
+- Deployed code: `0b37fa2529cc561050b19e08613827ffb2a4e79d`
+- Vercel production deployment: `dpl_G3NM77EGFnn8Zvgffz1bt7ACCr92`, READY, Singapore.
+
+## Checks
+
+| Check | Observed result |
 | --- | --- |
-| Source | Public `KIREETI001/Ground-Truth`, current release checkpoint on `main` |
-| Baseline commit | `bcbe7dcf01e2310cac945760f7560646707e56e0` |
-| Type checks | Passed |
 | Automated tests | 246 passed |
-| Lint | Passed, zero findings |
-| Production build | Passed |
-| Supabase project | Active |
-| Schema | 32 tables, RLS enabled on all tables |
-| Security advisors | Zero findings at checkpoint |
-| Runtime DB connection | Private application role, CA-verified TLS |
-| Login rehearsal | Actual local server → Supabase path passed |
+| Type checks | Passed |
+| Lint | Passed, zero errors/warnings |
+| Native production build | Passed |
+| Vercel production build | Passed |
+| Authored source credential scan | Passed |
+| Supabase schema | 32 private tables; RLS enabled on every table |
+| Supabase security advisor | Zero findings at the checked checkpoint |
+| Database transport | Restricted backend role; certificate-verified TLS |
+| Real Meta adapter tasks | 8/8 passed, Muse Spark 1.3 Standard |
+| Public API checks | 44 passed across the checked releases, including final deployed concurrency/exit checks |
+| Video | 175.02 seconds; 3,681,860 bytes; H.264/AAC 720p; captions; full decode/audio/frame checks passed |
+| Hosted video | HTTP 200; downloaded SHA256 matches the local artifact |
+| Browser playback | Video metadata loaded; one caption track; no media error |
 
-These results were supplied by the release operator from the working session. They apply to the named baseline and are not educational efficacy, production uptime or complete security claims.
+The public checks cover signup, Secure session cookies, teacher approval, developer-signup rejection, classes, owner isolation, complete pinned source, manual and Meta cloud proposals, explicit approval/idempotent apply, sharing, generated maps/overviews/concepts/MCQ/coding/hints/feedback, in-app independent assistance lock and voluntary exit. The final live concurrency check confirmed that an active learner Meta request prevents independent start, a released lease permits it, independent mode denies another hint, and ending the attempt restores access.
 
-## In progress or blocked
+## Interpretation
 
-| Item | State |
-| --- | --- |
-| Vercel deployment | READY, production Singapore: `dpl_3ZdoWefXb7mmZCjVGiqntMYC7qP1` |
-| Production URL | https://groundtruth-meta.vercel.app — public login 200; `/api/health` 200, database connected |
-| Meta API runtime | Eight real Muse Spark 1.3 adapter tasks passed, all HTTP 200 with structured/source validation |
-| Public student journey | Twelve additional public checks passed: real Meta map, overview/visual flow, concepts, MCQ, short code, hint, saved path, independent lock/exit and explicit share |
-| Public teacher journey | Public API checks verified pending access, approval, classes, enrollment and explicit-share reads; browser teacher workspace, original saved answer and review controls verified |
-| Hosted changes | Manual draft editing, review confirmation and idempotent apply verified on public API; draft UI verified; real Meta proposal, explicit approved apply and idempotent replay verified |
-| Video | MP4 rendered: 175.02 seconds, 3.68 MB, H.264/AAC 720p; decode/audio-clipping/frame checks passed. Previous video publicly verified; revised teacher-assessment narrative pending final deployment |
-| Final assets | Deck, SVG/PNG illustrations and actual live screenshots prepared; role-card styling fix already reflected in live landing capture; revised assessment narrative uses the same actual UI evidence |
-| Official submission | Form inspected; no submission receipt |
+These are engineering acceptance checks, not evidence of educational effectiveness, grading fairness, marking-time savings, production uptime or complete security certification. Demonstration accounts and answers are synthetic. Observed in-app activity does not detect outside AI or establish authorship. Teacher quiz authoring, assignment distribution and cohort analytics remain future work.
 
-The final release may have a later commit. Update [release-manifest.json](release-manifest.json) and this summary after the final build, deployment and Meta smoke test. Do not remove pending labels without corresponding evidence.
-
-Twenty actual public API checks passed: Supabase-backed writes; signup and Secure session cookie; login; pending-teacher denial and developer approval; class creation and idempotent joining; cross-owner 404; full pinned source; cloud manual drafts; explicit review confirmation; idempotent apply; and explicitly shared teacher reads. Browser verification covered an actual student login and cloud draft interface. Those checks do not substitute for a real Meta generation.
-
-Actual Meta generation is now separately verified. At commit `e9bda5a17aae57196a59c590d3c6e94b5711af6f`, twelve additional public journey checks passed against the live Vercel URL and persisted real generated content in Supabase. The independent attempt blocked new Meta guidance with 403, and ending the attempt released the lock without a fabricated submission. Seven subsequent public checks passed, bringing the checkpoint to **39 public API checks**. An independent direct-adapter run passed **8/8 real Meta tasks**: repository map, beginner overview, concepts, MCQ, short code, grounded hint, controlled change and post-answer feedback. The final post-fix release commit remains to be recorded.
-
-## Shareable assets
-
-- [Five-slide HTML pitch deck](pitch-deck.html): standalone, keyboard arrows, responsive layout and landscape print styling.
-- [Project thumbnail SVG](thumbnail.svg) / [PNG](thumbnail.png): 1280×720 concept artwork, explicitly not a product screenshot.
-- [Architecture SVG](architecture.svg) / [PNG](architecture.png): 1600×900 diagram, explicitly not proof of a successful deployed inference call.
-- [Official form answers](official-form-copy.md): three main narrative answers within the observed 3,000-character limit, plus concise partner feedback.
+The official form has prepared answers within its limits and participant-confirmed solo/track/theme/preferences. No Submit action or publishing declaration was accepted. See [REVIEW_FIRST.md](REVIEW_FIRST.md), [form copy](official-form-copy.md), [video transcript](video/transcript.md), [research](research-evidence.md) and [manifest](release-manifest.json).

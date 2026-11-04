@@ -4,7 +4,7 @@
   "submissionStatus": "not_submitted",
   "liveUrl": "https://groundtruth-meta.vercel.app",
   "sourceUrl": "https://github.com/KIREETI001/Ground-Truth",
-  "releaseCommit": "e9bda5a17aae57196a59c590d3c6e94b5711af6f",
+  "releaseCommit": "0b37fa2529cc561050b19e08613827ffb2a4e79d",
   "sourceBranch": "main",
   "sourceVisibilityVerified": true,
   "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
@@ -50,13 +50,13 @@
     "deployment": "ready_public_login_and_health_200",
     "metaRequest": "verified_8_real_meta_adapter_tasks_and_12_public_journey_checks",
     "databaseMigration": "verified_32_tables_rls_enabled",
-    "accessBoundaries": "39_public_api_checks_passed_at_checkpoint",
+    "accessBoundaries": "44_public_api_checks_passed_including_final_live_model_lease_and_independent_transition",
     "learnerJourney": "public_meta_map_overview_concepts_mcq_code_hint_persisted_independent_lock_and_exit_verified",
     "teacherJourney": "verified_live_browser_original_answer_and_review_controls",
     "hostedChanges": "verified_live_manual_and_meta_proposals_review_hash_check_idempotent_apply"
   },
   "vercel": {
-    "deploymentId": "dpl_qezFCmTXTfSpG3iiXso9DpVYHABd",
+    "deploymentId": "dpl_G3NM77EGFnn8Zvgffz1bt7ACCr92",
     "candidateUrl": "https://groundtruth-meta.vercel.app",
     "status": "READY",
     "publicAccessVerified": true,
@@ -73,17 +73,17 @@
     "serverLoginRehearsal": "passed"
   },
   "checks": {
-    "typecheck": "passed_baseline_commit",
-    "tests": "246_passed_latest_checked_build",
-    "lint": "passed_zero_findings_baseline_commit",
-    "build": "passed_baseline_commit",
-    "liveSmoke": "39_public_api_checks_passed_plus_8_real_meta_adapter_tasks"
+    "typecheck": "passed",
+    "tests": "246_passed",
+    "lint": "passed_zero_errors_zero_warnings",
+    "build": "passed_native_next_and_vercel",
+    "liveSmoke": "44_public_api_checks_plus_8_real_meta_adapter_tasks"
   },
   "receipt": null,
   "notes": [
-    "This manifest records only observed release evidence. Do not replace pending values with assumptions.",
-    "Pitch deck, SVG assets and official form copy were added after the baseline commit; root must record the final packaged commit.",
-    "Eight direct adapter tasks and twelve public Meta journey checks passed on actual provider calls. A further independent-lock fix and final release commit are being prepared."
+    "The deployed code commit is recorded above; a later documentation-only commit may update this evidence record.",
+    "Actual Meta outputs, public persistence, role boundaries, cloud drafts, independent locks and video playback were verified. These checks do not establish learning gains or validated assessment.",
+    "Participant review hold: the official form is populated in the open browser, not submitted. Publishing consent remains unchecked."
   ],
   "liveHealth": {
     "login": 200,
@@ -97,7 +97,7 @@
   "videoBytes": 3681860,
   "videoPlannedPage": "https://groundtruth-meta.vercel.app/demo",
   "videoPlannedDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
-  "videoHosting": "previous_narration_public_revised_narration_pending_final_deploy",
+  "videoHosting": "verified_public_revised_video_mp4_vtt_player",
   "videoSha256": "17e69347c7387e5b4325abea5daa97be14a2cb0244ef3473c0bd372cc7625e5c",
   "team": [
     {
@@ -107,5 +107,12 @@
   ],
   "videoDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
   "participantReviewRequired": true,
-  "publicationConsentAccepted": false
+  "publicationConsentAccepted": false,
+  "deployedCodeCommit": "0b37fa2529cc561050b19e08613827ffb2a4e79d",
+  "pitchUrl": "https://groundtruth-meta.vercel.app/pitch.html",
+  "formPreparedInBrowser": true,
+  "participantAnswers": {
+    "likelihoodToBuildMetaApi": "Very likely",
+    "overallMetaApiOpinion": "Very favorable"
+  }
 }
