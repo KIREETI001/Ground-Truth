@@ -1,8 +1,8 @@
 # GroundTruth submission packet
 
-**Participant review draft. The official form remains unsubmitted and publishing consent unchecked.** The participant will review the completed materials before any final portal action.
+**Engineering verification complete; participant review remains required. No official portal update or submission was performed in this goal, and local publishing consent remains false.** An earlier populated portal draft may be stale; the current local copy is ready for participant review/paste.
 
-Revised release: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. The code and narrative have been reconciled around one journey: understand actual code, make a small independent change, retain the original attempt and support human review. The release operator still needs final deployment and media evidence.
+Revised release: **`1e1bcfaa848150f90caf890e8d32471336f5e084` / `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE` (READY)**. The code and narrative have been reconciled around one journey: understand actual code, make a small independent change, retain the original attempt and support human review. The canonical deployment is [groundtruth-meta.vercel.app](https://groundtruth-meta.vercel.app/login); [this unique deployment](https://groundtruth-meta-o8j3e4u38-kireeti001s-projects.vercel.app) identifies the verified build. A following documentation/evidence commit leaves its runtime unchanged.
 
 | File | Purpose |
 | --- | --- |
@@ -28,16 +28,16 @@ Revised release: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. The c
 - `/demo/teacher` is a read-only view of the current visitor's own sample, with no teacher privilege or access to another visitor.
 - Source selection prioritizes relevant lines within bounded context. Sanitized inference receipts record provider/model, task, status, timing and available usage metadata, not prompts or answers.
 
-These are implementation facts. Final hosted behavior and refreshed media are pending exact-release checks. Historical Meta acceptance evidence remains in [meta-verification.json](meta-verification.json); it is not a semantic benchmark or proof that every revised route passed production checks.
+Verification is recorded separately: [13/13 preview checks with six Meta calls](evaluation/live-acceptance.json), [6/6 final-production checks with two new Meta calls](evaluation/production-acceptance.json), [public media HTTP verification](video-publication-verification.json) and [actual browser playback/layout checks](evaluation/browser-verification.json). The final suite passed 288 tests; four trusted-fixture guard tests and 120 helper behavior checks are separate counts. The [downloaded 100-limit draft](evaluation/trusted-title-boundary-proof.md) matched its exact trusted hash without executing the downloaded file. Historical [Meta acceptance evidence](meta-verification.json) is retained separately.
 
 ## Review and media
 
-Application target: [groundtruth-meta.vercel.app](https://groundtruth-meta.vercel.app/login). Public source: [Ground-Truth](https://github.com/KIREETI001/Ground-Truth). Video target: [walkthrough page](https://groundtruth-meta.vercel.app/demo). The video is edited/prerecorded material; its presence does not demonstrate a new live inference request. Use only the final asset, duration, dimensions, captions and transcript named in the release manifest. Historical media must not be described as the revised release.
+Application target: [groundtruth-meta.vercel.app](https://groundtruth-meta.vercel.app/login). Public source: [Ground-Truth](https://github.com/KIREETI001/Ground-Truth). Verified V3 video: [walkthrough page](https://groundtruth-meta.vercel.app/demo). The video is edited/prerecorded material; its presence does not demonstrate a new live inference request. V3 is 178.5 seconds, 1920×1080 at 24 fps, 8,538,917 bytes, with 64 caption cues. Public hashes/range requests and observed browser playback/seeking passed; full linear listening review was not performed. The exact approved narration remains verbatim, including its legacy provisional-index line; an explicit clarification at 156.4–165.4 seconds states that the current release uses observed/reviewed states with no validated mastery score. Historical [V2 verification](video-v2/previous-release-verification.json) is preserved separately.
 
 The participant confirmed a solo entry as Kireeti Kumar, Indie Developer Track, Build for Your World. The observed official portal has three narrative limits of 3,000 characters and a partner-feedback limit of 150. The [official event](https://cerebralvalley.ai/e/meta-ai-developer-hackathon) and [official rules](https://cerebralvalley.ai/e/meta-ai-developer-hackathon/waiver) remain the organizer's authority; later changes must be checked before submission.
 
 ## Evidence and licensing
 
-There are **no external user-study participants or collected feedback (n = 0)**. Automated tests, operator source review, controlled sample checks and TinyFish browser QA must be labelled separately. None establishes causal learning gains, assessment validity, reduced marking time or model superiority.
+There are **no external user-study participants or collected feedback (n = 0)**. Automated tests, operator source review, controlled sample checks and TinyFish browser QA are labelled separately. TinyFish reported a teacher-preview redirect that normal authenticated browser and API checks did not reproduce; the discrepancy is retained in [tooling QA](evaluation/tooling-qa.json). None establishes causal learning gains, assessment validity, reduced marking time or model superiority.
 
 The submitted implementation is [MIT licensed](../LICENSE). [NOTICE](../NOTICE) preserves prior GroundTruth ideation and third-party attribution. Third-party components retain their own licenses. Teacher-side AI quiz authoring, assignment distribution and cohort analytics remain future work.

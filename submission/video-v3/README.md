@@ -1,5 +1,7 @@
 # GroundTruth V3 — product-first visual recut
 
+Publication update: the exact `GroundTruth_Demo_V3_final.mp4` is now served at [the public demo page](https://groundtruth-meta.vercel.app/demo). See [HTTP/hash verification](../video-publication-verification.json), [browser playback/seek evidence](../evaluation/browser-verification.json) and the [release manifest](../release-manifest.json). Render reports retain their truthful local-generation status; publication evidence is recorded separately.
+
 Local review work only. Nothing here uploads a file, changes the public video, submits the official form or accepts publishing consent. V2 is preserved.
 
 Canonical local candidate: [GroundTruth_Demo_V3_final.mp4](GroundTruth_Demo_V3_final.mp4), with [review.html](review.html), [poster.jpg](poster.jpg) and [media-validation.json](media-validation.json).

@@ -1,0 +1,34 @@
+{
+  "url": "https://groundtruth-meta.vercel.app/login",
+  "commit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+  "at": "2026-11-04T20:47:09.889Z",
+  "checks": [
+    {
+      "bodyFont": "16px",
+      "buttonFont": "15px",
+      "documentWidth": 1425,
+      "noHorizontalOverflow": true,
+      "sampleActionVisible": true,
+      "viewportHeight": 1024,
+      "viewportWidth": 1440
+    },
+    {
+      "bodyFont": "16px",
+      "buttonFont": "15px",
+      "documentWidth": 753,
+      "noHorizontalOverflow": true,
+      "sampleActionVisible": true,
+      "viewportHeight": 1024,
+      "viewportWidth": 768
+    },
+    {
+      "bodyFont": "16px",
+      "buttonFont": "16px",
+      "documentWidth": 360,
+      "noHorizontalOverflow": true,
+      "sampleActionVisible": true,
+      "viewportHeight": 812,
+      "viewportWidth": 375
+    }
+  ]
+}

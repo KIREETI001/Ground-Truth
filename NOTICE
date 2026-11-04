@@ -11,3 +11,10 @@ including scripts/vite/sites-vite-plugin.LICENSE and
 vendor/shadcn-tailwind-4.13.0.LICENSE.md. The MIT grant does not replace or
 relicense third-party components. Dependency metadata and the lockfile
 identify additional upstream packages.
+
+Public-source evaluation fixtures also include source from juliangruber/isarray
+(copyright 2013 Julian Gruber) and jonschlinkert/is-number (copyright
+2014-present Jon Schlinkert). Their original MIT notices are retained in
+submission/evaluation/licenses/. Fixture URLs and pinned commits are recorded
+in submission/evaluation/fixtures.json. The original upstream notices govern
+those excerpts; they are not newly authored GroundTruth implementation.

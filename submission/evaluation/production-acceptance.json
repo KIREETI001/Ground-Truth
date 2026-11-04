@@ -1,0 +1,319 @@
+{
+  "schemaVersion": "groundtruth-production-acceptance.v1",
+  "target": "https://groundtruth-meta.vercel.app",
+  "commit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+  "deployment": "dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE",
+  "startedAt": "2026-11-04T20:48:28.529Z",
+  "updatedAt": "2026-11-04T20:48:58.734Z",
+  "disclaimer": "Automated Operator QA using the two existing temporary synthetic guest sessions and an approved synthetic teacher. No new guest accounts, imported-code execution, educator study, learner study or independent human assessment.",
+  "checks": [
+    {
+      "id": "reused-sessions-owner-boundary",
+      "status": "pass",
+      "at": "2026-11-04T20:48:29.162Z",
+      "detail": "Existing guests remain unexpired; production denies another guest’s project and receipt access with 404."
+    },
+    {
+      "id": "authenticated-page-captured-preview",
+      "status": "pass",
+      "at": "2026-11-04T20:48:29.454Z",
+      "detail": "Normal teacher-preview HTML is 200 without a redirect; own read-only projection includes phase/hash/diff/100-source while omitting all private keys/rubrics."
+    },
+    {
+      "id": "saved-100-context-hint",
+      "status": "pass",
+      "at": "2026-11-04T20:48:36.293Z",
+      "detail": "A real Meta hint cites the captured 100-character comparison rather than the original 80-character source."
+    },
+    {
+      "id": "new-linked-mcq-private-until-commit",
+      "status": "pass",
+      "at": "2026-11-04T20:48:56.242Z",
+      "detail": "A fresh real MCQ captures the applied proposal; an approved receiving teacher gets no private guidance before independent submission."
+    },
+    {
+      "id": "independent-submit-private-guidance",
+      "status": "pass",
+      "at": "2026-11-04T20:48:57.826Z",
+      "detail": "Independent mode blocks hints; submitted MCQ is immutable and only then exposes private teacher guidance/key."
+    },
+    {
+      "id": "previous-evidence-operator-label-receipts",
+      "status": "pass",
+      "at": "2026-11-04T20:48:58.733Z",
+      "detail": "Previous answer hashes and labelled synthetic operator review remain unchanged; exactly two new sanitized Meta receipts are available."
+    }
+  ],
+  "requests": [
+    {
+      "operation": "reuse-production-guest-a",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 271,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "reuse-production-guest-b",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 125,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-cross-owner",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 91,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "production-cross-owner receipts",
+      "method": "GET",
+      "status": 404,
+      "latencyMs": 58,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "PROJECT_NOT_FOUND"
+    },
+    {
+      "operation": "production-guest-not-teacher",
+      "method": "GET",
+      "status": 403,
+      "latencyMs": 81,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "TEACHER_REQUIRED"
+    },
+    {
+      "operation": "production-authenticated-teacher-page",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 167,
+      "contentType": "text/html; charset=utf-8",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-own-preview-before-new-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 122,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-captured-source-hint",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 6836,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-linked-mcq",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 18734,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-approved-synthetic-teacher-login",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 788,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-teacher-before-new-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 419,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-production-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 185,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-start-independent",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 261,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-independent-hint-denied",
+      "method": "POST",
+      "status": 403,
+      "latencyMs": 106,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "INDEPENDENT_MODE"
+    },
+    {
+      "operation": "production-submit-mcq",
+      "method": "POST",
+      "status": 200,
+      "latencyMs": 251,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-reject-second-answer",
+      "method": "POST",
+      "status": 409,
+      "latencyMs": 186,
+      "contentType": "application/json",
+      "hasLocation": false,
+      "errorCode": "EXERCISE_STATE_CHANGED"
+    },
+    {
+      "operation": "production-teacher-after-new-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 404,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-own-preview-after-submit",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 178,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "read-own-production-project",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 194,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-check-existing-operator-label",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 445,
+      "contentType": "application/json",
+      "hasLocation": false
+    },
+    {
+      "operation": "production-new-sanitized-receipts",
+      "method": "GET",
+      "status": 200,
+      "latencyMs": 262,
+      "contentType": "application/json",
+      "hasLocation": false
+    }
+  ],
+  "modelAttempts": [
+    {
+      "operation": "production-captured-source-hint",
+      "startedAt": "2026-11-04T20:48:29.455Z",
+      "status": "success",
+      "httpStatus": 200
+    },
+    {
+      "operation": "production-linked-mcq",
+      "startedAt": "2026-11-04T20:48:36.294Z",
+      "status": "success",
+      "httpStatus": 200
+    }
+  ],
+  "newGuestAccounts": 0,
+  "sourceProof": {
+    "path": "server/validation.js",
+    "resultHash": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+    "baseHash": "bf5faa68b8a04f454e43d31045c9bbd35aa9c9ec330ccf8cccb3380e88ceb680",
+    "diffHash": "c82c073bb8664b2c4927b6de7f666f02dbed9f430660bca3a7dfc16154aa0fc8",
+    "savedPhase": "practice",
+    "publicSourceShows100": true
+  },
+  "hintProof": {
+    "citesCaptured100": true,
+    "quotesMatchCapturedSource": true,
+    "noOriginal80Mismatch": true,
+    "quoteCount": 1
+  },
+  "privateGuidanceProof": {
+    "hiddenBeforeCommit": true,
+    "availableOnlyAfterCommit": true,
+    "ownPreviewStillOmitsKeys": true,
+    "newAnswerHash": "8994ea37677c8c7bb128f754b55bec1b19b8ae864ae3b83368647663b99f683c"
+  },
+  "modelReceipts": [
+    {
+      "task": "exercise",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 18266,
+      "inputTokens": 3391,
+      "outputTokens": 1551,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:48:55.349Z"
+    },
+    {
+      "task": "hint",
+      "provider": "meta",
+      "model": "muse-spark-1.3",
+      "status": "success",
+      "latencyMs": 6515,
+      "inputTokens": 929,
+      "outputTokens": 481,
+      "cachedInputTokens": 0,
+      "createdAt": "2026-11-04T20:48:36.647Z"
+    }
+  ],
+  "previousAnswerHashes": {
+    "mcq": "a5b40a98b167b43e90be962689cffe99f1e6080ddc4c03a1900739e10cb7d2bc",
+    "coding": "1d47ee6379afa46b48fd24eb444ebe941ecb4bf7805529ea5e2bb288004a506c"
+  },
+  "existingOperatorReviewRetained": true,
+  "completedAt": "2026-11-04T20:48:58.734Z",
+  "summary": {
+    "checks": 6,
+    "passed": 6,
+    "failed": 0,
+    "newGuestAccounts": 0,
+    "newModelRequests": 2,
+    "newSanitizedReceipts": 2,
+    "inputTokens": 4320,
+    "outputTokens": 2032,
+    "cachedInputTokens": 0
+  },
+  "contentSpotReview": {
+    "reviewer": "Codex source-assisted operator QA",
+    "newMcq": {
+      "oneSourceDefensibleOption": true,
+      "teacherModelSuggestionMatchesSource": true,
+      "changedBoundary": "Trimmed lengths 81–100 now pass; 101 still rejects.",
+      "preservedBehavior": "Trimming and non-string null rejection remain intact."
+    },
+    "privateLetterReferences": {
+      "explicitLetterReferenceCount": 0,
+      "liveRemappingCoverageObserved": false,
+      "note": "This generated private guidance contains no explicit option-letter references, so this live call does not establish remapping coverage; six deterministic MCQ tests cover it."
+    },
+    "limitation": "Synthetic operator inspection, not an independent human assessment, educator study or learning-outcome result."
+  },
+  "teacherReviewAction": {
+    "newReviewsWritten": 0,
+    "existingInsufficientOperatorQALabelRetained": true,
+    "independentHumanAssessmentClaimed": false
+  },
+  "previewReceiptPreserved": true
+}

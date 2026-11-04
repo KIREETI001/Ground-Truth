@@ -1,47 +1,52 @@
-# GroundTruth — revised-release verification status
+# GroundTruth — verified application release
 
-**Participant review draft. Official form submission is not authorized.** Final exact-release production and media checks are pending; earlier release totals are not carried forward as verification of changed routes.
+**Engineering verification complete; participant review remains required.** No official portal fields were updated or submitted in this goal. The current local form copy is ready for participant review/paste; an earlier populated portal draft may be stale. Local publishing consent remains false.
 
-## Release pointers
+## Release identity
 
-- [Application](https://groundtruth-meta.vercel.app/login), [hosted demo page](https://groundtruth-meta.vercel.app/demo) and [public pitch](https://groundtruth-meta.vercel.app/pitch.html).
-- [Original MIT implementation](https://github.com/KIREETI001/Ground-Truth), [MIT license](../LICENSE), [attribution](../NOTICE) and [owned MIT demo repository](https://github.com/KIREETI001/groundtruth-demo-study-tasks).
-- Revised release commit: **PENDING_FINAL_COMMIT**.
-- Production deployment and exact-version checks: **PENDING_PRODUCTION_DEPLOYMENT**.
-- Final audit and test totals: **PENDING_FINAL_AUDIT**.
-- Final encoded and hosted media verification: **PENDING_FINAL_MEDIA_CHECK**.
+- Application runtime: `1e1bcfaa848150f90caf890e8d32471336f5e084`.
+- Vercel production deployment: `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE`, **READY**.
+- Canonical [application](https://groundtruth-meta.vercel.app/login), [demo](https://groundtruth-meta.vercel.app/demo) and [pitch](https://groundtruth-meta.vercel.app/pitch.html).
+- Unique verified deployment: [groundtruth-meta-o8j3e4u38](https://groundtruth-meta-o8j3e4u38-kireeti001s-projects.vercel.app).
+- [Original MIT implementation](https://github.com/KIREETI001/Ground-Truth), [LICENSE](../LICENSE), [NOTICE](../NOTICE) and [pinned upstream evaluation licenses](evaluation/licenses/README.md).
 
-The [release manifest](release-manifest.json) is the owning record for final commit/deployment IDs, migrations, tests, QA and media hashes. Until the final pass updates it, its earlier checkpoint is historical. Root release verification supplies the final values above.
+The [release manifest](release-manifest.json) owns exact version, migration, check and media provenance. A following documentation/evidence-only commit records these observations without changing the deployed runtime above. Historical release evidence is preserved separately.
 
-## What the revised journey needs to demonstrate
+## Engineering and provider evidence
 
-| Stage | Inspectable evidence required |
+| Check | Actual result and scope |
 | --- | --- |
-| Temporary sample | Separate visitor account and pinned private sample; prepared Meta overview/concepts labelled; other visitors denied |
-| Read the system | Repository → workflow/source → selected concept, with bounded source coverage |
-| Make a permitted change | Manual title maximum 80→100 in the owned cloud draft; reviewed diff, explicit apply and before/after hashes |
-| Check the actual edit | Meta-linked MCQ or small coding task using the trusted applied proposal and captured changed source |
-| Try independently | New in-app study assistance paused; original answer committed before feedback; later edits to that answer denied |
-| Fresh variation | Separate linked question and response; earlier submitted evidence remains intact |
-| Share and review | Separate learner consent, enrolled teacher selected by name, named learner/class queue and human review with a qualified next step |
-| Own demo preview | Only the visitor's record, including captured change source/diff; no teacher privilege, private key/rubric exposure or saved assessment |
+| Automated suite | **288 tests passed**. Typecheck, lint and production build passed; authored/tracked secret inventory passed. |
+| Trusted harness guards | **4 separate guard tests passed**, separate from the 288-test suite. |
+| Trusted helper behavior | **120/120 checks passed** across the pinned 80 limit, prescribed 100 limit and minimum-three variation. The actual browser-downloaded `validation.js` matched SHA-256 `1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570`; it was compared as data and never executed. [Report](evaluation/trusted-title-boundary-proof.md). |
+| Database | Release operator verified RLS on **33/33** private tables and **zero security-advisor findings**. The restricted server role is not per-user RLS; application authorization and owner predicates remain essential. |
+| Preview acceptance | **13/13 checks passed, six Meta calls**, on its recorded preview commit. Two isolated synthetic HTTP clients, source-linked coding/variation, sharing and synthetic teacher review. [Record](evaluation/live-acceptance.json). |
+| Final production acceptance | **6/6 checks passed, two new Meta calls**, on the application release above. Previous MCQ/coding answers preserved; captured 100-limit hint/source agreed; private guidance hidden before commitment; own preview retained captured source while omitting keys. [Record](evaluation/production-acceptance.json). |
+| Independent release review | Codex found no blockers across **33 focused checks**, including SQLite and PGlite paths. Engineering review, not external human or educational validation. |
+| Small model content review | **12 baseline outputs: 8 Codex pass, 4 concern**. Four separate mitigation rechecks passed; **16 actual requests** in that content evaluation. Baseline concerns retained; no head-to-head comparison. [Report](evaluation/model-evaluation.md). |
 
-Current concepts use unattempted, submitted/unreviewed and human-reviewed states. Submission does not award a mastery percentage. Source and learner code are not executed by the web app.
+The preview and final-production call counts are separate from the 16-request content review. The final live private guidance contained no explicit option-letter references, so that call did not establish remapping coverage; six deterministic MCQ tests cover the supported letter/prose forms. Expiry, quota, role and stale/concurrent-edit protections were exercised with regression fixtures; no two-hour wall-clock expiry wait is claimed.
 
-## Supporting evidence already recorded
+All class counts, learner accounts, teacher records and saved reviews used in QA are **synthetic operator activity**. The final production pass retained the existing labelled operator review and wrote no new teacher review. No imported repository or learner snippet is executed by the web app.
 
-| Evidence | Result and interpretation |
+## Browser, media and presentation
+
+| Check | Actual result and scope |
 | --- | --- |
-| [Public-source content review](evaluation/model-evaluation.md) | 12 baseline outputs across three small repositories: Codex semantic inspection recorded 8 pass and 4 concern. Four separate mitigation rechecks passed; 16 total provider requests. Historical concerns retained. No head-to-head comparison or teacher validation. |
-| [Trusted helper checks](evaluation/trusted-title-boundary-proof.md) | 120/120 operator-authored fixture input/output checks across the pinned 80 limit, prescribed 100 limit and fresh minimum-three variation. Only the hash-checked owned helper and prescribed variants were executed. No production draft was supplied for that recorded run. |
-| [External study status](evaluation/user-study-results.json) | Not conducted, n = 0; no external learner/educator participants, feedback or measured learning outcomes. |
-| [Earlier real Meta acceptance](meta-verification.json) | Historical adapter evidence. It does not verify all revised routes or establish semantic correctness or model superiority. |
-| [V3 media plan](video-v3/README.md) | Edited product captures with synthetic operator records; approved narration preserved. Final exact-release captures, encode/hash/playback checks remain pending. |
+| Responsive entry | `/login` at **1440, 768 and 375 pixels**: no horizontal overflow and sample CTA visible above the fold. A 375-pixel sample workspace and own preview also passed. [Layouts](evaluation/browser-layouts.json), [browser observations](evaluation/browser-verification.json). |
+| V3 encoded artifact | **8,538,917 bytes; 178.5 seconds; 1920×1080; 24 fps**. SHA-256 `f6dbbb920be896a4311ec187dd597cd4dae92ec48e808d862b2043543e6e3a94`. Local decode/encoding checks passed. [Validation](video-v3/media-validation.json). |
+| Public media | Page/video/VTT/poster URLs returned **200**; video range returned **206**. Exact video, caption and poster hashes matched. **64 VTT cues** were ordered and in bounds. [HTTP verification](video-publication-verification.json), reproduced by `node scripts/verify-published-media.mjs`. |
+| Actual player observation | 1080p, duration 178.5 seconds; playback advanced to **36.94 seconds**, seeked to **178.5** and back to **176.715**, readyState **4**. Native caption track defaults off to avoid duplicating observed burned-in captions. [Browser record](evaluation/browser-verification.json). |
+| Listening limit | **Full linear playback and audible listening review were not performed.** Technical decode, partial playback and seek checks do not substitute for listening. |
+| Narration | Approved narration/captions remain verbatim. The legacy provisional-index line is retained with an explicit **156.4–165.4-second** clarification that the current release uses observed/reviewed states and no validated mastery score. |
+| Editorial assets | Matching architecture 1600×900, thumbnail 1280×720 and pitch-cover 1600×900 PNGs regenerated from exact sources. Visually inspected; five-slide desktop footer bounds and narrower-layout overflow checked. These illustrations are not product screenshots. |
 
-Operator teacher activity demonstrates a workflow when the saved record is actually observed. It is not external educator validation. Automated tests, source/content inspection and browser QA are engineering checks; none establishes learning gains, retention, grading fairness, lower teacher workload or learner token savings.
+TinyFish reported a teacher-preview redirect to sign-in. Normal authenticated same-host browser navigation and API checks did not reproduce it. The cause remains unproven; the discrepancy is retained in [tooling QA](evaluation/tooling-qa.json) and the [preview record](evaluation/live-acceptance.json), rather than hidden or called a resolved bug.
 
-## Presentation asset status
+## Interpretation and participant handoff
 
-The five-slide HTML pitch, architecture SVG and thumbnail SVG describe the revised journey and disclose evidence limits. Matching PNG previews were regenerated from those exact sources with the installed Chrome renderer: architecture 1600×900, thumbnail 1280×720 and pitch cover 1600×900. All three previews and the journey, architecture and evidence slides were visually inspected. All five slides passed desktop footer-boundary and horizontal-overflow checks; a narrower 500-pixel layout also had no horizontal overflow. These are editorial illustrations/previews, not product screenshots or production acceptance evidence. Media publication remains a separate root release step.
+External user study: **not conducted, n = 0**. No external learner/educator feedback or learning outcomes were collected. Operator activity, Codex source/content review, automated tests and browser QA do not establish learning gains, retention, authorship, outside-AI detection, fairer grading, reduced marking time or token savings.
 
-Earlier evidence files and V2 media reports are preserved. They should be labelled historical when consulted. See [review instructions](REVIEW_FIRST.md), [project story](project-writeup.md), [Meta fit](why-meta.md), [research context](research-evidence.md) and [the manifest](release-manifest.json).
+The current journey is repository → workflow/source → concept → reviewed private 80→100 edit → Meta-linked MCQ/coding task → immutable independent answer → fresh variation → explicit named-teacher share → qualified human review. Concepts show observed/reviewed states rather than mastery percentages. Enrollment alone grants no project access. Teacher quiz authoring, assignment distribution and cohort analytics remain future work.
+
+Historical [V2 verification](video-v2/previous-release-verification.json) remains separate. The [review packet](REVIEW_FIRST.md), [local form copy](official-form-copy.md), [JSON values](form-values.json), [project story](project-writeup.md) and [checklist](release-checklist.md) are ready for the participant. Their final review, optional declarations and official submission remain intentionally unchecked and do not block engineering completion.

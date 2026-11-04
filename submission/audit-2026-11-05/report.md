@@ -1,5 +1,7 @@
 # GroundTruth — current-state submission audit
 
+**Historical baseline audit.** Findings below describe the earlier `4fe6afdc` deployment. See [completed strengthening pass](../final-audit-2026-11-05.md) and the [release manifest](../release-manifest.json) for the revised implementation and its verification; this report retains the original observations.
+
 Audited 5 November 2026, Singapore time. Live application: https://groundtruth-meta.vercel.app. Deployed application commit: `4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5`; repository HEAD `cba597f` adds publication evidence. This audit created only local report/screenshot artifacts. No application features, learner answers, teacher reviews or submission fields were changed.
 
 ## Assessment

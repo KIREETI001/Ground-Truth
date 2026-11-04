@@ -1,6 +1,6 @@
 # Why Meta fits GroundTruth
 
-Revised release evidence is **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. Official Meta documentation was rechecked on 5 November 2026. Provider capabilities, integration checks and educational outcomes are separate claims.
+Verified application release: **`1e1bcfaa848150f90caf890e8d32471336f5e084` / `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE` (READY)** at [the canonical deployment](https://groundtruth-meta.vercel.app/login). Official Meta documentation was rechecked on 5 November 2026. Provider capabilities, integration checks and educational outcomes are separate claims.
 
 ## The product reason
 
@@ -26,7 +26,11 @@ GroundTruth uses the direct `https://api.meta.ai/v1` integration with server-onl
 
 The earlier [real-provider acceptance record](meta-verification.json) confirms actual adapter requests, returned model and structured/source checks on the pinned sample. It does not certify all revised routes, prove semantic quality or establish model superiority. Prepared sample overviews/concepts are explicitly identified; fresh questions require new requests. Edited/prerecorded video captures do not count as new generation.
 
-The revised code adds relevant-line selection and sanitized receipts. Final denominators, latency/usage observations and reviewed multi-repository outputs must come from actual final artifacts. JSON validity alone does not establish one unambiguous correct MCQ answer or a useful hint.
+The [content review](evaluation/model-evaluation.md) covers 12 baseline outputs across three small repositories: eight Codex pass judgements and four concerns. All four separate mitigation rechecks passed, for 16 total provider requests in this evaluation. Baseline concerns are retained. JSON validity alone does not establish one unambiguous correct MCQ answer or a useful hint.
+
+The [recorded preview run](evaluation/live-acceptance.json) passed 13/13 checks with six Meta calls. The [final production run](evaluation/production-acceptance.json) passed 6/6 checks with two new Meta calls, including a captured 100-limit source hint and linked MCQ with private guidance hidden before commitment. Earlier committed answers were preserved. These request counts are separate from the 16-request content evaluation. The final live guidance had no explicit letter references, so it did not itself exercise MCQ letter remapping; six deterministic tests cover those forms.
+
+Relevant-line selection and sanitized receipts make source coverage, failures and available numeric usage inspectable. The observed counts do not measure total learner token savings or comparative quality. TinyFish’s reported teacher-preview redirect remains recorded; normal authenticated browser/API checks did not reproduce it.
 
 Review dimensions should match the outcome: map/source fidelity; beginner clarity; MCQ key correctness and ambiguity; coding-task feasibility; hint answer leakage; diff/task relevance; and behavior on a fresh variation. Report exact sample sizes, failures and reviewer role. Operator source review and TinyFish QA are not external participant feedback. No external user study has been conducted, n = 0.
 

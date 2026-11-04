@@ -44,3 +44,7 @@ Agents do not edit the root integration file or each other's owned files. Shared
 Guest provisioning can become an abuse/retention path: rate-limit creation, reserve demo namespaces, expire data and avoid widening server permissions. Teacher evidence can leak answer keys: expose private rubric only to authorized human review or after the relevant answer is committed. Change context must be reconstructed server-side from owned proposals, never trusted client text. Stateful independent/model leases remain transactional across tabs. Content review must report ambiguity and failures rather than treating valid JSON as correctness.
 
 Completion requires evidence against every acceptance item; a green test count alone does not complete this plan.
+
+## Completion record
+
+The implementation, production recheck and published V3 media are complete at application commit `1e1bcfaa848150f90caf890e8d32471336f5e084`. Evidence and remaining validation limits are recorded in [the final audit](final-audit-2026-11-05.md), [release manifest](release-manifest.json), [production acceptance](evaluation/production-acceptance.json), [browser verification](evaluation/browser-verification.json) and [media checks](video-publication-verification.json). The unavailable external study remains explicitly n = 0; the participant’s final review and official submission are intentionally left to the participant.

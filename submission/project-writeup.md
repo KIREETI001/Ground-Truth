@@ -1,6 +1,6 @@
 # GroundTruth
 
-**Participant review draft. Revised release: PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT.** The implementation below awaits final exact-release deployment evidence. Official form submission and publishing consent remain under participant control.
+**Participant review draft. Revised release: `1e1bcfaa848150f90caf890e8d32471336f5e084` / `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE` (READY).** The application is verified at [the canonical deployment](https://groundtruth-meta.vercel.app/login). A following documentation/evidence commit does not change that runtime. No official form was updated or submitted in this goal; the current local copy and publishing declaration remain for participant review.
 
 ## Tagline
 
@@ -22,7 +22,7 @@ A judge opens `/login` and chooses Try sample learning path. The revised impleme
 
 The learner follows request → validation → persistence in a small public task application. They inspect selected source, read the workflow overview and choose a concept. An MCQ or short coding task gives them one concrete decision. Starting an independent attempt pauses new in-app study assistance; submission preserves the original response before feedback. End attempt is available when the learner needs to stop.
 
-Next, the learner makes a small permitted change in a private draft, reviews the diff and explicitly applies it. An understanding check uses the owned applied proposal, before/after source hashes and reconstructed diff. A linked fresh variation supplies another task using the same idea. Initial, practice and variation attempts remain separate records. This linkage makes evidence inspectable; it does not by itself prove transfer or improvement.
+Next, the learner manually raises the title limit from 80 to 100 in an owned private cloud draft, reviews the one-line diff and explicitly applies it. An understanding check uses the owned applied proposal, before/after source hashes and reconstructed diff. A linked fresh variation supplies another task using the same idea. Initial, practice and variation attempts remain separate records. This linkage makes evidence inspectable; it does not by itself prove transfer or improvement.
 
 The visitor can open `/demo/teacher` to inspect their own synthetic record in a read-only teacher-shaped view. It grants no Teacher role, exposes no other visitor and cannot save an assessment. In the classroom workflow, an enrolled learner explicitly selects an approved teacher and shares a chosen path. The teacher sees learner/class context, filters work awaiting review, inspects the committed answer and relevant source, and records a qualified human judgement and next step.
 
@@ -44,7 +44,11 @@ Sanitized inference receipts retain task, provider/model, status, latency and av
 
 ## What has and has not been evaluated
 
-Prior real Meta adapter evidence is recorded in [meta-verification.json](meta-verification.json). Revised-release test totals, production journeys and semantic-output reviews must come from actual final artifacts; earlier checks are not carried forward as proof of changed routes.
+The final application suite passed 288 tests; four separate trusted-fixture guards and 120 helper behavior checks passed. The actual browser-downloaded 100-limit file matched its trusted hash without execution. [Preview acceptance](evaluation/live-acceptance.json) passed 13/13 checks with six Meta requests on its recorded preview release; [final production acceptance](evaluation/production-acceptance.json) passed 6/6 checks with two new requests on the application release above. It preserved earlier answers and confirmed private guidance before commitment, captured 100-limit hints and own-record preview.
+
+The [small content review](evaluation/model-evaluation.md) retained its 12-output baseline: Codex inspection recorded eight pass and four concern. Four separate mitigation rechecks passed, for 16 total provider requests in that content evaluation. These are not head-to-head model results or external teacher validation. An independent Codex release review passed 33 focused checks without a release blocker. Historical [Meta adapter evidence](meta-verification.json) remains separate.
+
+[Hosted media verification](video-publication-verification.json) and [normal-browser observations](evaluation/browser-verification.json) identify the 178.5-second V3 video. Playback advanced to 36.94 seconds, seeked to 178.5 and back to 176.715 with readyState 4; full linear playback/listening review was not performed. The approved narration remains verbatim with a current-state clarification at 156.4–165.4 seconds. TinyFish’s reported teacher-preview redirect was not reproduced in normal authenticated browser/API checks; the discrepancy is retained in [tooling QA](evaluation/tooling-qa.json).
 
 There are no external user-study participants or collected feedback: **not conducted, n = 0**. Automated tests, operator review and TinyFish browser checks are engineering/QA evidence. A future [usability protocol and response sheet](evaluation/user-study-plan.md) is prepared. None establishes learning gains, retention, assessment validity, fairer grades, reduced marking time, lower token spending or superiority over another model.
 

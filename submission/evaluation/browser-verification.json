@@ -1,0 +1,37 @@
+{
+  "at": "2026-11-04T20:53:14.314Z",
+  "releaseCommit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+  "url": "https://groundtruth-meta.vercel.app/demo",
+  "video": {
+    "currentTime": 176.715,
+    "duration": 178.5,
+    "height": 1080,
+    "paused": true,
+    "readyState": 4,
+    "source": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=f6dbbb92",
+    "width": 1920
+  },
+  "observedPlayingAtSeconds": 36.939666,
+  "seekToEndObservedSeconds": 178.5,
+  "seekBackObservedSeconds": 176.715,
+  "fullLinearPlayback": false,
+  "audibleListeningReview": "not_performed",
+  "captions": {
+    "trackPresent": true,
+    "nativeDefaultDisabled": true,
+    "burnedInCaptionsObserved": true
+  },
+  "entry": {
+    "mobileSampleCreated": true,
+    "mobileWorkspaceNoHorizontalOverflow": true,
+    "normalSameHostTeacherPreviewLoaded": true
+  },
+  "layouts": "browser-layouts.json",
+  "screenshots": [
+    "screenshots/production-landing-mobile.jpg",
+    "screenshots/production-own-preview.jpg",
+    "screenshots/production-video-ending.jpg"
+  ],
+  "syntheticOperatorQA": true,
+  "submitted": false
+}

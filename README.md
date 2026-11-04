@@ -6,7 +6,7 @@ The submitted implementation is [MIT licensed](LICENSE). [NOTICE](NOTICE) preser
 
 GroundTruth connects selected public GitHub source to a workflow, concepts, focused practice and a small independent change. New in-app study assistance pauses during an independent attempt. The original response, source and relevant activity can support an explicitly authorized human review.
 
-The revised implementation is awaiting final release verification: **PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT**. The [release manifest](submission/release-manifest.json) is authoritative for final deployment/check/media evidence; historical checks do not certify later changes.
+Application release `1e1bcfaa848150f90caf890e8d32471336f5e084` is verified at [the canonical deployment](https://groundtruth-meta.vercel.app/login), Vercel `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE` (READY). The [release manifest](submission/release-manifest.json) records the exact application release, production checks and media evidence. A following documentation/evidence commit does not change that deployed runtime.
 
 ## Judge entry and learning loop
 
@@ -42,7 +42,7 @@ Local cloud rehearsal opens on http://localhost:5174. Production uses encrypted 
 
 The [MIT-licensed public study-task sample](https://github.com/KIREETI001/groundtruth-demo-study-tasks) is a deliberately small application for request → validation → persistence and a small rule change. It is separate from GroundTruth. Any fixed trusted-fixture behavior check is operator engineering evidence, not a web feature that executes visitor code.
 
-The [submission packet](submission/README.md) contains the judge guide, project story, local official-form copy, architecture, Meta fit and release checklist. Edited/prerecorded media and prepared model outputs are labelled; neither proves a fresh generation. The participant must review the final packet before submission. Publishing consent remains unchecked.
+The [submission packet](submission/README.md) contains the judge guide, project story, local official-form copy, architecture, Meta fit and release checklist. Edited/prerecorded media and prepared model outputs are labelled; neither proves a fresh generation. The participant must review the final local packet before submission. No portal fields were updated or submitted in this goal; an earlier populated draft may be stale. Local publishing consent remains false.
 
 No external user study or participant feedback has been collected (**not conducted, n = 0**). The [future protocol and blank response sheet](submission/evaluation/user-study-plan.md) are prepared. Automated tests, source review, operator demonstrations and TinyFish browser QA remain separate evidence. They do not establish learning gains, fairer grading, reduced marking time, token savings or model superiority.
 

@@ -1,33 +1,154 @@
 {
-  "pageUrl": "https://groundtruth-meta.vercel.app/demo",
-  "pageStatus": 200,
-  "videoStatus": 200,
-  "videoBytes": 9400939,
-  "videoSha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
-  "matchesReviewedCandidate": true,
-  "rangeStatus": 206,
-  "contentRange": "bytes 0-1023/9400939",
-  "captionStatus": 200,
-  "captionCues": 64,
-  "captionsMatch": true,
-  "posterStatus": 200,
-  "posterMatches": true,
-  "healthStatus": 200,
-  "deploymentId": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
-  "deployedCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
-  "submitted": false,
-  "browser": {
-    "currentTime": 11.036166,
-    "duration": 178.5,
-    "error": null,
-    "height": 1080,
-    "paused": true,
-    "readyState": 4,
-    "source": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=b7e788a8",
-    "width": 1920,
-    "playbackObserved": true,
-    "observedPlayingTime": 25.725755,
-    "playingObservationPaused": false,
-    "lastAction": "Paused after successful playback check"
+  "schemaVersion": "groundtruth-public-media-verification.v3",
+  "startedAt": "2026-11-04T20:51:36.192Z",
+  "observedAt": "2026-11-04T20:51:37.061Z",
+  "scope": "Public read-only GET checks; no account session or portal access.",
+  "baseUrl": "https://groundtruth-meta.vercel.app",
+  "release": {
+    "deployedCommit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+    "deploymentId": "dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE",
+    "metadataSource": "Release operator supplied commit/deployment IDs; these HTTP checks do not independently attest source identity."
+  },
+  "expected": {
+    "videoSha256": "f6dbbb920be896a4311ec187dd597cd4dae92ec48e808d862b2043543e6e3a94",
+    "videoBytes": 8538917,
+    "captionsSha256": "bd4b6f58e216b0762546567b467b9364ed02ddf1bcafeb4a68c7a3c825acfa38",
+    "posterSha256": "55fe9bf38a560d0858cc01937cbecf59e37503ff516a8a40c0d6aa1f812f1cf4",
+    "durationSeconds": 178.5,
+    "captionCues": 64,
+    "revision": "f6dbbb92"
+  },
+  "checks": {
+    "canonical": {
+      "url": "https://groundtruth-meta.vercel.app/login",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "redirects": [
+        {
+          "status": 307,
+          "from": "https://groundtruth-meta.vercel.app/"
+        }
+      ],
+      "ok": true
+    },
+    "login": {
+      "url": "https://groundtruth-meta.vercel.app/login",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "redirects": [],
+      "ok": true
+    },
+    "health": {
+      "url": "https://groundtruth-meta.vercel.app/api/health",
+      "status": 200,
+      "contentType": "application/json",
+      "redirects": [],
+      "ok": true,
+      "database": "connected",
+      "inference": "meta-configured",
+      "model": "muse-spark-1.3"
+    },
+    "demo": {
+      "url": "https://groundtruth-meta.vercel.app/demo",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "redirects": [],
+      "ok": true
+    },
+    "pitch": {
+      "url": "https://groundtruth-meta.vercel.app/pitch.html",
+      "status": 200,
+      "contentType": "text/html; charset=utf-8",
+      "redirects": [],
+      "ok": true
+    },
+    "player": {
+      "revision": "f6dbbb92",
+      "source": "/groundtruth-demo.mp4?v=f6dbbb92",
+      "captions": "/groundtruth-demo.vtt?v=f6dbbb92",
+      "poster": "/demo-poster.png?v=f6dbbb92",
+      "captionTracks": 1,
+      "defaultCaptionTracks": 0,
+      "burnedInCaptions": "Previously verified local encoded artifact; exact public video hash checked here.",
+      "duplicateDefaultCaptions": false
+    },
+    "video": {
+      "url": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=f6dbbb92",
+      "status": 200,
+      "contentType": "video/mp4",
+      "bytes": 8538917,
+      "sha256": "f6dbbb920be896a4311ec187dd597cd4dae92ec48e808d862b2043543e6e3a94",
+      "matchesReviewedCandidate": true
+    },
+    "range": {
+      "url": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=f6dbbb92",
+      "status": 206,
+      "contentRange": "bytes 0-1023/8538917",
+      "bytes": 1024,
+      "matchesFirst1024Bytes": true
+    },
+    "captions": {
+      "url": "https://groundtruth-meta.vercel.app/groundtruth-demo.vtt?v=f6dbbb92",
+      "status": 200,
+      "contentType": "text/vtt; charset=utf-8",
+      "bytes": 4230,
+      "sha256": "bd4b6f58e216b0762546567b467b9364ed02ddf1bcafeb4a68c7a3c825acfa38",
+      "matchesLocalBytes": true,
+      "cues": {
+        "count": 64,
+        "firstStart": 0.299,
+        "lastEnd": 175.353,
+        "ordered": true,
+        "nonOverlapping": true,
+        "allBoundsInsideDuration": true
+      }
+    },
+    "poster": {
+      "url": "https://groundtruth-meta.vercel.app/demo-poster.png?v=f6dbbb92",
+      "status": 200,
+      "contentType": "image/png",
+      "bytes": 584804,
+      "sha256": "55fe9bf38a560d0858cc01937cbecf59e37503ff516a8a40c0d6aa1f812f1cf4",
+      "dimensions": [
+        1920,
+        1080
+      ],
+      "matchesLocalBytes": true
+    }
+  },
+  "passed": true,
+  "errors": [],
+  "previousReleaseArchive": {
+    "path": "submission/video-v2/previous-release-verification.json",
+    "action": "existing_archive_preserved",
+    "sha256": "377205a8de845ce018fe455f4e92beb3f9bf30f9fc2ebb1bc995d7234b5fbbcf",
+    "existingV2RecordsOverwritten": false
+  },
+  "localEncodingEvidence": {
+    "path": "submission/video-v3/media-validation.json",
+    "durationSeconds": 178.5,
+    "dimensions": [
+      1920,
+      1080
+    ],
+    "fps": 24,
+    "decodePassed": true,
+    "note": "Already measured locally; no re-encoding or new decode is performed by this script."
+  },
+  "browserVerification": {
+    "status": "not_performed_by_this_script",
+    "note": "The release operator separately observes browser playback and seeking."
+  },
+  "listening_review": "not_performed",
+  "officialSubmissionStatus": "not_checked",
+  "actions": {
+    "httpMethods": [
+      "GET"
+    ],
+    "credentialsSent": false,
+    "cookiesSent": false,
+    "mediaReencoded": false,
+    "publicMediaChanged": false,
+    "officialPortalAccessed": false
   }
 }

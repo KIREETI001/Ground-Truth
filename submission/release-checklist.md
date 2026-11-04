@@ -1,58 +1,63 @@
-# Revised release and submission checklist
+# Verified release and participant handoff checklist
 
-**Status: PENDING_FINAL_COMMIT / PENDING_PRODUCTION_DEPLOYMENT.** This checklist requests evidence for the revised release; previous green checks do not automatically close these items. The official form remains unsubmitted and publishing consent unchecked until the participant's final review.
+**Engineering gates closed for app runtime `1e1bcfaa848150f90caf890e8d32471336f5e084`**, deployment `dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE` (READY). The [verification summary](production-check-summary.md) and [manifest](release-manifest.json) identify the evidence. A following documentation/evidence commit does not change that deployed runtime.
 
-## Version and rights
+Checked items below state the actual method. Synthetic fixtures, automated HTTP clients and partial browser observation are not silently relabelled as human study or full-duration observation. Participant-owned review/submission actions remain unchecked intentionally; they do not block engineering completion.
 
-- [x] Participant confirmed solo entry: Kireeti Kumar; Indie Developer Track; Build for Your World.
-- [x] Participant authorized MIT licensing of the submitted implementation; project LICENSE and NOTICE exist locally.
-- [ ] Freeze and publish the final source commit; record exact SHA, source branch, deployed version and migration identifiers in release-manifest.json.
-- [ ] Verify LICENSE/NOTICE and third-party attribution in published source and confirm sample reuse permission.
-- [ ] Check tracked files and deployment uploads for secrets, private records, runtime databases and local caches.
+## Version, rights and build
 
-## Judge entry and account isolation
+- [x] Participant-confirmed solo entry: Kireeti Kumar; Indie Developer Track; Build for Your World.
+- [x] Original implementation MIT licensed and published; LICENSE/NOTICE retained. Pinned upstream MIT evaluation licenses are retained in [the license folder](evaluation/licenses/README.md), with the evidence-only documentation commit to follow.
+- [x] Frozen app SHA and READY production deployment recorded above; canonical and unique deployment identities supplied to the owning manifest.
+- [x] Final suite: **288 tests passed**; typecheck, lint and production build passed. Authored/tracked secret inventory passed. Local runtime caches/databases are excluded.
+- [x] Database verification: **33/33 private tables with RLS, zero security-advisor findings**; restricted server role and application owner predicates retained. This is not a per-user RLS guarantee or complete security certification.
 
-- [ ] Open deployed `/login` at 1440, 768 and 375 pixels; sample action is visible before story/animation, roles remain readable and no horizontal overflow appears.
-- [ ] Start two separate browser sessions. Each receives its own learner identity, project and private practice copy; signing in or attempting work in one does not invalidate the other.
-- [ ] Verify prepared overview/concepts against the operator-approved pinned public seed and Meta provenance event. Record that these are prepared assets.
-- [ ] Verify a newly requested MCQ/coding task reaches Meta and persists; retain a sanitized receipt and source review.
-- [ ] Verify per-identity/global creation budgets, active cap, reserved namespace, two-hour expiry and cleanup; synthetic accounts do not consume the real signup cap.
-- [ ] Confirm normal signup/login/logout, pending-teacher denial, closed developer registration and cross-owner project denial.
-- [ ] Verify `/demo/teacher` requires the current visitor's valid sample session, exposes only their record, stays read-only and never returns private pre-commit rubric/key data.
+## Judge entry and isolation
 
-## Complete code → change → human-review loop
+- [x] Normal production browser checked `/login` at 1440/768/375 pixels: sample CTA above the fold, readable roles and no horizontal overflow. 375-pixel workspace and own preview also passed. [Browser evidence](evaluation/browser-verification.json).
+- [x] Preview acceptance used **two separate synthetic HTTP clients with private cookie jars**, confirming separate accounts/projects and cross-owner denial. This is not a claim that two manual browser contexts were tested. [Preview record](evaluation/live-acceptance.json).
+- [x] Operator-approved pinned public seed and genuine Meta-prepared overview/concepts have a provenance event and are labelled prepared, not fresh generation.
+- [x] Preview acceptance: **13/13 checks, six Meta calls**. Final production: **6/6 checks, two new Meta calls**, with sanitized receipts. [Final production record](evaluation/production-acceptance.json).
+- [x] Per-identity/global budgets, active cap, reserved namespace, signup-cap separation, expiry and cleanup protections passed **regression fixtures with simulated expiry**; no two-hour wall-clock wait is claimed.
+- [x] Signup/login/logout, pending-teacher denial, closed developer registration and cross-owner access protections passed regression checks. No public teacher/developer credentials are provided.
+- [x] Own `/demo/teacher` preview requires its visitor session and retains captured changed source/diff and linkage while excluding other visitors, private keys/rubrics, model feedback and assessment writes. Normal browser/API checks passed.
+- [x] TinyFish's reported teacher-preview redirect remains documented; normal same-host authenticated browser/API checks did not reproduce it. Cause unproven. [Discrepancy](evaluation/tooling-qa.json).
 
-- [ ] Trace the pinned sample's request → validation → persistence responsibilities in the deployed overview/source.
-- [ ] Generate and submit an initial independent attempt. New in-app guidance pauses across tabs until submission or voluntary exit; the original answer remains immutable.
-- [ ] Create a private permitted draft; make a small manual edit, review the exact diff, explicitly apply and verify stale-source/concurrent-apply protections.
-- [ ] Generate an understanding task tied to the stored applied proposal, before/after hashes and reconstructed diff. Client-supplied source/proposal IDs cannot bypass ownership checks.
-- [ ] Submit a linked fresh variation; preserve the earlier response and label its phase. Repeated wording alone must not be presented as independent transfer validation.
-- [ ] If reporting trusted demo behavior checks, record fixed fixture version, exact inputs, expected/observed results and operator role. Do not imply arbitrary visitor snippets were executed.
-- [ ] Enroll synthetic learners in a synthetic class, select the approved teacher by name and explicitly share only the chosen project.
-- [ ] In an approved teacher session, distinguish two learners using the same repo, filter Needs review/Reviewed, inspect original answers/source and save a qualified human review/follow-up.
-- [ ] Confirm enrollment alone grants no project access; revocation/expiry blocks further access. No public teacher/developer credentials appear.
-- [ ] Confirm evidence states replace mastery percentages and imply no correctness or learning verdict for unreviewed answers.
+## Code → change → independent attempt → human review
 
-## Model and release checks
+- [x] Pinned sample request → validation → persistence source and overview inspected in operator QA; bounded coverage is disclosed.
+- [x] Independent mode denied new in-app hints/generation; original answers remained immutable after feedback/review, in regression and preview/production checks. Voluntary exit protections also passed regression tests.
+- [x] Manual **80→100** owned cloud draft edit was reviewed/applied in preview QA; stale-hash denial and idempotent apply were observed. Concurrent-edit protections passed regression tests.
+- [x] Change-linked tasks use the stored owned proposal, before/after hashes and reconstructed diff. Final-production hint/source agreed with the captured **100** boundary and had no original-80 mismatch.
+- [x] Fresh-variation parent/source linkage and retained submitted responses passed regression tests. The preview generated a fresh variation and **ended it without submission**; no live submitted transfer result or learner improvement is claimed.
+- [x] **120 trusted helper behavior checks** passed; **four separate harness guard tests** passed. The actual browser-downloaded file matched the trusted 100-limit hash and was compared as data, never executed. [Proof](evaluation/trusted-title-boundary-proof.md).
+- [x] Synthetic class/share/teacher review was exercised in preview QA. Two different learners sharing the same repository and correct class/teacher scopes passed route regression tests. These are operator records, not external participants.
+- [x] Enrollment alone grants no project access; explicit sharing, revocation, role and expiry boundaries passed regression/preview checks. Final production retained the existing labelled synthetic review and wrote no new teacher review.
+- [x] Observed/submitted-unreviewed/human-reviewed states replace visible mastery percentages; unreviewed answers receive no correctness or learning verdict.
 
-- [ ] Apply final database migration and verify restricted server connection, RLS/revocations and application owner predicates. RLS alone is not the end-user authorization boundary.
-- [ ] Run typecheck, appropriate tests, lint and production build on the exact final commit; record results without carrying forward obsolete totals.
-- [ ] Check actual Meta model identity, structured output/source validation, visible failure/retry, independent-mode enforcement and absence of silent preset/local fallback.
-- [ ] Verify relevant source later in a file survives context selection; record bounded-coverage limits.
-- [ ] Verify sanitized model receipts contain task/provider/model/status/timing and available numeric usage, with no prompt, learner answer, key or raw error payload.
-- [ ] Record actual semantic-output sample, pinned repositories, outcome-specific review dimensions, failures and denominators. JSON validity alone is not semantic correctness.
-- [ ] Keep operator tests, automated tests, TinyFish QA and future external study in separate categories. External study currently not conducted, n = 0.
+## Model checks and limits
 
-## Media and official form
+- [x] Actual Muse Spark 1.3 Meta requests and sanitized receipts observed. Structured/source validation, visible failure and in-app independent-mode enforcement passed checks; no silent preset/local fallback is claimed.
+- [x] Relevant later source windows and bounded evidence selection passed regression tests; no full-repository understanding claim is made.
+- [x] Private guidance is hidden before commitment and authorized after commitment; own preview still omits it. Receipts omit prompts, learner answers, credentials and raw provider errors.
+- [x] Six deterministic MCQ tests cover supported option-letter remapping and source-literal/code preservation. The final live response had **no explicit option-letter references**, so that call did not establish remapping coverage.
+- [x] Content review retains **12 baseline outputs: 8 Codex pass, 4 concern**, plus **four separate passing rechecks**; **16 requests** in that evaluation, separate from preview/production calls. [Report](evaluation/model-evaluation.md).
+- [x] External study remains **not conducted, n = 0**. Operator/automated/browser evidence is separate from human validation and does not establish learning effectiveness or comparative model quality.
 
-- [ ] Refresh real product captures for visible sample entry, source/overview, independent attempt, applied diff, fresh variation and teacher evidence. Label synthetic records and operator review.
-- [ ] Verify revised public video is within the observed three-minute limit; record exact duration, dimensions, hash, captions/transcript and browser playback/seek checks.
-- [ ] State that edited/prerecorded captures and prepared model output are not fresh generation. Show actual current product evidence early.
-- [ ] Reconcile judge guide, write-up, local form copy, JSON values, main README, production summary, transcript and release manifest.
-- [ ] Confirm three narrative fields remain at most 3,000 characters and partner feedback at most 150 after final editing.
-- [ ] Recheck current organizer deadline, announcements, required fields and participant declarations in the actual portal.
-- [ ] Present final local packet to participant. Do not submit, change publishing consent or claim a receipt without their authorized final action.
+## Media and local copy
 
-## Current external-evaluation status
+- [x] V3 uses current hosted product captures, explicitly labelled synthetic operator activity and prepared model content; no replacement product UI or new spoken claims were fabricated.
+- [x] Final artifact: **178.5 seconds, 1920×1080, 24 fps, 8,538,917 bytes**; video SHA-256 recorded in [media verification](video-publication-verification.json). Local decode/encoding checks passed.
+- [x] Public page/video/VTT/poster returned 200; video range 206; exact hashes matched; 64 caption cues valid. Reproducible read-only HTTP verifier passed.
+- [x] Actual browser player advanced to **36.94 seconds**, seeked to **178.5** and back to **176.715**, readyState 4. Native captions default off alongside observed burned-in captions. **Full linear playback was not performed.**
+- [x] Approved narration/captions unchanged; the legacy provisional-index line is retained with the explicit current observed/reviewed-state clarification at **156.4–165.4 seconds**.
+- [x] Judge guide, story, local form copy/JSON, main README and production summary reconciled with this verified app release; historical V2 evidence remains separate.
+- [x] Local form narratives remain within 3,000 characters and partner feedback within 150; Markdown text and JSON values match exactly. No official portal fields were updated or submitted in this goal; an earlier populated draft may be stale.
 
-No external participants are available. No sessions, quotes or feedback have been fabricated. The prepared [future protocol](evaluation/user-study-plan.md) and [not-conducted record](evaluation/user-study-results.json) remain explicit limitations. Operator or TinyFish completion is product QA, not a user study or causal evidence.
+## Participant-owned actions — intentionally open
+
+- [ ] Complete the participant's final review of the packet, including a full audible listening review. **Listening review was not performed** by this engineering workflow.
+- [ ] Recheck current organizer deadline/announcements, required portal fields and participant declarations before any authorized submission.
+- [ ] Review and paste the current local form copy into the portal if desired; an earlier portal draft is not assumed to match.
+- [ ] Decide optional personal survey/publishing declarations personally. Local `publishingConsent` remains **false**; no consent was accepted on the participant's behalf.
+- [ ] Submit the official form only through a later participant-authorized action. No submission receipt is claimed by this goal.

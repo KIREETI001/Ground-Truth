@@ -1,0 +1,33 @@
+{
+  "pageUrl": "https://groundtruth-meta.vercel.app/demo",
+  "pageStatus": 200,
+  "videoStatus": 200,
+  "videoBytes": 9400939,
+  "videoSha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
+  "matchesReviewedCandidate": true,
+  "rangeStatus": 206,
+  "contentRange": "bytes 0-1023/9400939",
+  "captionStatus": 200,
+  "captionCues": 64,
+  "captionsMatch": true,
+  "posterStatus": 200,
+  "posterMatches": true,
+  "healthStatus": 200,
+  "deploymentId": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
+  "deployedCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
+  "submitted": false,
+  "browser": {
+    "currentTime": 11.036166,
+    "duration": 178.5,
+    "error": null,
+    "height": 1080,
+    "paused": true,
+    "readyState": 4,
+    "source": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=b7e788a8",
+    "width": 1920,
+    "playbackObserved": true,
+    "observedPlayingTime": 25.725755,
+    "playingObservationPaused": false,
+    "lastAction": "Paused after successful playback check"
+  }
+}

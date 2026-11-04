@@ -1,141 +1,407 @@
 {
+  "schemaVersion": "groundtruth-submission-release.v3",
   "project": "GroundTruth",
   "packetDate": "2026-11-05",
-  "submissionStatus": "not_submitted",
+  "updatedAt": "2026-11-04T20:57:39.226Z",
+  "releaseStatus": "production_and_media_verified_participant_review_required",
+  "submissionStatus": "not_submitted_by_agent",
+  "receipt": null,
   "liveUrl": "https://groundtruth-meta.vercel.app",
   "sourceUrl": "https://github.com/KIREETI001/Ground-Truth",
-  "releaseCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
   "sourceBranch": "main",
   "sourceVisibilityVerified": true,
-  "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
-  "videoUrl": "https://groundtruth-meta.vercel.app/demo",
-  "thumbnail": "thumbnail.svg",
-  "thumbnailPng": "thumbnail.png",
-  "pitchDeck": "pitch-deck.html",
-  "architectureIllustration": "architecture.svg",
-  "architecturePng": "architecture.png",
-  "screenshots": [
-    "assets/live-cloud-draft.png",
-    "assets/live-concepts.png",
-    "assets/live-independent.png",
-    "assets/live-landing.png",
-    "assets/live-practice-coding.png",
-    "assets/live-practice-mcq.png",
-    "assets/live-progress.png",
-    "assets/live-repository-map.png",
-    "assets/live-teacher.png",
-    "assets/live-workflow.png"
-  ],
-  "track": {
-    "recommended": "Indie Developer",
-    "confirmed": true,
-    "selected": "Indie Developer"
+  "releaseCommit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+  "deployedCodeCommit": "1e1bcfaa848150f90caf890e8d32471336f5e084",
+  "runtimeTrees": {
+    "app": "7dc2b7f5886b6e4cd0171eff687285d3b4a66890",
+    "lib": "29775cfb7913352976ae73dfd01927200662254e",
+    "public": "3ebdb34f80bde7151719b7b501b8513f9bfaaac3"
   },
-  "theme": {
-    "recommended": "Build for Your World",
-    "confirmed": true,
-    "selected": "Build for Your World"
-  },
-  "teamConfirmed": true,
-  "officialFormReviewed": true,
-  "officialFormEvidence": "Authenticated official Cerebral Valley form inspected by release operator on 2026-11-05; exact copy fields recorded in official-form-copy.md",
-  "targetArchitecture": {
-    "hosting": "Vercel",
-    "database": "Supabase PostgreSQL",
-    "inference": "Meta Model API",
-    "model": "muse-spark-1.3",
-    "mode": "Standard"
-  },
-  "cloudVerification": {
-    "deployment": "ready_public_login_and_health_200",
-    "metaRequest": "verified_8_real_meta_adapter_tasks_and_12_public_journey_checks",
-    "databaseMigration": "verified_32_tables_rls_enabled",
-    "accessBoundaries": "44_public_api_checks_passed_including_final_live_model_lease_and_independent_transition",
-    "learnerJourney": "public_meta_map_overview_concepts_mcq_code_hint_persisted_independent_lock_and_exit_verified",
-    "teacherJourney": "verified_live_browser_original_answer_and_review_controls",
-    "hostedChanges": "verified_live_manual_and_meta_proposals_review_hash_check_idempotent_apply"
-  },
+  "evidenceCommitNote": "A later evidence-only commit updates this packet and verification scripts. Runtime app/lib/public trees remain identical to the deployed commit.",
   "vercel": {
-    "deploymentId": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
-    "candidateUrl": "https://groundtruth-meta.vercel.app",
+    "deploymentId": "dpl_23T8RW7JX4r21MZ5zoLuTUZo86nE",
     "status": "READY",
-    "publicAccessVerified": true,
     "productionUrl": "https://groundtruth-meta.vercel.app",
-    "region": "Singapore"
+    "candidateUrl": "https://groundtruth-meta-o8j3e4u38-kireeti001s-projects.vercel.app",
+    "region": "Singapore",
+    "publicAccessVerified": true,
+    "gitSourceCommitVerified": "1e1bcfaa848150f90caf890e8d32471336f5e084"
   },
   "supabase": {
     "projectRef": "qsvaukgcyezywykkkkcy",
     "status": "ACTIVE",
-    "tables": 32,
+    "tables": 33,
     "rlsEnabledOnAllTables": true,
     "securityAdvisorFindings": 0,
-    "runtimeConnection": "private_app_role_with_ca_verified_tls",
-    "serverLoginRehearsal": "passed"
+    "runtimeConnection": "restricted_groundtruth_app_role_with_ca_verified_tls",
+    "authorizationBoundary": "Private schema and restricted server role; end-user isolation is enforced by application predicates, not per-user database RLS.",
+    "migrations": [
+      "20261104170149_groundtruth_cloud_schema.sql",
+      "20261104195000_study_model_receipts.sql"
+    ]
+  },
+  "targetArchitecture": {
+    "hosting": "Vercel / Next.js",
+    "database": "Supabase PostgreSQL",
+    "inference": "Direct Meta Model API",
+    "model": "muse-spark-1.3",
+    "mode": "Standard",
+    "silentLocalOrPresetFallback": false
+  },
+  "licensing": {
+    "implementation": "MIT",
+    "participantRightsConfirmed": true,
+    "license": "../LICENSE",
+    "attribution": "../NOTICE",
+    "upstreamFixtureNotices": "evaluation/licenses/README.md"
+  },
+  "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
+  "judgeEntry": {
+    "url": "https://groundtruth-meta.vercel.app/login",
+    "action": "Try sample learning path",
+    "isolatedVisitorAccounts": true,
+    "ttlSeconds": 7200,
+    "preparedMetaAssets": [
+      "overview",
+      "concepts"
+    ],
+    "freshQuestions": "Live Meta requests",
+    "ownReadOnlyTeacherPreview": "/demo/teacher",
+    "teacherPrivilegesGranted": false,
+    "sourceCommit": "d964b3a62d84aa210b93c54271c364ad8e81ebc9",
+    "sampleLicense": "MIT",
+    "sampleLicenseCommit": "026d25d212336d5e26c42b32bb31a37c1bfc157b",
+    "expiryQuotaAndCleanupEvidence": "Automated regressions; no claim that a two-hour human session was observed."
   },
   "checks": {
+    "applicationTests": {
+      "passed": 288,
+      "failed": 0,
+      "skipped": 0,
+      "command": "pnpm test"
+    },
     "typecheck": "passed",
-    "tests": "246_passed",
-    "lint": "passed_zero_errors_zero_warnings",
-    "build": "passed_native_next_and_vercel",
-    "liveSmoke": "44_public_api_checks_plus_8_real_meta_adapter_tasks"
+    "lint": "passed",
+    "build": "passed_local_production_and_vercel",
+    "releaseInventory": "passed_no_high_confidence_credentials_or_private_runtime_files",
+    "trustedFixtureGuardTests": {
+      "passed": 4,
+      "command": "node --test scripts/trusted-title-proof.test.mjs"
+    },
+    "independentCodexReview": {
+      "focusedTestsPassed": 33,
+      "releaseBlockersFound": 0,
+      "humanReview": false
+    },
+    "previewAcceptance": {
+      "artifact": "evaluation/live-acceptance.json",
+      "checks": 13,
+      "passed": 13,
+      "metaCalls": 6,
+      "commit": "1e859023155d1c7bba4a5298fbb9239088f4554e"
+    },
+    "productionAcceptance": {
+      "artifact": "evaluation/production-acceptance.json",
+      "checks": 6,
+      "passed": 6,
+      "failed": 0,
+      "newGuestAccounts": 0,
+      "newModelRequests": 2,
+      "newSanitizedReceipts": 2,
+      "inputTokens": 4320,
+      "outputTokens": 2032,
+      "cachedInputTokens": 0
+    },
+    "browserVerification": "evaluation/browser-verification.json",
+    "responsiveVerification": "evaluation/browser-layouts.json"
   },
-  "receipt": null,
-  "notes": [
-    "The deployed code commit is recorded above; a later documentation-only commit may update this evidence record.",
-    "Actual Meta outputs, public persistence, role boundaries, cloud drafts, independent locks and video playback were verified. These checks do not establish learning gains or validated assessment.",
-    "Participant review hold: the official form is populated in the open browser, not submitted. Publishing consent remains unchecked."
-  ],
-  "liveHealth": {
-    "login": 200,
-    "apiHealth": 200,
-    "database": "connected",
-    "inference": "configured_real_request_verified"
+  "modelContentEvaluation": {
+    "artifact": "evaluation/model-evaluation.md",
+    "rawEvidence": "evaluation/model-evaluation.json",
+    "repositories": 3,
+    "reviewer": "Codex source-assisted inspection, not an independent human assessor",
+    "baseline": {
+      "planned": 12,
+      "returned": 12,
+      "attempts": 12,
+      "automaticPassed": 12,
+      "semantic": {
+        "reviewed": 12,
+        "pass": 8,
+        "concern": 4,
+        "fail": 0
+      }
+    },
+    "mitigationRecheck": {
+      "planned": 4,
+      "returned": 4,
+      "attempts": 4,
+      "automaticPassed": 4,
+      "semantic": {
+        "reviewed": 4,
+        "pass": 4,
+        "concern": 0,
+        "fail": 0
+      }
+    },
+    "total": {
+      "generationAttempts": 16,
+      "failedGenerationAttempts": 0,
+      "receiptCount": 16,
+      "inputTokens": 27248,
+      "outputTokens": 17647,
+      "cachedInputTokens": 1250,
+      "latencyMs": {
+        "observed": 16,
+        "min": 5195,
+        "median": 11437.5,
+        "max": 17509
+      }
+    },
+    "perRepository": [
+      {
+        "repository": "KIREETI001/groundtruth-demo-study-tasks",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 2,
+            "concern": 2,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 2,
+          "returned": 2,
+          "attempts": 2,
+          "automaticPassed": 2,
+          "semantic": {
+            "reviewed": 2,
+            "pass": 2,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 6,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 6,
+        "inputTokens": 10144,
+        "outputTokens": 7042,
+        "cachedInputTokens": 0,
+        "latencyMs": {
+          "observed": 6,
+          "min": 9235,
+          "median": 12392,
+          "max": 14274
+        }
+      },
+      {
+        "repository": "juliangruber/isarray",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 2,
+            "concern": 2,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 2,
+          "returned": 2,
+          "attempts": 2,
+          "automaticPassed": 2,
+          "semantic": {
+            "reviewed": 2,
+            "pass": 2,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 6,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 6,
+        "inputTokens": 8824,
+        "outputTokens": 6861,
+        "cachedInputTokens": 0,
+        "latencyMs": {
+          "observed": 6,
+          "min": 5195,
+          "median": 12222.5,
+          "max": 17509
+        }
+      },
+      {
+        "repository": "jonschlinkert/is-number",
+        "baseline": {
+          "planned": 4,
+          "returned": 4,
+          "attempts": 4,
+          "automaticPassed": 4,
+          "semantic": {
+            "reviewed": 4,
+            "pass": 4,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "mitigationRecheck": {
+          "planned": 0,
+          "returned": 0,
+          "attempts": 0,
+          "automaticPassed": 0,
+          "semantic": {
+            "reviewed": 0,
+            "pass": 0,
+            "concern": 0,
+            "fail": 0
+          }
+        },
+        "totalGenerationAttempts": 4,
+        "failedGenerationAttempts": 0,
+        "receiptCount": 4,
+        "inputTokens": 8280,
+        "outputTokens": 3744,
+        "cachedInputTokens": 1250,
+        "latencyMs": {
+          "observed": 4,
+          "min": 6001,
+          "median": 8791,
+          "max": 10519
+        }
+      }
+    ],
+    "comparativeModelBenchmark": false,
+    "learningStudy": false
   },
-  "videoArtifact": "public/groundtruth-demo.mp4",
-  "videoCaptions": "public/groundtruth-demo.vtt",
+  "controlledChangeProof": {
+    "artifact": "evaluation/trusted-title-boundary-proof.md",
+    "passed": 120,
+    "total": 120,
+    "variants": [
+      "original_1_to_80",
+      "manual_1_to_100",
+      "fresh_operator_fixture_3_to_100"
+    ],
+    "downloadedActualCloudDraftMatched": true,
+    "downloadedDraftSha256": "1ba3ba6185074ec97465e605516ced8229614346b9ce47a23e8ff588c9789570",
+    "downloadedFileExecuted": false,
+    "executionScope": "Only the hash-checked owned helper and two prescribed variants; no arbitrary imported code or submitted learner code."
+  },
+  "classroomEvidence": {
+    "scope": "Synthetic operator QA only",
+    "explicitConsentSeparateFromEnrollment": true,
+    "namedLearnerAndClass": true,
+    "queueFilters": [
+      "Needs review",
+      "Reviewed",
+      "All shared paths"
+    ],
+    "originalAnswersImmutable": true,
+    "capturedAppliedSourceAndDiff": true,
+    "savedOperatorReview": true,
+    "externalEducatorValidation": false,
+    "displayedMasteryPercentage": false
+  },
+  "externalUserStudy": {
+    "status": "not_conducted",
+    "participants": 0,
+    "learners": 0,
+    "educators": 0,
+    "feedbackQuotes": 0,
+    "results": "evaluation/user-study-results.json",
+    "futureProtocol": "evaluation/user-study-plan.md"
+  },
+  "automationDiscrepancy": {
+    "source": "TinyFish run 9f654db0-26d4-4626-a237-d25a2c2cbb8f",
+    "finding": "Reported teacher-preview redirect after completing learner flow.",
+    "recheck": "Not reproduced by normal same-host browser clicks or authenticated page/API requests on preview and production; discrepancy retained in tooling and acceptance reports."
+  },
+  "videoUrl": "https://groundtruth-meta.vercel.app/demo",
+  "videoDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4?v=f6dbbb92",
+  "videoArtifact": "video-v3/GroundTruth_Demo_V3_final.mp4",
+  "videoCaptions": "video-v3/captions.vtt",
+  "videoTranscript": "video-v3/transcript.md",
   "videoDurationSeconds": 178.5,
-  "videoBytes": 9400939,
-  "videoPlannedPage": "https://groundtruth-meta.vercel.app/demo",
-  "videoPlannedDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
-  "videoHosting": "verified_public_v2_mp4_vtt_player",
-  "videoSha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
+  "videoBytes": 8538917,
+  "videoSha256": "f6dbbb920be896a4311ec187dd597cd4dae92ec48e808d862b2043543e6e3a94",
+  "video": {
+    "revision": "f6dbbb92",
+    "width": 1920,
+    "height": 1080,
+    "fps": 24,
+    "sceneCount": 36,
+    "captionCues": 64,
+    "firstProductUiSeconds": 0,
+    "firstTeacherEvidenceSeconds": 17.75,
+    "decodePassed": true,
+    "publicBytesMatchReviewedCandidate": true,
+    "publicRangeStatus": 206,
+    "publicCaptionsAndPosterMatch": true,
+    "httpEvidence": "video-publication-verification.json",
+    "browserEvidence": "evaluation/browser-verification.json",
+    "naturalSpeechSpeed": 1,
+    "newSynthesisCallsForRecut": 0,
+    "audioAndCaptionsUnchanged": true,
+    "syntheticOperatorRecordsLabelled": true,
+    "legacySpokenIndexLine": "Preserved verbatim with explicit current observed/reviewed states clarification at 156.4–165.4 seconds.",
+    "listeningReview": "not_performed",
+    "fullLinearBrowserPlayback": false,
+    "browserPlaybackAndSeekObserved": true
+  },
+  "deliverables": {
+    "judgeGuide": "judge-guide.md",
+    "writeup": "project-writeup.md",
+    "officialFormCopy": "official-form-copy.md",
+    "structuredFormValues": "form-values.json",
+    "pitchDeck": "pitch-deck.html",
+    "pitchUrl": "https://groundtruth-meta.vercel.app/pitch.html",
+    "thumbnail": "thumbnail.png",
+    "architecture": "architecture.png",
+    "reviewFirst": "REVIEW_FIRST.md",
+    "finalAudit": "final-audit-2026-11-05.md"
+  },
   "team": [
     {
       "name": "Kireeti Kumar",
       "role": "Solo builder"
     }
   ],
-  "videoDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
-  "participantReviewRequired": true,
-  "publicationConsentAccepted": false,
-  "deployedCodeCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
-  "pitchUrl": "https://groundtruth-meta.vercel.app/pitch.html",
-  "formPreparedInBrowser": true,
+  "track": {
+    "selected": "Indie Developer",
+    "confirmed": true
+  },
+  "theme": {
+    "selected": "Build for Your World",
+    "confirmed": true
+  },
   "participantAnswers": {
     "likelihoodToBuildMetaApi": "Very likely",
     "overallMetaApiOpinion": "Very favorable"
   },
-  "videoReviewCandidate": {
-    "artifact": "video-v2/GroundTruth_Demo_V2.mp4",
-    "reviewPage": "https://groundtruth-meta.vercel.app/demo",
-    "captions": "video-v2/captions.vtt",
-    "durationSeconds": 178.5,
-    "width": 1920,
-    "height": 1080,
-    "bytes": 9400939,
-    "sha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
-    "voice": "Alyssa",
-    "narrationProvider": "HeyGen",
-    "sceneCount": 31,
-    "captionCues": 64,
-    "decodePassed": true,
-    "listeningReview": "not_performed",
-    "uploaded": true,
-    "submitted": false,
+  "officialForm": {
     "participantReviewRequired": true,
-    "publishedUrl": "https://groundtruth-meta.vercel.app/demo",
-    "status": "published_at_participant_request"
+    "submittedByAgent": false,
+    "portalStatusRecheckedDuringStrengtheningTask": false,
+    "updatedByThisStrengtheningTask": false,
+    "localCopyIsCurrent": true,
+    "previouslyPreparedPortalDraftMayNeedReplacement": true,
+    "publicationConsentAccepted": false
   },
-  "videoProductionDeployment": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
-  "videoPublicationVerification": "video-publication-verification.json"
+  "participantReviewRequired": true,
+  "publicationConsentAccepted": false,
+  "limitations": [
+    "No external learners or educators participated; no measured learning gains, assessment validity, fairness or marking-time savings.",
+    "The small three-repository evaluation is not a model comparison or broad language/repository coverage.",
+    "Historical stored MCQ notes are not rewritten; new shuffles remap explicit prose references, with six deterministic regression tests.",
+    "Teacher quiz authoring, assignment distribution and cohort analytics remain future work.",
+    "The platform observes its own activity and cannot prove authorship or detect external AI use.",
+    "Audio decode/loudness/timing and partial browser playback were checked; a full audible listening review remains for the participant."
+  ]
 }
