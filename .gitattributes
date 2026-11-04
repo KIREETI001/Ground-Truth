@@ -3,3 +3,7 @@
 *.srt -text whitespace=cr-at-eol
 /submission/video-v2/*.json -text whitespace=cr-at-eol
 /submission/video-v3/*.json -text whitespace=cr-at-eol
+# Evaluation records identify exact source/input bytes, including their EOLs.
+/lib/study/model.ts -text whitespace=cr-at-eol
+/submission/evaluation/*.json -text whitespace=cr-at-eol
+/submission/evaluation/fixtures.json whitespace=cr-at-eol,-blank-at-eof
