@@ -4,8 +4,10 @@
 
 ## Start here
 
+**Updated video is live:** [Watch the 2:58.5, 1080p demo](https://groundtruth-meta.vercel.app/demo). The participant requested publication of the energetic V2 cut; the official form remains unsubmitted.
+
 1. [Try the live application](https://groundtruth-meta.vercel.app).
-2. [Watch the narrated demo](https://groundtruth-meta.vercel.app/demo). It is an edited walkthrough of actual hosted screenshots, not a continuous screen recording. The demonstration account and answer are synthetic.
+2. [Watch the narrated demo](https://groundtruth-meta.vercel.app/demo). It combines actual hosted captures with explanatory animation, not an uninterrupted screen recording. The demonstration account and answer are synthetic.
 3. Read the [exact official form answers](official-form-copy.md), [project story](project-writeup.md), [five-slide pitch](pitch-deck.html) and [video transcript](video/transcript.md).
 4. Review the [judge guide](judge-guide.md), [architecture and attribution](architecture-and-attribution.md), [Meta fit](why-meta.md), and [research evidence](research-evidence.md).
 5. Inspect the [screenshots](assets), [thumbnail](thumbnail.png), [architecture diagram](architecture.png), [verification summary](production-check-summary.md) and [release manifest](release-manifest.json).

@@ -4,7 +4,7 @@
   "submissionStatus": "not_submitted",
   "liveUrl": "https://groundtruth-meta.vercel.app",
   "sourceUrl": "https://github.com/KIREETI001/Ground-Truth",
-  "releaseCommit": "0b37fa2529cc561050b19e08613827ffb2a4e79d",
+  "releaseCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
   "sourceBranch": "main",
   "sourceVisibilityVerified": true,
   "demoRepository": "https://github.com/KIREETI001/groundtruth-demo-study-tasks",
@@ -56,7 +56,7 @@
     "hostedChanges": "verified_live_manual_and_meta_proposals_review_hash_check_idempotent_apply"
   },
   "vercel": {
-    "deploymentId": "dpl_G3NM77EGFnn8Zvgffz1bt7ACCr92",
+    "deploymentId": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
     "candidateUrl": "https://groundtruth-meta.vercel.app",
     "status": "READY",
     "publicAccessVerified": true,
@@ -91,14 +91,14 @@
     "database": "connected",
     "inference": "configured_real_request_verified"
   },
-  "videoArtifact": "video/GroundTruth_Demo.mp4",
-  "videoCaptions": "video/GroundTruth_Demo.vtt",
-  "videoDurationSeconds": 175.02,
-  "videoBytes": 3681860,
+  "videoArtifact": "public/groundtruth-demo.mp4",
+  "videoCaptions": "public/groundtruth-demo.vtt",
+  "videoDurationSeconds": 178.5,
+  "videoBytes": 9400939,
   "videoPlannedPage": "https://groundtruth-meta.vercel.app/demo",
   "videoPlannedDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
-  "videoHosting": "verified_public_revised_video_mp4_vtt_player",
-  "videoSha256": "17e69347c7387e5b4325abea5daa97be14a2cb0244ef3473c0bd372cc7625e5c",
+  "videoHosting": "verified_public_v2_mp4_vtt_player",
+  "videoSha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
   "team": [
     {
       "name": "Kireeti Kumar",
@@ -108,11 +108,34 @@
   "videoDirectUrl": "https://groundtruth-meta.vercel.app/groundtruth-demo.mp4",
   "participantReviewRequired": true,
   "publicationConsentAccepted": false,
-  "deployedCodeCommit": "0b37fa2529cc561050b19e08613827ffb2a4e79d",
+  "deployedCodeCommit": "4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5",
   "pitchUrl": "https://groundtruth-meta.vercel.app/pitch.html",
   "formPreparedInBrowser": true,
   "participantAnswers": {
     "likelihoodToBuildMetaApi": "Very likely",
     "overallMetaApiOpinion": "Very favorable"
-  }
+  },
+  "videoReviewCandidate": {
+    "artifact": "video-v2/GroundTruth_Demo_V2.mp4",
+    "reviewPage": "https://groundtruth-meta.vercel.app/demo",
+    "captions": "video-v2/captions.vtt",
+    "durationSeconds": 178.5,
+    "width": 1920,
+    "height": 1080,
+    "bytes": 9400939,
+    "sha256": "b7e788a800d75d3674fa29dae21feeecd06e4477e4939ccc57659858788652fe",
+    "voice": "Alyssa",
+    "narrationProvider": "HeyGen",
+    "sceneCount": 31,
+    "captionCues": 64,
+    "decodePassed": true,
+    "listeningReview": "not_performed",
+    "uploaded": true,
+    "submitted": false,
+    "participantReviewRequired": true,
+    "publishedUrl": "https://groundtruth-meta.vercel.app/demo",
+    "status": "published_at_participant_request"
+  },
+  "videoProductionDeployment": "dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ",
+  "videoPublicationVerification": "video-publication-verification.json"
 }

@@ -8,8 +8,8 @@
 - Narrated demo: https://groundtruth-meta.vercel.app/demo
 - Pitch: https://groundtruth-meta.vercel.app/pitch.html
 - Public source: https://github.com/KIREETI001/Ground-Truth
-- Deployed code: `0b37fa2529cc561050b19e08613827ffb2a4e79d`
-- Vercel production deployment: `dpl_G3NM77EGFnn8Zvgffz1bt7ACCr92`, READY, Singapore.
+- Deployed code: `4fe6afdc960bcb2d9f7b0e099b8bca0854fb20a5`
+- Vercel production deployment: `dpl_9CP3vXAdyNcf6zq3e68ErmNy9SBJ`, READY, Singapore.
 
 ## Checks
 
@@ -26,9 +26,9 @@
 | Database transport | Restricted backend role; certificate-verified TLS |
 | Real Meta adapter tasks | 8/8 passed, Muse Spark 1.3 Standard |
 | Public API checks | 44 passed across the checked releases, including final deployed concurrency/exit checks |
-| Video | 175.02 seconds; 3,681,860 bytes; H.264/AAC 720p; captions; full decode/audio/frame checks passed |
-| Hosted video | HTTP 200; downloaded SHA256 matches the local artifact |
-| Browser playback | Video metadata loaded; one caption track; no media error |
+| Video | 178.5 seconds; 9,400,939 bytes; H.264/AAC 1080p; 64 caption cues; decode, timing and frame checks passed |
+| Hosted video | HTTP 200; downloaded SHA256 matches V2; HTTP 206 byte ranges verified |
+| Browser playback | 178.5s, 1920×1080; playback advanced beyond 25s; no media error; optional sidecar avoids duplicate burned-in captions |
 
 The public checks cover signup, Secure session cookies, teacher approval, developer-signup rejection, classes, owner isolation, complete pinned source, manual and Meta cloud proposals, explicit approval/idempotent apply, sharing, generated maps/overviews/concepts/MCQ/coding/hints/feedback, in-app independent assistance lock and voluntary exit. The final live concurrency check confirmed that an active learner Meta request prevents independent start, a released lease permits it, independent mode denies another hint, and ending the attempt restores access.
 
