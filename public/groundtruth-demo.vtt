@@ -1,126 +1,193 @@
 WEBVTT
 
-00:00:00.000 --> 00:00:05.759
-AI can build a working app before its builder understands
-the system.
+00:00:00.299 --> 00:00:02.083
+Your app works. Great.
 
-00:00:05.759 --> 00:00:12.477
-GroundTruth helps the learner understand code and
-architecture, then practise the next change independently.
+00:00:02.261 --> 00:00:04.877
+Now change one line without asking AI.
 
-00:00:13.542 --> 00:00:16.268
-Teachers face a connected problem.
+00:00:04.949 --> 00:00:07.117
+That is where understanding starts to matter.
 
-00:00:16.268 --> 00:00:22.267
-A polished, AI-assisted take-home artifact can conceal
-gaps in independent understanding.
+00:00:07.253 --> 00:00:08.518
+AI can help a beginner
 
-00:00:22.267 --> 00:00:28.266
-Responsible AI learners also need a fair chance to
-demonstrate ability.
+00:00:08.533 --> 00:00:10.353
+build impressive software before they
 
-00:00:28.266 --> 00:00:32.628
-Reconstructing missing reasoning can add manual marking
-work.
+00:00:10.368 --> 00:00:12.188
+understand how its parts connect.
 
-00:00:32.628 --> 00:00:38.627
-This edited walkthrough uses real interface captures and
-synthetic demo data.
+00:00:12.318 --> 00:00:13.867
+When the next requirement changes,
 
-00:00:39.708 --> 00:00:43.125
-Start with a public repository and a feature.
+00:00:14.024 --> 00:00:15.588
+they can end up asking the assistant
 
-00:00:43.125 --> 00:00:50.386
-The learner chooses a backend workflow in our small
-study-task app, before needing to know a filename.
+00:00:15.603 --> 00:00:17.557
+to rediscover the whole project.
 
-00:00:51.667 --> 00:00:55.608
-The overview connects selected source to system
-responsibilities.
+00:00:25.992 --> 00:00:27.428
+Teachers face the same gap
 
-00:00:55.608 --> 00:00:58.071
-Where does a request go?
+00:00:27.443 --> 00:00:28.544
+from the other side.
 
-00:00:58.071 --> 00:01:00.042
-Which component validates it?
+00:00:28.723 --> 00:00:30.294
+A polished take-home submission
 
-00:01:00.042 --> 00:01:05.954
-A reading flow and glossary help the learner build that
-mental model.
+00:00:30.472 --> 00:00:31.863
+shows the finished product.
 
-00:01:07.208 --> 00:01:11.288
-The concept tree links those responsibilities to focused
-practice.
+00:00:32.033 --> 00:00:33.554
+It may reveal very little about
 
-00:01:11.288 --> 00:01:19.901
-It also gives teacher and learner a shared concept to
-discuss, rather than relying only on the finished
-artifact.
+00:00:33.569 --> 00:00:36.377
+what the student can explain or change independently.
 
-00:01:21.000 --> 00:01:25.707
-Muse Spark generates code-linked MCQs and tiny coding
-tasks.
+00:00:36.556 --> 00:00:38.845
+Responsible AI learners need a fair chance
 
-00:01:25.707 --> 00:01:29.891
-The question responds to the source and goal.
+00:00:38.860 --> 00:00:40.558
+to show that understanding, too.
 
-00:01:29.891 --> 00:01:35.644
-This is contextual practice, not AI grading of a take-home
-project.
+00:00:47.780 --> 00:00:50.097
+Meet GroundTruth. Understand your code.
 
-00:01:35.644 --> 00:01:38.782
-Suggested answers still need source review.
+00:00:50.212 --> 00:00:51.468
+Think in systems.
 
-00:01:40.000 --> 00:01:44.342
-During an independent attempt, new study assistance
-pauses.
+00:00:51.631 --> 00:00:53.031
+Bring a public GitHub project
 
-00:01:44.342 --> 00:01:48.685
-The original submitted response is preserved before
-feedback.
+00:00:53.124 --> 00:00:54.332
+and choose a feature.
 
-00:01:48.685 --> 00:01:52.484
-The learner may also end the attempt.
+00:00:54.447 --> 00:00:56.487
+Here, we are exploring task submission
 
-00:01:52.484 --> 00:01:56.827
-GroundTruth cannot prevent outside help or infer
-authorship.
+00:00:56.581 --> 00:00:57.895
+in a small study app.
 
-00:01:58.083 --> 00:02:01.269
-The learner chooses what to share.
+00:00:58.031 --> 00:00:59.943
+Follow the selected request flow.
 
-00:02:01.269 --> 00:02:06.049
-Original attempts and observed activity add context for
-review.
+00:01:00.122 --> 00:01:01.820
+The API receives an input.
 
-00:02:06.049 --> 00:02:10.828
-The concept index is provisional evidence, not a grade.
+00:01:01.914 --> 00:01:03.642
+A validation helper checks it.
 
-00:02:10.828 --> 00:02:14.545
-These synthetic records are not learning-effectiveness
-results.
+00:01:03.765 --> 00:01:06.381
+Valid data continues towards persistence.
 
-00:02:15.667 --> 00:02:23.707
-The teacher can inspect the original answer and identify a
-concept worth a fresh unaided follow-up.
+00:01:06.623 --> 00:01:08.578
+Suddenly, a folder full of files
 
-00:02:23.707 --> 00:02:27.728
-This can inform teaching, while judgement stays human.
+00:01:08.714 --> 00:01:10.157
+becomes a set of responsibilities
 
-00:02:27.728 --> 00:02:33.758
-Teacher AI quiz authoring, assignment distribution and
-cohort analytics remain future work.
+00:01:10.250 --> 00:01:11.475
+you can reason about.
 
-00:02:34.833 --> 00:02:37.376
-Meta provides contextual content.
+00:01:25.649 --> 00:01:26.836
+The concept tree turns
 
-00:02:37.376 --> 00:02:45.005
-GroundTruth on Vercel controls access and learning state,
-with Supabase preserving evidence.
+00:01:26.887 --> 00:01:28.884
+that workflow into focused practice:
 
-00:02:45.005 --> 00:02:47.547
-Support responsible AI learning.
+00:01:29.105 --> 00:01:30.655
+trimming, length limits,
 
-00:02:47.547 --> 00:02:53.904
-Understand the system, try independently, and make the
-evidence inspectable.
+00:01:30.684 --> 00:01:32.912
+numeric IDs and request handling.
+
+00:01:33.065 --> 00:01:35.354
+Meta's Muse Spark generates an overview,
+
+00:01:35.369 --> 00:01:36.705
+source-linked guidance,
+
+00:01:36.820 --> 00:01:39.450
+multiple-choice questions and tiny coding tasks
+
+00:01:39.465 --> 00:01:41.292
+from this code and the learner's goal.
+
+00:01:41.428 --> 00:01:42.821
+The format stays familiar while
+
+00:01:42.836 --> 00:01:44.673
+the content changes with the project.
+
+00:01:54.948 --> 00:01:56.497
+Then comes the important moment:
+
+00:01:56.612 --> 00:01:57.542
+try it yourself.
+
+00:01:57.763 --> 00:01:59.974
+New in-app study assistance pauses.
+
+00:02:00.238 --> 00:02:03.238
+The first submitted response is preserved before feedback.
+
+00:02:03.395 --> 00:02:04.660
+You can also end an attempt
+
+00:02:04.675 --> 00:02:05.699
+and return later.
+
+00:02:14.843 --> 00:02:16.648
+Now the teacher has more to inspect:
+
+00:02:16.720 --> 00:02:17.864
+the original attempt,
+
+00:02:18.000 --> 00:02:20.488
+the concepts practised and requests for help.
+
+00:02:20.688 --> 00:02:22.707
+The learner chooses which path to share.
+
+00:02:22.864 --> 00:02:23.873
+Those records can guide
+
+00:02:23.888 --> 00:02:25.452
+a fresh unaided follow-up
+
+00:02:25.467 --> 00:02:27.281
+and a better teaching conversation.
+
+00:02:36.532 --> 00:02:38.210
+These are synthetic demo records,
+
+00:02:38.239 --> 00:02:39.874
+not measured learning gains.
+
+00:02:40.116 --> 00:02:41.879
+The index is provisional evidence,
+
+00:02:41.994 --> 00:02:43.344
+and outside AI use
+
+00:02:43.359 --> 00:02:45.285
+is beyond the platform's view.
+
+00:02:45.434 --> 00:02:47.069
+GroundTruth runs on Vercel,
+
+00:02:47.098 --> 00:02:48.626
+with Supabase preserving evidence
+
+00:02:48.762 --> 00:02:51.272
+and Meta powering contextual guidance.
+
+00:02:51.493 --> 00:02:52.637
+Let AI cook.
+
+00:02:52.730 --> 00:02:53.704
+Know the recipe.
+
+00:02:53.840 --> 00:02:55.353
+Make the next change your own.
